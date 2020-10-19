@@ -1,0 +1,4 @@
+${PODS_ROOT}/Target Support Files/Pods-Segler/Pods-Segler-frameworks.sh
+${BUILT_PRODUCTS_DIR}/BarcodeScanner/BarcodeScanner.framework
+${BUILT_PRODUCTS_DIR}/NMSSH/NMSSH.framework
+${BUILT_PRODUCTS_DIR}/ProgressHUD/ProgressHUD.framework

@@ -1,0 +1,1524 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 52;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		042FE2F2D1006ECEFB019857FF8F0074 /* ProgressHUD-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A5E29A6BF61C3A82957BD8B3AF40138 /* ProgressHUD-dummy.m */; };
+		06AE36F74478C9EFAE88FC5016A8AAEF /* NMSSHSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A2A3939FA6A7F48ABB335E0CD4E55C /* NMSSHSession.m */; };
+		087E93C64077621EE988B780CD9DAB15 /* ProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = FAFE8BD45F901FB24402250786C849BD /* ProgressHUD.m */; };
+		0A1910D17F5C91DFE9CC65E3B2B67131 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E094F1DC6FE2C9897AEF2BE71155F90 /* CameraViewController.swift */; };
+		0D1CC4D0ABDD1936A7C91938B1AEC973 /* NMSSH.h in Headers */ = {isa = PBXBuildFile; fileRef = D026ACA31B7E79EE30EC087FA319C15F /* NMSSH.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		0E7DA5C10E7C5F4A87E07C27DE78E351 /* AVMetadataObject+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E198B782826F970BFD0C2BF6A49625C /* AVMetadataObject+Extensions.swift */; };
+		1C173894E90598108C4650501089CAC9 /* ProgressHUD.h in Headers */ = {isa = PBXBuildFile; fileRef = 68D4F94928E4005C15A2B3C997D2DC45 /* ProgressHUD.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		1C976A97D8A54C3D1059678149055891 /* VideoPermissionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99228A6BA114F8021F32BACB6C996B9 /* VideoPermissionService.swift */; };
+		21448EF843CC735A05A8B4914DEBEFDC /* NMSSHLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AB47BC0B475AD9894B5BB4EFC10957B /* NMSSHLogger.m */; };
+		23A5751CB0E51E4A7B25763F86C11352 /* NMSSHConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 22625EC4AD68766D760F5D685195F7FA /* NMSSHConfig.m */; };
+		24BC264ADE9FA4BCDA958B52E020FDA5 /* FDTakeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74EA7A29D8F78EF6B305235E862AEAFE /* FDTakeController.swift */; };
+		24E5B7A2F5AF10470CF66DB155813E0B /* FDTake-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E144027D4D4C7FBD64E9D603B4AE35F /* FDTake-dummy.m */; };
+		2E561AA49769779A70335382155C5EAA /* libssh2.h in Headers */ = {isa = PBXBuildFile; fileRef = C44E9219B46CCA4B6B1E46044D438DF4 /* libssh2.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		2F624B92EEB0D0618399CB51EFFA536C /* BarcodeScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4A108D431990A4AB972A624337CCCB /* BarcodeScannerViewController.swift */; };
+		3CA7B6A2DFE55398A7AC6F8DC74404F6 /* flashOff@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 13442AACC3F29B460A310C9FB3093C9A /* flashOff@3x.png */; };
+		3EAE8FA8D4AD8A2F031AE77712B42D68 /* NMSSHChannel.h in Headers */ = {isa = PBXBuildFile; fileRef = E84D37F144FEBE2F5DD720D572D2D6C2 /* NMSSHChannel.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		415E7E207F417C4087B6FA4D54595A96 /* NMSSHSessionDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 4F73E61E0184B5866AEECF098A26347E /* NMSSHSessionDelegate.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		46F26DF0D58D84EBE306439BF70C3A68 /* cameraRotate@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 573E66E654F252A987FFCCAFEB6D288E /* cameraRotate@3x.png */; };
+		487BA7C8801AA74275439C5534AC49A7 /* NMSFTPFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E811E1E1A816BA770F7829AB1C3EAA5 /* NMSFTPFile.m */; };
+		49FF25B820B9D4365289611096076B9F /* TorchMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12AD61A3D02C425362A40EEAF913469 /* TorchMode.swift */; };
+		59812C4272185C79275D40B8B782AD47 /* NMSSH.h in Headers */ = {isa = PBXBuildFile; fileRef = 380AF2B5799E27BF6393545E265E9F14 /* NMSSH.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		59BDEB2A881191CA6E6912E84CFD4A73 /* NMSSHLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 584A60E64332AAA986E127912F151B60 /* NMSSHLogger.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		5F81C4D9844CA8C544C04E0F17D67505 /* NMSSH-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C3294A66DF7CAAC3085A2151D003F2F1 /* NMSSH-dummy.m */; };
+		630A70D4C8849403A2FAA98FCEB1BBBF /* libssh2_publickey.h in Headers */ = {isa = PBXBuildFile; fileRef = F618C61E6D9FE463C6CEEF3A469570EE /* libssh2_publickey.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		64EF9E6D1DDEF0E774CD3BFB130CFF64 /* BarcodeScanner-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8DCDB9F1B0243BDA664A2280A86A0EB7 /* BarcodeScanner-umbrella.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		66DA76B9BFF990376B835D3AD914D187 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B35823ED33787E39C59FDACB01F7B5 /* UIViewController+Extensions.swift */; };
+		6A52A4542E6EA7896BD3C03D44AA7105 /* socket_helper.h in Headers */ = {isa = PBXBuildFile; fileRef = DF5F229FB264059962086B8C1BC428C7 /* socket_helper.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		6BB5850C5D7BC29B6271414F4801A423 /* NSLayoutConstraint+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB776D78C398E1D3A8E65B1CB25C8CE6 /* NSLayoutConstraint+Extensions.swift */; };
+		6CB61A47C03092E40E44817D4D124BF8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 41EE58210DD9C7D4827F034D9AED49CF /* Localizable.strings */; };
+		7134460659B9E75B8CAFDDE8B0631D75 /* NMSSHChannelDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A23831C10CAC2D0F9EDE6CF52610D82 /* NMSSHChannelDelegate.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		7604135F0EC46541C5BBFF0F46A7E68D /* BarcodeScanner-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 062E4BBB69D9E1B778B9C18971829F6D /* BarcodeScanner-dummy.m */; };
+		76146A05AD81CD9184A1C249C4288CAD /* NMSSHHostConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 96DEEB526EE0871F3014A226C55E96F0 /* NMSSHHostConfig.m */; };
+		77CC717AFCA68812682E341D06A58874 /* Pods-Segler-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = AEF70842581B94A1ABBE00CBC53F0365 /* Pods-Segler-umbrella.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		7BAEFF0F5A884A605412283696CD3349 /* NMSFTP.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CD120E6DEB46D8C20FFA8623C1FFA6C /* NMSFTP.m */; };
+		8057BADB267F1A6C036B9B7422A97F85 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F6515E66AE3C0F706E464F2DA6A874 /* UIView+Extensions.swift */; };
+		81ADAA73F13D96C9B78229DB55684639 /* HeaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FA9A88F969F49BC601E401BEF272D0 /* HeaderViewController.swift */; };
+		83AC236B012F79F64BC7C84BD16E598A /* NMSFTPFile.h in Headers */ = {isa = PBXBuildFile; fileRef = 0EA1CC583267589AFB881339D1FB0C00 /* NMSFTPFile.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		8E58CDE8E73099F5DF306312786C4F80 /* FDTake.h in Headers */ = {isa = PBXBuildFile; fileRef = 9FC6EF50126A8A7D1B14550AEDD63E36 /* FDTake.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		907E73869EC5C751CC092C8D7F8F840A /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09571073779A1F3A7AB924ADCCB76E1F /* State.swift */; };
+		99147D2E5F71F93F43E6FF133BA77968 /* flashOn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CF54800ACD5D4786C710CCC2B2CD60A4 /* flashOn@3x.png */; };
+		AEA7C8E46B9D3FD833FF6B5F66D3249A /* NMSSH+Protected.h in Headers */ = {isa = PBXBuildFile; fileRef = 3AF2AC9ED6D8BC213D97553FEC8FFCEF /* NMSSH+Protected.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		B88B1F0B35C005E7EBD8CCFC2EF937C8 /* ProgressHUD-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 861AAD64F905360ABEF782CDBE40A80F /* ProgressHUD-umbrella.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		BABC3529949FD9D1E625B8F932495FCD /* FDTake-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C6633995E30E202B5FA125F372A76CE /* FDTake-umbrella.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		BEFE92A29CF8ABA0A08A61C9F247E124 /* NMSFTP.h in Headers */ = {isa = PBXBuildFile; fileRef = DCABA3AB3E10339AC9DAF56F24CF0BB8 /* NMSFTP.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		C4463345B83EA0E96BBBA638A8B379AA /* NMSSHSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 8D789A2AF63473F70D4B2C8192DC35F3 /* NMSSHSession.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		D2187087450F5465BED68083590F6697 /* info@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 856981309A77FD292691BEA9B11E0E99 /* info@3x.png */; };
+		D57B23F4DF9D561171420F9F47180CA5 /* FocusViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC4D3B84B2E0ABEAC2BB3F6DAB50322 /* FocusViewType.swift */; };
+		D88BCA8CE9CC9CE99855DA7080207EC0 /* libssh2_sftp.h in Headers */ = {isa = PBXBuildFile; fileRef = EDD423B9B8A463CCFE4E936A4F88010F /* libssh2_sftp.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		E28E9597577F421DB7CE091DFF47DC2C /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE06325E77A7FC383D738722B6F12F25 /* Functions.swift */; };
+		F12140BD83210EB770707B4C8F5764A5 /* NMSSHConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 26A265232624B786963000162FCE77DD /* NMSSHConfig.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		F220887C44F065F974FE7B3FE86C601B /* NMSSHHostConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 272BFCB837472BD2BA75F4A30C1D37FD /* NMSSHHostConfig.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		F2B6ABE396902A13C757135322DFAC08 /* NMSSH-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = BFE6CCACBA9D2A086256C4A401C5E270 /* NMSSH-umbrella.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		F3C45E47E9126BDAFADE71E8EFD1383B /* Pods-Segler-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F8318137CB111FF671394C252293286 /* Pods-Segler-dummy.m */; };
+		F67E1FFBEFEB7DA6489B97E8F54D371C /* NMSSHChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = AF2C23FBEA9719263E78ED21A5960355 /* NMSSHChannel.m */; };
+		F73208D8F79BFBC296DA814676E6D28B /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678DA6F442383576EA487807CF1D609D /* MessageViewController.swift */; };
+		FE3FFA7ED3E71AE74E08C87852D1A0C0 /* socket_helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 36F2F797D62F07FCDC54CA9F6AA15EDD /* socket_helper.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		140652BA379948B815663F0125A255C7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E4BECB02819B9EF52BA2C8C073EFA4F6;
+			remoteInfo = FDTake;
+		};
+		2967D44F33F182E6AB8ACBE5DB909D40 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 022D0373DF61EE4E133BADB43CE7ED57;
+			remoteInfo = ProgressHUD;
+		};
+		732F5BD2CD5FEC45DB9CCC21EE0FD6DF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 39D656AC88E303625E9AA42D19C21D75;
+			remoteInfo = BarcodeScanner;
+		};
+		84B0DA0D8D91C8062A221C839EC403E7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 02E136446D8E897681981873306A783A;
+			remoteInfo = "BarcodeScanner-BarcodeScanner";
+		};
+		B1A9D0EC1E6CE571123B98E0EEE622A6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2598A00DF974C904143778EDC46CC0E5;
+			remoteInfo = "BarcodeScanner-Localization";
+		};
+		BB4DEBA97481BBC2A3B352B89508C1A8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E36E3194AA9B06BC5873E083ED10B917;
+			remoteInfo = NMSSH;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		062E4BBB69D9E1B778B9C18971829F6D /* BarcodeScanner-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "BarcodeScanner-dummy.m"; sourceTree = "<group>"; };
+		07F6A2FF95145F8F1F848A57879F7866 /* NMSSH.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = NMSSH.release.xcconfig; sourceTree = "<group>"; };
+		09571073779A1F3A7AB924ADCCB76E1F /* State.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = State.swift; path = Sources/DataStructures/State.swift; sourceTree = "<group>"; };
+		0D3287058D2F13BD484A454154BEA62B /* libProgressHUD.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libProgressHUD.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		0EA1CC583267589AFB881339D1FB0C00 /* NMSFTPFile.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NMSFTPFile.h; path = NMSSH/NMSFTPFile.h; sourceTree = "<group>"; };
+		13442AACC3F29B460A310C9FB3093C9A /* flashOff@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "flashOff@3x.png"; path = "Images/flashOff@3x.png"; sourceTree = "<group>"; };
+		16FE9F00066D9CAD3B22B320535DCB4E /* ProgressHUD.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ProgressHUD.debug.xcconfig; sourceTree = "<group>"; };
+		17F6515E66AE3C0F706E464F2DA6A874 /* UIView+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIView+Extensions.swift"; path = "Sources/Extensions/UIView+Extensions.swift"; sourceTree = "<group>"; };
+		185477C6B811133CD22203244A06688D /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = el.lproj/Localizable.strings; sourceTree = "<group>"; };
+		198F99154A7BA6E4AF6CAA00E9EC85FE /* libssl.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libssl.a; path = "NMSSH-iOS/Libraries/lib/libssl.a"; sourceTree = "<group>"; };
+		1A23831C10CAC2D0F9EDE6CF52610D82 /* NMSSHChannelDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NMSSHChannelDelegate.h; path = NMSSH/Protocols/NMSSHChannelDelegate.h; sourceTree = "<group>"; };
+		1AB47BC0B475AD9894B5BB4EFC10957B /* NMSSHLogger.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NMSSHLogger.m; path = NMSSH/Config/NMSSHLogger.m; sourceTree = "<group>"; };
+		1BC9B823EBB340F732832138F39C6643 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = hu.lproj/Localizable.strings; sourceTree = "<group>"; };
+		206BF1C5DBC6459BD3FFB6FBD26B9CDE /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = "pt-PT.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		22625EC4AD68766D760F5D685195F7FA /* NMSSHConfig.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NMSSHConfig.m; path = NMSSH/NMSSHConfig.m; sourceTree = "<group>"; };
+		269520F0EA4F5309770061809B0E05EC /* FDTake.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FDTake.debug.xcconfig; sourceTree = "<group>"; };
+		26A265232624B786963000162FCE77DD /* NMSSHConfig.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NMSSHConfig.h; path = NMSSH/NMSSHConfig.h; sourceTree = "<group>"; };
+		272BFCB837472BD2BA75F4A30C1D37FD /* NMSSHHostConfig.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NMSSHHostConfig.h; path = NMSSH/NMSSHHostConfig.h; sourceTree = "<group>"; };
+		2B2E783447ED335C9CCB5E81AFEE1827 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3153FD487A843F1F76C517BC2B39BCA5 /* Pods-Segler-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Segler-acknowledgements.plist"; sourceTree = "<group>"; };
+		36F2F797D62F07FCDC54CA9F6AA15EDD /* socket_helper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = socket_helper.m; path = NMSSH/Config/socket_helper.m; sourceTree = "<group>"; };
+		37258538D3240C103BDC83672AD9D01F /* ProgressHUD.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ProgressHUD.release.xcconfig; sourceTree = "<group>"; };
+		380AF2B5799E27BF6393545E265E9F14 /* NMSSH.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NMSSH.h; path = NMSSH/NMSSH.h; sourceTree = "<group>"; };
+		39775255ABAC04DAD1DA926129827CD3 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = sv.lproj/Localizable.strings; sourceTree = "<group>"; };
+		39BB2184FE08022C257B07DF099D05DD /* Pods-Segler-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Segler-acknowledgements.markdown"; sourceTree = "<group>"; };
+		3A5E29A6BF61C3A82957BD8B3AF40138 /* ProgressHUD-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "ProgressHUD-dummy.m"; sourceTree = "<group>"; };
+		3AF2AC9ED6D8BC213D97553FEC8FFCEF /* NMSSH+Protected.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NMSSH+Protected.h"; path = "NMSSH/Config/NMSSH+Protected.h"; sourceTree = "<group>"; };
+		3E144870E30087242A2E792FDF803D93 /* libFDTake.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libFDTake.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		3E198B782826F970BFD0C2BF6A49625C /* AVMetadataObject+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "AVMetadataObject+Extensions.swift"; path = "Sources/Extensions/AVMetadataObject+Extensions.swift"; sourceTree = "<group>"; };
+		3E4A108D431990A4AB972A624337CCCB /* BarcodeScannerViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BarcodeScannerViewController.swift; path = Sources/Controllers/BarcodeScannerViewController.swift; sourceTree = "<group>"; };
+		439AAA6DE283D26828FD46F4D8E9650C /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		4940550F06D34E782DD14F105EB015FC /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
+		4B6C65581407DC4AB42947CCEAD71547 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		4E094F1DC6FE2C9897AEF2BE71155F90 /* CameraViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CameraViewController.swift; path = Sources/Controllers/CameraViewController.swift; sourceTree = "<group>"; };
+		4F73E61E0184B5866AEECF098A26347E /* NMSSHSessionDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NMSSHSessionDelegate.h; path = NMSSH/Protocols/NMSSHSessionDelegate.h; sourceTree = "<group>"; };
+		4FBCA583FBE5326B921005AD65251046 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		50EB60FBF7355656E93E53138D774B19 /* BarcodeScanner.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = BarcodeScanner.modulemap; sourceTree = "<group>"; };
+		573E66E654F252A987FFCCAFEB6D288E /* cameraRotate@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "cameraRotate@3x.png"; path = "Images/cameraRotate@3x.png"; sourceTree = "<group>"; };
+		584A60E64332AAA986E127912F151B60 /* NMSSHLogger.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NMSSHLogger.h; path = NMSSH/Config/NMSSHLogger.h; sourceTree = "<group>"; };
+		58AE23AD20A55EA61909ABA63B823299 /* NMSSH-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NMSSH-prefix.pch"; sourceTree = "<group>"; };
+		59B0518B7FB69EFF3502DD900DFB9B8A /* NMSSH.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = NMSSH.debug.xcconfig; sourceTree = "<group>"; };
+		62AB826C8BF98737195932651CE9E115 /* libPods-Segler.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Segler.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		678DA6F442383576EA487807CF1D609D /* MessageViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MessageViewController.swift; path = Sources/Controllers/MessageViewController.swift; sourceTree = "<group>"; };
+		689380292C72706CD08F83AFA1E89472 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = da.lproj/Localizable.strings; sourceTree = "<group>"; };
+		68D4F94928E4005C15A2B3C997D2DC45 /* ProgressHUD.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ProgressHUD.h; path = ProgressHUD/ProgressHUD/ProgressHUD.h; sourceTree = "<group>"; };
+		6DC4D3B84B2E0ABEAC2BB3F6DAB50322 /* FocusViewType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FocusViewType.swift; path = Sources/DataStructures/FocusViewType.swift; sourceTree = "<group>"; };
+		6EEC77F51858349E93EF74E23C115C64 /* libNMSSH.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNMSSH.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		6FB114A724E2A8F62758B50A916B4D11 /* FDTake-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FDTake-prefix.pch"; sourceTree = "<group>"; };
+		703F21EDE7B075B4690079D5435E8EFF /* NMSSH.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = NMSSH.modulemap; sourceTree = "<group>"; };
+		74EA7A29D8F78EF6B305235E862AEAFE /* FDTakeController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FDTakeController.swift; path = Source/FDTakeController.swift; sourceTree = "<group>"; };
+		74F4D59B519920CD954D013FCD061B86 /* Localization.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Localization.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		76ACA018A2A95A6642DDB32187A3F22C /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = he.lproj/Localizable.strings; sourceTree = "<group>"; };
+		7CD120E6DEB46D8C20FFA8623C1FFA6C /* NMSFTP.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NMSFTP.m; path = NMSSH/NMSFTP.m; sourceTree = "<group>"; };
+		7F8318137CB111FF671394C252293286 /* Pods-Segler-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Segler-dummy.m"; sourceTree = "<group>"; };
+		7FAF3828DC01D3C3F4AF2AE97AEA9128 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		803A3A140CDC69E71919A5FD2563C3F9 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		8085C2A4B3F975098F4A2D5AE50201BB /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
+		81D7FD7353BFEB7EB4EB23660FFE85A0 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		8213F3AFA91C619BB2562445487C1010 /* ResourceBundle-Localization-BarcodeScanner-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-Localization-BarcodeScanner-Info.plist"; sourceTree = "<group>"; };
+		839FA5CFF25A73A6CFB6DAEC95A77425 /* FDTake.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = FDTake.modulemap; sourceTree = "<group>"; };
+		84D162B52D69CFD88DB408BD1FA245A7 /* BarcodeScanner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = BarcodeScanner.release.xcconfig; sourceTree = "<group>"; };
+		856981309A77FD292691BEA9B11E0E99 /* info@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "info@3x.png"; path = "Images/info@3x.png"; sourceTree = "<group>"; };
+		861AAD64F905360ABEF782CDBE40A80F /* ProgressHUD-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ProgressHUD-umbrella.h"; sourceTree = "<group>"; };
+		868E5BB7D1AFBD01DAEB1FF5EC110435 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		8C6633995E30E202B5FA125F372A76CE /* FDTake-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FDTake-umbrella.h"; sourceTree = "<group>"; };
+		8D789A2AF63473F70D4B2C8192DC35F3 /* NMSSHSession.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NMSSHSession.h; path = NMSSH/NMSSHSession.h; sourceTree = "<group>"; };
+		8DCDB9F1B0243BDA664A2280A86A0EB7 /* BarcodeScanner-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "BarcodeScanner-umbrella.h"; sourceTree = "<group>"; };
+		8E144027D4D4C7FBD64E9D603B4AE35F /* FDTake-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "FDTake-dummy.m"; sourceTree = "<group>"; };
+		8E811E1E1A816BA770F7829AB1C3EAA5 /* NMSFTPFile.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NMSFTPFile.m; path = NMSSH/NMSFTPFile.m; sourceTree = "<group>"; };
+		90A2A3939FA6A7F48ABB335E0CD4E55C /* NMSSHSession.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NMSSHSession.m; path = NMSSH/NMSSHSession.m; sourceTree = "<group>"; };
+		95FA9A88F969F49BC601E401BEF272D0 /* HeaderViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HeaderViewController.swift; path = Sources/Controllers/HeaderViewController.swift; sourceTree = "<group>"; };
+		96DEEB526EE0871F3014A226C55E96F0 /* NMSSHHostConfig.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NMSSHHostConfig.m; path = NMSSH/NMSSHHostConfig.m; sourceTree = "<group>"; };
+		9767117DB2DEBD4AC0217FC67A6C4C2C /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9FC6EF50126A8A7D1B14550AEDD63E36 /* FDTake.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FDTake.h; path = Source/FDTake.h; sourceTree = "<group>"; };
+		A234A8BFB979A78BC6E93200F1F79F8B /* BarcodeScanner.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BarcodeScanner.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		AAC4F1EC65E5C93741016610A5160890 /* libssh2.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libssh2.a; path = "NMSSH-iOS/Libraries/lib/libssh2.a"; sourceTree = "<group>"; };
+		AB963894558859A8D7CAA2A51094E248 /* Pods-Segler.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-Segler.modulemap"; sourceTree = "<group>"; };
+		AEF70842581B94A1ABBE00CBC53F0365 /* Pods-Segler-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Segler-umbrella.h"; sourceTree = "<group>"; };
+		AF2C23FBEA9719263E78ED21A5960355 /* NMSSHChannel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NMSSHChannel.m; path = NMSSH/NMSSHChannel.m; sourceTree = "<group>"; };
+		B6CB8BFF9368ADF89A21A38F43EC8ADE /* Pods-Segler.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Segler.release.xcconfig"; sourceTree = "<group>"; };
+		B99228A6BA114F8021F32BACB6C996B9 /* VideoPermissionService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = VideoPermissionService.swift; path = Sources/Helpers/VideoPermissionService.swift; sourceTree = "<group>"; };
+		BA6CD34CCE2030990BC89EAD1765028D /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = pl.lproj/Localizable.strings; sourceTree = "<group>"; };
+		BC210A356669936A5B8BD94FE5E8C928 /* FDTake.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FDTake.release.xcconfig; sourceTree = "<group>"; };
+		BFE6CCACBA9D2A086256C4A401C5E270 /* NMSSH-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NMSSH-umbrella.h"; sourceTree = "<group>"; };
+		C12AD61A3D02C425362A40EEAF913469 /* TorchMode.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TorchMode.swift; path = Sources/DataStructures/TorchMode.swift; sourceTree = "<group>"; };
+		C3294A66DF7CAAC3085A2151D003F2F1 /* NMSSH-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "NMSSH-dummy.m"; sourceTree = "<group>"; };
+		C44E9219B46CCA4B6B1E46044D438DF4 /* libssh2.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = libssh2.h; path = "NMSSH-iOS/Libraries/include/libssh2/libssh2.h"; sourceTree = "<group>"; };
+		CA68486EEB30C7C1E70B55872F2B03D5 /* BarcodeScanner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = BarcodeScanner.debug.xcconfig; sourceTree = "<group>"; };
+		CC7F19F14615589013B87AA15519618F /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		CEC6E08D351631DC655F4A648DE0C061 /* libBarcodeScanner.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBarcodeScanner.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF54800ACD5D4786C710CCC2B2CD60A4 /* flashOn@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "flashOn@3x.png"; path = "Images/flashOn@3x.png"; sourceTree = "<group>"; };
+		D026ACA31B7E79EE30EC087FA319C15F /* NMSSH.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NMSSH.h; path = "NMSSH-iOS/NMSSH.h"; sourceTree = "<group>"; };
+		DB776D78C398E1D3A8E65B1CB25C8CE6 /* NSLayoutConstraint+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NSLayoutConstraint+Extensions.swift"; path = "Sources/Extensions/NSLayoutConstraint+Extensions.swift"; sourceTree = "<group>"; };
+		DC7F36B83AF4501B1BA13BF7ACFFB628 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		DCABA3AB3E10339AC9DAF56F24CF0BB8 /* NMSFTP.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NMSFTP.h; path = NMSSH/NMSFTP.h; sourceTree = "<group>"; };
+		DF5F229FB264059962086B8C1BC428C7 /* socket_helper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = socket_helper.h; path = NMSSH/Config/socket_helper.h; sourceTree = "<group>"; };
+		E5B35823ED33787E39C59FDACB01F7B5 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIViewController+Extensions.swift"; path = "Sources/Extensions/UIViewController+Extensions.swift"; sourceTree = "<group>"; };
+		E84D37F144FEBE2F5DD720D572D2D6C2 /* NMSSHChannel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NMSSHChannel.h; path = NMSSH/NMSSHChannel.h; sourceTree = "<group>"; };
+		E95981A5BA5A77E1782321E87ADBB4E6 /* BarcodeScanner-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "BarcodeScanner-prefix.pch"; sourceTree = "<group>"; };
+		EA7E10AFCD4B96760021F602CD67A98B /* Pods-Segler-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Segler-resources.sh"; sourceTree = "<group>"; };
+		EB1ADEDA69BF436ACD53042FDC7BD7B7 /* libcrypto.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libcrypto.a; path = "NMSSH-iOS/Libraries/lib/libcrypto.a"; sourceTree = "<group>"; };
+		EBBCB71E081ECD73234AA15F04C89E74 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		EC7A1D18E583161FC064804517DEB121 /* ProgressHUD-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ProgressHUD-prefix.pch"; sourceTree = "<group>"; };
+		EDD423B9B8A463CCFE4E936A4F88010F /* libssh2_sftp.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = libssh2_sftp.h; path = "NMSSH-iOS/Libraries/include/libssh2/libssh2_sftp.h"; sourceTree = "<group>"; };
+		EFCA7194508E798181AE74684AFF6FCB /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = nb.lproj/Localizable.strings; sourceTree = "<group>"; };
+		F423231B5D4C1C943175E6FD6D4AB643 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = "pl-PL.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		F442AC0EDF6461A4152447D98001CDB4 /* Pods-Segler.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Segler.debug.xcconfig"; sourceTree = "<group>"; };
+		F618C61E6D9FE463C6CEEF3A469570EE /* libssh2_publickey.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = libssh2_publickey.h; path = "NMSSH-iOS/Libraries/include/libssh2/libssh2_publickey.h"; sourceTree = "<group>"; };
+		F6B8E4616C944DF33D6CC1D931D119AE /* ProgressHUD.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = ProgressHUD.bundle; path = ProgressHUD/ProgressHUD/ProgressHUD.bundle; sourceTree = "<group>"; };
+		F753A3AFD90FB41781D413621A8B819E /* ResourceBundle-BarcodeScanner-BarcodeScanner-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-BarcodeScanner-BarcodeScanner-Info.plist"; sourceTree = "<group>"; };
+		F8CF78E601371563DB0702C7772B38FF /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		FAFE8BD45F901FB24402250786C849BD /* ProgressHUD.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ProgressHUD.m; path = ProgressHUD/ProgressHUD/ProgressHUD.m; sourceTree = "<group>"; };
+		FE06325E77A7FC383D738722B6F12F25 /* Functions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Functions.swift; path = Sources/Helpers/Functions.swift; sourceTree = "<group>"; };
+		FE43F9BE41740A05D9698031F2272D90 /* ProgressHUD.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = ProgressHUD.modulemap; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		163D41AA4CD89E5B8CCFD3172B2F5DF8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4762681312E2E2EFE759E0DE08C7EBFE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		64C24145C3784006A702C7EF2D560087 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6D6C9CF72F9CD016D48BA3826C0F525F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		735C3533AE2FCD0C3D839A7BA0966D27 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D7D8663FB3179E7F42EEC74C6CFC0C63 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F313F448ECB9A4229AF6C1C710A0A127 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		00C0C3B79D2614629FB5A4FDED7A7532 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EB1ADEDA69BF436ACD53042FDC7BD7B7 /* libcrypto.a */,
+				AAC4F1EC65E5C93741016610A5160890 /* libssh2.a */,
+				198F99154A7BA6E4AF6CAA00E9EC85FE /* libssl.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		0230E7662D44DE93F6C4663FC1A09DEA /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				839FA5CFF25A73A6CFB6DAEC95A77425 /* FDTake.modulemap */,
+				8E144027D4D4C7FBD64E9D603B4AE35F /* FDTake-dummy.m */,
+				6FB114A724E2A8F62758B50A916B4D11 /* FDTake-prefix.pch */,
+				8C6633995E30E202B5FA125F372A76CE /* FDTake-umbrella.h */,
+				269520F0EA4F5309770061809B0E05EC /* FDTake.debug.xcconfig */,
+				BC210A356669936A5B8BD94FE5E8C928 /* FDTake.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/FDTake";
+			sourceTree = "<group>";
+		};
+		13E072B6D06407DFECDA45DC7B79B507 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A234A8BFB979A78BC6E93200F1F79F8B /* BarcodeScanner.bundle */,
+				CEC6E08D351631DC655F4A648DE0C061 /* libBarcodeScanner.a */,
+				3E144870E30087242A2E792FDF803D93 /* libFDTake.a */,
+				6EEC77F51858349E93EF74E23C115C64 /* libNMSSH.a */,
+				62AB826C8BF98737195932651CE9E115 /* libPods-Segler.a */,
+				0D3287058D2F13BD484A454154BEA62B /* libProgressHUD.a */,
+				74F4D59B519920CD954D013FCD061B86 /* Localization.bundle */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		17FA07E85EFC909BA54D9BB22A00178D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A632120B1416BEBB62E8E44D0D0AD6B6 /* BarcodeScanner */,
+				5394A8921A727B07CAA3FCE2670FF857 /* FDTake */,
+				6A2D9A1E3067343B9F8EBF9AEBA6528E /* NMSSH */,
+				AF635F8ACE59D9CF328EC71FB06472DA /* ProgressHUD */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		5394A8921A727B07CAA3FCE2670FF857 /* FDTake */ = {
+			isa = PBXGroup;
+			children = (
+				9FC6EF50126A8A7D1B14550AEDD63E36 /* FDTake.h */,
+				74EA7A29D8F78EF6B305235E862AEAFE /* FDTakeController.swift */,
+				B3F9A211031A11B861E10B4010B1D9DD /* Resources */,
+				0230E7662D44DE93F6C4663FC1A09DEA /* Support Files */,
+			);
+			path = FDTake;
+			sourceTree = "<group>";
+		};
+		6A2D9A1E3067343B9F8EBF9AEBA6528E /* NMSSH */ = {
+			isa = PBXGroup;
+			children = (
+				C44E9219B46CCA4B6B1E46044D438DF4 /* libssh2.h */,
+				F618C61E6D9FE463C6CEEF3A469570EE /* libssh2_publickey.h */,
+				EDD423B9B8A463CCFE4E936A4F88010F /* libssh2_sftp.h */,
+				DCABA3AB3E10339AC9DAF56F24CF0BB8 /* NMSFTP.h */,
+				7CD120E6DEB46D8C20FFA8623C1FFA6C /* NMSFTP.m */,
+				0EA1CC583267589AFB881339D1FB0C00 /* NMSFTPFile.h */,
+				8E811E1E1A816BA770F7829AB1C3EAA5 /* NMSFTPFile.m */,
+				D026ACA31B7E79EE30EC087FA319C15F /* NMSSH.h */,
+				380AF2B5799E27BF6393545E265E9F14 /* NMSSH.h */,
+				3AF2AC9ED6D8BC213D97553FEC8FFCEF /* NMSSH+Protected.h */,
+				E84D37F144FEBE2F5DD720D572D2D6C2 /* NMSSHChannel.h */,
+				AF2C23FBEA9719263E78ED21A5960355 /* NMSSHChannel.m */,
+				1A23831C10CAC2D0F9EDE6CF52610D82 /* NMSSHChannelDelegate.h */,
+				26A265232624B786963000162FCE77DD /* NMSSHConfig.h */,
+				22625EC4AD68766D760F5D685195F7FA /* NMSSHConfig.m */,
+				272BFCB837472BD2BA75F4A30C1D37FD /* NMSSHHostConfig.h */,
+				96DEEB526EE0871F3014A226C55E96F0 /* NMSSHHostConfig.m */,
+				584A60E64332AAA986E127912F151B60 /* NMSSHLogger.h */,
+				1AB47BC0B475AD9894B5BB4EFC10957B /* NMSSHLogger.m */,
+				8D789A2AF63473F70D4B2C8192DC35F3 /* NMSSHSession.h */,
+				90A2A3939FA6A7F48ABB335E0CD4E55C /* NMSSHSession.m */,
+				4F73E61E0184B5866AEECF098A26347E /* NMSSHSessionDelegate.h */,
+				DF5F229FB264059962086B8C1BC428C7 /* socket_helper.h */,
+				36F2F797D62F07FCDC54CA9F6AA15EDD /* socket_helper.m */,
+				00C0C3B79D2614629FB5A4FDED7A7532 /* Frameworks */,
+				E1ED00D1F2762EA8FA71B11CD173CA12 /* Support Files */,
+			);
+			path = NMSSH;
+			sourceTree = "<group>";
+		};
+		7BE02BDDEC258A35CFFB6B58323DFA34 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				FE43F9BE41740A05D9698031F2272D90 /* ProgressHUD.modulemap */,
+				3A5E29A6BF61C3A82957BD8B3AF40138 /* ProgressHUD-dummy.m */,
+				EC7A1D18E583161FC064804517DEB121 /* ProgressHUD-prefix.pch */,
+				861AAD64F905360ABEF782CDBE40A80F /* ProgressHUD-umbrella.h */,
+				16FE9F00066D9CAD3B22B320535DCB4E /* ProgressHUD.debug.xcconfig */,
+				37258538D3240C103BDC83672AD9D01F /* ProgressHUD.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/ProgressHUD";
+			sourceTree = "<group>";
+		};
+		8EBAAF7737BA3BB3DD36F0FFC5FF26D5 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				C8A53B1CC9C21A096C057C36C13113C3 /* Pods-Segler */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		A2830FDA4C3FC7910565F10BC776E6E5 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				50EB60FBF7355656E93E53138D774B19 /* BarcodeScanner.modulemap */,
+				062E4BBB69D9E1B778B9C18971829F6D /* BarcodeScanner-dummy.m */,
+				E95981A5BA5A77E1782321E87ADBB4E6 /* BarcodeScanner-prefix.pch */,
+				8DCDB9F1B0243BDA664A2280A86A0EB7 /* BarcodeScanner-umbrella.h */,
+				CA68486EEB30C7C1E70B55872F2B03D5 /* BarcodeScanner.debug.xcconfig */,
+				84D162B52D69CFD88DB408BD1FA245A7 /* BarcodeScanner.release.xcconfig */,
+				F753A3AFD90FB41781D413621A8B819E /* ResourceBundle-BarcodeScanner-BarcodeScanner-Info.plist */,
+				8213F3AFA91C619BB2562445487C1010 /* ResourceBundle-Localization-BarcodeScanner-Info.plist */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/BarcodeScanner";
+			sourceTree = "<group>";
+		};
+		A632120B1416BEBB62E8E44D0D0AD6B6 /* BarcodeScanner */ = {
+			isa = PBXGroup;
+			children = (
+				3E198B782826F970BFD0C2BF6A49625C /* AVMetadataObject+Extensions.swift */,
+				3E4A108D431990A4AB972A624337CCCB /* BarcodeScannerViewController.swift */,
+				4E094F1DC6FE2C9897AEF2BE71155F90 /* CameraViewController.swift */,
+				6DC4D3B84B2E0ABEAC2BB3F6DAB50322 /* FocusViewType.swift */,
+				FE06325E77A7FC383D738722B6F12F25 /* Functions.swift */,
+				95FA9A88F969F49BC601E401BEF272D0 /* HeaderViewController.swift */,
+				678DA6F442383576EA487807CF1D609D /* MessageViewController.swift */,
+				DB776D78C398E1D3A8E65B1CB25C8CE6 /* NSLayoutConstraint+Extensions.swift */,
+				09571073779A1F3A7AB924ADCCB76E1F /* State.swift */,
+				C12AD61A3D02C425362A40EEAF913469 /* TorchMode.swift */,
+				17F6515E66AE3C0F706E464F2DA6A874 /* UIView+Extensions.swift */,
+				E5B35823ED33787E39C59FDACB01F7B5 /* UIViewController+Extensions.swift */,
+				B99228A6BA114F8021F32BACB6C996B9 /* VideoPermissionService.swift */,
+				C19845AC5D49FBD1B79D2187964D254C /* Resources */,
+				A2830FDA4C3FC7910565F10BC776E6E5 /* Support Files */,
+			);
+			path = BarcodeScanner;
+			sourceTree = "<group>";
+		};
+		AF635F8ACE59D9CF328EC71FB06472DA /* ProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				68D4F94928E4005C15A2B3C997D2DC45 /* ProgressHUD.h */,
+				FAFE8BD45F901FB24402250786C849BD /* ProgressHUD.m */,
+				B757A86161EB51E3777B23F4D13D3155 /* Resources */,
+				7BE02BDDEC258A35CFFB6B58323DFA34 /* Support Files */,
+			);
+			path = ProgressHUD;
+			sourceTree = "<group>";
+		};
+		B3F9A211031A11B861E10B4010B1D9DD /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				347C4832B786775E252795F8CF83ABD6 /* Localizable.strings */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		B757A86161EB51E3777B23F4D13D3155 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F6B8E4616C944DF33D6CC1D931D119AE /* ProgressHUD.bundle */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		C19845AC5D49FBD1B79D2187964D254C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				573E66E654F252A987FFCCAFEB6D288E /* cameraRotate@3x.png */,
+				13442AACC3F29B460A310C9FB3093C9A /* flashOff@3x.png */,
+				CF54800ACD5D4786C710CCC2B2CD60A4 /* flashOn@3x.png */,
+				856981309A77FD292691BEA9B11E0E99 /* info@3x.png */,
+				41EE58210DD9C7D4827F034D9AED49CF /* Localizable.strings */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		C8A53B1CC9C21A096C057C36C13113C3 /* Pods-Segler */ = {
+			isa = PBXGroup;
+			children = (
+				AB963894558859A8D7CAA2A51094E248 /* Pods-Segler.modulemap */,
+				39BB2184FE08022C257B07DF099D05DD /* Pods-Segler-acknowledgements.markdown */,
+				3153FD487A843F1F76C517BC2B39BCA5 /* Pods-Segler-acknowledgements.plist */,
+				7F8318137CB111FF671394C252293286 /* Pods-Segler-dummy.m */,
+				EA7E10AFCD4B96760021F602CD67A98B /* Pods-Segler-resources.sh */,
+				AEF70842581B94A1ABBE00CBC53F0365 /* Pods-Segler-umbrella.h */,
+				F442AC0EDF6461A4152447D98001CDB4 /* Pods-Segler.debug.xcconfig */,
+				B6CB8BFF9368ADF89A21A38F43EC8ADE /* Pods-Segler.release.xcconfig */,
+			);
+			name = "Pods-Segler";
+			path = "Target Support Files/Pods-Segler";
+			sourceTree = "<group>";
+		};
+		CF1408CF629C7361332E53B88F7BD30C = {
+			isa = PBXGroup;
+			children = (
+				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
+				D89477F20FB1DE18A04690586D7808C4 /* Frameworks */,
+				17FA07E85EFC909BA54D9BB22A00178D /* Pods */,
+				13E072B6D06407DFECDA45DC7B79B507 /* Products */,
+				8EBAAF7737BA3BB3DD36F0FFC5FF26D5 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		D89477F20FB1DE18A04690586D7808C4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E1ED00D1F2762EA8FA71B11CD173CA12 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				703F21EDE7B075B4690079D5435E8EFF /* NMSSH.modulemap */,
+				C3294A66DF7CAAC3085A2151D003F2F1 /* NMSSH-dummy.m */,
+				58AE23AD20A55EA61909ABA63B823299 /* NMSSH-prefix.pch */,
+				BFE6CCACBA9D2A086256C4A401C5E270 /* NMSSH-umbrella.h */,
+				59B0518B7FB69EFF3502DD900DFB9B8A /* NMSSH.debug.xcconfig */,
+				07F6A2FF95145F8F1F848A57879F7866 /* NMSSH.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/NMSSH";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		2105D6F9337FD4C2F807D087E27F3C2C /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				77CC717AFCA68812682E341D06A58874 /* Pods-Segler-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		46A48D9B1A9521338B43476F81870D39 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				64EF9E6D1DDEF0E774CD3BFB130CFF64 /* BarcodeScanner-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BBDC637DB70215D54D8A2889210AD8AE /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BABC3529949FD9D1E625B8F932495FCD /* FDTake-umbrella.h in Headers */,
+				8E58CDE8E73099F5DF306312786C4F80 /* FDTake.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D327FF4A94B4D120166CC79B87B1E44A /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B88B1F0B35C005E7EBD8CCFC2EF937C8 /* ProgressHUD-umbrella.h in Headers */,
+				1C173894E90598108C4650501089CAC9 /* ProgressHUD.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EE58AFB08034D62E8D3C3E25CF6397AE /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2E561AA49769779A70335382155C5EAA /* libssh2.h in Headers */,
+				630A70D4C8849403A2FAA98FCEB1BBBF /* libssh2_publickey.h in Headers */,
+				D88BCA8CE9CC9CE99855DA7080207EC0 /* libssh2_sftp.h in Headers */,
+				BEFE92A29CF8ABA0A08A61C9F247E124 /* NMSFTP.h in Headers */,
+				83AC236B012F79F64BC7C84BD16E598A /* NMSFTPFile.h in Headers */,
+				AEA7C8E46B9D3FD833FF6B5F66D3249A /* NMSSH+Protected.h in Headers */,
+				F2B6ABE396902A13C757135322DFAC08 /* NMSSH-umbrella.h in Headers */,
+				59812C4272185C79275D40B8B782AD47 /* NMSSH.h in Headers */,
+				0D1CC4D0ABDD1936A7C91938B1AEC973 /* NMSSH.h in Headers */,
+				3EAE8FA8D4AD8A2F031AE77712B42D68 /* NMSSHChannel.h in Headers */,
+				7134460659B9E75B8CAFDDE8B0631D75 /* NMSSHChannelDelegate.h in Headers */,
+				F12140BD83210EB770707B4C8F5764A5 /* NMSSHConfig.h in Headers */,
+				F220887C44F065F974FE7B3FE86C601B /* NMSSHHostConfig.h in Headers */,
+				59BDEB2A881191CA6E6912E84CFD4A73 /* NMSSHLogger.h in Headers */,
+				C4463345B83EA0E96BBBA638A8B379AA /* NMSSHSession.h in Headers */,
+				415E7E207F417C4087B6FA4D54595A96 /* NMSSHSessionDelegate.h in Headers */,
+				6A52A4542E6EA7896BD3C03D44AA7105 /* socket_helper.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		022D0373DF61EE4E133BADB43CE7ED57 /* ProgressHUD */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4F1BF9011D5F103E111016A706ACDE6B /* Build configuration list for PBXNativeTarget "ProgressHUD" */;
+			buildPhases = (
+				D327FF4A94B4D120166CC79B87B1E44A /* Headers */,
+				697DAD6DD26B42CF4348A2CDDBADEDAC /* Sources */,
+				F313F448ECB9A4229AF6C1C710A0A127 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ProgressHUD;
+			productName = ProgressHUD;
+			productReference = 0D3287058D2F13BD484A454154BEA62B /* libProgressHUD.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		02E136446D8E897681981873306A783A /* BarcodeScanner-BarcodeScanner */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ADF6AAA9E9C5B74448786BFC1A9B5531 /* Build configuration list for PBXNativeTarget "BarcodeScanner-BarcodeScanner" */;
+			buildPhases = (
+				DAA2370745B8AE752EB0C170F804E036 /* Sources */,
+				163D41AA4CD89E5B8CCFD3172B2F5DF8 /* Frameworks */,
+				3177B8EB089CAC68EABEAC0F38C348EA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "BarcodeScanner-BarcodeScanner";
+			productName = "BarcodeScanner-BarcodeScanner";
+			productReference = A234A8BFB979A78BC6E93200F1F79F8B /* BarcodeScanner.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
+		2598A00DF974C904143778EDC46CC0E5 /* BarcodeScanner-Localization */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F76A6683409C764299D196A078741425 /* Build configuration list for PBXNativeTarget "BarcodeScanner-Localization" */;
+			buildPhases = (
+				382826C75E6F3A1811C7426D26BE1BC6 /* Sources */,
+				D7D8663FB3179E7F42EEC74C6CFC0C63 /* Frameworks */,
+				86BA46793D96A9CA899EA04E35E0561B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "BarcodeScanner-Localization";
+			productName = "BarcodeScanner-Localization";
+			productReference = 74F4D59B519920CD954D013FCD061B86 /* Localization.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
+		39D656AC88E303625E9AA42D19C21D75 /* BarcodeScanner */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 67183B91C5533EBDAC38354D0278201F /* Build configuration list for PBXNativeTarget "BarcodeScanner" */;
+			buildPhases = (
+				46A48D9B1A9521338B43476F81870D39 /* Headers */,
+				DE8E4E1247D24811698FDECAE4E06503 /* Sources */,
+				735C3533AE2FCD0C3D839A7BA0966D27 /* Frameworks */,
+				E3532EDE80274E692F879383E668E9AB /* Copy generated compatibility header */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2ACFA8E84C7C2A13AF4CB9480E703615 /* PBXTargetDependency */,
+				5334FB30112AADB9E439497807F88310 /* PBXTargetDependency */,
+			);
+			name = BarcodeScanner;
+			productName = BarcodeScanner;
+			productReference = CEC6E08D351631DC655F4A648DE0C061 /* libBarcodeScanner.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		BE530EB28802B069E47E4CBBFAEC18B4 /* Pods-Segler */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 59FC39AC5D93CD52637F186CFFB0CB3A /* Build configuration list for PBXNativeTarget "Pods-Segler" */;
+			buildPhases = (
+				2105D6F9337FD4C2F807D087E27F3C2C /* Headers */,
+				83D0CFBE2FD05A60767E87F666F54496 /* Sources */,
+				4762681312E2E2EFE759E0DE08C7EBFE /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C40A00C7F77F5F1FCCBF8A5EE0A92142 /* PBXTargetDependency */,
+				016E3CD48CE6CAF10645C0AD07FC952F /* PBXTargetDependency */,
+				48A83B23ECFD6DF714D4EA5D911733A0 /* PBXTargetDependency */,
+				30A7315FE1E6513B2E03F42B78354292 /* PBXTargetDependency */,
+			);
+			name = "Pods-Segler";
+			productName = "Pods-Segler";
+			productReference = 62AB826C8BF98737195932651CE9E115 /* libPods-Segler.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		E36E3194AA9B06BC5873E083ED10B917 /* NMSSH */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9C416696AD3FE465DC35DFD8DCC0D9C6 /* Build configuration list for PBXNativeTarget "NMSSH" */;
+			buildPhases = (
+				EE58AFB08034D62E8D3C3E25CF6397AE /* Headers */,
+				D644D99AE5F6A7C4E8822FAB613CE6C4 /* Sources */,
+				64C24145C3784006A702C7EF2D560087 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NMSSH;
+			productName = NMSSH;
+			productReference = 6EEC77F51858349E93EF74E23C115C64 /* libNMSSH.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		E4BECB02819B9EF52BA2C8C073EFA4F6 /* FDTake */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AB81606FBCE2C7292F583DF35C9F58D0 /* Build configuration list for PBXNativeTarget "FDTake" */;
+			buildPhases = (
+				BBDC637DB70215D54D8A2889210AD8AE /* Headers */,
+				69C6AD60653C7CE9201E3217DD090CCC /* Sources */,
+				6D6C9CF72F9CD016D48BA3826C0F525F /* Frameworks */,
+				A428BF780BC3B8AA32D28DCF96A825DB /* Copy generated compatibility header */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FDTake;
+			productName = FDTake;
+			productReference = 3E144870E30087242A2E792FDF803D93 /* libFDTake.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BFDFE7DC352907FC980B868725387E98 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1100;
+				LastUpgradeCheck = 1100;
+			};
+			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 11.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+				de,
+				fr,
+				"pl-PL",
+				tr,
+				"zh-Hant",
+				da,
+				el,
+				es,
+				he,
+				hu,
+				it,
+				nb,
+				nl,
+				pl,
+				"pt-PT",
+				ru,
+				sv,
+				"zh-Hans",
+				ar,
+			);
+			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
+			productRefGroup = 13E072B6D06407DFECDA45DC7B79B507 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				39D656AC88E303625E9AA42D19C21D75 /* BarcodeScanner */,
+				02E136446D8E897681981873306A783A /* BarcodeScanner-BarcodeScanner */,
+				2598A00DF974C904143778EDC46CC0E5 /* BarcodeScanner-Localization */,
+				E4BECB02819B9EF52BA2C8C073EFA4F6 /* FDTake */,
+				E36E3194AA9B06BC5873E083ED10B917 /* NMSSH */,
+				BE530EB28802B069E47E4CBBFAEC18B4 /* Pods-Segler */,
+				022D0373DF61EE4E133BADB43CE7ED57 /* ProgressHUD */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3177B8EB089CAC68EABEAC0F38C348EA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				46F26DF0D58D84EBE306439BF70C3A68 /* cameraRotate@3x.png in Resources */,
+				3CA7B6A2DFE55398A7AC6F8DC74404F6 /* flashOff@3x.png in Resources */,
+				99147D2E5F71F93F43E6FF133BA77968 /* flashOn@3x.png in Resources */,
+				D2187087450F5465BED68083590F6697 /* info@3x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		86BA46793D96A9CA899EA04E35E0561B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6CB61A47C03092E40E44817D4D124BF8 /* Localizable.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		A428BF780BC3B8AA32D28DCF96A825DB /* Copy generated compatibility header */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DERIVED_SOURCES_DIR}/${PRODUCT_MODULE_NAME}-Swift.h",
+				"${PODS_ROOT}/Headers/Public/FDTake/FDTake.modulemap",
+				"${PODS_ROOT}/Headers/Public/FDTake/FDTake-umbrella.h",
+			);
+			name = "Copy generated compatibility header";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${BUILT_PRODUCTS_DIR}/${PRODUCT_MODULE_NAME}.modulemap",
+				"${BUILT_PRODUCTS_DIR}/FDTake-umbrella.h",
+				"${BUILT_PRODUCTS_DIR}/Swift Compatibility Header/${PRODUCT_MODULE_NAME}-Swift.h",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "COMPATIBILITY_HEADER_PATH=\"${BUILT_PRODUCTS_DIR}/Swift Compatibility Header/${PRODUCT_MODULE_NAME}-Swift.h\"\nMODULE_MAP_PATH=\"${BUILT_PRODUCTS_DIR}/${PRODUCT_MODULE_NAME}.modulemap\"\n\nditto \"${DERIVED_SOURCES_DIR}/${PRODUCT_MODULE_NAME}-Swift.h\" \"${COMPATIBILITY_HEADER_PATH}\"\nditto \"${PODS_ROOT}/Headers/Public/FDTake/FDTake.modulemap\" \"${MODULE_MAP_PATH}\"\nditto \"${PODS_ROOT}/Headers/Public/FDTake/FDTake-umbrella.h\" \"${BUILT_PRODUCTS_DIR}\"\nprintf \"\\n\\nmodule ${PRODUCT_MODULE_NAME}.Swift {\\n  header \\\"${COMPATIBILITY_HEADER_PATH}\\\"\\n  requires objc\\n}\\n\" >> \"${MODULE_MAP_PATH}\"\n";
+		};
+		E3532EDE80274E692F879383E668E9AB /* Copy generated compatibility header */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DERIVED_SOURCES_DIR}/${PRODUCT_MODULE_NAME}-Swift.h",
+				"${PODS_ROOT}/Headers/Public/BarcodeScanner/BarcodeScanner.modulemap",
+				"${PODS_ROOT}/Headers/Public/BarcodeScanner/BarcodeScanner-umbrella.h",
+			);
+			name = "Copy generated compatibility header";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${BUILT_PRODUCTS_DIR}/${PRODUCT_MODULE_NAME}.modulemap",
+				"${BUILT_PRODUCTS_DIR}/BarcodeScanner-umbrella.h",
+				"${BUILT_PRODUCTS_DIR}/Swift Compatibility Header/${PRODUCT_MODULE_NAME}-Swift.h",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "COMPATIBILITY_HEADER_PATH=\"${BUILT_PRODUCTS_DIR}/Swift Compatibility Header/${PRODUCT_MODULE_NAME}-Swift.h\"\nMODULE_MAP_PATH=\"${BUILT_PRODUCTS_DIR}/${PRODUCT_MODULE_NAME}.modulemap\"\n\nditto \"${DERIVED_SOURCES_DIR}/${PRODUCT_MODULE_NAME}-Swift.h\" \"${COMPATIBILITY_HEADER_PATH}\"\nditto \"${PODS_ROOT}/Headers/Public/BarcodeScanner/BarcodeScanner.modulemap\" \"${MODULE_MAP_PATH}\"\nditto \"${PODS_ROOT}/Headers/Public/BarcodeScanner/BarcodeScanner-umbrella.h\" \"${BUILT_PRODUCTS_DIR}\"\nprintf \"\\n\\nmodule ${PRODUCT_MODULE_NAME}.Swift {\\n  header \\\"${COMPATIBILITY_HEADER_PATH}\\\"\\n  requires objc\\n}\\n\" >> \"${MODULE_MAP_PATH}\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		382826C75E6F3A1811C7426D26BE1BC6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		697DAD6DD26B42CF4348A2CDDBADEDAC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				042FE2F2D1006ECEFB019857FF8F0074 /* ProgressHUD-dummy.m in Sources */,
+				087E93C64077621EE988B780CD9DAB15 /* ProgressHUD.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		69C6AD60653C7CE9201E3217DD090CCC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				24E5B7A2F5AF10470CF66DB155813E0B /* FDTake-dummy.m in Sources */,
+				24BC264ADE9FA4BCDA958B52E020FDA5 /* FDTakeController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		83D0CFBE2FD05A60767E87F666F54496 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F3C45E47E9126BDAFADE71E8EFD1383B /* Pods-Segler-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D644D99AE5F6A7C4E8822FAB613CE6C4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7BAEFF0F5A884A605412283696CD3349 /* NMSFTP.m in Sources */,
+				487BA7C8801AA74275439C5534AC49A7 /* NMSFTPFile.m in Sources */,
+				5F81C4D9844CA8C544C04E0F17D67505 /* NMSSH-dummy.m in Sources */,
+				F67E1FFBEFEB7DA6489B97E8F54D371C /* NMSSHChannel.m in Sources */,
+				23A5751CB0E51E4A7B25763F86C11352 /* NMSSHConfig.m in Sources */,
+				76146A05AD81CD9184A1C249C4288CAD /* NMSSHHostConfig.m in Sources */,
+				21448EF843CC735A05A8B4914DEBEFDC /* NMSSHLogger.m in Sources */,
+				06AE36F74478C9EFAE88FC5016A8AAEF /* NMSSHSession.m in Sources */,
+				FE3FFA7ED3E71AE74E08C87852D1A0C0 /* socket_helper.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DAA2370745B8AE752EB0C170F804E036 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DE8E4E1247D24811698FDECAE4E06503 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0E7DA5C10E7C5F4A87E07C27DE78E351 /* AVMetadataObject+Extensions.swift in Sources */,
+				7604135F0EC46541C5BBFF0F46A7E68D /* BarcodeScanner-dummy.m in Sources */,
+				2F624B92EEB0D0618399CB51EFFA536C /* BarcodeScannerViewController.swift in Sources */,
+				0A1910D17F5C91DFE9CC65E3B2B67131 /* CameraViewController.swift in Sources */,
+				D57B23F4DF9D561171420F9F47180CA5 /* FocusViewType.swift in Sources */,
+				E28E9597577F421DB7CE091DFF47DC2C /* Functions.swift in Sources */,
+				81ADAA73F13D96C9B78229DB55684639 /* HeaderViewController.swift in Sources */,
+				F73208D8F79BFBC296DA814676E6D28B /* MessageViewController.swift in Sources */,
+				6BB5850C5D7BC29B6271414F4801A423 /* NSLayoutConstraint+Extensions.swift in Sources */,
+				907E73869EC5C751CC092C8D7F8F840A /* State.swift in Sources */,
+				49FF25B820B9D4365289611096076B9F /* TorchMode.swift in Sources */,
+				8057BADB267F1A6C036B9B7422A97F85 /* UIView+Extensions.swift in Sources */,
+				66DA76B9BFF990376B835D3AD914D187 /* UIViewController+Extensions.swift in Sources */,
+				1C976A97D8A54C3D1059678149055891 /* VideoPermissionService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		016E3CD48CE6CAF10645C0AD07FC952F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = FDTake;
+			target = E4BECB02819B9EF52BA2C8C073EFA4F6 /* FDTake */;
+			targetProxy = 140652BA379948B815663F0125A255C7 /* PBXContainerItemProxy */;
+		};
+		2ACFA8E84C7C2A13AF4CB9480E703615 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "BarcodeScanner-BarcodeScanner";
+			target = 02E136446D8E897681981873306A783A /* BarcodeScanner-BarcodeScanner */;
+			targetProxy = 84B0DA0D8D91C8062A221C839EC403E7 /* PBXContainerItemProxy */;
+		};
+		30A7315FE1E6513B2E03F42B78354292 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ProgressHUD;
+			target = 022D0373DF61EE4E133BADB43CE7ED57 /* ProgressHUD */;
+			targetProxy = 2967D44F33F182E6AB8ACBE5DB909D40 /* PBXContainerItemProxy */;
+		};
+		48A83B23ECFD6DF714D4EA5D911733A0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = NMSSH;
+			target = E36E3194AA9B06BC5873E083ED10B917 /* NMSSH */;
+			targetProxy = BB4DEBA97481BBC2A3B352B89508C1A8 /* PBXContainerItemProxy */;
+		};
+		5334FB30112AADB9E439497807F88310 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "BarcodeScanner-Localization";
+			target = 2598A00DF974C904143778EDC46CC0E5 /* BarcodeScanner-Localization */;
+			targetProxy = B1A9D0EC1E6CE571123B98E0EEE622A6 /* PBXContainerItemProxy */;
+		};
+		C40A00C7F77F5F1FCCBF8A5EE0A92142 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BarcodeScanner;
+			target = 39D656AC88E303625E9AA42D19C21D75 /* BarcodeScanner */;
+			targetProxy = 732F5BD2CD5FEC45DB9CCC21EE0FD6DF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		347C4832B786775E252795F8CF83ABD6 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4FBCA583FBE5326B921005AD65251046 /* Localizable.strings */,
+				689380292C72706CD08F83AFA1E89472 /* Localizable.strings */,
+				868E5BB7D1AFBD01DAEB1FF5EC110435 /* Localizable.strings */,
+				185477C6B811133CD22203244A06688D /* Localizable.strings */,
+				803A3A140CDC69E71919A5FD2563C3F9 /* Localizable.strings */,
+				EBBCB71E081ECD73234AA15F04C89E74 /* Localizable.strings */,
+				439AAA6DE283D26828FD46F4D8E9650C /* Localizable.strings */,
+				76ACA018A2A95A6642DDB32187A3F22C /* Localizable.strings */,
+				1BC9B823EBB340F732832138F39C6643 /* Localizable.strings */,
+				2B2E783447ED335C9CCB5E81AFEE1827 /* Localizable.strings */,
+				EFCA7194508E798181AE74684AFF6FCB /* Localizable.strings */,
+				8085C2A4B3F975098F4A2D5AE50201BB /* Localizable.strings */,
+				BA6CD34CCE2030990BC89EAD1765028D /* Localizable.strings */,
+				206BF1C5DBC6459BD3FFB6FBD26B9CDE /* Localizable.strings */,
+				F8CF78E601371563DB0702C7772B38FF /* Localizable.strings */,
+				39775255ABAC04DAD1DA926129827CD3 /* Localizable.strings */,
+				CC7F19F14615589013B87AA15519618F /* Localizable.strings */,
+				DC7F36B83AF4501B1BA13BF7ACFFB628 /* Localizable.strings */,
+				4940550F06D34E782DD14F105EB015FC /* Localizable.strings */,
+			);
+			name = Localizable.strings;
+			path = Source;
+			sourceTree = "<group>";
+		};
+		41EE58210DD9C7D4827F034D9AED49CF /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7FAF3828DC01D3C3F4AF2AE97AEA9128 /* Localizable.strings */,
+				81D7FD7353BFEB7EB4EB23660FFE85A0 /* Localizable.strings */,
+				9767117DB2DEBD4AC0217FC67A6C4C2C /* Localizable.strings */,
+				F423231B5D4C1C943175E6FD6D4AB643 /* Localizable.strings */,
+				4B6C65581407DC4AB42947CCEAD71547 /* Localizable.strings */,
+			);
+			name = Localizable.strings;
+			path = Localization;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1422B121EAEAEA11307496903FA623C6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+		45B1C6461D70666F181D20D987A878A6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 269520F0EA4F5309770061809B0E05EC /* FDTake.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/FDTake/FDTake-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MODULEMAP_FILE = Headers/Public/FDTake/FDTake.modulemap;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = FDTake;
+				PRODUCT_NAME = FDTake;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		5A80A98098837723A70CFE8ED8887D92 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 16FE9F00066D9CAD3B22B320535DCB4E /* ProgressHUD.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/ProgressHUD/ProgressHUD-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MODULEMAP_FILE = Headers/Public/ProgressHUD/ProgressHUD.modulemap;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = ProgressHUD;
+				PRODUCT_NAME = ProgressHUD;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		5EDDC60AC3FD3AD00235337F453EAAA1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F442AC0EDF6461A4152447D98001CDB4 /* Pods-Segler.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Segler/Pods-Segler.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		6AEC4DE3747F1CE06721E8018F3261A0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CA68486EEB30C7C1E70B55872F2B03D5 /* BarcodeScanner.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/BarcodeScanner";
+				IBSC_MODULE = BarcodeScanner;
+				INFOPLIST_FILE = "Target Support Files/BarcodeScanner/ResourceBundle-Localization-BarcodeScanner-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				PRODUCT_NAME = Localization;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		84FC38D1A34C274FC4B16AE88C210D92 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 59B0518B7FB69EFF3502DD900DFB9B8A /* NMSSH.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/NMSSH/NMSSH-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				MODULEMAP_FILE = Headers/Public/NMSSH/NMSSH.modulemap;
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = NMSSH;
+				PRODUCT_NAME = NMSSH;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8DFD9AFF9D91DDA3B12109D6347F31DC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CA68486EEB30C7C1E70B55872F2B03D5 /* BarcodeScanner.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/BarcodeScanner/BarcodeScanner-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MODULEMAP_FILE = Headers/Public/BarcodeScanner/BarcodeScanner.modulemap;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = BarcodeScanner;
+				PRODUCT_NAME = BarcodeScanner;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		94678FE978CE30E16EDB2D1D8B24A27E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BC210A356669936A5B8BD94FE5E8C928 /* FDTake.release.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/FDTake/FDTake-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MODULEMAP_FILE = Headers/Public/FDTake/FDTake.modulemap;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = FDTake;
+				PRODUCT_NAME = FDTake;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		986C0A9B8292504EAE273BC39D5EECEA /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 84D162B52D69CFD88DB408BD1FA245A7 /* BarcodeScanner.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/BarcodeScanner";
+				IBSC_MODULE = BarcodeScanner;
+				INFOPLIST_FILE = "Target Support Files/BarcodeScanner/ResourceBundle-Localization-BarcodeScanner-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				PRODUCT_NAME = Localization;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
+		A22837DC6DAC68D1B3BC5BD21A41F11E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 07F6A2FF95145F8F1F848A57879F7866 /* NMSSH.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/NMSSH/NMSSH-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				MODULEMAP_FILE = Headers/Public/NMSSH/NMSSH.modulemap;
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = NMSSH;
+				PRODUCT_NAME = NMSSH;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		AFAF3F048EC6C5B9D6F3077D5827D36F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B6CB8BFF9368ADF89A21A38F43EC8ADE /* Pods-Segler.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Segler/Pods-Segler.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D31CB58A472E3E269925046FF27E36D2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 37258538D3240C103BDC83672AD9D01F /* ProgressHUD.release.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/ProgressHUD/ProgressHUD-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MODULEMAP_FILE = Headers/Public/ProgressHUD/ProgressHUD.modulemap;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = ProgressHUD;
+				PRODUCT_NAME = ProgressHUD;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D8F810A5363AD64372AAA3F0630C05A6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CA68486EEB30C7C1E70B55872F2B03D5 /* BarcodeScanner.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/BarcodeScanner";
+				IBSC_MODULE = BarcodeScanner;
+				INFOPLIST_FILE = "Target Support Files/BarcodeScanner/ResourceBundle-BarcodeScanner-BarcodeScanner-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				PRODUCT_NAME = BarcodeScanner;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		DA525585408C66A62DD0844D48A2E021 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 84D162B52D69CFD88DB408BD1FA245A7 /* BarcodeScanner.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/BarcodeScanner";
+				IBSC_MODULE = BarcodeScanner;
+				INFOPLIST_FILE = "Target Support Files/BarcodeScanner/ResourceBundle-BarcodeScanner-BarcodeScanner-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				PRODUCT_NAME = BarcodeScanner;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
+		E0F32247C3EC2F814A02A0C94EF90D49 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 84D162B52D69CFD88DB408BD1FA245A7 /* BarcodeScanner.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/BarcodeScanner/BarcodeScanner-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MODULEMAP_FILE = Headers/Public/BarcodeScanner/BarcodeScanner.modulemap;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = BarcodeScanner;
+				PRODUCT_NAME = BarcodeScanner;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		ED7888FA6713EABBF66D26A8003AD1CA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ED7888FA6713EABBF66D26A8003AD1CA /* Debug */,
+				1422B121EAEAEA11307496903FA623C6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4F1BF9011D5F103E111016A706ACDE6B /* Build configuration list for PBXNativeTarget "ProgressHUD" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5A80A98098837723A70CFE8ED8887D92 /* Debug */,
+				D31CB58A472E3E269925046FF27E36D2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		59FC39AC5D93CD52637F186CFFB0CB3A /* Build configuration list for PBXNativeTarget "Pods-Segler" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5EDDC60AC3FD3AD00235337F453EAAA1 /* Debug */,
+				AFAF3F048EC6C5B9D6F3077D5827D36F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		67183B91C5533EBDAC38354D0278201F /* Build configuration list for PBXNativeTarget "BarcodeScanner" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8DFD9AFF9D91DDA3B12109D6347F31DC /* Debug */,
+				E0F32247C3EC2F814A02A0C94EF90D49 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9C416696AD3FE465DC35DFD8DCC0D9C6 /* Build configuration list for PBXNativeTarget "NMSSH" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				84FC38D1A34C274FC4B16AE88C210D92 /* Debug */,
+				A22837DC6DAC68D1B3BC5BD21A41F11E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AB81606FBCE2C7292F583DF35C9F58D0 /* Build configuration list for PBXNativeTarget "FDTake" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				45B1C6461D70666F181D20D987A878A6 /* Debug */,
+				94678FE978CE30E16EDB2D1D8B24A27E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ADF6AAA9E9C5B74448786BFC1A9B5531 /* Build configuration list for PBXNativeTarget "BarcodeScanner-BarcodeScanner" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D8F810A5363AD64372AAA3F0630C05A6 /* Debug */,
+				DA525585408C66A62DD0844D48A2E021 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F76A6683409C764299D196A078741425 /* Build configuration list for PBXNativeTarget "BarcodeScanner-Localization" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6AEC4DE3747F1CE06721E8018F3261A0 /* Debug */,
+				986C0A9B8292504EAE273BC39D5EECEA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+}

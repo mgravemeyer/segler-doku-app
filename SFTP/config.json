@@ -1,0 +1,19 @@
+{
+  "Response": {
+    "adminPassword": "test",
+    "commentsArray": [
+      {
+      "title": "Sägen",
+      "comments": ["Material fehlt", "Falsches Maß", "Fertigung als Brennteil", "Kaufteil als Brennteilzuschnitt", "Stückliste unvollständig", "Maße der Rohrteile fehlerhaft", "Wird bei Endmontage gefertigt", "Lagervorrat (Putzen, usw.)", "Kaufteile"]
+      },
+      {
+      "title": "Kanten",
+      "comments": ["Verkantet", "Fremdvergabe", "Nicht kantbar", "Falsches Teil", "Gewalzt", "Vorrat", "Kantenabstände zu klein"]
+      },
+      {
+      "title": "Kommissionierung",
+      "comments": ["Rückstand, ist bestellt", "Mindermenge, ist bestellt", "Beschädigt, ist reklamiert", "Bestellung fehlt", "Artikelbeschreibung nicht eindeutig", "Fehler in Stückliste", "Artikel fehlt, bestellt?"]
+      },
+    ]
+  }
+}

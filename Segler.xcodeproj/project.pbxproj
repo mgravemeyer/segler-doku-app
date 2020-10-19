@@ -1,0 +1,644 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 52;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2D4B2EE847CE52C523A0416A /* libPods-Segler.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 03FC60E9B390B113D0332E80 /* libPods-Segler.a */; };
+		E301A5A423CDF44A006A72D5 /* OrderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E301A5A323CDF44A006A72D5 /* OrderViewModel.swift */; };
+		E301A5A623CDF474006A72D5 /* MediaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E301A5A523CDF474006A72D5 /* MediaViewModel.swift */; };
+		E301A5A823CDF4A0006A72D5 /* ColorSeglerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E301A5A723CDF4A0006A72D5 /* ColorSeglerViewModel.swift */; };
+		E31A5C1523D4602900ED647C /* BarcodeScannerSegler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31A5C1423D4602900ED647C /* BarcodeScannerSegler.swift */; };
+		E342EA3C23D71A3C00ABE64D /* KeyboardResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E342EA3B23D71A3C00ABE64D /* KeyboardResponder.swift */; };
+		E35319742517EAC0005768DD /* URLModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35319732517EAC0005768DD /* URLModel.swift */; };
+		E357E1B524B23940009871F1 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E357E1B424B23940009871F1 /* ErrorView.swift */; };
+		E368AFBE23CCC427009DD849 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E368AFBD23CCC427009DD849 /* Comment.swift */; };
+		E368AFC523CCC5C1009DD849 /* downloadJSONController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E368AFC423CCC5C1009DD849 /* downloadJSONController.swift */; };
+		E373BAB02507C53E00D8F247 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = E373BAAF2507C53E00D8F247 /* Introspect */; };
+		E3801AB3244F9275002B2C83 /* SwiftUIKeyboardHost in Frameworks */ = {isa = PBXBuildFile; productRef = E3801AB2244F9275002B2C83 /* SwiftUIKeyboardHost */; };
+		E39A9D6323D8930D00418E51 /* AdminLoginPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39A9D6223D8930D00418E51 /* AdminLoginPassword.swift */; };
+		E3A3BC7823A26C53002BDE18 /* FTPUploadController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A3BC7723A26C53002BDE18 /* FTPUploadController.swift */; };
+		E3A3BC7A23A28E72002BDE18 /* ImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A3BC7923A28E72002BDE18 /* ImagePickerController.swift */; };
+		E3AFEC64253C8E6D00DFAC7C /* VideoPickerController.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3AFEC63253C8E6D00DFAC7C /* VideoPickerController.swift.swift */; };
+		E3B808DB23D063D9007A7595 /* SetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B808DA23D063D9007A7595 /* SetupView.swift */; };
+		E3B808DF23D06DE5007A7595 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B808DE23D06DE5007A7595 /* SettingsViewModel.swift */; };
+		E3B808E123D077A6007A7595 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B808E023D077A6007A7595 /* StartView.swift */; };
+		E3BDDD81250028D000C07EA0 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3BDDD80250028D000C07EA0 /* UserViewModel.swift */; };
+		E3BE190F23A7C7D200137883 /* ftpConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3BE190E23A7C7D200137883 /* ftpConst.swift */; };
+		E3C33BAF23CDB05E00E941FB /* RemarksViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C33BAE23CDB05E00E941FB /* RemarksViewModel.swift */; };
+		E3D6A0D523A1838A000F35E9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D6A0D423A1838A000F35E9 /* AppDelegate.swift */; };
+		E3D6A0D723A1838A000F35E9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D6A0D623A1838A000F35E9 /* SceneDelegate.swift */; };
+		E3D6A0DA23A1838A000F35E9 /* Segler.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E3D6A0D823A1838A000F35E9 /* Segler.xcdatamodeld */; };
+		E3D6A0DC23A1838A000F35E9 /* ReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D6A0DB23A1838A000F35E9 /* ReportView.swift */; };
+		E3D6A0DE23A18395000F35E9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3D6A0DD23A18395000F35E9 /* Assets.xcassets */; };
+		E3D6A0E123A18395000F35E9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3D6A0E023A18395000F35E9 /* Preview Assets.xcassets */; };
+		E3D6A0E423A18395000F35E9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3D6A0E223A18395000F35E9 /* LaunchScreen.storyboard */; };
+		E3D6A0F023A26537000F35E9 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D6A0EF23A26537000F35E9 /* SettingsView.swift */; };
+		E3EA711B23D132F900340463 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3EA711A23D132F900340463 /* LoginView.swift */; };
+		E3EA711E23D133A500340463 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3EA711D23D133A500340463 /* Session.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		03FC60E9B390B113D0332E80 /* libPods-Segler.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Segler.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2EC358624DE548774B1135A7 /* Pods-Segler.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Segler.release.xcconfig"; path = "Target Support Files/Pods-Segler/Pods-Segler.release.xcconfig"; sourceTree = "<group>"; };
+		D7BFD2D22D16F5A90AD5E006 /* Pods-Segler.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Segler.debug.xcconfig"; path = "Target Support Files/Pods-Segler/Pods-Segler.debug.xcconfig"; sourceTree = "<group>"; };
+		E301A5A323CDF44A006A72D5 /* OrderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewModel.swift; sourceTree = "<group>"; };
+		E301A5A523CDF474006A72D5 /* MediaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaViewModel.swift; sourceTree = "<group>"; };
+		E301A5A723CDF4A0006A72D5 /* ColorSeglerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSeglerViewModel.swift; sourceTree = "<group>"; };
+		E31A5C1423D4602900ED647C /* BarcodeScannerSegler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeScannerSegler.swift; sourceTree = "<group>"; };
+		E32E147A23F347DC00C9BA1D /* BarcodeScanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BarcodeScanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E32E148123F3481700C9BA1D /* BarcodeScanner.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = BarcodeScanner.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		E342EA3B23D71A3C00ABE64D /* KeyboardResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardResponder.swift; sourceTree = "<group>"; };
+		E35319732517EAC0005768DD /* URLModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLModel.swift; sourceTree = "<group>"; };
+		E357E1B424B23940009871F1 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
+		E368AFBD23CCC427009DD849 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		E368AFC423CCC5C1009DD849 /* downloadJSONController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = downloadJSONController.swift; sourceTree = "<group>"; };
+		E39A9D6223D8930D00418E51 /* AdminLoginPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminLoginPassword.swift; sourceTree = "<group>"; };
+		E3A3BC7723A26C53002BDE18 /* FTPUploadController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTPUploadController.swift; sourceTree = "<group>"; };
+		E3A3BC7923A28E72002BDE18 /* ImagePickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerController.swift; sourceTree = "<group>"; };
+		E3A7B58F23F34C6C00235D5A /* BarcodeScanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BarcodeScanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E3AFEC63253C8E6D00DFAC7C /* VideoPickerController.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPickerController.swift.swift; sourceTree = "<group>"; };
+		E3B808DA23D063D9007A7595 /* SetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupView.swift; sourceTree = "<group>"; };
+		E3B808DE23D06DE5007A7595 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		E3B808E023D077A6007A7595 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
+		E3BDDD80250028D000C07EA0 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
+		E3BE190E23A7C7D200137883 /* ftpConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ftpConst.swift; sourceTree = "<group>"; };
+		E3C33BAE23CDB05E00E941FB /* RemarksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemarksViewModel.swift; sourceTree = "<group>"; };
+		E3D6A0D123A1838A000F35E9 /* Segler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Segler.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E3D6A0D423A1838A000F35E9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		E3D6A0D623A1838A000F35E9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		E3D6A0D923A1838A000F35E9 /* Segler.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Segler.xcdatamodel; sourceTree = "<group>"; };
+		E3D6A0DB23A1838A000F35E9 /* ReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportView.swift; sourceTree = "<group>"; };
+		E3D6A0DD23A18395000F35E9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E3D6A0E023A18395000F35E9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		E3D6A0E323A18395000F35E9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		E3D6A0E523A18395000F35E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E3D6A0EF23A26537000F35E9 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		E3EA711A23D132F900340463 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		E3EA711D23D133A500340463 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
+		EC70104F84A40BC590349362 /* Pods_Segler.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Segler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E3D6A0CE23A1838A000F35E9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2D4B2EE847CE52C523A0416A /* libPods-Segler.a in Frameworks */,
+				E373BAB02507C53E00D8F247 /* Introspect in Frameworks */,
+				E3801AB3244F9275002B2C83 /* SwiftUIKeyboardHost in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4201FC457981F448FBE2B5D8 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D7BFD2D22D16F5A90AD5E006 /* Pods-Segler.debug.xcconfig */,
+				2EC358624DE548774B1135A7 /* Pods-Segler.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		DFE2B110133E56FC80EF089C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E3A7B58F23F34C6C00235D5A /* BarcodeScanner.framework */,
+				E32E148123F3481700C9BA1D /* BarcodeScanner.bundle */,
+				E32E147A23F347DC00C9BA1D /* BarcodeScanner.framework */,
+				03FC60E9B390B113D0332E80 /* libPods-Segler.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E301A5A123CDF31E006A72D5 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				E3EA711D23D133A500340463 /* Session.swift */,
+				E301A5A323CDF44A006A72D5 /* OrderViewModel.swift */,
+				E3C33BAE23CDB05E00E941FB /* RemarksViewModel.swift */,
+				E301A5A523CDF474006A72D5 /* MediaViewModel.swift */,
+				E301A5A723CDF4A0006A72D5 /* ColorSeglerViewModel.swift */,
+				E3B808DE23D06DE5007A7595 /* SettingsViewModel.swift */,
+				E3BDDD80250028D000C07EA0 /* UserViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		E301A5A223CDF38C006A72D5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E3B808E023D077A6007A7595 /* StartView.swift */,
+				E3B808DA23D063D9007A7595 /* SetupView.swift */,
+				E3EA711A23D132F900340463 /* LoginView.swift */,
+				E3D6A0DB23A1838A000F35E9 /* ReportView.swift */,
+				E3D6A0EF23A26537000F35E9 /* SettingsView.swift */,
+				E357E1B424B23940009871F1 /* ErrorView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E34FD6B823F3631D00239C00 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				EC70104F84A40BC590349362 /* Pods_Segler.framework */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		E368AFBC23CCC417009DD849 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E368AFBD23CCC427009DD849 /* Comment.swift */,
+				E39A9D6223D8930D00418E51 /* AdminLoginPassword.swift */,
+				E35319732517EAC0005768DD /* URLModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		E368AFC323CCC5A6009DD849 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				E31A5C1423D4602900ED647C /* BarcodeScannerSegler.swift */,
+				E3AFEC63253C8E6D00DFAC7C /* VideoPickerController.swift.swift */,
+				E3A3BC7923A28E72002BDE18 /* ImagePickerController.swift */,
+				E3A3BC7723A26C53002BDE18 /* FTPUploadController.swift */,
+				E368AFC423CCC5C1009DD849 /* downloadJSONController.swift */,
+				E342EA3B23D71A3C00ABE64D /* KeyboardResponder.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		E3D6A0C823A1838A000F35E9 = {
+			isa = PBXGroup;
+			children = (
+				E3D6A0D323A1838A000F35E9 /* Segler */,
+				E3D6A0D223A1838A000F35E9 /* Products */,
+				4201FC457981F448FBE2B5D8 /* Pods */,
+				DFE2B110133E56FC80EF089C /* Frameworks */,
+				E34FD6B823F3631D00239C00 /* Recovered References */,
+			);
+			sourceTree = "<group>";
+		};
+		E3D6A0D223A1838A000F35E9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E3D6A0D123A1838A000F35E9 /* Segler.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E3D6A0D323A1838A000F35E9 /* Segler */ = {
+			isa = PBXGroup;
+			children = (
+				E301A5A223CDF38C006A72D5 /* View */,
+				E301A5A123CDF31E006A72D5 /* ViewModel */,
+				E368AFC323CCC5A6009DD849 /* Controller */,
+				E368AFBC23CCC417009DD849 /* Models */,
+				E3D6A0EE23A25CA9000F35E9 /* Delegate */,
+				E3D6A0DD23A18395000F35E9 /* Assets.xcassets */,
+				E3D6A0E223A18395000F35E9 /* LaunchScreen.storyboard */,
+				E3D6A0E523A18395000F35E9 /* Info.plist */,
+				E3D6A0D823A1838A000F35E9 /* Segler.xcdatamodeld */,
+				E3D6A0DF23A18395000F35E9 /* Preview Content */,
+				E3BE190E23A7C7D200137883 /* ftpConst.swift */,
+			);
+			path = Segler;
+			sourceTree = "<group>";
+		};
+		E3D6A0DF23A18395000F35E9 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				E3D6A0E023A18395000F35E9 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		E3D6A0EE23A25CA9000F35E9 /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				E3D6A0D423A1838A000F35E9 /* AppDelegate.swift */,
+				E3D6A0D623A1838A000F35E9 /* SceneDelegate.swift */,
+			);
+			path = Delegate;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E3D6A0D023A1838A000F35E9 /* Segler */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E3D6A0E823A18395000F35E9 /* Build configuration list for PBXNativeTarget "Segler" */;
+			buildPhases = (
+				634A8EA14A7C25197293456A /* [CP] Check Pods Manifest.lock */,
+				E3D6A0CD23A1838A000F35E9 /* Sources */,
+				E3D6A0CE23A1838A000F35E9 /* Frameworks */,
+				E3D6A0CF23A1838A000F35E9 /* Resources */,
+				FF7511CB6093A7D1B078ECE9 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Segler;
+			packageProductDependencies = (
+				E3801AB2244F9275002B2C83 /* SwiftUIKeyboardHost */,
+				E373BAAF2507C53E00D8F247 /* Introspect */,
+			);
+			productName = Segler;
+			productReference = E3D6A0D123A1838A000F35E9 /* Segler.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E3D6A0C923A1838A000F35E9 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1120;
+				LastUpgradeCheck = 1120;
+				ORGANIZATIONNAME = "Maximilian Gravemeyer";
+				TargetAttributes = {
+					E3D6A0D023A1838A000F35E9 = {
+						CreatedOnToolsVersion = 11.2.1;
+					};
+				};
+			};
+			buildConfigurationList = E3D6A0CC23A1838A000F35E9 /* Build configuration list for PBXProject "Segler" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E3D6A0C823A1838A000F35E9;
+			packageReferences = (
+				E3801AB1244F9274002B2C83 /* XCRemoteSwiftPackageReference "SwiftUIKeyboardHost" */,
+				E373BAAE2507C53E00D8F247 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
+			);
+			productRefGroup = E3D6A0D223A1838A000F35E9 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E3D6A0D023A1838A000F35E9 /* Segler */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E3D6A0CF23A1838A000F35E9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E3D6A0E423A18395000F35E9 /* LaunchScreen.storyboard in Resources */,
+				E3D6A0E123A18395000F35E9 /* Preview Assets.xcassets in Resources */,
+				E3D6A0DE23A18395000F35E9 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		634A8EA14A7C25197293456A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Segler-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FF7511CB6093A7D1B078ECE9 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Segler/Pods-Segler-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Segler/Pods-Segler-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Segler/Pods-Segler-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E3D6A0CD23A1838A000F35E9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E301A5A823CDF4A0006A72D5 /* ColorSeglerViewModel.swift in Sources */,
+				E3BDDD81250028D000C07EA0 /* UserViewModel.swift in Sources */,
+				E3B808DB23D063D9007A7595 /* SetupView.swift in Sources */,
+				E357E1B524B23940009871F1 /* ErrorView.swift in Sources */,
+				E3AFEC64253C8E6D00DFAC7C /* VideoPickerController.swift.swift in Sources */,
+				E3D6A0D523A1838A000F35E9 /* AppDelegate.swift in Sources */,
+				E39A9D6323D8930D00418E51 /* AdminLoginPassword.swift in Sources */,
+				E342EA3C23D71A3C00ABE64D /* KeyboardResponder.swift in Sources */,
+				E3A3BC7823A26C53002BDE18 /* FTPUploadController.swift in Sources */,
+				E368AFBE23CCC427009DD849 /* Comment.swift in Sources */,
+				E301A5A623CDF474006A72D5 /* MediaViewModel.swift in Sources */,
+				E301A5A423CDF44A006A72D5 /* OrderViewModel.swift in Sources */,
+				E3C33BAF23CDB05E00E941FB /* RemarksViewModel.swift in Sources */,
+				E3B808E123D077A6007A7595 /* StartView.swift in Sources */,
+				E3D6A0F023A26537000F35E9 /* SettingsView.swift in Sources */,
+				E3BE190F23A7C7D200137883 /* ftpConst.swift in Sources */,
+				E3D6A0DA23A1838A000F35E9 /* Segler.xcdatamodeld in Sources */,
+				E3D6A0DC23A1838A000F35E9 /* ReportView.swift in Sources */,
+				E3EA711E23D133A500340463 /* Session.swift in Sources */,
+				E35319742517EAC0005768DD /* URLModel.swift in Sources */,
+				E3A3BC7A23A28E72002BDE18 /* ImagePickerController.swift in Sources */,
+				E31A5C1523D4602900ED647C /* BarcodeScannerSegler.swift in Sources */,
+				E368AFC523CCC5C1009DD849 /* downloadJSONController.swift in Sources */,
+				E3D6A0D723A1838A000F35E9 /* SceneDelegate.swift in Sources */,
+				E3EA711B23D132F900340463 /* LoginView.swift in Sources */,
+				E3B808DF23D06DE5007A7595 /* SettingsViewModel.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		E3D6A0E223A18395000F35E9 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E3D6A0E323A18395000F35E9 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		E3D6A0E623A18395000F35E9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		E3D6A0E723A18395000F35E9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E3D6A0E923A18395000F35E9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D7BFD2D22D16F5A90AD5E006 /* Pods-Segler.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"Segler/Preview Content\"";
+				DEVELOPMENT_TEAM = 7S5D3CNXL5;
+				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = NO;
+				ENABLE_PREVIEWS = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/ProgressHUD\"",
+					"\"$SRCROOT/Pods\"",
+				);
+				INFOPLIST_FILE = Segler/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.4;
+				PRODUCT_BUNDLE_IDENTIFIER = eu.segler.seglerdokuapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		E3D6A0EA23A18395000F35E9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2EC358624DE548774B1135A7 /* Pods-Segler.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"Segler/Preview Content\"";
+				DEVELOPMENT_TEAM = 7S5D3CNXL5;
+				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = NO;
+				ENABLE_PREVIEWS = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/ProgressHUD\"",
+					"\"$SRCROOT/Pods\"",
+				);
+				INFOPLIST_FILE = Segler/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.4;
+				PRODUCT_BUNDLE_IDENTIFIER = eu.segler.seglerdokuapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E3D6A0CC23A1838A000F35E9 /* Build configuration list for PBXProject "Segler" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E3D6A0E623A18395000F35E9 /* Debug */,
+				E3D6A0E723A18395000F35E9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E3D6A0E823A18395000F35E9 /* Build configuration list for PBXNativeTarget "Segler" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E3D6A0E923A18395000F35E9 /* Debug */,
+				E3D6A0EA23A18395000F35E9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E373BAAE2507C53E00D8F247 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/siteline/SwiftUI-Introspect";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.0;
+			};
+		};
+		E3801AB1244F9274002B2C83 /* XCRemoteSwiftPackageReference "SwiftUIKeyboardHost" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Gaspard-Bruno/SwiftUIKeyboardHost";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E373BAAF2507C53E00D8F247 /* Introspect */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E373BAAE2507C53E00D8F247 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
+			productName = Introspect;
+		};
+		E3801AB2244F9275002B2C83 /* SwiftUIKeyboardHost */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E3801AB1244F9274002B2C83 /* XCRemoteSwiftPackageReference "SwiftUIKeyboardHost" */;
+			productName = SwiftUIKeyboardHost;
+		};
+/* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		E3D6A0D823A1838A000F35E9 /* Segler.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				E3D6A0D923A1838A000F35E9 /* Segler.xcdatamodel */,
+			);
+			currentVersion = E3D6A0D923A1838A000F35E9 /* Segler.xcdatamodel */;
+			path = Segler.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = E3D6A0C923A1838A000F35E9 /* Project object */;
+}

@@ -1,0 +1,6 @@
+module Pods_Segler {
+  umbrella header "Pods-Segler-umbrella.h"
+
+  export *
+  module * { export * }
+}
