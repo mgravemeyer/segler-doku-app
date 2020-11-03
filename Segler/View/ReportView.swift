@@ -617,7 +617,7 @@ struct SectionBilder: View {
                     .actionSheet(isPresented: self.$showSheet) { () -> ActionSheet in
                         ActionSheet(title: Text("Bild löschen"), message: Text("Wirklich Bild löschen?"), buttons: [
                             ActionSheet.Button.default(Text("Ja"), action: {
-                                self.deleto(id: self.id)
+                                self.toggle(id: self.id)
     //                            self.mediaVM.images.remove(at: imageObject.)
     //                            self.delete(at:self.$mediaVM.images.firstIndex(where: { $0.id == imageObject.id })!)
     //                          self.mediaVM.images.remove(at: self.index)
@@ -628,19 +628,11 @@ struct SectionBilder: View {
                 }
             }
         }
-        func deleto(id: UUID) {
+        func toggle(id: UUID) {
             if let index = mediaVM.images.firstIndex(where: {$0.id == id}) {
-                mediaVM.images.remove(at: index)
+                mediaVM.images[index].selected.toggle()
             }
-//            for x in 0..<self.mediaVM.images.count {
-//                if mediaVM.images[x].id == self.imageObject.id {
-//                    mediaVM.images.remove(at: x)
-//                }
-//            }
         }
-//        func delete(at index: UUID) {
-//            self.mediaVM.images.remove(at: index)
-//        }
     }
 
     struct testVideoViewSmallWithoutDelete: View {
@@ -657,9 +649,6 @@ struct SectionBilder: View {
                 Image(uiImage: videoObject.thumbnail).renderingMode(.original).resizable().frame(width: 80, height: 80)
             }
         }
-    //        func delete(at index: UUID) {
-    //            self.mediaVM.images.remove(at: index)
-    //        }
     }
 
 
@@ -677,9 +666,6 @@ struct SectionBilder: View {
                 Image(uiImage: imageObject.thumbnail).renderingMode(.original).resizable().frame(width: 80, height: 80)
             }
         }
-//        func delete(at index: UUID) {
-//            self.mediaVM.images.remove(at: index)
-//        }
     }
 
 struct testImageCameraView: View {
@@ -698,9 +684,6 @@ struct testImageCameraView: View {
                 ActionSheet(title: Text("Bild löschen"), message: Text("Wirklich Bild löschen?"), buttons: [
                     ActionSheet.Button.default(Text("Ja"), action: {
                         self.deleto(id: self.id)
-//                            self.mediaVM.images.remove(at: imageObject.)
-//                            self.delete(at:self.$mediaVM.images.firstIndex(where: { $0.id == imageObject.id })!)
-//                          self.mediaVM.images.remove(at: self.index)
                     }),
                     ActionSheet.Button.cancel()
                 ])
@@ -711,6 +694,7 @@ struct testImageCameraView: View {
         if let index = mediaVM.imagesCamera.firstIndex(where: {$0.id == id}) {
             mediaVM.imagesCamera.remove(at: index)
         }
+    }
 }
 
     
@@ -729,7 +713,7 @@ struct testImageCameraView: View {
                 .actionSheet(isPresented: self.$showSheet) { () -> ActionSheet in
                     ActionSheet(title: Text("Bild löschen"), message: Text("Wirklich Bild löschen?"), buttons: [
                         ActionSheet.Button.default(Text("Ja"), action: {
-                            self.deleto(id: self.id)
+                            self.toggle(id: self.id)
 //                            self.mediaVM.images.remove(at: imageObject.)
 //                            self.delete(at:self.$mediaVM.images.firstIndex(where: { $0.id == imageObject.id })!)
 //                          self.mediaVM.images.remove(at: self.index)
@@ -739,9 +723,10 @@ struct testImageCameraView: View {
                 }
             }
         }
-        func deleto(id: UUID) {
+        func toggle(id: UUID) {
             if let index = mediaVM.images.firstIndex(where: {$0.id == id}) {
-                mediaVM.images.remove(at: index)
+                mediaVM.images[index].selected.toggle()
+//                mediaVM.images.remove(at: index)
             }
 //            for x in 0..<self.mediaVM.images.count {
 //                if mediaVM.images[x].id == self.imageObject.id {
@@ -769,16 +754,16 @@ struct testVideoView: View {
             .actionSheet(isPresented: self.$showSheet) { () -> ActionSheet in
                 ActionSheet(title: Text("Bild löschen"), message: Text("Wirklich Bild löschen?"), buttons: [
                     ActionSheet.Button.default(Text("Ja"), action: {
-                        self.deleto(id: self.id)
+                        self.toggle(id: self.id)
                     }),
                     ActionSheet.Button.cancel()
                 ])
             }
         }
     }
-    func deleto(id: UUID) {
+    func toggle(id: UUID) {
         if let index = mediaVM.videos.firstIndex(where: {$0.id == id}) {
-            mediaVM.videos.remove(at: index)
+            mediaVM.videos[index].selected.toggle()
         }
     }
 }
