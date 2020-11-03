@@ -26,7 +26,14 @@ struct ImageModel: Identifiable, Hashable {
     }
 }
 
+struct ImageModelCamera: Identifiable, Hashable {
+    let id = UUID()
+    var image: UIImage
+}
+
 class MediaViewModel : ObservableObject {
+    
+    @Published var imagesCamera = [ImageModelCamera]()
     
     @Published var images : [ImageModel] = [ImageModel]()
     @Published var videos: [VideoModel] = [VideoModel]()
@@ -67,7 +74,8 @@ class MediaViewModel : ObservableObject {
         fetchOptions.fetchLimit = 20
         let reqImage = PHAsset.fetchAssets(with: .image, options: fetchOptions)
         let reqVideo = PHAsset.fetchAssets(with: .video, options: fetchOptions)
-        DispatchQueue.global(qos: .background).async {
+        DispatchQueue.main.async {
+//        DispatchQueue.global(qos: .background).async {
             
 //            reqImage.enumerateObjects { (asset, _, _) in
 //                let options = PHImageRequestOptions()
@@ -109,26 +117,3 @@ class MediaViewModel : ObservableObject {
         }
     }
 }
-
-//struct ImageModel: Identifiable, Hashable {
-//
-//    let id = UUID()
-//    var image: UIImage
-//    var selected = false
-//    var type = ""
-//}
-
-//struct VideoModel: Identifiable, Hashable {
-//
-//    let id = UUID()
-//    var image: UIImage?
-//    var video: Data?
-//    var selected = false
-//    var type = ""
-//}
-
-//struct VideoModel: Identifiable, Hashable {
-//    var id = UUID()
-//    var video: Video
-//    var selected = false
-//}

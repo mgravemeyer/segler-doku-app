@@ -66,7 +66,8 @@ struct FTPUploadController {
     }
     
     func someAsyncFunction(remarksVM : RemarksViewModel,_ shouldThrow: Bool, completion: @escaping(String?) -> ()) {
-            DispatchQueue.global(qos: .background).async {
+        DispatchQueue.main.async {
+//            DispatchQueue.global(qos: .background).async {
                 
                 ProgressHUD.show()
                 
@@ -154,18 +155,6 @@ struct FTPUploadController {
                     completion(errorMessage)
                 }
                 
-                    var imagesWithJpegData = [Data]()
-                
-                    for x in 0..<self.mediaViewModel.images.count {
-                        if mediaViewModel.images[x].selected {
-                            guard var jpegData = try? self.mediaViewModel.images[x].thumbnail.jpegData(compressionQuality: 0.2)
-                            else { fatalError("Keine Datei gefunden") }
-                            self.addJPEGComment(to: &jpegData, "\(remarksVM.selectedComment)")
-                            self.addJPEGComment(to: &jpegData, "\(remarksVM.additionalComment)")
-                            imagesWithJpegData.append(jpegData)
-                        }
-                    }
-                
                     let sftpsession = NMSFTP(session: session)
                     sftpsession.connect()
                     if sftpsession.isConnected && !error {
@@ -182,7 +171,7 @@ struct FTPUploadController {
                                     jsonObject = self.createJSON(bereich: "\(remarksVM.bereich)", meldungstyp: "\(remarksVM.selectedComment)", freitext: remarksVM.additionalComment, user: self.userVM.username)!
                                 }
                                 sftpsession.writeContents(jsonObject, toFileAtPath: "\("\(self.orderViewModel.orderNr)_\(self.orderViewModel.orderPosition)_\(convertedDate)_\(convertedDateTime)_\(x)").json")
-                                if sftpsession.writeContents(imagesWithJpegData[x], toFileAtPath: "\("\(self.orderViewModel.orderNr)_\(self.orderViewModel.orderPosition)_\(convertedDate)_\(convertedDateTime)_\(x)").jpg") {
+                                if sftpsession.writeContents(mediaViewModel.images[x].fetchImage(), toFileAtPath: "\("\(self.orderViewModel.orderNr)_\(self.orderViewModel.orderPosition)_\(convertedDate)_\(convertedDateTime)_\(x)").jpg") {
                                     completion(nil)
                                 } else {
                                     errorMessage = errorMessage + "Fehler beim Hochladen "
@@ -211,96 +200,5 @@ struct FTPUploadController {
                         }
                     }
         }
-    }
-    
-//    func uploadFile(remarksVM : RemarksViewModel) {
-//
-//
-//
-//        let date = Date()
-//        let calendar = Calendar.current
-//        let hour = calendar.component(.hour, from: date)
-//        let minutes = calendar.component(.minute, from: date)
-//        let seconds = calendar.component(.second, from: date)
-//        let day = calendar.component(.day, from: date)
-//        let month = calendar.component(.month, from: date)
-//        let year = calendar.component(.year, from: date)
-//
-//        let session = NMSSHSession.init(host: "\(settingsVM.ip)", andUsername: "\(settingsVM.serverUsername)")
-//        session.connect()
-//        session.authenticate(byPassword: "\(settingsVM.serverPassword)")
-//
-//        if !mediaViewModel.images.isEmpty {
-//
-//            var imagesWithJpegData = [Data]()
-//
-//            for x in 0..<mediaViewModel.images.count {
-//                guard var jpegData = try? mediaViewModel.images[x].jpegData(compressionQuality: 0.2)
-//                else { fatalError("Keine Datei gefunden") }
-//                addJPEGComment(to: &jpegData, "\(remarksVM.selectedComment)")
-//                addJPEGComment(to: &jpegData, "\(remarksVM.additionalComment)")
-//
-//                imagesWithJpegData.append(jpegData)
-//            }
-////            var data : Data = Data(addMetaData(image: mediaViewModel.image!).jpegData(compressionQuality: 0.2)!)
-////            let data : Data = mediaViewModel.image!.jpegData(compressionQuality: 0.2)!
-//            if orderViewModel.orderNr != "" {
-//                if session.isAuthorized {
-//                    let sftpsession = NMSFTP(session: session)
-//                    sftpsession.connect()
-//                    if sftpsession.isConnected {
-//                        for x in 0..<imagesWithJpegData.count {
-//                            if sftpsession.writeContents(imagesWithJpegData[x], toFileAtPath: "\("\(orderViewModel.orderNr)_\(orderViewModel.orderPosition)_\(day)\(month)\(year)_\(hour)\(minutes)\(seconds)_\(x)").jpg") {
-//                                ProgressHUD.showSuccess("Hochgeladen")
-////                                orderViewModel.machineName = ""
-////                                orderViewModel.orderNr = ""
-////                                orderViewModel.orderPosition = ""
-////                                mediaViewModel.images.removeAll()
-////                                remarksVM.selectedComment = ""
-////                                remarksVM.additionalComment = ""
-//                            } else {
-//                                ProgressHUD.showError("Fehler beim Hochladen")
-//                            }
-//                        }
-//                    } else {
-//                        ProgressHUD.showError("Nicht verbunden")
-//                    }
-//                } else {
-//                    ProgressHUD.showError("Keine Autorisierung")
-//                }
-//            } else {
-//                ProgressHUD.showError("Auftrags-Nr eintragen")
-//            }
-//        }
-//    }
-    
-    func addJPEGComment(to jpegData: inout Data, _ comment: String) {
-
-        // find index of first SOF marker, or EOI
-        let sofMarkers: [UInt8] = [
-            0xC0, 0xC1, 0xC2, 0xC3, 0xC5, 0xC6,
-            0xC7, 0xC9, 0xCA, 0xCB, 0xCD, 0xCE,
-            0xCF, 0xD9 // EOI
-        ]
-
-        var firstSOFRange: Range<Data.Index>?
-        for marker in sofMarkers {
-            if let range = jpegData.range(of: Data(bytes: [ 0xFF, marker ])) {
-                firstSOFRange = range
-                break
-            }
-        }
-
-        guard let firstSOFIndex = firstSOFRange?.lowerBound
-            else { fatalError("No SOF or EOI marker found.") }
-
-        // create comment byte array
-        let length = comment.lengthOfBytes(using: .utf8) + 2
-        let l1 = UInt8((length >> 8) & 0xFF)
-        let l2 = UInt8(length & 0xFF)
-        let commentArray = [ 0xFF, 0xFE /* COM marker */, l1, l2 ] + [UInt8](comment.utf8)
-
-        // insert comment array into image data object
-        jpegData.insert(contentsOf: commentArray, at: firstSOFIndex)
     }
 }

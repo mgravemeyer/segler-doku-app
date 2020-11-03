@@ -340,7 +340,6 @@ struct SaveButton: View {
     var body: some View {
         HStack {
             Button(action: {
-    //            self.connection.uploadFile(remarksVM: self.remarksVM)
                 typealias ThrowableCallback = () throws -> Bool
                 self.connection.someAsyncFunction(remarksVM: self.remarksVM, true) { (error) -> Void in
                     if error != nil {
@@ -496,38 +495,42 @@ struct reportModal: View {
                 Text("Kommentar: \(remarksVM.selectedComment)").frame(height: 34)
                 HStack {
                     ForEach(self.mediaVM.images, id: \.id) { image in
-                        testImageViewSmallWithoutDelete(mediaVM: self.mediaVM, imageObject: image,id: image.id)
+                        if image.selected {
+                            testImageViewSmallWithoutDelete(mediaVM: self.mediaVM, imageObject: image,id: image.id)
+                        }
+                    }
+                    ForEach(self.mediaVM.videos, id: \.id) { video in
+                        if video.selected {
+                            testVideoViewSmallWithoutDelete(mediaVM: self.mediaVM, videoObject: video,id: video.id)
+                        }
                     }
                 }
                 Button(action: {
-                    self.showReport = false
-                    self.orderVM.machineName = ""
-                    self.orderVM.orderNr = ""
-                    self.orderVM.orderPosition = ""
-                    self.mediaVM.images.removeAll()
-                    self.remarksVM.selectedComment = ""
-                    self.remarksVM.additionalComment = ""
-                    self.orderVM.orderNrIsOk = true
-                    self.remarksVM.commentIsOk = true
-                    self.mediaVM.imagesIsOk = true
-                    self.showReport = false
+                    deleteMedia()
                 }) {
                     Text("Schließen").frame(height: 34)
                 }
             }.padding(.top, 40).onDisappear {
-                self.showReport = false
-                self.orderVM.machineName = ""
-                self.orderVM.orderNr = ""
-                self.orderVM.orderPosition = ""
-                self.mediaVM.images.removeAll()
-                self.remarksVM.selectedComment = ""
-                self.remarksVM.additionalComment = ""
-                self.orderVM.orderNrIsOk = true
-                self.remarksVM.commentIsOk = true
-                self.mediaVM.imagesIsOk = true
-                self.showReport = false
+                deleteMedia()
             }
     }
+    
+    func deleteMedia() {
+        self.showReport = false
+        self.orderVM.machineName = ""
+        self.orderVM.orderNr = ""
+        self.orderVM.orderPosition = ""
+        self.mediaVM.images.removeAll()
+        self.mediaVM.videos.removeAll()
+        self.remarksVM.selectedComment = ""
+        self.remarksVM.additionalComment = ""
+        self.orderVM.orderNrIsOk = true
+        self.remarksVM.commentIsOk = true
+        self.mediaVM.imagesIsOk = true
+        self.showReport = false
+        self.mediaVM.fetchImages()
+    }
+
 }
 
 struct CheckBevoreSendView: View {
@@ -572,7 +575,10 @@ struct SectionBilder: View {
 //                            ImageView(mediaVM: self.mediaVM, index: x)
 ////                            Image(uiImage: self.mediaVM.images[x]).renderingMode(.original).resizable().frame(width: 200, height: 200)
 //                        }
-                        ForEach(self.mediaVM.images.reversed(), id: \.id) { image in
+                        ForEach(self.mediaVM.imagesCamera.reversed(), id: \.id) { image in
+                            testImageCameraView(mediaVM: self.mediaVM, imageObject: image,id: image.id)
+                        }
+                        ForEach(self.mediaVM.images, id: \.id) { image in
                             if image.selected {
                                 testImageView(mediaVM: self.mediaVM, imageObject: image,id: image.id)
                             }
@@ -599,17 +605,26 @@ struct SectionBilder: View {
             Button(action: {
                 self.showSheet = !self.showSheet
             }) {
-                Image(uiImage: imageObject.thumbnail).renderingMode(.original).resizable().frame(width: 80, height: 80)
-                .actionSheet(isPresented: self.$showSheet) { () -> ActionSheet in
-                    ActionSheet(title: Text("Bild löschen"), message: Text("Wirklich Bild löschen?"), buttons: [
-                        ActionSheet.Button.default(Text("Ja"), action: {
-                            self.deleto(id: self.id)
-//                            self.mediaVM.images.remove(at: imageObject.)
-//                            self.delete(at:self.$mediaVM.images.firstIndex(where: { $0.id == imageObject.id })!)
-//                          self.mediaVM.images.remove(at: self.index)
-                        }),
-                        ActionSheet.Button.cancel()
-                    ])
+                ZStack {
+                    Rectangle().background(Color.gray)
+                        .frame(width: 80, height: 80)
+                        .opacity(1)
+                        .zIndex(1)
+                    Image(uiImage: imageObject.thumbnail).renderingMode(.original)
+                        .resizable()
+                        .frame(width: 80, height: 80)
+                        .zIndex(0)
+                    .actionSheet(isPresented: self.$showSheet) { () -> ActionSheet in
+                        ActionSheet(title: Text("Bild löschen"), message: Text("Wirklich Bild löschen?"), buttons: [
+                            ActionSheet.Button.default(Text("Ja"), action: {
+                                self.deleto(id: self.id)
+    //                            self.mediaVM.images.remove(at: imageObject.)
+    //                            self.delete(at:self.$mediaVM.images.firstIndex(where: { $0.id == imageObject.id })!)
+    //                          self.mediaVM.images.remove(at: self.index)
+                            }),
+                            ActionSheet.Button.cancel()
+                        ])
+                    }
                 }
             }
         }
@@ -666,6 +681,38 @@ struct SectionBilder: View {
 //            self.mediaVM.images.remove(at: index)
 //        }
     }
+
+struct testImageCameraView: View {
+    
+    @ObservedObject var mediaVM: MediaViewModel
+    @State var imageObject : ImageModelCamera
+    @State var showSheet = false
+    @State var id : UUID
+    
+    var body: some View {
+        Button(action: {
+            self.showSheet = !self.showSheet
+        }) {
+            Image(uiImage: imageObject.image).renderingMode(.original).resizable().frame(width: 100, height: 100).scaledToFill()
+            .actionSheet(isPresented: self.$showSheet) { () -> ActionSheet in
+                ActionSheet(title: Text("Bild löschen"), message: Text("Wirklich Bild löschen?"), buttons: [
+                    ActionSheet.Button.default(Text("Ja"), action: {
+                        self.deleto(id: self.id)
+//                            self.mediaVM.images.remove(at: imageObject.)
+//                            self.delete(at:self.$mediaVM.images.firstIndex(where: { $0.id == imageObject.id })!)
+//                          self.mediaVM.images.remove(at: self.index)
+                    }),
+                    ActionSheet.Button.cancel()
+                ])
+            }
+        }
+    }
+    func deleto(id: UUID) {
+        if let index = mediaVM.imagesCamera.firstIndex(where: {$0.id == id}) {
+            mediaVM.imagesCamera.remove(at: index)
+        }
+}
+
     
     struct testImageView: View {
         

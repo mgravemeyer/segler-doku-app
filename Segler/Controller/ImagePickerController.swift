@@ -41,8 +41,11 @@ struct ImagePicker: UIViewControllerRepresentable {
         
         func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
             let uiimage = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
-            mediaVM.image = uiimage
+            
+//            mediaVM.image = uiimage
 //            mediaVM.images.append(ImageModel(thumbnail: uiimage))
+            mediaVM.imagesCamera.append(ImageModelCamera(image: uiimage))
+//            mediaVM.images.append(ImageModel(assetURL: saveImage(image: uiimage), thumbnail: uiimage))
             mediaVM.showImagePicker = false
         }
         
