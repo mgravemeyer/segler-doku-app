@@ -1,4 +1,6 @@
 import SwiftUI
+import AVFoundation
+import MobileCoreServices
 
 struct ImagePicker: UIViewControllerRepresentable {
     
@@ -20,7 +22,11 @@ struct ImagePicker: UIViewControllerRepresentable {
         
         let vc = UIImagePickerController()
         vc.allowsEditing = false
-        vc.sourceType = mediaVM.sourceType == 1 ? .photoLibrary : .camera
+        vc.sourceType = .camera
+        vc.mediaTypes = [kUTTypeMovie as String, kUTTypeImage as String]
+        
+        let previewLayer = AVCaptureVideoPreviewLayer()
+        previewLayer.videoGravity = .resizeAspectFill
         
         vc.delegate = context.coordinator
         
@@ -38,19 +44,40 @@ struct ImagePicker: UIViewControllerRepresentable {
         init(mediaVM : ObservedObject<MediaViewModel>) {
             _mediaVM = mediaVM
         }
-        
-        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-            let uiimage = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
+
+        public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
             
-//            mediaVM.image = uiimage
-//            mediaVM.images.append(ImageModel(thumbnail: uiimage))
-            mediaVM.imagesCamera.append(ImageModelCamera(image: uiimage))
-//            mediaVM.images.append(ImageModel(assetURL: saveImage(image: uiimage), thumbnail: uiimage))
+            let mediaType = info[UIImagePickerController.InfoKey(rawValue: UIImagePickerController.InfoKey.mediaType.rawValue)] as! NSString
+            
+            if mediaType.isEqual(to: kUTTypeImage as String) {
+                let uiimage = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
+                mediaVM.imagesCamera.append(ImageModelCamera(image: uiimage))
+            } else {
+                let url: URL = info[UIImagePickerController.InfoKey(rawValue: UIImagePickerController.InfoKey.mediaURL.rawValue)] as! URL
+                let chosenVideo = info[UIImagePickerController.InfoKey(rawValue: UIImagePickerController.InfoKey.mediaURL.rawValue)] as! URL
+                let videoData = try! Data(contentsOf: chosenVideo, options: [])
+                let thumbnail = url.generateThumbnail()
+                mediaVM.videosCamera.append(VideoModelCamera(video: videoData, thumbnail: thumbnail))
+            }
             mediaVM.showImagePicker = false
         }
-        
         func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
             mediaVM.showImagePicker = false
         }
     }
+}
+
+private extension URL {
+    
+    func generateThumbnail() -> UIImage {
+        let asset = AVAsset(url: self)
+        let generator = AVAssetImageGenerator(asset: asset)
+        generator.appliesPreferredTrackTransform = true
+        var time = asset.duration
+        time.value = 0
+        let imageRef = try? generator.copyCGImage(at: time, actualTime: nil)
+        let thumbnail = UIImage(cgImage: imageRef!)
+        return thumbnail
+    }
+    
 }

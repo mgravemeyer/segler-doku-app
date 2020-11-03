@@ -31,12 +31,20 @@ struct ImageModelCamera: Identifiable, Hashable {
     var image: UIImage
 }
 
+struct VideoModelCamera: Identifiable, Hashable {
+    let id = UUID()
+    var video: Data
+    var thumbnail: UIImage
+}
+
 class MediaViewModel : ObservableObject {
     
     @Published var imagesCamera = [ImageModelCamera]()
+    @Published var videosCamera = [VideoModelCamera]()
     
     @Published var images : [ImageModel] = [ImageModel]()
     @Published var videos: [VideoModel] = [VideoModel]()
+    
     @Published var image : UIImage?
     @Published var sourceType: Int = 0
     @Published var showImagePicker: Bool = false

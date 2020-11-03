@@ -522,6 +522,8 @@ struct reportModal: View {
         self.orderVM.orderPosition = ""
         self.mediaVM.images.removeAll()
         self.mediaVM.videos.removeAll()
+        self.mediaVM.imagesCamera.removeAll()
+        self.mediaVM.videosCamera.removeAll()
         self.remarksVM.selectedComment = ""
         self.remarksVM.additionalComment = ""
         self.orderVM.orderNrIsOk = true
@@ -587,6 +589,9 @@ struct SectionBilder: View {
                             if video.selected {
                                 testVideoView(mediaVM: self.mediaVM, videoObject: video, id: video.id)
                             }
+                        }
+                        ForEach(self.mediaVM.videosCamera, id: \.id) { video in
+                                testVideoCameraView(mediaVM: self.mediaVM, videoObject: video, id: video.id)
                         }
                     }
                 }
@@ -679,7 +684,11 @@ struct testImageCameraView: View {
         Button(action: {
             self.showSheet = !self.showSheet
         }) {
-            Image(uiImage: imageObject.image).renderingMode(.original).resizable().frame(width: 100, height: 100).scaledToFill()
+            ZStack {
+                Rectangle().frame(width: 100, height: 100).background(Color.black).opacity(0.3).zIndex(2)
+                Text("Foto").fontWeight(.bold).zIndex(1)
+                Image(uiImage: imageObject.image).renderingMode(.original).resizable().frame(width: 100, height: 100).scaledToFill().zIndex(0)
+            }
             .actionSheet(isPresented: self.$showSheet) { () -> ActionSheet in
                 ActionSheet(title: Text("Bild löschen"), message: Text("Wirklich Bild löschen?"), buttons: [
                     ActionSheet.Button.default(Text("Ja"), action: {
@@ -697,6 +706,39 @@ struct testImageCameraView: View {
     }
 }
 
+struct testVideoCameraView: View {
+    
+    @ObservedObject var mediaVM: MediaViewModel
+    @State var videoObject : VideoModelCamera
+    @State var showSheet = false
+    @State var id : UUID
+    
+    var body: some View {
+        Button(action: {
+            self.showSheet = !self.showSheet
+        }) {
+            ZStack {
+                Rectangle().frame(width: 100, height: 100).background(Color.black).opacity(0.3).zIndex(2)
+                Text("Video").fontWeight(.bold).zIndex(1)
+                Image(uiImage: videoObject.thumbnail).renderingMode(.original).resizable().frame(width: 100, height: 100).scaledToFill().zIndex(0)
+            }
+            .actionSheet(isPresented: self.$showSheet) { () -> ActionSheet in
+                ActionSheet(title: Text("Bild löschen"), message: Text("Wirklich Video löschen?"), buttons: [
+                    ActionSheet.Button.default(Text("Ja"), action: {
+                        self.deleto(id: self.id)
+                    }),
+                    ActionSheet.Button.cancel()
+                ])
+            }
+        }
+    }
+    func deleto(id: UUID) {
+        if let index = mediaVM.videosCamera.firstIndex(where: {$0.id == id}) {
+            mediaVM.videosCamera.remove(at: index)
+        }
+    }
+}
+
     
     struct testImageView: View {
         
@@ -709,14 +751,15 @@ struct testImageCameraView: View {
             Button(action: {
                 self.showSheet = !self.showSheet
             }) {
-                Image(uiImage: imageObject.thumbnail).renderingMode(.original).resizable().frame(width: 100, height: 100).scaledToFill()
+                ZStack {
+                    Rectangle().frame(width: 100, height: 100).background(Color.black).opacity(0.3).zIndex(2)
+                    Text("Foto").fontWeight(.bold).zIndex(1)
+                    Image(uiImage: imageObject.thumbnail).renderingMode(.original).resizable().frame(width: 100, height: 100).scaledToFill().zIndex(0)
+                }
                 .actionSheet(isPresented: self.$showSheet) { () -> ActionSheet in
                     ActionSheet(title: Text("Bild löschen"), message: Text("Wirklich Bild löschen?"), buttons: [
                         ActionSheet.Button.default(Text("Ja"), action: {
                             self.toggle(id: self.id)
-//                            self.mediaVM.images.remove(at: imageObject.)
-//                            self.delete(at:self.$mediaVM.images.firstIndex(where: { $0.id == imageObject.id })!)
-//                          self.mediaVM.images.remove(at: self.index)
                         }),
                         ActionSheet.Button.cancel()
                     ])
@@ -726,17 +769,8 @@ struct testImageCameraView: View {
         func toggle(id: UUID) {
             if let index = mediaVM.images.firstIndex(where: {$0.id == id}) {
                 mediaVM.images[index].selected.toggle()
-//                mediaVM.images.remove(at: index)
             }
-//            for x in 0..<self.mediaVM.images.count {
-//                if mediaVM.images[x].id == self.imageObject.id {
-//                    mediaVM.images.remove(at: x)
-//                }
-//            }
         }
-//        func delete(at index: UUID)
-//            self.mediaVM.images.remove(at: index)
-//        }
     }
 
 struct testVideoView: View {
@@ -750,7 +784,11 @@ struct testVideoView: View {
         Button(action: {
             self.showSheet = !self.showSheet
         }) {
-            Image(uiImage: videoObject.thumbnail).renderingMode(.original).resizable().frame(width: 100, height: 100).scaledToFill()
+            ZStack {
+                Rectangle().frame(width: 100, height: 100).background(Color.black).opacity(0.3).zIndex(2)
+                Text("Video").fontWeight(.bold).zIndex(1)
+                Image(uiImage: videoObject.thumbnail).renderingMode(.original).resizable().frame(width: 100, height: 100).scaledToFill().zIndex(0)
+            }
             .actionSheet(isPresented: self.$showSheet) { () -> ActionSheet in
                 ActionSheet(title: Text("Bild löschen"), message: Text("Wirklich Bild löschen?"), buttons: [
                     ActionSheet.Button.default(Text("Ja"), action: {
@@ -782,9 +820,6 @@ struct ImageView: View {
             .actionSheet(isPresented: self.$showSheet) { () -> ActionSheet in
                     ActionSheet(title: Text("Bild löschen"), message: Text("Wirklich Bild löschen?"), buttons: [
                         ActionSheet.Button.default(Text("Ja"), action: {
-//                            self.delete(at: self.$mediaVM.firstIndex(where: {index}))
-//                            self.delete(at:self.mediaVM.firstIndex(where: { $0.id == music.id })!)
-//                          self.mediaVM.images.remove(at: self.index)
                         }),
                         ActionSheet.Button.cancel()
                     ])
@@ -803,10 +838,6 @@ struct EmptyImgButton: View {
     @State var showSheet = false
     
     var color = ColorSeglerViewModel()
-
-//    @Binding var showImagePicker: Bool
-//    @Binding var image: UIImage?
-//    @Binding var sourceType: Int
     
     var body: some View {
         Group {
@@ -862,8 +893,6 @@ struct EmptyImgButton: View {
                     }),
                     ActionSheet.Button.default(Text("Galerie"), action: {
                         self.mediaVM.showImagePickerNew.toggle()
-//                        self.mediaVM.sourceType = 1
-//                        self.mediaVM.showImagePicker = !self.mediaVM.showImagePicker
                     }),
                     ActionSheet.Button.cancel()
                 ])

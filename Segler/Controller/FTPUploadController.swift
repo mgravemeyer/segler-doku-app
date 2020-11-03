@@ -66,10 +66,17 @@ struct FTPUploadController {
     }
     
     func someAsyncFunction(remarksVM : RemarksViewModel,_ shouldThrow: Bool, completion: @escaping(String?) -> ()) {
-        DispatchQueue.main.async {
-//            DispatchQueue.global(qos: .background).async {
+        
+        var finishedPhotoArray = [Data]()
+        var finishedVideoArray = [Data]()
+        
+        var orderNrCheck = false
+
+            DispatchQueue.global(qos: .background).async {
                 
                 ProgressHUD.show()
+                
+                DispatchQueue.main.async {
                 
                 let date = Date()
                 
@@ -179,6 +186,7 @@ struct FTPUploadController {
                                 
                             }
                         }
+                        
                         for x in 0..<mediaViewModel.videos.count {
                             
                             if mediaViewModel.videos[x].selected {
@@ -198,7 +206,43 @@ struct FTPUploadController {
                                 }
                             }
                         }
+                        
+                        for x in 0..<mediaViewModel.imagesCamera.count {
+                            
+                                var jsonObject = Data()
+                                
+                                if self.settingsVM.useFixedUser {
+                                    jsonObject = self.createJSON(bereich: "\(remarksVM.bereich)", meldungstyp: "\(remarksVM.selectedComment)", freitext: remarksVM.additionalComment, user: self.settingsVM.userUsername)!
+                                } else {
+                                    jsonObject = self.createJSON(bereich: "\(remarksVM.bereich)", meldungstyp: "\(remarksVM.selectedComment)", freitext: remarksVM.additionalComment, user: self.userVM.username)!
+                                }
+                                sftpsession.writeContents(jsonObject, toFileAtPath: "\("\(self.orderViewModel.orderNr)_\(self.orderViewModel.orderPosition)_\(convertedDate)_\(convertedDateTime)_\(x)").json")
+                            if sftpsession.writeContents(mediaViewModel.imagesCamera[x].image.pngData()!, toFileAtPath: "\("\(self.orderViewModel.orderNr)_\(self.orderViewModel.orderPosition)_\(convertedDate)_\(convertedDateTime)_\(x)").jpg") {
+                                    completion(nil)
+                                } else {
+                                    errorMessage = errorMessage + "Fehler beim Hochladen "
+                                }
+                        }
+                        
+                        for x in 0..<mediaViewModel.videosCamera.count {
+                            
+                                var jsonObject = Data()
+                                
+                                if self.settingsVM.useFixedUser {
+                                    jsonObject = self.createJSON(bereich: "\(remarksVM.bereich)", meldungstyp: "\(remarksVM.selectedComment)", freitext: remarksVM.additionalComment, user: self.settingsVM.userUsername)!
+                                } else {
+                                    jsonObject = self.createJSON(bereich: "\(remarksVM.bereich)", meldungstyp: "\(remarksVM.selectedComment)", freitext: remarksVM.additionalComment, user: self.userVM.username)!
+                                }
+                                sftpsession.writeContents(jsonObject, toFileAtPath: "\("\(self.orderViewModel.orderNr)_\(self.orderViewModel.orderPosition)_\(convertedDate)_\(convertedDateTime)_\(x)").json")
+                            if sftpsession.writeContents(mediaViewModel.videosCamera[x].video, toFileAtPath: "\("\(self.orderViewModel.orderNr)_\(self.orderViewModel.orderPosition)_\(convertedDate)_\(convertedDateTime)_\(x)").mp4") {
+                                    completion(nil)
+                                } else {
+                                    errorMessage = errorMessage + "Fehler beim Hochladen "
+                                }
+                        }
+                        
                     }
-        }
+                    }
+            }
     }
 }

@@ -18,10 +18,14 @@
 	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>LSApplicationCategoryType</key>
+	<string></string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-    <key>NSPhotoLibraryUsageDescription</key>
-    <string>Foto zugriff benötigt</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>iOS 14 Bug </string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Foto zugriff benötigt</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Kamera zugriff benötigt</string>
 	<key>UIApplicationSceneManifest</key>
