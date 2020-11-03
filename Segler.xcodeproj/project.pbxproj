@@ -3,11 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2D4B2EE847CE52C523A0416A /* libPods-Segler.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 03FC60E9B390B113D0332E80 /* libPods-Segler.a */; };
+		86CBF00205BDA46BDA5EB2DF /* libPods-Segler.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B045ED0ED1039881B62851EF /* libPods-Segler.a */; };
 		E301A5A423CDF44A006A72D5 /* OrderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E301A5A323CDF44A006A72D5 /* OrderViewModel.swift */; };
 		E301A5A623CDF474006A72D5 /* MediaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E301A5A523CDF474006A72D5 /* MediaViewModel.swift */; };
 		E301A5A823CDF4A0006A72D5 /* ColorSeglerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E301A5A723CDF4A0006A72D5 /* ColorSeglerViewModel.swift */; };
@@ -17,8 +17,6 @@
 		E357E1B524B23940009871F1 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E357E1B424B23940009871F1 /* ErrorView.swift */; };
 		E368AFBE23CCC427009DD849 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E368AFBD23CCC427009DD849 /* Comment.swift */; };
 		E368AFC523CCC5C1009DD849 /* downloadJSONController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E368AFC423CCC5C1009DD849 /* downloadJSONController.swift */; };
-		E373BAB02507C53E00D8F247 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = E373BAAF2507C53E00D8F247 /* Introspect */; };
-		E3801AB3244F9275002B2C83 /* SwiftUIKeyboardHost in Frameworks */ = {isa = PBXBuildFile; productRef = E3801AB2244F9275002B2C83 /* SwiftUIKeyboardHost */; };
 		E39A9D6323D8930D00418E51 /* AdminLoginPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39A9D6223D8930D00418E51 /* AdminLoginPassword.swift */; };
 		E3A3BC7823A26C53002BDE18 /* FTPUploadController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A3BC7723A26C53002BDE18 /* FTPUploadController.swift */; };
 		E3A3BC7A23A28E72002BDE18 /* ImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A3BC7923A28E72002BDE18 /* ImagePickerController.swift */; };
@@ -42,15 +40,17 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		03FC60E9B390B113D0332E80 /* libPods-Segler.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Segler.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2EC358624DE548774B1135A7 /* Pods-Segler.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Segler.release.xcconfig"; path = "Target Support Files/Pods-Segler/Pods-Segler.release.xcconfig"; sourceTree = "<group>"; };
-		D7BFD2D22D16F5A90AD5E006 /* Pods-Segler.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Segler.debug.xcconfig"; path = "Target Support Files/Pods-Segler/Pods-Segler.debug.xcconfig"; sourceTree = "<group>"; };
+		B045ED0ED1039881B62851EF /* libPods-Segler.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Segler.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B331AE0F7280D7638CBC570A /* Pods-Segler.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Segler.release.xcconfig"; path = "Target Support Files/Pods-Segler/Pods-Segler.release.xcconfig"; sourceTree = "<group>"; };
+		C68F35FCA4983CB563383A12 /* Pods-Segler.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Segler.debug.xcconfig"; path = "Target Support Files/Pods-Segler/Pods-Segler.debug.xcconfig"; sourceTree = "<group>"; };
 		E301A5A323CDF44A006A72D5 /* OrderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewModel.swift; sourceTree = "<group>"; };
-		E301A5A523CDF474006A72D5 /* MediaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaViewModel.swift; sourceTree = "<group>"; };
+		E301A5A523CDF474006A72D5 /* MediaViewModel.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = MediaViewModel.swift; sourceTree = "<group>"; tabWidth = 4; };
 		E301A5A723CDF4A0006A72D5 /* ColorSeglerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSeglerViewModel.swift; sourceTree = "<group>"; };
 		E31A5C1423D4602900ED647C /* BarcodeScannerSegler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeScannerSegler.swift; sourceTree = "<group>"; };
 		E32E147A23F347DC00C9BA1D /* BarcodeScanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BarcodeScanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E32E148123F3481700C9BA1D /* BarcodeScanner.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = BarcodeScanner.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		E33E8FDD254A27E2003953E8 /* libBarcodeScanner.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libBarcodeScanner.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		E33E8FDF254A27F9003953E8 /* libNMSSH.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libNMSSH.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E342EA3B23D71A3C00ABE64D /* KeyboardResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardResponder.swift; sourceTree = "<group>"; };
 		E35319732517EAC0005768DD /* URLModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLModel.swift; sourceTree = "<group>"; };
 		E357E1B424B23940009871F1 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
@@ -67,6 +67,7 @@
 		E3BDDD80250028D000C07EA0 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		E3BE190E23A7C7D200137883 /* ftpConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ftpConst.swift; sourceTree = "<group>"; };
 		E3C33BAE23CDB05E00E941FB /* RemarksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemarksViewModel.swift; sourceTree = "<group>"; };
+		E3D0CCD1254A29E600E98B0E /* libNMSSH.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libNMSSH.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3D6A0D123A1838A000F35E9 /* Segler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Segler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3D6A0D423A1838A000F35E9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E3D6A0D623A1838A000F35E9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -79,7 +80,6 @@
 		E3D6A0EF23A26537000F35E9 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		E3EA711A23D132F900340463 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		E3EA711D23D133A500340463 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
-		EC70104F84A40BC590349362 /* Pods_Segler.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Segler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,9 +87,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2D4B2EE847CE52C523A0416A /* libPods-Segler.a in Frameworks */,
-				E373BAB02507C53E00D8F247 /* Introspect in Frameworks */,
-				E3801AB3244F9275002B2C83 /* SwiftUIKeyboardHost in Frameworks */,
+				86CBF00205BDA46BDA5EB2DF /* libPods-Segler.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,8 +97,8 @@
 		4201FC457981F448FBE2B5D8 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				D7BFD2D22D16F5A90AD5E006 /* Pods-Segler.debug.xcconfig */,
-				2EC358624DE548774B1135A7 /* Pods-Segler.release.xcconfig */,
+				C68F35FCA4983CB563383A12 /* Pods-Segler.debug.xcconfig */,
+				B331AE0F7280D7638CBC570A /* Pods-Segler.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -108,10 +106,13 @@
 		DFE2B110133E56FC80EF089C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E3D0CCD1254A29E600E98B0E /* libNMSSH.a */,
+				E33E8FDF254A27F9003953E8 /* libNMSSH.a */,
+				E33E8FDD254A27E2003953E8 /* libBarcodeScanner.a */,
 				E3A7B58F23F34C6C00235D5A /* BarcodeScanner.framework */,
 				E32E148123F3481700C9BA1D /* BarcodeScanner.bundle */,
 				E32E147A23F347DC00C9BA1D /* BarcodeScanner.framework */,
-				03FC60E9B390B113D0332E80 /* libPods-Segler.a */,
+				B045ED0ED1039881B62851EF /* libPods-Segler.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -146,7 +147,6 @@
 		E34FD6B823F3631D00239C00 /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
-				EC70104F84A40BC590349362 /* Pods_Segler.framework */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -235,21 +235,17 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E3D6A0E823A18395000F35E9 /* Build configuration list for PBXNativeTarget "Segler" */;
 			buildPhases = (
-				634A8EA14A7C25197293456A /* [CP] Check Pods Manifest.lock */,
+				853599D1E27875AD9FFACB57 /* [CP] Check Pods Manifest.lock */,
 				E3D6A0CD23A1838A000F35E9 /* Sources */,
 				E3D6A0CE23A1838A000F35E9 /* Frameworks */,
 				E3D6A0CF23A1838A000F35E9 /* Resources */,
-				FF7511CB6093A7D1B078ECE9 /* [CP] Copy Pods Resources */,
+				C0A5497701A85239BEE247B2 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = Segler;
-			packageProductDependencies = (
-				E3801AB2244F9275002B2C83 /* SwiftUIKeyboardHost */,
-				E373BAAF2507C53E00D8F247 /* Introspect */,
-			);
 			productName = Segler;
 			productReference = E3D6A0D123A1838A000F35E9 /* Segler.app */;
 			productType = "com.apple.product-type.application";
@@ -278,10 +274,6 @@
 				Base,
 			);
 			mainGroup = E3D6A0C823A1838A000F35E9;
-			packageReferences = (
-				E3801AB1244F9274002B2C83 /* XCRemoteSwiftPackageReference "SwiftUIKeyboardHost" */,
-				E373BAAE2507C53E00D8F247 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
-			);
 			productRefGroup = E3D6A0D223A1838A000F35E9 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -305,7 +297,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		634A8EA14A7C25197293456A /* [CP] Check Pods Manifest.lock */ = {
+		853599D1E27875AD9FFACB57 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -327,7 +319,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		FF7511CB6093A7D1B078ECE9 /* [CP] Copy Pods Resources */ = {
+		C0A5497701A85239BEE247B2 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -445,7 +437,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -500,7 +492,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -512,7 +504,7 @@
 		};
 		E3D6A0E923A18395000F35E9 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D7BFD2D22D16F5A90AD5E006 /* Pods-Segler.debug.xcconfig */;
+			baseConfigurationReference = C68F35FCA4983CB563383A12 /* Pods-Segler.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -527,12 +519,12 @@
 					"\"$SRCROOT/Pods\"",
 				);
 				INFOPLIST_FILE = Segler/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4;
+				MARKETING_VERSION = 1.5;
 				PRODUCT_BUNDLE_IDENTIFIER = eu.segler.seglerdokuapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -542,7 +534,7 @@
 		};
 		E3D6A0EA23A18395000F35E9 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2EC358624DE548774B1135A7 /* Pods-Segler.release.xcconfig */;
+			baseConfigurationReference = B331AE0F7280D7638CBC570A /* Pods-Segler.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -558,12 +550,12 @@
 					"\"$SRCROOT/Pods\"",
 				);
 				INFOPLIST_FILE = Segler/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4;
+				MARKETING_VERSION = 1.5;
 				PRODUCT_BUNDLE_IDENTIFIER = eu.segler.seglerdokuapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -594,38 +586,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		E373BAAE2507C53E00D8F247 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/siteline/SwiftUI-Introspect";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.1.0;
-			};
-		};
-		E3801AB1244F9274002B2C83 /* XCRemoteSwiftPackageReference "SwiftUIKeyboardHost" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Gaspard-Bruno/SwiftUIKeyboardHost";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		E373BAAF2507C53E00D8F247 /* Introspect */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E373BAAE2507C53E00D8F247 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
-			productName = Introspect;
-		};
-		E3801AB2244F9275002B2C83 /* SwiftUIKeyboardHost */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E3801AB1244F9274002B2C83 /* XCRemoteSwiftPackageReference "SwiftUIKeyboardHost" */;
-			productName = SwiftUIKeyboardHost;
-		};
-/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		E3D6A0D823A1838A000F35E9 /* Segler.xcdatamodeld */ = {

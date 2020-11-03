@@ -1,5 +1,6 @@
 import SwiftUI
 import ProgressHUD
+import Photos
 
 struct NavigationConfigurator: UIViewControllerRepresentable {
     
@@ -36,11 +37,10 @@ struct Add_View: View {
     @ObservedObject var mediaVM : MediaViewModel
     @ObservedObject var remarksVM : RemarksViewModel
     @ObservedObject var orderVM : OrderViewModel
-    
+
     @State var keyboardIsShown = false
 
     var body: some View {
-
             ZStack {
                 NavigationView {
                     ZStack {
@@ -103,16 +103,18 @@ struct Add_View: View {
 //                            Button(action: {}, label: {Image(systemName: "gear")})
                         ).navigationBarTitle(settingsVM.useFixedUser ? Text("\(settingsVM.userUsername)") : Text("\(userVM.username)"), displayMode: .inline)
                         }
-                        
-                        
                     }
-                }.onAppear {
-                        NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification, object: nil, queue: .main) { (noti) in
-                            self.keyboardIsShown = true
-                        }
-                        NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillHideNotification, object: nil, queue: .main) { (noti) in
-                            self.keyboardIsShown = false
-                        }
+                }
+                .sheet(isPresented: self.$mediaVM.showImagePickerNew) {
+                    ImageSelectionModal(mediaVM: self.mediaVM)
+                }
+                .onAppear {
+                    NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification, object: nil, queue: .main) { (noti) in
+                        self.keyboardIsShown = true
+                    }
+                    NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillHideNotification, object: nil, queue: .main) { (noti) in
+                        self.keyboardIsShown = false
+                    }
                 }.accentColor(Color.white).navigationViewStyle(StackNavigationViewStyle())
                 if self.mediaVM.showImagePicker {
                     ImagePicker(mediaVM : self.mediaVM)
@@ -251,7 +253,7 @@ struct SectionFreeTextField: View {
                         .renderingMode(.template)
                         .buttonStyle(BorderlessButtonStyle())
                         .foregroundColor(self.colors.color)
-                }.frame(width: 30)
+                }.buttonStyle(BorderlessButtonStyle()).frame(width: 30)
             }
         }
     }
@@ -380,6 +382,103 @@ struct SaveButton: View {
     }
 }
 
+struct ImageSelectionModal: View {
+    
+    @Environment(\.presentationMode) private var presentationMode
+    @ObservedObject var mediaVM : MediaViewModel
+    let columns = [
+            GridItem(.adaptive(minimum: 80))
+    ]
+    
+    var body: some View {
+        NavigationView {
+            ScrollView {
+                VStack(alignment: .leading) {
+                    Text("Bilder").foregroundColor(Color.black).fontWeight(.bold).font(.title)
+                    LazyVGrid(columns: columns, spacing: 20) {
+                        ForEach(mediaVM.images, id: \.self) { image in
+//                            if image.type == "image" {
+                                Button(action: {
+                                    mediaVM.toggleElement(elementId: image.id)
+                //                        mediaVM.images[image.].selected.toggle()
+                //                     $0.selected.toggle()
+                //                     image.selected.toggle()
+                                }, label: {
+                                    ZStack {
+                                        if image.selected {
+                                            Image(systemName: "checkmark")
+                                                .resizable()
+                                                .renderingMode(.template)
+                                                .foregroundColor(Color.white)
+                                                .frame(width: 20, height: 20)
+                                                .zIndex(2)
+                                            Rectangle()
+                                                .foregroundColor(Color.black).opacity(0.5)
+                                                .frame(width: 80, height: 80)
+                                                .zIndex(1)
+                                        }
+                                        Image(uiImage: image.thumbnail)
+                                            .resizable()
+                                            .frame(width: 80, height: 80)
+                                            .zIndex(0)
+                                    }
+                                }).buttonStyle(BorderlessButtonStyle())
+//                            }
+                        }
+                    }
+                    Text("Videos").foregroundColor(Color.black).fontWeight(.bold).font(.title)
+                    LazyVGrid(columns: columns, spacing: 20) {
+                        ForEach(mediaVM.videos, id: \.self) { video in
+//                            if image.type == "video" {
+                                Button(action: {
+                                    mediaVM.toggleVideoElement(elementId: video.id)
+                                    print("Toggled: \(video)")
+                //                        mediaVM.images[image.].selected.toggle()
+                //                     $0.selected.toggle()
+                //                     image.selected.toggle()
+                                }, label: {
+                                    ZStack {
+                                        if video.selected {
+                                            Image(systemName: "checkmark")
+                                                .resizable()
+                                                .renderingMode(.template)
+                                                .foregroundColor(Color.white)
+                                                .frame(width: 20, height: 20)
+                                                .zIndex(2)
+                                            Rectangle()
+                                                .foregroundColor(Color.black).opacity(0.5)
+                                                .frame(width: 80, height: 80)
+                                                .zIndex(1)
+                                        }
+                                        Image(uiImage: video.thumbnail)
+                                            .resizable()
+                                            .frame(width: 80, height: 80)
+                                            .zIndex(0)
+                                    }
+                                }).buttonStyle(BorderlessButtonStyle())
+//                            }
+                        }
+                    }
+                }.padding(.vertical, 15).padding(.horizontal, 15)
+            }
+            .navigationBarItems(
+                leading:
+                    Button(action: {
+                        
+                    }, label: {
+                        Text("")
+                    }), trailing:
+                        Button(action: {
+                            self.presentationMode.wrappedValue.dismiss()
+                    }, label: {
+                        Text("Fertig")
+                    })).navigationBarTitleDisplayMode(.inline)
+            .navigationBarTitle("Fotos und Videos")
+        }
+        .accentColor(Color.white)
+    }
+}
+
 struct reportModal: View {
     
     @Binding var showReport : Bool
@@ -466,19 +565,26 @@ struct SectionBilder: View {
             ScrollView(.horizontal) {
                 HStack {
                     if mediaVM.images.isEmpty {
-                        EmptyImgButton(mediaVM : self.mediaVM).accentColor(self.colors.color)
+                        EmptyImgButton(mediaVM : self.mediaVM).accentColor(self.colors.color).padding(.leading, 15)
                     } else {
-                        EmptyImgButton(mediaVM : self.mediaVM).accentColor(self.colors.color)
+                        EmptyImgButton(mediaVM : self.mediaVM).accentColor(self.colors.color).padding(.leading, 15)
 //                        ForEach((0..<self.mediaVM.images.count).reversed(), id: \.self) { x in
 //                            ImageView(mediaVM: self.mediaVM, index: x)
 ////                            Image(uiImage: self.mediaVM.images[x]).renderingMode(.original).resizable().frame(width: 200, height: 200)
 //                        }
                         ForEach(self.mediaVM.images.reversed(), id: \.id) { image in
-                            testImageView(mediaVM: self.mediaVM, imageObject: image,id: image.id)
+                            if image.selected {
+                                testImageView(mediaVM: self.mediaVM, imageObject: image,id: image.id)
+                            }
+                        }
+                        ForEach(self.mediaVM.videos, id: \.id) { video in
+                            if video.selected {
+                                testVideoView(mediaVM: self.mediaVM, videoObject: video, id: video.id)
+                            }
                         }
                     }
                 }
-            }.listRowBackground(self.mediaVM.imagesIsOk ? colors.correctRowColor : colors.warningRowColor)
+            }.padding(.horizontal, -15).listRowBackground(self.mediaVM.imagesIsOk ? colors.correctRowColor : colors.warningRowColor)
     }
 }
 
@@ -493,7 +599,7 @@ struct SectionBilder: View {
             Button(action: {
                 self.showSheet = !self.showSheet
             }) {
-                Image(uiImage: imageObject.image).renderingMode(.original).resizable().frame(width: 80, height: 80)
+                Image(uiImage: imageObject.thumbnail).renderingMode(.original).resizable().frame(width: 80, height: 80)
                 .actionSheet(isPresented: self.$showSheet) { () -> ActionSheet in
                     ActionSheet(title: Text("Bild löschen"), message: Text("Wirklich Bild löschen?"), buttons: [
                         ActionSheet.Button.default(Text("Ja"), action: {
@@ -522,6 +628,25 @@ struct SectionBilder: View {
 //        }
     }
 
+    struct testVideoViewSmallWithoutDelete: View {
+        
+        @ObservedObject var mediaVM: MediaViewModel
+        @State var videoObject : VideoModel
+        @State var showSheet = false
+        @State var id : UUID
+        
+        var body: some View {
+            Button(action: {
+                self.showSheet = !self.showSheet
+            }) {
+                Image(uiImage: videoObject.thumbnail).renderingMode(.original).resizable().frame(width: 80, height: 80)
+            }
+        }
+    //        func delete(at index: UUID) {
+    //            self.mediaVM.images.remove(at: index)
+    //        }
+    }
+
 
     struct testImageViewSmallWithoutDelete: View {
         
@@ -534,7 +659,7 @@ struct SectionBilder: View {
             Button(action: {
                 self.showSheet = !self.showSheet
             }) {
-                Image(uiImage: imageObject.image).renderingMode(.original).resizable().frame(width: 80, height: 80)
+                Image(uiImage: imageObject.thumbnail).renderingMode(.original).resizable().frame(width: 80, height: 80)
             }
         }
 //        func delete(at index: UUID) {
@@ -553,7 +678,7 @@ struct SectionBilder: View {
             Button(action: {
                 self.showSheet = !self.showSheet
             }) {
-                Image(uiImage: imageObject.image).renderingMode(.original).resizable().frame(width: 100, height: 100).scaledToFill()
+                Image(uiImage: imageObject.thumbnail).renderingMode(.original).resizable().frame(width: 100, height: 100).scaledToFill()
                 .actionSheet(isPresented: self.$showSheet) { () -> ActionSheet in
                     ActionSheet(title: Text("Bild löschen"), message: Text("Wirklich Bild löschen?"), buttons: [
                         ActionSheet.Button.default(Text("Ja"), action: {
@@ -582,6 +707,35 @@ struct SectionBilder: View {
 //        }
     }
 
+struct testVideoView: View {
+
+    @ObservedObject var mediaVM: MediaViewModel
+    @State var videoObject : VideoModel
+    @State var showSheet = false
+    @State var id : UUID
+    
+    var body: some View {
+        Button(action: {
+            self.showSheet = !self.showSheet
+        }) {
+            Image(uiImage: videoObject.thumbnail).renderingMode(.original).resizable().frame(width: 100, height: 100).scaledToFill()
+            .actionSheet(isPresented: self.$showSheet) { () -> ActionSheet in
+                ActionSheet(title: Text("Bild löschen"), message: Text("Wirklich Bild löschen?"), buttons: [
+                    ActionSheet.Button.default(Text("Ja"), action: {
+                        self.deleto(id: self.id)
+                    }),
+                    ActionSheet.Button.cancel()
+                ])
+            }
+        }
+    }
+    func deleto(id: UUID) {
+        if let index = mediaVM.videos.firstIndex(where: {$0.id == id}) {
+            mediaVM.videos.remove(at: index)
+        }
+    }
+}
+
 struct ImageView: View {
     
     @ObservedObject var mediaVM : MediaViewModel
@@ -592,7 +746,7 @@ struct ImageView: View {
         Button(action: {
             self.showSheet = !self.showSheet
         }) {
-            Image(uiImage: self.mediaVM.images[self.index].image).renderingMode(.original).scaledToFit().frame(width: 120, height: 120)
+            Image(uiImage: self.mediaVM.images[self.index].thumbnail).renderingMode(.original).scaledToFit().frame(width: 120, height: 120)
             .actionSheet(isPresented: self.$showSheet) { () -> ActionSheet in
                     ActionSheet(title: Text("Bild löschen"), message: Text("Wirklich Bild löschen?"), buttons: [
                         ActionSheet.Button.default(Text("Ja"), action: {
@@ -617,7 +771,7 @@ struct EmptyImgButton: View {
     @State var showSheet = false
     
     var color = ColorSeglerViewModel()
-    
+
 //    @Binding var showImagePicker: Bool
 //    @Binding var image: UIImage?
 //    @Binding var sourceType: Int
@@ -669,14 +823,15 @@ struct EmptyImgButton: View {
 //
 //        }
             .actionSheet(isPresented: self.$showSheet) { () -> ActionSheet in
-                ActionSheet(title: Text("Bild hinzufügen"), message: Text("Kamera oder Foto Galerie auswählen"), buttons: [
+                ActionSheet(title: Text("Bild hinzufügen"), message: Text("Kamera oder Galerie auswählen"), buttons: [
                     ActionSheet.Button.default(Text("Kamera"), action: {
                         self.mediaVM.sourceType = 0
                         self.mediaVM.showImagePicker = !self.mediaVM.showImagePicker
                     }),
-                    ActionSheet.Button.default(Text("Foto Galerie"), action: {
-                        self.mediaVM.sourceType = 1
-                        self.mediaVM.showImagePicker = !self.mediaVM.showImagePicker
+                    ActionSheet.Button.default(Text("Galerie"), action: {
+                        self.mediaVM.showImagePickerNew.toggle()
+//                        self.mediaVM.sourceType = 1
+//                        self.mediaVM.showImagePicker = !self.mediaVM.showImagePicker
                     }),
                     ActionSheet.Button.cancel()
                 ])

@@ -155,31 +155,58 @@ struct FTPUploadController {
                 }
                 
                     var imagesWithJpegData = [Data]()
-                        for x in 0..<self.mediaViewModel.images.count {
-                            guard var jpegData = try? self.mediaViewModel.images[x].image.jpegData(compressionQuality: 0.2)
+                
+                    for x in 0..<self.mediaViewModel.images.count {
+                        if mediaViewModel.images[x].selected {
+                            guard var jpegData = try? self.mediaViewModel.images[x].thumbnail.jpegData(compressionQuality: 0.2)
                             else { fatalError("Keine Datei gefunden") }
                             self.addJPEGComment(to: &jpegData, "\(remarksVM.selectedComment)")
                             self.addJPEGComment(to: &jpegData, "\(remarksVM.additionalComment)")
                             imagesWithJpegData.append(jpegData)
                         }
+                    }
                 
                     let sftpsession = NMSFTP(session: session)
                     sftpsession.connect()
                     if sftpsession.isConnected && !error {
-                        for x in 0..<imagesWithJpegData.count {
+                        
+                        for x in 0..<mediaViewModel.images.count {
                             
-                            var jsonObject = Data()
+                            if mediaViewModel.images[x].selected {
                             
-                            if self.settingsVM.useFixedUser {
-                                jsonObject = self.createJSON(bereich: "\(remarksVM.bereich)", meldungstyp: "\(remarksVM.selectedComment)", freitext: remarksVM.additionalComment, user: self.settingsVM.userUsername)!
-                            } else {
-                                jsonObject = self.createJSON(bereich: "\(remarksVM.bereich)", meldungstyp: "\(remarksVM.selectedComment)", freitext: remarksVM.additionalComment, user: self.userVM.username)!
+                                var jsonObject = Data()
+                                
+                                if self.settingsVM.useFixedUser {
+                                    jsonObject = self.createJSON(bereich: "\(remarksVM.bereich)", meldungstyp: "\(remarksVM.selectedComment)", freitext: remarksVM.additionalComment, user: self.settingsVM.userUsername)!
+                                } else {
+                                    jsonObject = self.createJSON(bereich: "\(remarksVM.bereich)", meldungstyp: "\(remarksVM.selectedComment)", freitext: remarksVM.additionalComment, user: self.userVM.username)!
+                                }
+                                sftpsession.writeContents(jsonObject, toFileAtPath: "\("\(self.orderViewModel.orderNr)_\(self.orderViewModel.orderPosition)_\(convertedDate)_\(convertedDateTime)_\(x)").json")
+                                if sftpsession.writeContents(imagesWithJpegData[x], toFileAtPath: "\("\(self.orderViewModel.orderNr)_\(self.orderViewModel.orderPosition)_\(convertedDate)_\(convertedDateTime)_\(x)").jpg") {
+                                    completion(nil)
+                                } else {
+                                    errorMessage = errorMessage + "Fehler beim Hochladen "
+                                }
+                                
                             }
-                            sftpsession.writeContents(jsonObject, toFileAtPath: "\("\(self.orderViewModel.orderNr)_\(self.orderViewModel.orderPosition)_\(convertedDate)_\(convertedDateTime)_\(x)").json")
-                            if sftpsession.writeContents(imagesWithJpegData[x], toFileAtPath: "\("\(self.orderViewModel.orderNr)_\(self.orderViewModel.orderPosition)_\(convertedDate)_\(convertedDateTime)_\(x)").jpg") {
-                                completion(nil)
-                            } else {
-                                errorMessage = errorMessage + "Fehler beim Hochladen "
+                        }
+                        for x in 0..<mediaViewModel.videos.count {
+                            
+                            if mediaViewModel.videos[x].selected {
+                                
+                                var jsonObject = Data()
+                                
+                                if self.settingsVM.useFixedUser {
+                                    jsonObject = self.createJSON(bereich: "\(remarksVM.bereich)", meldungstyp: "\(remarksVM.selectedComment)", freitext: remarksVM.additionalComment, user: self.settingsVM.userUsername)!
+                                } else {
+                                    jsonObject = self.createJSON(bereich: "\(remarksVM.bereich)", meldungstyp: "\(remarksVM.selectedComment)", freitext: remarksVM.additionalComment, user: self.userVM.username)!
+                                }
+                                sftpsession.writeContents(jsonObject, toFileAtPath: "\("\(self.orderViewModel.orderNr)_\(self.orderViewModel.orderPosition)_\(convertedDate)_\(convertedDateTime)_\(x)v").json")
+                                if sftpsession.writeContents(mediaViewModel.videos[x].fetchVideo(), toFileAtPath: "\("\(self.orderViewModel.orderNr)_\(self.orderViewModel.orderPosition)_\(convertedDate)_\(convertedDateTime)_\(x)v").mp4") {
+                                    completion(nil)
+                                } else {
+                                    errorMessage = errorMessage + "Fehler beim Hochladen "
+                                }
                             }
                         }
                     }

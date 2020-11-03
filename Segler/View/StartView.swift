@@ -33,6 +33,7 @@ struct AppStart: View {
             }
         }
         .onAppear {
+            self.mediaVM.fetchImages()
             self.settingsVM.getJSON()
             self.remarksVM.getJSON(session: self.settingsVM.ip, username: self.settingsVM.serverUsername, password: self.settingsVM.serverPassword)
         }
