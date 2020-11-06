@@ -70,179 +70,171 @@ struct FTPUploadController {
         var finishedPhotoArray = [Data]()
         var finishedVideoArray = [Data]()
         
+        var errorMessage = "Fehler: \n"
+        var error = false
+        
         var orderNrCheck = false
+        var orderPositionCheck = false
+        
+        var imagesCheck = false
+        var commentCheck = false
+        
+        var jsonObject = Data()
+        
+        let date = Date()
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = NSLocale.current
+        dateFormatter.dateFormat = "yyyyMMdd"
+        let convertedDate = dateFormatter.string(from: date)
+        
+        dateFormatter.locale = NSLocale.current
+        dateFormatter.dateFormat = "HHmmss"
+        let convertedDateTime = dateFormatter.string(from: date)
+                
+        ProgressHUD.show()
+        
+        let session = NMSSHSession.init(host: "\(self.settingsVM.ip)", andUsername: "\(self.settingsVM.serverUsername)")
+        session.connect()
+        session.authenticate(byPassword: "\(self.settingsVM.serverPassword)")
 
-            DispatchQueue.global(qos: .background).async {
-                
-                ProgressHUD.show()
-                
-                DispatchQueue.main.async {
-                
-                let date = Date()
-                
-                let dateFormatter = DateFormatter()
-                dateFormatter.locale = NSLocale.current
-                dateFormatter.dateFormat = "yyyyMMdd"
-                let convertedDate = dateFormatter.string(from: date)
-                
-                dateFormatter.locale = NSLocale.current
-                dateFormatter.dateFormat = "HHmmss"
-                let convertedDateTime = dateFormatter.string(from: date)
-                
+                DispatchQueue.global(qos: .background).async {
+ 
+                    DispatchQueue.main.async {
                 //CHECK orderNr for Valid Numbers
                 for char in self.orderViewModel.orderNr {
                     if char.isNumber {
-                        self.orderViewModel.orderNrIsOk = true
+                        orderNrCheck = true
+//                        self.orderViewModel.orderNrIsOk = true
                     } else {
-                        self.orderViewModel.orderNrIsOk = false
+                        orderNrCheck = false
+//                        self.orderViewModel.orderNrIsOk = false
                         break
                     }
                 }
                 
                 if self.orderViewModel.orderNrIsOk && self.orderViewModel.orderNr.count == 5 {
-                    self.orderViewModel.orderNrIsOk = true
+                    orderNrCheck = true
+//                    self.orderViewModel.orderNrIsOk = true
                 } else {
-                    self.orderViewModel.orderNrIsOk = false
+                    orderNrCheck = false
+//                    self.orderViewModel.orderNrIsOk = false
                 }
                 
                 if self.orderViewModel.orderPositionIsOk && self.orderViewModel.orderPosition.count == 3 || self.orderViewModel.orderPosition.count == 2 || self.orderViewModel.orderPosition.count == 1 {
                     for char in self.orderViewModel.orderPosition {
                         if char.isNumber {
-                            self.orderViewModel.orderPositionIsOk = true
+//                            self.orderViewModel.orderPositionIsOk = true
+                            orderPositionCheck = true
                         } else {
-                            self.orderViewModel.orderPositionIsOk = false
+//                            self.orderViewModel.orderPositionIsOk = false
+                            orderPositionCheck = false
                             break
                         }
                     }
                 } else {
-                    self.orderViewModel.orderPositionIsOk = false
+                    orderPositionCheck = false
+//                    self.orderViewModel.orderPositionIsOk = false
                 }
                 
-                var errorMessage = "Fehler: \n"
-                
-                var error = false
-                
-                let session = NMSSHSession.init(host: "\(self.settingsVM.ip)", andUsername: "\(self.settingsVM.serverUsername)")
-                session.connect()
-                session.authenticate(byPassword: "\(self.settingsVM.serverPassword)")
-                
-                if self.mediaViewModel.images.isEmpty {
+                        if self.mediaViewModel.images.isEmpty && self.mediaViewModel.imagesCamera.isEmpty && self.mediaViewModel.videos.isEmpty && self.mediaViewModel.videosCamera.isEmpty {
                     error = true
-                    self.mediaViewModel.imagesIsOk = false
+                    imagesCheck = false
+//                    self.mediaViewModel.imagesIsOk = false
                     errorMessage = errorMessage + "Kein Bild ausgewählt! \n"
                 } else {
-                    self.mediaViewModel.imagesIsOk = true
+                    imagesCheck = true
+//                    self.mediaViewModel.imagesIsOk = true
                 }
                 
                 if remarksVM.selectedComment == "" {
                     error = true
-                    remarksVM.commentIsOk = false
+                    commentCheck = false
+//                    remarksVM.commentIsOk = false
                     errorMessage = errorMessage + "Kein Kommentar ausgewählt! \n"
                 } else {
-                    remarksVM.commentIsOk = true
+                    commentCheck = true
+//                    remarksVM.commentIsOk = true
                 }
                 
-                if !(self.orderViewModel.orderNrIsOk) {
+                if !orderNrCheck {
                     error = true
-                    self.orderViewModel.orderNrIsOk = false
+                    orderNrCheck = false
+//                    self.orderViewModel.orderNrIsOk = false
                     errorMessage = errorMessage + "Keine/Falsche Auftrags-Nr! \n"
                 } else {
-                    self.orderViewModel.orderNrIsOk = true
+                    orderNrCheck = true
+//                    self.orderViewModel.orderNrIsOk = true
                 }
                 
-                if !(self.orderViewModel.orderPositionIsOk) {
+                if !orderPositionCheck {
                     error = true
-                    self.orderViewModel.orderPositionIsOk = false
+//                    self.orderViewModel.orderPositionIsOk = false
+                    orderPositionCheck = false
                     errorMessage = errorMessage + "Keine/Falsche Positions-Nr! \n"
                 } else {
-                    self.orderViewModel.orderPositionIsOk = true
+                    orderPositionCheck = true
+//                    self.orderViewModel.orderPositionIsOk = true
                 }
             
                 if error {
                     completion(errorMessage)
                 }
-                
-                    let sftpsession = NMSFTP(session: session)
-                    sftpsession.connect()
-                    if sftpsession.isConnected && !error {
-                        
-                        for x in 0..<mediaViewModel.images.count {
-                            
-                            if mediaViewModel.images[x].selected {
-                            
-                                var jsonObject = Data()
-                                
-                                if self.settingsVM.useFixedUser {
-                                    jsonObject = self.createJSON(bereich: "\(remarksVM.bereich)", meldungstyp: "\(remarksVM.selectedComment)", freitext: remarksVM.additionalComment, user: self.settingsVM.userUsername)!
-                                } else {
-                                    jsonObject = self.createJSON(bereich: "\(remarksVM.bereich)", meldungstyp: "\(remarksVM.selectedComment)", freitext: remarksVM.additionalComment, user: self.userVM.username)!
-                                }
-                                sftpsession.writeContents(jsonObject, toFileAtPath: "\("\(self.orderViewModel.orderNr)_\(self.orderViewModel.orderPosition)_\(convertedDate)_\(convertedDateTime)_\(x)").json")
-                                if sftpsession.writeContents(mediaViewModel.images[x].fetchImage(), toFileAtPath: "\("\(self.orderViewModel.orderNr)_\(self.orderViewModel.orderPosition)_\(convertedDate)_\(convertedDateTime)_\(x)").jpg") {
-                                    completion(nil)
-                                } else {
-                                    errorMessage = errorMessage + "Fehler beim Hochladen "
-                                }
-                                
-                            }
-                        }
-                        
-                        for x in 0..<mediaViewModel.videos.count {
-                            
-                            if mediaViewModel.videos[x].selected {
-                                
-                                var jsonObject = Data()
-                                
-                                if self.settingsVM.useFixedUser {
-                                    jsonObject = self.createJSON(bereich: "\(remarksVM.bereich)", meldungstyp: "\(remarksVM.selectedComment)", freitext: remarksVM.additionalComment, user: self.settingsVM.userUsername)!
-                                } else {
-                                    jsonObject = self.createJSON(bereich: "\(remarksVM.bereich)", meldungstyp: "\(remarksVM.selectedComment)", freitext: remarksVM.additionalComment, user: self.userVM.username)!
-                                }
-                                sftpsession.writeContents(jsonObject, toFileAtPath: "\("\(self.orderViewModel.orderNr)_\(self.orderViewModel.orderPosition)_\(convertedDate)_\(convertedDateTime)_\(x)v").json")
-                                if sftpsession.writeContents(mediaViewModel.videos[x].fetchVideo(), toFileAtPath: "\("\(self.orderViewModel.orderNr)_\(self.orderViewModel.orderPosition)_\(convertedDate)_\(convertedDateTime)_\(x)v").mp4") {
-                                    completion(nil)
-                                } else {
-                                    errorMessage = errorMessage + "Fehler beim Hochladen "
-                                }
-                            }
-                        }
-                        
-                        for x in 0..<mediaViewModel.imagesCamera.count {
-                            
-                                var jsonObject = Data()
-                                
-                                if self.settingsVM.useFixedUser {
-                                    jsonObject = self.createJSON(bereich: "\(remarksVM.bereich)", meldungstyp: "\(remarksVM.selectedComment)", freitext: remarksVM.additionalComment, user: self.settingsVM.userUsername)!
-                                } else {
-                                    jsonObject = self.createJSON(bereich: "\(remarksVM.bereich)", meldungstyp: "\(remarksVM.selectedComment)", freitext: remarksVM.additionalComment, user: self.userVM.username)!
-                                }
-                                sftpsession.writeContents(jsonObject, toFileAtPath: "\("\(self.orderViewModel.orderNr)_\(self.orderViewModel.orderPosition)_\(convertedDate)_\(convertedDateTime)_\(x)").json")
-                            if sftpsession.writeContents(mediaViewModel.imagesCamera[x].image.pngData()!, toFileAtPath: "\("\(self.orderViewModel.orderNr)_\(self.orderViewModel.orderPosition)_\(convertedDate)_\(convertedDateTime)_\(x)").jpg") {
-                                    completion(nil)
-                                } else {
-                                    errorMessage = errorMessage + "Fehler beim Hochladen "
-                                }
-                        }
-                        
-                        for x in 0..<mediaViewModel.videosCamera.count {
-                            
-                                var jsonObject = Data()
-                                
-                                if self.settingsVM.useFixedUser {
-                                    jsonObject = self.createJSON(bereich: "\(remarksVM.bereich)", meldungstyp: "\(remarksVM.selectedComment)", freitext: remarksVM.additionalComment, user: self.settingsVM.userUsername)!
-                                } else {
-                                    jsonObject = self.createJSON(bereich: "\(remarksVM.bereich)", meldungstyp: "\(remarksVM.selectedComment)", freitext: remarksVM.additionalComment, user: self.userVM.username)!
-                                }
-                                sftpsession.writeContents(jsonObject, toFileAtPath: "\("\(self.orderViewModel.orderNr)_\(self.orderViewModel.orderPosition)_\(convertedDate)_\(convertedDateTime)_\(x)").json")
-                            if sftpsession.writeContents(mediaViewModel.videosCamera[x].video, toFileAtPath: "\("\(self.orderViewModel.orderNr)_\(self.orderViewModel.orderPosition)_\(convertedDate)_\(convertedDateTime)_\(x)").mp4") {
-                                    completion(nil)
-                                } else {
-                                    errorMessage = errorMessage + "Fehler beim Hochladen "
-                                }
-                        }
-                        
+                    
+                //setting up image array
+                for image in mediaViewModel.images {
+                    if image.selected {
+                        print("Image: \(image)")
+                        finishedPhotoArray.append(image.fetchImage())
                     }
+                }
+                for image in mediaViewModel.imagesCamera {
+                    print("ImageCamera: \(image)")
+                    finishedPhotoArray.append(image.image.jpegData(compressionQuality: 0.5)! as Data)
+                }
+                for video in mediaViewModel.videos {
+                    if video.selected {
+                        print("Video: \(video)")
+                        finishedVideoArray.append(video.fetchVideo())
                     }
+                }
+                for video in mediaViewModel.videosCamera {
+                    print("VideoCamera: \(video)")
+                    finishedVideoArray.append(video.video)
+                }
+                        
+                //setting up json file
+                if self.settingsVM.useFixedUser {
+                    jsonObject = self.createJSON(bereich: "\(remarksVM.bereich)", meldungstyp: "\(remarksVM.selectedComment)", freitext: remarksVM.additionalComment, user: self.settingsVM.userUsername)!
+                } else {
+                    jsonObject = self.createJSON(bereich: "\(remarksVM.bereich)", meldungstyp: "\(remarksVM.selectedComment)", freitext: remarksVM.additionalComment, user: self.userVM.username)!
+                }
+            }
+            
+        
+            let sftpsession = NMSFTP(session: session)
+            sftpsession.connect()
+            
+                if sftpsession.isConnected && !error {
+                        
+                    var counter = 0
+
+                    if !finishedPhotoArray.isEmpty {
+                        for index in 0...finishedPhotoArray.count {
+                            sftpsession.writeContents(jsonObject, toFileAtPath: "\("\(self.orderViewModel.orderNr)_\(self.orderViewModel.orderPosition)_\(convertedDate)_\(convertedDateTime)_\(index)").json")
+                            sftpsession.writeContents(finishedPhotoArray[index], toFileAtPath: "\("\(self.orderViewModel.orderNr)_\(self.orderViewModel.orderPosition)_\(convertedDate)_\(convertedDateTime)_\(index)").jpg")
+                            counter += 1
+                        }
+                    }
+                    if !finishedVideoArray.isEmpty {
+                        for videoData in finishedVideoArray {
+                            sftpsession.writeContents(jsonObject, toFileAtPath: "\("\(self.orderViewModel.orderNr)_\(self.orderViewModel.orderPosition)_\(convertedDate)_\(convertedDateTime)_\(counter)").json")
+                            sftpsession.writeContents(videoData, toFileAtPath: "\("\(self.orderViewModel.orderNr)_\(self.orderViewModel.orderPosition)_\(convertedDate)_\(convertedDateTime)_\(counter)").mp4")
+                            counter += 1
+                        }
+                    }
+                    completion(nil)
+                }
             }
     }
 }
