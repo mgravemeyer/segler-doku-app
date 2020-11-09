@@ -496,13 +496,19 @@ struct reportModal: View {
                 HStack {
                     ForEach(self.mediaVM.images, id: \.id) { image in
                         if image.selected {
-                            testImageViewSmallWithoutDelete(mediaVM: self.mediaVM, imageObject: image,id: image.id)
+                            Image(uiImage: image.thumbnail).renderingMode(.original).resizable().frame(width: 80, height: 80)
                         }
+                    }
+                    ForEach(self.mediaVM.imagesCamera, id: \.id) { image in
+                        Image(uiImage: image.image).renderingMode(.original).resizable().frame(width: 80, height: 80)
                     }
                     ForEach(self.mediaVM.videos, id: \.id) { video in
                         if video.selected {
-                            testVideoViewSmallWithoutDelete(mediaVM: self.mediaVM, videoObject: video,id: video.id)
+                            Image(uiImage: video.thumbnail).renderingMode(.original).resizable().frame(width: 80, height: 80)
                         }
+                    }
+                    ForEach(self.mediaVM.videosCamera, id: \.id) { video in
+                        Image(uiImage: video.thumbnail).renderingMode(.original).resizable().frame(width: 80, height: 80)
                     }
                 }
                 Button(action: {
@@ -636,39 +642,6 @@ struct SectionBilder: View {
         func toggle(id: UUID) {
             if let index = mediaVM.images.firstIndex(where: {$0.id == id}) {
                 mediaVM.images[index].selected.toggle()
-            }
-        }
-    }
-
-    struct testVideoViewSmallWithoutDelete: View {
-        
-        @ObservedObject var mediaVM: MediaViewModel
-        @State var videoObject : VideoModel
-        @State var showSheet = false
-        @State var id : UUID
-        
-        var body: some View {
-            Button(action: {
-                self.showSheet = !self.showSheet
-            }) {
-                Image(uiImage: videoObject.thumbnail).renderingMode(.original).resizable().frame(width: 80, height: 80)
-            }
-        }
-    }
-
-
-    struct testImageViewSmallWithoutDelete: View {
-        
-        @ObservedObject var mediaVM: MediaViewModel
-        @State var imageObject : ImageModel
-        @State var showSheet = false
-        @State var id : UUID
-        
-        var body: some View {
-            Button(action: {
-                self.showSheet = !self.showSheet
-            }) {
-                Image(uiImage: imageObject.thumbnail).renderingMode(.original).resizable().frame(width: 80, height: 80)
             }
         }
     }

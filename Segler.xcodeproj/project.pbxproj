@@ -136,8 +136,8 @@
 				E3B808DA23D063D9007A7595 /* SetupView.swift */,
 				E3EA711A23D132F900340463 /* LoginView.swift */,
 				E3D6A0DB23A1838A000F35E9 /* ReportView.swift */,
-				E3D6A0EF23A26537000F35E9 /* SettingsView.swift */,
 				E357E1B424B23940009871F1 /* ErrorView.swift */,
+				E3D6A0EF23A26537000F35E9 /* SettingsView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";

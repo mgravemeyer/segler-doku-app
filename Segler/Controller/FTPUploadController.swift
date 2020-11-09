@@ -28,7 +28,9 @@ struct FTPUploadController {
             ("Bereich", "\(bereich)"),
             ("Meldungstyp", "\(meldungstyp)"),
             ("Freitext", "\(freitext)"),
-            ("User", "\(user)")
+            ("User", "\(user)"),
+            ("AppVersion", Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String),
+            ("GeraeteBenutzer", UIDevice.current.name)
         ]
         
         let dict = Dictionary(keyValuePairs)
@@ -97,10 +99,8 @@ struct FTPUploadController {
         let session = NMSSHSession.init(host: "\(self.settingsVM.ip)", andUsername: "\(self.settingsVM.serverUsername)")
         session.connect()
         session.authenticate(byPassword: "\(self.settingsVM.serverPassword)")
-
-                DispatchQueue.global(qos: .background).async {
- 
-                    DispatchQueue.main.async {
+        
+            DispatchQueue.main.async {
                 //CHECK orderNr for Valid Numbers
                 for char in self.orderViewModel.orderNr {
                     if char.isNumber {
@@ -137,7 +137,7 @@ struct FTPUploadController {
 //                    self.orderViewModel.orderPositionIsOk = false
                 }
                 
-                        if self.mediaViewModel.images.isEmpty && self.mediaViewModel.imagesCamera.isEmpty && self.mediaViewModel.videos.isEmpty && self.mediaViewModel.videosCamera.isEmpty {
+                if self.mediaViewModel.images.isEmpty && self.mediaViewModel.imagesCamera.isEmpty && self.mediaViewModel.videos.isEmpty && self.mediaViewModel.videosCamera.isEmpty {
                     error = true
                     imagesCheck = false
 //                    self.mediaViewModel.imagesIsOk = false
@@ -176,22 +176,17 @@ struct FTPUploadController {
                     orderPositionCheck = true
 //                    self.orderViewModel.orderPositionIsOk = true
                 }
-            
-                if error {
-                    completion(errorMessage)
-                }
                     
-                //setting up image array
                 for image in mediaViewModel.images {
                     if image.selected {
-                        print("Image: \(image)")
                         finishedPhotoArray.append(image.fetchImage())
                     }
                 }
+
                 for image in mediaViewModel.imagesCamera {
-                    print("ImageCamera: \(image)")
                     finishedPhotoArray.append(image.image.jpegData(compressionQuality: 0.5)! as Data)
                 }
+                        
                 for video in mediaViewModel.videos {
                     if video.selected {
                         print("Video: \(video)")
@@ -202,6 +197,14 @@ struct FTPUploadController {
                     print("VideoCamera: \(video)")
                     finishedVideoArray.append(video.video)
                 }
+                
+//                if finishedPhotoArray || finishedVideoArray {
+//                    error = true
+//                }
+                
+                if error {
+                    completion(errorMessage)
+                }
                         
                 //setting up json file
                 if self.settingsVM.useFixedUser {
@@ -209,23 +212,27 @@ struct FTPUploadController {
                 } else {
                     jsonObject = self.createJSON(bereich: "\(remarksVM.bereich)", meldungstyp: "\(remarksVM.selectedComment)", freitext: remarksVM.additionalComment, user: self.userVM.username)!
                 }
-            }
             
+            
+            DispatchQueue.global(qos: .background).async {
         
-            let sftpsession = NMSFTP(session: session)
+            let sftpsession = NMSFTP(session : session)
             sftpsession.connect()
             
                 if sftpsession.isConnected && !error {
                         
                     var counter = 0
 
-                    if !finishedPhotoArray.isEmpty {
-                        for index in 0...finishedPhotoArray.count {
-                            sftpsession.writeContents(jsonObject, toFileAtPath: "\("\(self.orderViewModel.orderNr)_\(self.orderViewModel.orderPosition)_\(convertedDate)_\(convertedDateTime)_\(index)").json")
-                            sftpsession.writeContents(finishedPhotoArray[index], toFileAtPath: "\("\(self.orderViewModel.orderNr)_\(self.orderViewModel.orderPosition)_\(convertedDate)_\(convertedDateTime)_\(index)").jpg")
+//                    if !finishedPhotoArray.isEmpty {
+//                        print("IF SCHLEIFE IST OK")
+//                        print("TRANSFERDATA: \(finishedPhotoArray)")
+                        for photoData in finishedPhotoArray {
+                            print("TRANSFER PHOTO DATA LOLr")
+                            sftpsession.writeContents(jsonObject, toFileAtPath: "\("\(self.orderViewModel.orderNr)_\(self.orderViewModel.orderPosition)_\(convertedDate)_\(convertedDateTime)_\(counter)").json")
+                            sftpsession.writeContents(photoData, toFileAtPath: "\("\(self.orderViewModel.orderNr)_\(self.orderViewModel.orderPosition)_\(convertedDate)_\(convertedDateTime)_\(counter)").jpg")
                             counter += 1
                         }
-                    }
+//                    }
                     if !finishedVideoArray.isEmpty {
                         for videoData in finishedVideoArray {
                             sftpsession.writeContents(jsonObject, toFileAtPath: "\("\(self.orderViewModel.orderNr)_\(self.orderViewModel.orderPosition)_\(convertedDate)_\(convertedDateTime)_\(counter)").json")
@@ -234,7 +241,10 @@ struct FTPUploadController {
                         }
                     }
                     completion(nil)
+                } else {
+                    print("ERRORHELP")
                 }
             }
+        }
     }
 }

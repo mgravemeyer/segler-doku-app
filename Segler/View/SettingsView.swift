@@ -10,6 +10,7 @@ struct Settings_View: View {
     @ObservedObject var orderVM : OrderViewModel
     @State var adminMenueUnlocked : Bool = false
     @State private var showModal = false
+    let deviceUser = UIDevice.current.name
     let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
     let colors = ColorSeglerViewModel()
     
