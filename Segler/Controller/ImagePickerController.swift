@@ -3,7 +3,7 @@ import AVFoundation
 import MobileCoreServices
 
 struct ImagePicker: UIViewControllerRepresentable {
-    
+
     @ObservedObject var mediaVM : MediaViewModel
 
     var lastPoint = CGPoint.zero
@@ -13,21 +13,21 @@ struct ImagePicker: UIViewControllerRepresentable {
     var brushWidth: CGFloat = 10.0
     var opacity: CGFloat = 1.0
     var swiped = false
-    
+
     func makeCoordinator() -> Coordinator {
         Coordinator(mediaVM : _mediaVM)
     }
-    
+
     func makeUIViewController(context: Context) -> UIImagePickerController {
         
         let vc = UIImagePickerController()
         vc.allowsEditing = false
         vc.sourceType = .camera
         vc.mediaTypes = [kUTTypeMovie as String, kUTTypeImage as String]
+        vc.videoQuality = .typeHigh
         
         let previewLayer = AVCaptureVideoPreviewLayer()
         previewLayer.videoGravity = .resizeAspectFill
-        
         vc.delegate = context.coordinator
         
         return vc
@@ -51,14 +51,15 @@ struct ImagePicker: UIViewControllerRepresentable {
             
             if mediaType.isEqual(to: kUTTypeImage as String) {
                 let uiimage = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
-                mediaVM.imagesCamera.append(ImageModelCamera(image: uiimage))
+                mediaVM.imagesCamera.append(ImageModelCamera(image: uiimage, order: mediaVM.getOrderNumber()))
             } else {
                 let url: URL = info[UIImagePickerController.InfoKey(rawValue: UIImagePickerController.InfoKey.mediaURL.rawValue)] as! URL
                 let chosenVideo = info[UIImagePickerController.InfoKey(rawValue: UIImagePickerController.InfoKey.mediaURL.rawValue)] as! URL
                 let videoData = try! Data(contentsOf: chosenVideo, options: [])
                 let thumbnail = url.generateThumbnail()
-                mediaVM.videosCamera.append(VideoModelCamera(video: videoData, thumbnail: thumbnail))
+                mediaVM.videosCamera.append(VideoModelCamera(video: videoData, thumbnail: thumbnail, order: mediaVM.getOrderNumber()))
             }
+            
             mediaVM.showImagePicker = false
         }
         func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {

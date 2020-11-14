@@ -7,6 +7,7 @@ struct VideoModel: Identifiable, Hashable {
     var selected = false
     var assetURL: URL
     var thumbnail: UIImage
+    var order: Int
     
     func fetchVideo() -> Data {
             let video = try? NSData(contentsOf: assetURL, options: .mappedIfSafe)
@@ -19,6 +20,7 @@ struct ImageModel: Identifiable, Hashable {
     var selected = false
     var assetURL: URL
     var thumbnail: UIImage
+    var order: Int
     
     func fetchImage() -> Data {
             let photo = try? NSData(contentsOf: assetURL, options: .mappedIfSafe)
@@ -29,15 +31,28 @@ struct ImageModel: Identifiable, Hashable {
 struct ImageModelCamera: Identifiable, Hashable {
     let id = UUID()
     var image: UIImage
+    var order: Int
 }
 
 struct VideoModelCamera: Identifiable, Hashable {
     let id = UUID()
     var video: Data
     var thumbnail: UIImage
+    var order: Int
 }
 
 class MediaViewModel : ObservableObject {
+    
+    var highestOrderNumber = 0
+    
+    func getOrderNumber() -> Int {
+        highestOrderNumber += 1
+        return highestOrderNumber
+    }
+    
+    func getNumberOfImages() -> Int {
+        return imagesCamera.count + videosCamera.count + images.count + videos.count
+    }
     
     @Published var imagesCamera = [ImageModelCamera]()
     @Published var videosCamera = [VideoModelCamera]()
@@ -57,11 +72,13 @@ class MediaViewModel : ObservableObject {
     func toggleElement(elementId: UUID) {
         let index = images.firstIndex(where: { $0.id == elementId })
         images[index!].selected.toggle()
+        images[index!].order = getOrderNumber()
     }
     
     func toggleVideoElement(elementId: UUID) {
         let index = videos.firstIndex(where: { $0.id == elementId })
         videos[index!].selected.toggle()
+        videos[index!].order = getOrderNumber()
     }
     
     func getAssetThumbnail(asset: PHAsset) -> UIImage {
@@ -102,7 +119,18 @@ class MediaViewModel : ObservableObject {
                 
                 phAsset.requestContentEditingInput(with: PHContentEditingInputRequestOptions()) { (eidtingInput, info) in
                   if let input = eidtingInput, let imgURL = input.fullSizeImageURL {
-                    self.images.append(ImageModel(assetURL: imgURL, thumbnail: self.getAssetThumbnail(asset: phAsset)))
+                    
+                    var isAlreadyInArray = false
+                    
+                    for image in self.images {
+                        if image.assetURL == imgURL {
+                            isAlreadyInArray = true
+                        }
+                    }
+                    
+                    if !isAlreadyInArray {
+                        self.images.append(ImageModel(assetURL: imgURL, thumbnail: self.getAssetThumbnail(asset: phAsset), order: self.getOrderNumber()))
+                    }
                   }
                 }
                 
@@ -117,7 +145,18 @@ class MediaViewModel : ObservableObject {
                 
                 PHCachingImageManager.default().requestAVAsset(forVideo: phAsset, options: nil) {(asset, audioMix, info) in
                     if let asset = asset as? AVURLAsset {
-                        self.videos.append(VideoModel(assetURL: asset.url, thumbnail: self.getAssetThumbnail(asset: phAsset)))
+                        
+                        var isAlreadyInArray = false
+                        
+                        for video in self.videos {
+                            if video.assetURL == asset.url {
+                                isAlreadyInArray = true
+                            }
+                        }
+                        
+                        if !isAlreadyInArray {
+                            self.videos.append(VideoModel(assetURL: asset.url, thumbnail: self.getAssetThumbnail(asset: phAsset), order: self.getOrderNumber()))
+                        }
                     }
                 }
             }

@@ -30,7 +30,7 @@ struct FTPUploadController {
             ("Freitext", "\(freitext)"),
             ("User", "\(user)"),
             ("AppVersion", Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String),
-            ("GeraeteBenutzer", UIDevice.current.name)
+            ("Geraet", UIDevice.current.name)
         ]
         
         let dict = Dictionary(keyValuePairs)

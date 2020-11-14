@@ -106,7 +106,9 @@ struct Add_View: View {
                     }
                 }
                 .sheet(isPresented: self.$mediaVM.showImagePickerNew) {
-                    ImageSelectionModal(mediaVM: self.mediaVM)
+                    ImageSelectionModal(mediaVM: self.mediaVM).onAppear {
+                        mediaVM.fetchImages()
+                    }
                 }
                 .onAppear {
                     NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification, object: nil, queue: .main) { (noti) in
@@ -399,6 +401,7 @@ struct ImageSelectionModal: View {
 //                            if image.type == "image" {
                                 Button(action: {
                                     mediaVM.toggleElement(elementId: image.id)
+                                    
                 //                        mediaVM.images[image.].selected.toggle()
                 //                     $0.selected.toggle()
                 //                     image.selected.toggle()
@@ -494,24 +497,31 @@ struct reportModal: View {
                 Text("Freitext: \(remarksVM.additionalComment)").frame(height: 34)
                 Text("Kommentar: \(remarksVM.selectedComment)").frame(height: 34)
                 HStack {
-                    ForEach(self.mediaVM.images, id: \.id) { image in
-                        if image.selected {
-                            Image(uiImage: image.thumbnail).renderingMode(.original).resizable().frame(width: 80, height: 80)
+                    ForEach((0...mediaVM.highestOrderNumber).reversed(), id:\.self) { i in
+                        ForEach(mediaVM.images, id:\.self) { image in
+                            if image.selected && image.order == i {
+                                Image(uiImage: image.thumbnail).renderingMode(.original).resizable().frame(width: 80, height: 80)
+                            }
                         }
-                    }
-                    ForEach(self.mediaVM.imagesCamera, id: \.id) { image in
-                        Image(uiImage: image.image).renderingMode(.original).resizable().frame(width: 80, height: 80)
-                    }
-                    ForEach(self.mediaVM.videos, id: \.id) { video in
-                        if video.selected {
-                            Image(uiImage: video.thumbnail).renderingMode(.original).resizable().frame(width: 80, height: 80)
+                        ForEach(mediaVM.imagesCamera, id:\.self) { image in
+                            if image.order == i {
+                                Image(uiImage: image.image).renderingMode(.original).resizable().frame(width: 80, height: 80)
+                            }
                         }
-                    }
-                    ForEach(self.mediaVM.videosCamera, id: \.id) { video in
-                        Image(uiImage: video.thumbnail).renderingMode(.original).resizable().frame(width: 80, height: 80)
+                        ForEach(mediaVM.videos, id:\.self) { video in
+                            if video.selected && video.order == i {
+                                Image(uiImage: video.thumbnail).renderingMode(.original).resizable().frame(width: 80, height: 80)
+                            }
+                        }
+                        ForEach(mediaVM.videosCamera, id:\.self) { video in
+                            if video.order == i {
+                                Image(uiImage: video.thumbnail).renderingMode(.original).resizable().frame(width: 80, height: 80)
+                            }
+                        }
                     }
                 }
                 Button(action: {
+                    print(mediaVM.images)
                     deleteMedia()
                 }) {
                     Text("Schließen").frame(height: 34)
@@ -579,25 +589,27 @@ struct SectionBilder: View {
                         EmptyImgButton(mediaVM : self.mediaVM).accentColor(self.colors.color).padding(.leading, 15)
                     } else {
                         EmptyImgButton(mediaVM : self.mediaVM).accentColor(self.colors.color).padding(.leading, 15)
-//                        ForEach((0..<self.mediaVM.images.count).reversed(), id: \.self) { x in
-//                            ImageView(mediaVM: self.mediaVM, index: x)
-////                            Image(uiImage: self.mediaVM.images[x]).renderingMode(.original).resizable().frame(width: 200, height: 200)
-//                        }
-                        ForEach(self.mediaVM.imagesCamera.reversed(), id: \.id) { image in
-                            testImageCameraView(mediaVM: self.mediaVM, imageObject: image,id: image.id)
-                        }
-                        ForEach(self.mediaVM.images, id: \.id) { image in
-                            if image.selected {
-                                testImageView(mediaVM: self.mediaVM, imageObject: image,id: image.id)
+                        ForEach((0...mediaVM.highestOrderNumber).reversed(), id:\.self) { i in
+                            ForEach(mediaVM.images, id:\.self) { image in
+                                if image.selected && image.order == i {
+                                    testImageView(mediaVM: self.mediaVM, imageObject: image,id: image.id)
+                                }
                             }
-                        }
-                        ForEach(self.mediaVM.videos, id: \.id) { video in
-                            if video.selected {
-                                testVideoView(mediaVM: self.mediaVM, videoObject: video, id: video.id)
+                            ForEach(mediaVM.imagesCamera, id:\.self) { image in
+                                if image.order == i {
+                                    testImageCameraView(mediaVM: self.mediaVM, imageObject: image,id: image.id)
+                                }
                             }
-                        }
-                        ForEach(self.mediaVM.videosCamera, id: \.id) { video in
-                                testVideoCameraView(mediaVM: self.mediaVM, videoObject: video, id: video.id)
+                            ForEach(mediaVM.videos, id:\.self) { video in
+                                if video.selected && video.order == i {
+                                    testVideoView(mediaVM: self.mediaVM, videoObject: video, id: video.id)
+                                }
+                            }
+                            ForEach(mediaVM.videosCamera, id:\.self) { video in
+                                if video.order == i {
+                                    testVideoCameraView(mediaVM: self.mediaVM, videoObject: video, id: video.id)
+                                }
+                            }
                         }
                     }
                 }
@@ -696,7 +708,7 @@ struct testVideoCameraView: View {
                 Image(uiImage: videoObject.thumbnail).renderingMode(.original).resizable().frame(width: 100, height: 100).scaledToFill().zIndex(0)
             }
             .actionSheet(isPresented: self.$showSheet) { () -> ActionSheet in
-                ActionSheet(title: Text("Bild löschen"), message: Text("Wirklich Video löschen?"), buttons: [
+                ActionSheet(title: Text("Video löschen"), message: Text("Wirklich Video löschen?"), buttons: [
                     ActionSheet.Button.default(Text("Ja"), action: {
                         self.deleto(id: self.id)
                     }),
@@ -763,7 +775,7 @@ struct testVideoView: View {
                 Image(uiImage: videoObject.thumbnail).renderingMode(.original).resizable().frame(width: 100, height: 100).scaledToFill().zIndex(0)
             }
             .actionSheet(isPresented: self.$showSheet) { () -> ActionSheet in
-                ActionSheet(title: Text("Bild löschen"), message: Text("Wirklich Bild löschen?"), buttons: [
+                ActionSheet(title: Text("Video löschen"), message: Text("Wirklich Video löschen?"), buttons: [
                     ActionSheet.Button.default(Text("Ja"), action: {
                         self.toggle(id: self.id)
                     }),

@@ -4,6 +4,8 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>de</string>
+	<key>CFBundleDisplayName</key>
+	<string>Segler</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -22,12 +24,12 @@
 	<string></string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-    <key>NSMicrophoneUsageDescription</key>
-    <string>iOS 14 Bug </string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Foto zugriff benötigt</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Kamera zugriff benötigt</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Mikrofon zugriff benötigt</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Foto zugriff benötigt</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
