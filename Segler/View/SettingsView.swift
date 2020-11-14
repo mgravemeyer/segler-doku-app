@@ -60,6 +60,16 @@ struct Settings_View: View {
                             Text("Verbindung Testen").foregroundColor(Color.gray)
                         }
                     }
+                    
+                    Section(header: Text("Medienqualität")) {
+                        Text("Foto iPhone: " + settingsVM.qp_iPhone)
+                        Text("Video iPhone: " + settingsVM.qv_iPhone)
+                        Text("Foto iPod: " + settingsVM.qp_iPod)
+                        Text("Video iPod: " + settingsVM.qv_iPod)
+                        Text("Foto iPad: " + settingsVM.qp_iPad)
+                        Text("Video iPad: " + settingsVM.qv_iPad)
+                    }
+                    
                     Section(header: Text("Einstellungen speichern")) {
                         Button(action: {
                             ProgressHUD.showSuccess("Erfolgreich")

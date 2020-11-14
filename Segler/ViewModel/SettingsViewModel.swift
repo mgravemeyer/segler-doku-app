@@ -18,6 +18,15 @@ class SettingsViewModel: ObservableObject {
     @Published var useFixedUserTemp: Bool = UserDefaults.standard.bool(forKey: "useFixedUser")
     @Published var fixedUserName: String = UserDefaults.standard.string(forKey: "fixedUserName") ?? ""
     @Published var stringUrl = String()
+    
+    @Published var qp_iPhone = String()
+    @Published var qv_iPhone = String()
+    
+    @Published var qp_iPod = String()
+    @Published var qv_iPod = String()
+    
+    @Published var qp_iPad = String()
+    @Published var qv_iPad = String()
 }
 
 extension SettingsViewModel {
@@ -37,9 +46,11 @@ extension SettingsViewModel {
                     let content = sftpsession.contents(atPath: "config/config.json")
                     if content != nil {
                     if let string = String(bytes: content!, encoding: .utf8) {
+                        print(string)
                         let jsonData = Foundation.Data(string.data(using: .utf8)!)
                         decoda(jsonData: jsonData)
                         decodaURL(jsonData: jsonData)
+                        decodaMediaQualityModel(jsonData: jsonData)
                         configLoaded = true
                     }
                 } else {
@@ -107,7 +118,6 @@ extension SettingsViewModel {
             let adminMenuePasswordTemp = try decoder.decode(AdminLoginPassword.self, from: jsonData)
             adminMenuePassword.self = adminMenuePasswordTemp.password
         } catch {
-            print("HIER IST ETWAS NICHT IN ORDNUNG")
             print(error.localizedDescription)
         }
     }
@@ -120,7 +130,23 @@ extension SettingsViewModel {
             let adminMenuePasswordTemp = try decoder.decode(URLModel.self, from: jsonData)
             helpURL.self = adminMenuePasswordTemp.url
         } catch {
-            print("HIER IST ETWAS NICHT IN ORDNUNG")
+            print(error.localizedDescription)
+        }
+    }
+}
+
+extension SettingsViewModel {
+    func decodaMediaQualityModel(jsonData : Foundation.Data) {
+        let decoder = JSONDecoder()
+        do {
+            let mediaQualityModel = try decoder.decode(MediaQualityModel.self, from: jsonData)
+            qp_iPhone = mediaQualityModel.Qp_iPhone
+            qv_iPhone = mediaQualityModel.Qv_iPhone
+            qp_iPod = mediaQualityModel.Qp_iPod
+            qv_iPod = mediaQualityModel.Qv_iPod
+            qp_iPad = mediaQualityModel.Qp_iPad
+            qv_iPad = mediaQualityModel.Qv_iPad
+        } catch {
             print(error.localizedDescription)
         }
     }

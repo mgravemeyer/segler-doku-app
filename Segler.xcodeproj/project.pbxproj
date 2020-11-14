@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2EA3681E25607C640056D508 /* MediaQualityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA3681D25607C640056D508 /* MediaQualityModel.swift */; };
 		86CBF00205BDA46BDA5EB2DF /* libPods-Segler.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B045ED0ED1039881B62851EF /* libPods-Segler.a */; };
 		E301A5A423CDF44A006A72D5 /* OrderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E301A5A323CDF44A006A72D5 /* OrderViewModel.swift */; };
 		E301A5A623CDF474006A72D5 /* MediaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E301A5A523CDF474006A72D5 /* MediaViewModel.swift */; };
@@ -39,6 +40,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2EA3681D25607C640056D508 /* MediaQualityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaQualityModel.swift; sourceTree = "<group>"; };
 		B045ED0ED1039881B62851EF /* libPods-Segler.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Segler.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B331AE0F7280D7638CBC570A /* Pods-Segler.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Segler.release.xcconfig"; path = "Target Support Files/Pods-Segler/Pods-Segler.release.xcconfig"; sourceTree = "<group>"; };
 		C68F35FCA4983CB563383A12 /* Pods-Segler.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Segler.debug.xcconfig"; path = "Target Support Files/Pods-Segler/Pods-Segler.debug.xcconfig"; sourceTree = "<group>"; };
@@ -155,6 +157,7 @@
 				E368AFBD23CCC427009DD849 /* Comment.swift */,
 				E39A9D6223D8930D00418E51 /* AdminLoginPassword.swift */,
 				E35319732517EAC0005768DD /* URLModel.swift */,
+				2EA3681D25607C640056D508 /* MediaQualityModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -356,6 +359,7 @@
 				E3D6A0F023A26537000F35E9 /* SettingsView.swift in Sources */,
 				E3BE190F23A7C7D200137883 /* ftpConst.swift in Sources */,
 				E3D6A0DA23A1838A000F35E9 /* Segler.xcdatamodeld in Sources */,
+				2EA3681E25607C640056D508 /* MediaQualityModel.swift in Sources */,
 				E3D6A0DC23A1838A000F35E9 /* ReportView.swift in Sources */,
 				E3EA711E23D133A500340463 /* Session.swift in Sources */,
 				E35319742517EAC0005768DD /* URLModel.swift in Sources */,

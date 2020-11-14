@@ -39,7 +39,7 @@ class RemarksViewModel: ObservableObject {
                 if content != nil {
                     if let string = String(bytes: content!, encoding: .utf8) {
                     let jsonData = Foundation.Data(string.data(using: .utf8)!)
-                    decoda(jsonData: jsonData)
+                        decoda(jsonData: jsonData)
                     }
                     configLoaded = true
                 } else {
@@ -48,4 +48,5 @@ class RemarksViewModel: ObservableObject {
             }
         }
     }
+    
 }
