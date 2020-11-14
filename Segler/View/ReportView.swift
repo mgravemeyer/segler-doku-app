@@ -585,33 +585,44 @@ struct SectionBilder: View {
 
             ScrollView(.horizontal) {
                 HStack {
-                    if mediaVM.images.isEmpty {
                         EmptyImgButton(mediaVM : self.mediaVM).accentColor(self.colors.color).padding(.leading, 15)
-                    } else {
-                        EmptyImgButton(mediaVM : self.mediaVM).accentColor(self.colors.color).padding(.leading, 15)
-                        ForEach((0...mediaVM.highestOrderNumber).reversed(), id:\.self) { i in
-                            ForEach(mediaVM.images, id:\.self) { image in
-                                if image.selected && image.order == i {
+                        if mediaVM.getNumberOfImages()>0 {
+                            ForEach((0...mediaVM.highestOrderNumber).reversed(), id:\.self) { i in
+                                ForEach(mediaVM.images, id:\.self) { image in
+                                    if image.selected && image.order == i {
+                                        testImageView(mediaVM: self.mediaVM, imageObject: image,id: image.id)
+                                    }
+                                }
+                                ForEach(mediaVM.imagesCamera, id:\.self) { image in
+                                    if image.order == i  {
+                                        testImageCameraView(mediaVM: self.mediaVM, imageObject: image,id: image.id)
+                                    }
+                                }
+                                ForEach(mediaVM.videos, id:\.self) { video in
+                                    if video.selected && video.order == i {
+                                        testVideoView(mediaVM: self.mediaVM, videoObject: video, id: video.id)
+                                    }
+                                }
+                                ForEach(mediaVM.videosCamera, id:\.self) { video in
+                                    if video.order == i {
+                                        testVideoCameraView(mediaVM: self.mediaVM, videoObject: video, id: video.id)
+                                    }
+                                }
+                            }
+                        } else {
+                                ForEach(mediaVM.images, id:\.self) { image in
                                     testImageView(mediaVM: self.mediaVM, imageObject: image,id: image.id)
                                 }
-                            }
-                            ForEach(mediaVM.imagesCamera, id:\.self) { image in
-                                if image.order == i {
+                                ForEach(mediaVM.imagesCamera, id:\.self) { image in
                                     testImageCameraView(mediaVM: self.mediaVM, imageObject: image,id: image.id)
                                 }
-                            }
-                            ForEach(mediaVM.videos, id:\.self) { video in
-                                if video.selected && video.order == i {
+                                ForEach(mediaVM.videos, id:\.self) { video in
                                     testVideoView(mediaVM: self.mediaVM, videoObject: video, id: video.id)
                                 }
-                            }
-                            ForEach(mediaVM.videosCamera, id:\.self) { video in
-                                if video.order == i {
+                                ForEach(mediaVM.videosCamera, id:\.self) { video in
                                     testVideoCameraView(mediaVM: self.mediaVM, videoObject: video, id: video.id)
                                 }
-                            }
                         }
-                    }
                 }
             }.padding(.horizontal, -15).listRowBackground(self.mediaVM.imagesIsOk ? colors.correctRowColor : colors.warningRowColor)
     }
