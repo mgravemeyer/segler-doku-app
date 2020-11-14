@@ -871,7 +871,7 @@ struct EmptyImgButton: View {
 //
 //        }
             .actionSheet(isPresented: self.$showSheet) { () -> ActionSheet in
-                ActionSheet(title: Text("Bild hinzufügen"), message: Text("Kamera oder Galerie auswählen"), buttons: [
+                ActionSheet(title: Text("Bild/Video hinzufügen"), message: Text("Kamera oder Galerie auswählen"), buttons: [
                     ActionSheet.Button.default(Text("Kamera"), action: {
                         self.mediaVM.sourceType = 0
                         self.mediaVM.showImagePicker = !self.mediaVM.showImagePicker
