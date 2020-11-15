@@ -1,6 +1,7 @@
 import SwiftUI
 import ProgressHUD
 import Photos
+import AVKit
 
 struct NavigationConfigurator: UIViewControllerRepresentable {
     
@@ -28,7 +29,29 @@ struct Divider_custom: View {
     }
 }
 
+struct AVPlayerView: UIViewControllerRepresentable {
+
+    @Binding var videoURL: URL?
+
+    private var player: AVPlayer {
+        return AVPlayer(url: videoURL!)
+    }
+
+    func updateUIViewController(_ playerController: AVPlayerViewController, context: Context) {
+        playerController.showsPlaybackControls = false
+        playerController.player = player
+        playerController.player?.play()
+    }
+
+    func makeUIViewController(context: Context) -> AVPlayerViewController {
+        return AVPlayerViewController()
+    }
+}
+
 struct Add_View: View {
+    
+    let toPresent = UIHostingController(rootView: AnyView(EmptyView()))
+    @State private var vURL = URL(string: "https://bit.ly/swswift")
     
     let colors = ColorSeglerViewModel()
     
@@ -39,6 +62,7 @@ struct Add_View: View {
     @ObservedObject var orderVM : OrderViewModel
 
     @State var keyboardIsShown = false
+    
 
     var body: some View {
             ZStack {
@@ -46,6 +70,24 @@ struct Add_View: View {
                     ZStack {
                         Group {
                             ZStack {
+                                if mediaVM.showVideo {
+                                    GeometryReader { geometry in
+                                        AVPlayerView(videoURL: $vURL).frame(width: geometry.size.width - 20, height: 200).padding(.leading, 10).padding(.top, geometry.size.height/2 - 200).zIndex(100)
+                                    }.zIndex(100)
+                                }
+                                if mediaVM.showImage {
+                                    GeometryReader { geometry in
+                                        ZStack {
+                                            Button(action: {
+                                                mediaVM.showImage.toggle()
+                                            }, label: {
+                                                Image("Delete")
+                                            }).frame(width: 30, height: 30).offset(x: geometry.size.width/2 - 10, y: -235/2).zIndex(1)
+                                            Image(uiImage: mediaVM.selectedImage!).resizable().aspectRatio(mediaVM.selectedImage!.size, contentMode: .fit).frame(width: geometry.size.width - 20, height: 500).padding(.leading, 10).padding(.top, geometry.size.height/2 - 300).zIndex(0)
+                                        }
+                                    }.zIndex(100)
+                                }
+                               
                                 List {
                                     SectionOrder(orderVM : self.orderVM, mediaVM : self.mediaVM)
                                         .accentColor(colors.color)
@@ -686,8 +728,11 @@ struct testImageCameraView: View {
                 Image(uiImage: imageObject.image).renderingMode(.original).resizable().frame(width: 100, height: 100).scaledToFill().zIndex(0)
             }
             .actionSheet(isPresented: self.$showSheet) { () -> ActionSheet in
-                ActionSheet(title: Text("Bild löschen"), message: Text("Wirklich Bild löschen?"), buttons: [
-                    ActionSheet.Button.default(Text("Ja"), action: {
+                ActionSheet(title: Text("Anzeigen - Löschen"), buttons: [
+                    ActionSheet.Button.default(Text("Bild anzeigen"), action: {
+                        self.deleto(id: self.id)
+                    }),
+                    ActionSheet.Button.destructive(Text("Bild löschen"), action: {
                         self.deleto(id: self.id)
                     }),
                     ActionSheet.Button.cancel()
@@ -753,14 +798,21 @@ struct testVideoCameraView: View {
                     Image(uiImage: imageObject.thumbnail).renderingMode(.original).resizable().frame(width: 100, height: 100).scaledToFill().zIndex(0)
                 }
                 .actionSheet(isPresented: self.$showSheet) { () -> ActionSheet in
-                    ActionSheet(title: Text("Bild löschen"), message: Text("Wirklich Bild löschen?"), buttons: [
-                        ActionSheet.Button.default(Text("Ja"), action: {
+                    ActionSheet(title: Text("Anzeigen - Löschen"), buttons: [
+                        ActionSheet.Button.default(Text("Bild anzeigen"), action: {
+                            self.toggleShowImage()
+                        }),
+                        ActionSheet.Button.destructive(Text("Bild löschen"), action: {
                             self.toggle(id: self.id)
                         }),
                         ActionSheet.Button.cancel()
                     ])
                 }
             }
+        }
+        func toggleShowImage() {
+            mediaVM.showImage.toggle()
+            mediaVM.selectedImage = UIImage(data: (imageObject.fetchImage()))
         }
         func toggle(id: UUID) {
             if let index = mediaVM.images.firstIndex(where: {$0.id == id}) {

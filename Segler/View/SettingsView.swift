@@ -1,6 +1,13 @@
 import SwiftUI
 import ProgressHUD
 
+extension String {
+    var floatValue: Float {
+        return (self as NSString).floatValue
+    }
+}
+
+
 struct Settings_View: View {
     
     @ObservedObject var settingsVM : SettingsViewModel

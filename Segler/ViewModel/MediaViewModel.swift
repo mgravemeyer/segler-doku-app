@@ -1,6 +1,7 @@
 import Foundation
 import UIKit
 import Photos
+import SwiftUI
 
 struct VideoModel: Identifiable, Hashable {
     let id = UUID()
@@ -44,6 +45,12 @@ struct VideoModelCamera: Identifiable, Hashable {
 class MediaViewModel : ObservableObject {
     
     var highestOrderNumber = 0
+    
+    @Published var showVideo: Bool = false
+    @Published var showImage: Bool = false
+    
+    @Published var selectedImage: UIImage?
+    @Published var selectedVideo: Data?
     
     func getOrderNumber() -> Int {
         highestOrderNumber += 1
