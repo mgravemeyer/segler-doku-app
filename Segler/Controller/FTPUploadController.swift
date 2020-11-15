@@ -180,14 +180,14 @@ struct FTPUploadController {
                 for image in mediaViewModel.images {
                     if image.selected {
                         let image = UIImage(data: image.fetchImage())
-                        if !UIDevice.current.name.contains("iPhone") {
+                        if UIDevice.current.name.contains("iPhone") {
                             finishedPhotoArray.append((image?.jpegData(compressionQuality: CGFloat(truncating: NumberFormatter().number(from: settingsVM.qp_iPhone)!)))!)
                             print("Ipone Send Image With Quality: \(settingsVM.qp_iPhone)")
                         } else
-                        if !UIDevice.current.name.contains("iPod touch") {
+                        if UIDevice.current.name.contains("iPod touch") {
                             finishedPhotoArray.append((image?.jpegData(compressionQuality: CGFloat(truncating: NumberFormatter().number(from: settingsVM.qp_iPad)!)))!)
                         } else
-                        if !UIDevice.current.name.contains("iPad") {
+                        if UIDevice.current.name.contains("iPad") {
                             finishedPhotoArray.append((image?.jpegData(compressionQuality: CGFloat(truncating: NumberFormatter().number(from: settingsVM.qp_iPad)!)))!)
                         } else {
                             finishedPhotoArray.append((image?.jpegData(compressionQuality: CGFloat(truncating: NumberFormatter().number(from: settingsVM.qp_iPod)!)))!)
@@ -196,14 +196,14 @@ struct FTPUploadController {
                 }
             
                 for image in mediaViewModel.imagesCamera {
-                    if !UIDevice.current.name.contains("iPhone") {
+                    if UIDevice.current.name.contains("iPhone") {
                         finishedPhotoArray.append((image.image.jpegData(compressionQuality: CGFloat(settingsVM.qp_iPhone.floatValue)))!)
                     } else
-                    if !UIDevice.current.name.contains("iPod touch") {
+                    if UIDevice.current.name.contains("iPod touch") {
                         print(CGFloat(settingsVM.qp_iPod.floatValue))
                         finishedPhotoArray.append((image.image.jpegData(compressionQuality: CGFloat(settingsVM.qp_iPod.floatValue)))!)
                     } else
-                    if !UIDevice.current.name.contains("iPad") {
+                    if UIDevice.current.name.contains("iPad") {
                         finishedPhotoArray.append((image.image.jpegData(compressionQuality: CGFloat(settingsVM.qp_iPad.floatValue)))!)
                     } else {
                         finishedPhotoArray.append((image.image.jpegData(compressionQuality: CGFloat(settingsVM.qp_iPod.floatValue)))!)

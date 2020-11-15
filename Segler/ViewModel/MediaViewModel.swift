@@ -37,6 +37,7 @@ struct ImageModelCamera: Identifiable, Hashable {
 
 struct VideoModelCamera: Identifiable, Hashable {
     let id = UUID()
+    var url: URL
     var video: Data
     var thumbnail: UIImage
     var order: Int
@@ -50,7 +51,7 @@ class MediaViewModel : ObservableObject {
     @Published var showImage: Bool = false
     
     @Published var selectedImage: UIImage?
-    @Published var selectedVideo: Data?
+    @Published var selectedVideo: URL?
     
     func getOrderNumber() -> Int {
         highestOrderNumber += 1
@@ -103,7 +104,7 @@ class MediaViewModel : ObservableObject {
         
         let fetchOptions = PHFetchOptions()
         fetchOptions.sortDescriptors = [NSSortDescriptor(key:"creationDate", ascending: false)]
-        fetchOptions.fetchLimit = 20
+        fetchOptions.fetchLimit = 36
         let reqImage = PHAsset.fetchAssets(with: .image, options: fetchOptions)
         let reqVideo = PHAsset.fetchAssets(with: .video, options: fetchOptions)
         DispatchQueue.main.async {

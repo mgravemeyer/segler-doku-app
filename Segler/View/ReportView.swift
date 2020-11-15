@@ -38,8 +38,9 @@ struct AVPlayerView: UIViewControllerRepresentable {
     }
 
     func updateUIViewController(_ playerController: AVPlayerViewController, context: Context) {
-        playerController.showsPlaybackControls = false
+        playerController.showsPlaybackControls = true
         playerController.player = player
+        playerController.entersFullScreenWhenPlaybackBegins = true
         playerController.player?.play()
     }
 
@@ -51,7 +52,6 @@ struct AVPlayerView: UIViewControllerRepresentable {
 struct Add_View: View {
     
     let toPresent = UIHostingController(rootView: AnyView(EmptyView()))
-    @State private var vURL = URL(string: "https://bit.ly/swswift")
     
     let colors = ColorSeglerViewModel()
     
@@ -72,22 +72,45 @@ struct Add_View: View {
                             ZStack {
                                 if mediaVM.showVideo {
                                     GeometryReader { geometry in
-                                        AVPlayerView(videoURL: $vURL).frame(width: geometry.size.width - 20, height: 200).padding(.leading, 10).padding(.top, geometry.size.height/2 - 200).zIndex(100)
+                                        
+                                        ZStack {
+                                            VStack {
+                                                Button(action: {
+                                                    mediaVM.showImage = false
+                                                    mediaVM.showVideo = false
+                                                }, label: {
+                                                    ZStack {
+                                                        Color.gray.frame(width: geometry.size.width - 20, height: 40).padding(.leading, 0).cornerRadius(10).zIndex(1)
+                                                        Text("Anzeige schließen").foregroundColor(Color.white).zIndex(50000)
+                                                    }
+                                                }).zIndex(1)
+                                                ZStack {
+                                                    AVPlayerView(videoURL: $mediaVM.selectedVideo).frame(width: geometry.size.width - 20, height: geometry.size.height - 150).padding(.leading, 0)
+                                            }.padding(.top, geometry.size.height/2 - 350).zIndex(1)
+                                                Color.white.opacity(0.8).zIndex(-100)
+                                            }}
                                     }.zIndex(100)
                                 }
                                 if mediaVM.showImage {
                                     GeometryReader { geometry in
                                         ZStack {
-                                            Button(action: {
-                                                mediaVM.showImage.toggle()
-                                            }, label: {
-                                                Image("Delete")
-                                            }).frame(width: 30, height: 30).offset(x: geometry.size.width/2 - 10, y: -235/2).zIndex(1)
-                                            Image(uiImage: mediaVM.selectedImage!).resizable().aspectRatio(mediaVM.selectedImage!.size, contentMode: .fit).frame(width: geometry.size.width - 20, height: 500).padding(.leading, 10).padding(.top, geometry.size.height/2 - 300).zIndex(0)
+                                            VStack {
+                                                Button(action: {
+                                                    mediaVM.showImage = false
+                                                    mediaVM.showVideo = false
+                                                }, label: {
+                                                    ZStack {
+                                                        Color.gray.frame(width: geometry.size.width - 20, height: 40).padding(.leading, 0).cornerRadius(10).zIndex(1)
+                                                        Text("Anzeige schließen").foregroundColor(Color.white).zIndex(50000)
+                                                    }
+                                                }).zIndex(1)
+                                                Image(uiImage: mediaVM.selectedImage!).resizable().aspectRatio(mediaVM.selectedImage!.size, contentMode: .fit).frame(width: geometry.size.width - 20, height: geometry.size.height - 150).padding(.leading, 0)
+                                            }.padding(.top, geometry.size.height/2 - 350).zIndex(1)
+                                                Color.white.opacity(0.8).zIndex(-100)
                                         }
                                     }.zIndex(100)
                                 }
-                               
+                                
                                 List {
                                     SectionOrder(orderVM : self.orderVM, mediaVM : self.mediaVM)
                                         .accentColor(colors.color)
@@ -161,7 +184,7 @@ struct Add_View: View {
                     }
                 }.accentColor(Color.white).navigationViewStyle(StackNavigationViewStyle())
                 if self.mediaVM.showImagePicker {
-                    ImagePicker(mediaVM : self.mediaVM)
+                    ImagePicker(settingsVM: self.settingsVM, mediaVM : self.mediaVM)
                 }
                 if self.mediaVM.showImageScanner {
                     BarcodeScannerSegler(userVM: self.userVM,sourceType: 0,mediaVM: self.mediaVM, orderVM: self.orderVM)
@@ -730,7 +753,7 @@ struct testImageCameraView: View {
             .actionSheet(isPresented: self.$showSheet) { () -> ActionSheet in
                 ActionSheet(title: Text("Anzeigen - Löschen"), buttons: [
                     ActionSheet.Button.default(Text("Bild anzeigen"), action: {
-                        self.deleto(id: self.id)
+                        toggleShowImage()
                     }),
                     ActionSheet.Button.destructive(Text("Bild löschen"), action: {
                         self.deleto(id: self.id)
@@ -739,6 +762,10 @@ struct testImageCameraView: View {
                 ])
             }
         }
+    }
+    func toggleShowImage() {
+        mediaVM.showImage.toggle()
+        mediaVM.selectedImage = UIImage(data: (imageObject.image.pngData()!))
     }
     func deleto(id: UUID) {
         if let index = mediaVM.imagesCamera.firstIndex(where: {$0.id == id}) {
@@ -764,14 +791,21 @@ struct testVideoCameraView: View {
                 Image(uiImage: videoObject.thumbnail).renderingMode(.original).resizable().frame(width: 100, height: 100).scaledToFill().zIndex(0)
             }
             .actionSheet(isPresented: self.$showSheet) { () -> ActionSheet in
-                ActionSheet(title: Text("Video löschen"), message: Text("Wirklich Video löschen?"), buttons: [
-                    ActionSheet.Button.default(Text("Ja"), action: {
+                ActionSheet(title: Text("Anzeigen - Löschen"), buttons: [
+                    ActionSheet.Button.default(Text("Video anzeigen"), action: {
+                        self.toggleShowImage()
+                    }),
+                    ActionSheet.Button.destructive(Text("Video löschen"), action: {
                         self.deleto(id: self.id)
                     }),
                     ActionSheet.Button.cancel()
                 ])
             }
         }
+    }
+    func toggleShowImage() {
+        mediaVM.selectedVideo = videoObject.url
+        mediaVM.showVideo.toggle()
     }
     func deleto(id: UUID) {
         if let index = mediaVM.videosCamera.firstIndex(where: {$0.id == id}) {
@@ -838,14 +872,21 @@ struct testVideoView: View {
                 Image(uiImage: videoObject.thumbnail).renderingMode(.original).resizable().frame(width: 100, height: 100).scaledToFill().zIndex(0)
             }
             .actionSheet(isPresented: self.$showSheet) { () -> ActionSheet in
-                ActionSheet(title: Text("Video löschen"), message: Text("Wirklich Video löschen?"), buttons: [
-                    ActionSheet.Button.default(Text("Ja"), action: {
+                ActionSheet(title: Text("Anzeigen - Löschen"), buttons: [
+                    ActionSheet.Button.default(Text("Video anzeigen"), action: {
+                        self.toggleShowImage()
+                    }),
+                    ActionSheet.Button.destructive(Text("Video löschen"), action: {
                         self.toggle(id: self.id)
                     }),
                     ActionSheet.Button.cancel()
                 ])
             }
         }
+    }
+    func toggleShowImage() {
+        mediaVM.showVideo.toggle()
+        mediaVM.selectedVideo = videoObject.assetURL
     }
     func toggle(id: UUID) {
         if let index = mediaVM.videos.firstIndex(where: {$0.id == id}) {
