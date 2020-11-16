@@ -4,6 +4,7 @@ import ProgressHUD
 import NMSSH
 import Combine
 import SwiftUI
+import AVKit
 
 extension Dictionary {
     init(_ keyValuePairs: [(Key, Value)]) {
@@ -12,6 +13,12 @@ extension Dictionary {
         for (key, value) in keyValuePairs {
             self[key] = value
         }
+    }
+}
+
+extension Thread {
+    class func printCurrent() {
+        print("\r⚡️: \(Thread.current)\r" + "🏭: \(OperationQueue.current?.underlyingQueue?.label ?? "None")\r")
     }
 }
 
@@ -51,7 +58,6 @@ struct FTPUploadController {
      }
 
     func authenticate() -> Bool  {
-        print("AUTH")
         var bool: Bool = false
         let session = NMSSHSession.init(host: "\(settingsVM.ip)", andUsername: "\(settingsVM.serverUsername)")
         session.connect()
@@ -65,6 +71,149 @@ struct FTPUploadController {
             bool = false
         }
         return bool
+    }
+    
+    class VideoCompress {
+        
+        var assetWriter:AVAssetWriter?
+        var assetReader:AVAssetReader?
+        
+        @ObservedObject var settingsVM : SettingsViewModel
+        
+        init(settingsVM : ObservedObject<SettingsViewModel>) {
+            _settingsVM = settingsVM
+            
+            if UIDevice.current.name.contains("iPhone") {
+                let number = Int(settingsVM.projectedValue.qv_iPhone.wrappedValue)
+                print(number!)
+                bitrate = NSNumber(value: number!)
+                print(bitrate)
+            } else
+            if UIDevice.current.name.contains("iPod touch") {
+                let number = Int(settingsVM.projectedValue.qv_iPod.wrappedValue)
+                print(number!)
+                bitrate = NSNumber(value: number!)
+                print(bitrate)
+            } else
+            if UIDevice.current.name.contains("iPad") {
+                let number = Int(settingsVM.projectedValue.qv_iPad.wrappedValue)
+                print(number!)
+                bitrate = NSNumber(value: number!)
+                print(bitrate)
+            }
+        }
+        
+        
+        
+        var bitrate: NSNumber = 50000
+        
+        func compressFile(urlToCompress: URL, outputURL: URL, completion:@escaping (URL)->Void) {
+            
+            print("Bitrate: \(bitrate)")
+            
+            var audioFinished = false
+            var videoFinished = false
+            
+            let asset = AVAsset(url: urlToCompress);
+
+            do{
+                assetReader = try AVAssetReader(asset: asset)
+            } catch {
+                self.assetReader = nil
+            }
+            
+            guard let reader = assetReader else {
+                fatalError("Could not initalize asset reader probably failed its try catch")
+            }
+            
+            let videoTrack = asset.tracks(withMediaType: AVMediaType.video).first!
+            let audioTrack = asset.tracks(withMediaType: AVMediaType.audio).first!
+            
+            let videoReaderSettings: [String:Any] =  [kCVPixelBufferPixelFormatTypeKey as String:kCVPixelFormatType_32ARGB ]
+                // ADJUST BIT RATE OF VIDEO HERE
+                let videoSettings:[String:Any] = [
+                    AVVideoCompressionPropertiesKey: [AVVideoAverageBitRateKey:self.bitrate],
+                    AVVideoCodecKey: AVVideoCodecType.h264,
+                    AVVideoHeightKey: videoTrack.naturalSize.height,
+                    AVVideoWidthKey: videoTrack.naturalSize.width
+                ]
+            
+            let assetReaderVideoOutput = AVAssetReaderTrackOutput(track: videoTrack, outputSettings: videoReaderSettings)
+            let assetReaderAudioOutput = AVAssetReaderTrackOutput(track: audioTrack, outputSettings: nil)
+            if reader.canAdd(assetReaderVideoOutput){
+                reader.add(assetReaderVideoOutput)
+            }else{
+                fatalError("Couldn't add video output reader")
+            }
+            if reader.canAdd(assetReaderAudioOutput){
+                reader.add(assetReaderAudioOutput)
+            }else{
+                fatalError("Couldn't add audio output reader")
+            }
+            
+            let audioInput = AVAssetWriterInput(mediaType: AVMediaType.audio, outputSettings: nil)
+            let videoInput = AVAssetWriterInput(mediaType: AVMediaType.video, outputSettings: videoSettings)
+                 videoInput.transform = videoTrack.preferredTransform
+            
+            let videoInputQueue = DispatchQueue(label: "videoQueue")
+                let audioInputQueue = DispatchQueue(label: "audioQueue")
+                do {
+                    assetWriter = try AVAssetWriter(outputURL: outputURL, fileType: AVFileType.mov)
+                } catch {
+                    assetWriter = nil
+                }
+                guard let writer = assetWriter else {
+                    fatalError("assetWriter was nil")
+                }
+            
+            writer.shouldOptimizeForNetworkUse = true
+                writer.add(videoInput)
+                writer.add(audioInput)
+                writer.startWriting()
+                reader.startReading()
+            writer.startSession(atSourceTime: CMTime.zero)
+            
+            let closeWriter:()->Void = {
+                if (audioFinished && videoFinished){
+                    self.assetWriter?.finishWriting(completionHandler: {
+                        completion((self.assetWriter?.outputURL)!)
+                    })
+                    self.assetReader?.cancelReading()
+                }
+            }
+            
+            audioInput.requestMediaDataWhenReady(on: audioInputQueue) {
+                while(audioInput.isReadyForMoreMediaData){
+                    let sample = assetReaderAudioOutput.copyNextSampleBuffer()
+                    if (sample != nil){
+                        audioInput.append(sample!)
+                    }else{
+                        audioInput.markAsFinished()
+                        DispatchQueue.main.async {
+                            audioFinished = true
+                            closeWriter()
+                        }
+                        break;
+                    }
+                }
+            }
+            videoInput.requestMediaDataWhenReady(on: videoInputQueue) {
+                //request data here
+                while(videoInput.isReadyForMoreMediaData){
+                    let sample = assetReaderVideoOutput.copyNextSampleBuffer()
+                    if (sample != nil){
+                        videoInput.append(sample!)
+                    }else{
+                        videoInput.markAsFinished()
+                        DispatchQueue.main.async {
+                            videoFinished = true
+                            closeWriter()
+                        }
+                        break;
+                    }
+                }
+            }
+        }
     }
     
     func someAsyncFunction(remarksVM : RemarksViewModel,_ shouldThrow: Bool, completion: @escaping(String?) -> ()) {
@@ -93,7 +242,7 @@ struct FTPUploadController {
         dateFormatter.locale = NSLocale.current
         dateFormatter.dateFormat = "HHmmss"
         let convertedDateTime = dateFormatter.string(from: date)
-                
+
         ProgressHUD.show()
         
         let session = NMSSHSession.init(host: "\(self.settingsVM.ip)", andUsername: "\(self.settingsVM.serverUsername)")
@@ -101,6 +250,9 @@ struct FTPUploadController {
         session.authenticate(byPassword: "\(self.settingsVM.serverPassword)")
         
             DispatchQueue.main.async {
+                
+                Thread.printCurrent()
+
                 //CHECK orderNr for Valid Numbers
                 for char in self.orderViewModel.orderNr {
                     if char.isNumber {
@@ -137,16 +289,6 @@ struct FTPUploadController {
 //                    self.orderViewModel.orderPositionIsOk = false
                 }
                 
-                if self.mediaViewModel.images.isEmpty && self.mediaViewModel.imagesCamera.isEmpty && self.mediaViewModel.videos.isEmpty && self.mediaViewModel.videosCamera.isEmpty {
-                    error = true
-                    imagesCheck = false
-//                    self.mediaViewModel.imagesIsOk = false
-                    errorMessage = errorMessage + "Kein Bild ausgewählt! \n"
-                } else {
-                    imagesCheck = true
-//                    self.mediaViewModel.imagesIsOk = true
-                }
-                
                 if remarksVM.selectedComment == "" {
                     error = true
                     commentCheck = false
@@ -181,16 +323,15 @@ struct FTPUploadController {
                     if image.selected {
                         let image = UIImage(data: image.fetchImage())
                         if UIDevice.current.name.contains("iPhone") {
-                            finishedPhotoArray.append((image?.jpegData(compressionQuality: CGFloat(truncating: NumberFormatter().number(from: settingsVM.qp_iPhone)!)))!)
-                            print("Ipone Send Image With Quality: \(settingsVM.qp_iPhone)")
+                            finishedPhotoArray.append((image?.jpegData(compressionQuality: CGFloat(settingsVM.qp_iPhone.floatValue)))!)
                         } else
                         if UIDevice.current.name.contains("iPod touch") {
-                            finishedPhotoArray.append((image?.jpegData(compressionQuality: CGFloat(truncating: NumberFormatter().number(from: settingsVM.qp_iPad)!)))!)
+                            finishedPhotoArray.append((image?.jpegData(compressionQuality: CGFloat(settingsVM.qp_iPod.floatValue)))!)
                         } else
                         if UIDevice.current.name.contains("iPad") {
-                            finishedPhotoArray.append((image?.jpegData(compressionQuality: CGFloat(truncating: NumberFormatter().number(from: settingsVM.qp_iPad)!)))!)
+                            finishedPhotoArray.append((image?.jpegData(compressionQuality: CGFloat(settingsVM.qp_iPad.floatValue)))!)
                         } else {
-                            finishedPhotoArray.append((image?.jpegData(compressionQuality: CGFloat(truncating: NumberFormatter().number(from: settingsVM.qp_iPod)!)))!)
+                            finishedPhotoArray.append((image?.jpegData(compressionQuality: CGFloat(settingsVM.qp_iPod.floatValue)))!)
                         }
                     }
                 }
@@ -200,7 +341,6 @@ struct FTPUploadController {
                         finishedPhotoArray.append((image.image.jpegData(compressionQuality: CGFloat(settingsVM.qp_iPhone.floatValue)))!)
                     } else
                     if UIDevice.current.name.contains("iPod touch") {
-                        print(CGFloat(settingsVM.qp_iPod.floatValue))
                         finishedPhotoArray.append((image.image.jpegData(compressionQuality: CGFloat(settingsVM.qp_iPod.floatValue)))!)
                     } else
                     if UIDevice.current.name.contains("iPad") {
@@ -209,21 +349,55 @@ struct FTPUploadController {
                         finishedPhotoArray.append((image.image.jpegData(compressionQuality: CGFloat(settingsVM.qp_iPod.floatValue)))!)
                     }
                 }
-                        
+                
+                let group = DispatchGroup()
+
                 for video in mediaViewModel.videos {
                     if video.selected {
-                        print("Video: \(video)")
-                        finishedVideoArray.append(video.fetchVideo())
+                        group.enter()
+                        let formatter = DateFormatter()
+                        formatter.dateFormat = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'"
+                        let date = Date()
+                        let documentsPath = NSTemporaryDirectory()
+                        let outputPath = "\(documentsPath)/\(formatter.string(from: date))\(video.id).mp4"
+                        let newOutputUrl = URL(fileURLWithPath: outputPath)
+                        var videoData = Data()
+                        VideoCompress(settingsVM: _settingsVM).compressFile(urlToCompress: video.assetURL, outputURL: newOutputUrl) { (URL) in
+                            videoData = try! NSData(contentsOf: newOutputUrl, options: .mappedIfSafe) as Data
+                            finishedVideoArray.append(videoData as Data)
+                            print("HALLO DATEN FERTIG: \(videoData)")
+                            group.leave()
+                        }
                     }
                 }
+                
                 for video in mediaViewModel.videosCamera {
-                    print("VideoCamera: \(video)")
-                    finishedVideoArray.append(video.video)
+                    group.enter()
+                    let formatter = DateFormatter()
+                    formatter.dateFormat = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'"
+                    let date = Date()
+                    let documentsPath = NSTemporaryDirectory()
+                    let outputPath = "\(documentsPath)/\(formatter.string(from: date))\(video.id).mp4"
+                    let newOutputUrl = URL(fileURLWithPath: outputPath)
+                    var videoData = Data()
+                    VideoCompress(settingsVM: _settingsVM).compressFile(urlToCompress: video.url, outputURL: newOutputUrl) { (URL) in
+                        videoData = try! NSData(contentsOf: newOutputUrl, options: .mappedIfSafe) as Data
+                        finishedVideoArray.append(videoData as Data)
+                        print("HALLO DATEN FERTIG: \(videoData)")
+                        group.leave()
+                    }
                 }
                 
-//                if finishedPhotoArray || finishedVideoArray {
-//                    error = true
-//                }
+                group.notify(queue: .main) {
+                    
+                if finishedPhotoArray.isEmpty && finishedVideoArray.isEmpty {
+                    error = true
+                    imagesCheck = false
+                    errorMessage = errorMessage + "Kein Bild/Video ausgewählt! \n"
+                } else {
+                    imagesCheck = true
+//                    self.mediaViewModel.imagesIsOk = true
+                }
                 
                 if error {
                     completion(errorMessage)
@@ -237,8 +411,7 @@ struct FTPUploadController {
                 }
             
             
-            DispatchQueue.global(qos: .background).async {
-        
+            DispatchQueue.main.async {
             let sftpsession = NMSFTP(session : session)
             sftpsession.connect()
             
@@ -250,7 +423,6 @@ struct FTPUploadController {
 //                        print("IF SCHLEIFE IST OK")
 //                        print("TRANSFERDATA: \(finishedPhotoArray)")
                         for photoData in finishedPhotoArray {
-                            print("TRANSFER PHOTO DATA LOLr")
                             sftpsession.writeContents(jsonObject, toFileAtPath: "\("\(self.orderViewModel.orderNr)_\(self.orderViewModel.orderPosition)_\(convertedDate)_\(convertedDateTime)_\(counter)").json")
                             sftpsession.writeContents(photoData, toFileAtPath: "\("\(self.orderViewModel.orderNr)_\(self.orderViewModel.orderPosition)_\(convertedDate)_\(convertedDateTime)_\(counter)").jpg")
                             counter += 1
@@ -263,10 +435,13 @@ struct FTPUploadController {
                             counter += 1
                         }
                     }
+                    mediaViewModel.selectedPhotoAmount = 0
+                    mediaViewModel.selectedVideoAmount = 0
                     completion(nil)
                 } else {
-                    print("ERRORHELP")
+                    print("ERROR ÜBERTRAGUNG")
                 }
+            }
             }
         }
     }

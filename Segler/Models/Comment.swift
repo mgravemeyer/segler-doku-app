@@ -34,11 +34,8 @@ struct Comment: Encodable, Decodable, Identifiable {
       init(from decoder: Decoder) throws {
             let values = try decoder.container(keyedBy: Keys.self)
 
-        print("RESPONSE\(values)")
-
             title = try values.decodeIfPresent(String.self, forKey: .title)!
             comments = try values.decodeIfPresent([String].self, forKey: .comments)!
-            print(title)
     //        title = try commentsArray.decodeIfPresent(String.self, forKey: .title)!
     //        comments = try commentsArray.decodeIfPresent([String].self, forKey: .comments)!
         }

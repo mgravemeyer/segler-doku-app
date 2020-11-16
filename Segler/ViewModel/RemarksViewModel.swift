@@ -17,13 +17,10 @@ class RemarksViewModel: ObservableObject {
         let decoder = JSONDecoder()
         do {
             var tempComments = try decoder.decode(ResponseComments.self, from: jsonData)
-            print(tempComments)
             comments = tempComments.comments
 //            self.comments = [try decoder.decode(Comment.self, from: jsonData)]
-            print(comments)
         } catch {
             print("KOMMENTARE KONNTEN NICHT GELADEN WERDEN")
-            print(error.localizedDescription)
         }
     }
     

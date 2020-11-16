@@ -72,7 +72,7 @@ struct Add_View: View {
                             ZStack {
                                 if mediaVM.showVideo {
                                     GeometryReader { geometry in
-                                        
+
                                         ZStack {
                                             VStack {
                                                 Button(action: {
@@ -119,6 +119,12 @@ struct Add_View: View {
                                         .frame(height: 34)
                                     SectionFreeTextField(remarksVM: self.remarksVM)
                                     SectionBilder(mediaVM : self.mediaVM)
+                                    if !(settingsVM.errorsJSON.isEmpty) {
+                                        Image("Warning").resizable().frame(width: 50, height: 50)
+                                        ForEach(settingsVM.errorsJSON, id: \.self) { error in
+                                            Text(error).foregroundColor(Color.red)
+                                        }
+                                    }
                                 }.environment(\.defaultMinListRowHeight, 8).zIndex(0)
                                 VStack {
                                     Spacer()
@@ -171,8 +177,9 @@ struct Add_View: View {
                     }
                 }
                 .sheet(isPresented: self.$mediaVM.showImagePickerNew) {
-                    ImageSelectionModal(mediaVM: self.mediaVM).onAppear {
-                        mediaVM.fetchImages()
+                    ImageSelectionModal(mediaVM: self.mediaVM)
+                    .onAppear {
+                        mediaVM.fetchMedia()
                     }
                 }
                 .onAppear {
@@ -493,16 +500,16 @@ struct ImageSelectionModal: View {
 //                            }
                         }
                     }
+                    Button("Lade mehr Fotos") {
+                        mediaVM.selectedPhotoAmount += 12
+                        mediaVM.fetchMedia()
+                    }.foregroundColor(Color.blue)
                     Text("Videos").foregroundColor(Color.black).fontWeight(.bold).font(.title)
                     LazyVGrid(columns: columns, spacing: 20) {
                         ForEach(mediaVM.videos, id: \.self) { video in
 //                            if image.type == "video" {
                                 Button(action: {
                                     mediaVM.toggleVideoElement(elementId: video.id)
-                                    print("Toggled: \(video)")
-                //                        mediaVM.images[image.].selected.toggle()
-                //                     $0.selected.toggle()
-                //                     image.selected.toggle()
                                 }, label: {
                                     ZStack {
                                         if video.selected {
@@ -526,6 +533,10 @@ struct ImageSelectionModal: View {
 //                            }
                         }
                     }
+                    Button("Lade mehr Videos") {
+                        mediaVM.selectedVideoAmount += 12
+                        mediaVM.fetchMedia()
+                    }.foregroundColor(Color.blue).padding(.bottom, 100)
                 }.padding(.vertical, 15).padding(.horizontal, 15)
             }
             .navigationBarItems(
@@ -586,7 +597,6 @@ struct reportModal: View {
                     }
                 }
                 Button(action: {
-                    print(mediaVM.images)
                     deleteMedia()
                 }) {
                     Text("Schließen").frame(height: 34)
@@ -611,7 +621,6 @@ struct reportModal: View {
         self.remarksVM.commentIsOk = true
         self.mediaVM.imagesIsOk = true
         self.showReport = false
-        self.mediaVM.fetchImages()
     }
 
 }

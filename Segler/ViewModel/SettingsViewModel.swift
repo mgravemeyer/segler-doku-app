@@ -27,6 +27,8 @@ class SettingsViewModel: ObservableObject {
     
     @Published var qp_iPad = String()
     @Published var qv_iPad = String()
+    
+    @Published var errorsJSON = [String]()
 }
 
 extension SettingsViewModel {
@@ -46,7 +48,6 @@ extension SettingsViewModel {
                     let content = sftpsession.contents(atPath: "config/config.json")
                     if content != nil {
                     if let string = String(bytes: content!, encoding: .utf8) {
-                        print(string)
                         let jsonData = Foundation.Data(string.data(using: .utf8)!)
                         decoda(jsonData: jsonData)
                         decodaURL(jsonData: jsonData)
@@ -140,12 +141,43 @@ extension SettingsViewModel {
         let decoder = JSONDecoder()
         do {
             let mediaQualityModel = try decoder.decode(MediaQualityModel.self, from: jsonData)
-            qp_iPhone = mediaQualityModel.Qp_iPhone
-            qv_iPhone = mediaQualityModel.Qv_iPhone
-            qp_iPod = mediaQualityModel.Qp_iPod
-            qv_iPod = mediaQualityModel.Qv_iPod
-            qp_iPad = mediaQualityModel.Qp_iPad
-            qv_iPad = mediaQualityModel.Qv_iPad
+            
+            if mediaQualityModel.Qp_iPhone == "error" || mediaQualityModel.Qp_iPhone == "" {
+                errorsJSON.append("qp_iPhone falsch")
+            } else {
+                qp_iPhone = mediaQualityModel.Qp_iPhone
+            }
+            
+            if mediaQualityModel.Qv_iPhone == "error" || mediaQualityModel.Qv_iPhone == "" {
+                errorsJSON.append("qv_iPhone falsch")
+            } else {
+                qv_iPhone = mediaQualityModel.Qv_iPhone
+            }
+            
+            if mediaQualityModel.Qp_iPod == "error" || mediaQualityModel.Qp_iPod == "" {
+                errorsJSON.append("qp_iPod falsch")
+            } else {
+                qp_iPod = mediaQualityModel.Qp_iPod
+            }
+            
+            if mediaQualityModel.Qv_iPod == "error" || mediaQualityModel.Qv_iPod == "" {
+                errorsJSON.append("qv_iPod falsch")
+            } else {
+                qv_iPod = mediaQualityModel.Qv_iPod
+            }
+            
+            if mediaQualityModel.Qp_iPad == "error" || mediaQualityModel.Qp_iPad == "" {
+                errorsJSON.append("qp_iPad falsch")
+            } else {
+                qp_iPad = mediaQualityModel.Qp_iPad
+            }
+            
+            if mediaQualityModel.Qv_iPad == "error" || mediaQualityModel.Qv_iPad == ""  {
+                errorsJSON.append("qv_iPad falsch")
+            } else {
+                qv_iPad = mediaQualityModel.Qv_iPad
+            }
+            
         } catch {
             print(error.localizedDescription)
         }

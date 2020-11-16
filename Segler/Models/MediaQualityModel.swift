@@ -30,17 +30,13 @@ struct MediaQualityModel: Decodable, Identifiable {
         let response = try container.nestedContainer(keyedBy: Keys.self, forKey: .response)
         let responseNested = try response.nestedContainer(keyedBy: Keys.self, forKey: .responseNested)
 
-        print(container)
-        print(response)
+        Qp_iPhone = try responseNested.decodeIfPresent(String.self, forKey: .Qp_iPhone) ?? "error"
+        Qv_iPhone = try responseNested.decodeIfPresent(String.self, forKey: .Qv_iPhone) ?? "error"
+        Qp_iPod = try responseNested.decodeIfPresent(String.self, forKey: .Qp_iPod) ?? "error"
+        Qv_iPod = try responseNested.decodeIfPresent(String.self, forKey: .Qv_iPod) ?? "error"
+        Qp_iPad = try responseNested.decodeIfPresent(String.self, forKey: .Qp_iPad) ?? "error"
+        Qv_iPad = try responseNested.decodeIfPresent(String.self, forKey: .Qv_iPad) ?? "error"
         
-        Qp_iPhone = try responseNested.decodeIfPresent(String.self, forKey: .Qp_iPhone)!
-        Qv_iPhone = try responseNested.decodeIfPresent(String.self, forKey: .Qv_iPhone)!
-        Qp_iPod = try responseNested.decodeIfPresent(String.self, forKey: .Qp_iPod)!
-        Qv_iPod = try responseNested.decodeIfPresent(String.self, forKey: .Qv_iPod)!
-        Qp_iPad = try responseNested.decodeIfPresent(String.self, forKey: .Qp_iPad)!
-        Qv_iPad = try responseNested.decodeIfPresent(String.self, forKey: .Qv_iPad)!
-        
-        print("\(Qp_iPhone) \(Qv_iPhone) \(Qp_iPod) \(Qv_iPod) \(Qp_iPad) \(Qv_iPad)")
     }
 }
 

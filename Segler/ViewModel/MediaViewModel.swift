@@ -62,6 +62,9 @@ class MediaViewModel : ObservableObject {
         return imagesCamera.count + videosCamera.count + images.count + videos.count
     }
     
+    @Published var selectedPhotoAmount = 0
+    @Published var selectedVideoAmount = 0
+    
     @Published var imagesCamera = [ImageModelCamera]()
     @Published var videosCamera = [VideoModelCamera]()
     
@@ -100,27 +103,19 @@ class MediaViewModel : ObservableObject {
         return thumbnail
     }
     
-    func fetchImages() {
+    func fetchMedia() {
         
-        let fetchOptions = PHFetchOptions()
-        fetchOptions.sortDescriptors = [NSSortDescriptor(key:"creationDate", ascending: false)]
-        fetchOptions.fetchLimit = 36
-        let reqImage = PHAsset.fetchAssets(with: .image, options: fetchOptions)
-        let reqVideo = PHAsset.fetchAssets(with: .video, options: fetchOptions)
-        DispatchQueue.main.async {
-//        DispatchQueue.global(qos: .background).async {
-            
-//            reqImage.enumerateObjects { (asset, _, _) in
-//                let options = PHImageRequestOptions()
-//                options.isSynchronous  = true
-//                PHCachingImageManager.default().requestImage(for: asset, targetSize: .init(), contentMode: .default, options: options) { (image, _) in
-//                    if image != nil {
-//                        print(image!)
-//                        self.images.append(ImageModel(image: image!, type: "image"))
-//                    }
-//                }
-//            }
-            
+        let fetchOptionsPhoto = PHFetchOptions()
+        fetchOptionsPhoto.sortDescriptors = [NSSortDescriptor(key:"creationDate", ascending: false)]
+        fetchOptionsPhoto.fetchLimit = 12 + selectedPhotoAmount
+        
+        let fetchOptionsVideo = PHFetchOptions()
+        fetchOptionsVideo.sortDescriptors = [NSSortDescriptor(key:"creationDate", ascending: false)]
+        fetchOptionsVideo.fetchLimit = 12 + selectedVideoAmount
+        
+        let reqImage = PHAsset.fetchAssets(with: .image, options: fetchOptionsPhoto)
+        let reqVideo = PHAsset.fetchAssets(with: .video, options: fetchOptionsVideo)
+
             reqImage.enumerateObjects { (phAsset, _, _) in
                 let options = PHImageRequestOptions()
                 options.isSynchronous  = true
@@ -169,6 +164,6 @@ class MediaViewModel : ObservableObject {
                 }
             }
             
-        }
+        
     }
 }

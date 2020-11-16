@@ -25,39 +25,40 @@ struct ImagePicker: UIViewControllerRepresentable {
         vc.allowsEditing = false
         vc.sourceType = .camera
         vc.mediaTypes = [kUTTypeMovie as String, kUTTypeImage as String]
+        vc.videoQuality = .typeHigh
         
-        if UIDevice.current.name.contains("iPhone") {
-            if settingsVM.qv_iPhone.floatValue > 0.7 {
-                print("Nutze gute Qualität!")
-                vc.videoQuality = .typeHigh
-            } else if settingsVM.qv_iPhone.floatValue > 0.3 {
-                print("Nutze mittlere Qualität!")
-                vc.videoQuality = .typeMedium
-            } else {
-                print("Nutze low Qualität!")
-                vc.videoQuality = .type640x480
-            }
-        } else
-        if UIDevice.current.name.contains("iPod touch") {
-            if settingsVM.qv_iPod.floatValue > 0.7 {
-                vc.videoQuality = .typeHigh
-            } else if settingsVM.qv_iPod.floatValue > 0.3 {
-                vc.videoQuality = .typeMedium
-            } else {
-                vc.videoQuality = .type640x480
-            }
-
-        } else
-        if UIDevice.current.name.contains("iPad") {
-            if settingsVM.qv_iPad.floatValue > 0.7 {
-                vc.videoQuality = .typeHigh
-            } else if settingsVM.qv_iPad.floatValue > 0.3 {
-                vc.videoQuality = .typeMedium
-            } else {
-                vc.videoQuality = .type640x480
-            }
-
-        }
+//        if UIDevice.current.name.contains("iPhone") {
+//            if settingsVM.qv_iPhone.floatValue > 0.7 {
+//                print("Nutze gute Qualität!")
+//                vc.videoQuality = .typeHigh
+//            } else if settingsVM.qv_iPhone.floatValue > 0.3 {
+//                print("Nutze mittlere Qualität!")
+//                vc.videoQuality = .typeMedium
+//            } else {
+//                print("Nutze low Qualität!")
+//                vc.videoQuality = .type640x480
+//            }
+//        } else
+//        if UIDevice.current.name.contains("iPod touch") {
+//            if settingsVM.qv_iPod.floatValue > 0.7 {
+//                vc.videoQuality = .typeHigh
+//            } else if settingsVM.qv_iPod.floatValue > 0.3 {
+//                vc.videoQuality = .typeMedium
+//            } else {
+//                vc.videoQuality = .type640x480
+//            }
+//
+//        } else
+//        if UIDevice.current.name.contains("iPad") {
+//            if settingsVM.qv_iPad.floatValue > 0.7 {
+//                vc.videoQuality = .typeHigh
+//            } else if settingsVM.qv_iPad.floatValue > 0.3 {
+//                vc.videoQuality = .typeMedium
+//            } else {
+//                vc.videoQuality = .type640x480
+//            }
+//
+//        }
         
         let previewLayer = AVCaptureVideoPreviewLayer()
         previewLayer.videoGravity = .resizeAspectFill
@@ -74,6 +75,10 @@ struct ImagePicker: UIViewControllerRepresentable {
         
         @ObservedObject var mediaVM : MediaViewModel
         
+        var assetWriter:AVAssetWriter?
+         var assetReader:AVAssetReader?
+         let bitrate:NSNumber = NSNumber(value:250000)
+        
         init(mediaVM : ObservedObject<MediaViewModel>) {
             _mediaVM = mediaVM
         }
@@ -87,12 +92,10 @@ struct ImagePicker: UIViewControllerRepresentable {
                 mediaVM.imagesCamera.append(ImageModelCamera(image: uiimage, order: mediaVM.getOrderNumber()))
             } else {
                 let url: URL = info[UIImagePickerController.InfoKey(rawValue: UIImagePickerController.InfoKey.mediaURL.rawValue)] as! URL
-                let chosenVideo = info[UIImagePickerController.InfoKey(rawValue: UIImagePickerController.InfoKey.mediaURL.rawValue)] as! URL
-                let videoData = try! Data(contentsOf: chosenVideo, options: [])
+                let videoData = try! Data(contentsOf: url, options: [])
                 let thumbnail = url.generateThumbnail()
                 mediaVM.videosCamera.append(VideoModelCamera(url: url, video: videoData, thumbnail: thumbnail, order: mediaVM.getOrderNumber()))
             }
-            
             mediaVM.showImagePicker = false
         }
         func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {

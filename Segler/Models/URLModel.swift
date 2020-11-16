@@ -14,6 +14,5 @@ struct URLModel: Decodable, Identifiable {
         let container = try decoder.container(keyedBy: Keys.self)
         let response = try container.nestedContainer(keyedBy: Keys.self, forKey: .response)
         url = try response.decodeIfPresent(String.self, forKey: .url)!
-        print("url: \(url)")
     }
 }
