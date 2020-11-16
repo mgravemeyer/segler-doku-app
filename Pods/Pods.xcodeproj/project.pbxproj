@@ -1000,13 +1000,12 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		1D0A25784F1EF1BD889037BD5085A2D8 /* Release */ = {
+		0904C580325BD5014FB8B60A9A134C46 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B6CB8BFF9368ADF89A21A38F43EC8ADE /* Pods-Segler.release.xcconfig */;
+			baseConfigurationReference = F442AC0EDF6461A4152447D98001CDB4 /* Pods-Segler.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -1020,16 +1019,38 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		0D640CEEA031B12B75E0A0731055CA13 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 84D162B52D69CFD88DB408BD1FA245A7 /* BarcodeScanner.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/BarcodeScanner/BarcodeScanner-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MODULEMAP_FILE = Headers/Public/BarcodeScanner/BarcodeScanner.modulemap;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = BarcodeScanner;
+				PRODUCT_NAME = BarcodeScanner;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
-		45B1C6461D70666F181D20D987A878A6 /* Debug */ = {
+		12C681064F19A55F1DADB8408C98FE07 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 269520F0EA4F5309770061809B0E05EC /* FDTake.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -1050,12 +1071,27 @@
 			};
 			name = Debug;
 		};
-		5A80A98098837723A70CFE8ED8887D92 /* Debug */ = {
+		12CC624BA8F0D398900777C8FFDB8ADD /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 84D162B52D69CFD88DB408BD1FA245A7 /* BarcodeScanner.release.xcconfig */;
+			buildSettings = {
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/BarcodeScanner";
+				IBSC_MODULE = BarcodeScanner;
+				INFOPLIST_FILE = "Target Support Files/BarcodeScanner/ResourceBundle-Localization-BarcodeScanner-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				PRODUCT_NAME = Localization;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
+		40FD3D82905FF8FEAEFD8BB47EB2E8AC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 16FE9F00066D9CAD3B22B320535DCB4E /* ProgressHUD.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -1076,51 +1112,11 @@
 			};
 			name = Debug;
 		};
-		6AEC4DE3747F1CE06721E8018F3261A0 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = CA68486EEB30C7C1E70B55872F2B03D5 /* BarcodeScanner.debug.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/BarcodeScanner";
-				IBSC_MODULE = BarcodeScanner;
-				INFOPLIST_FILE = "Target Support Files/BarcodeScanner/ResourceBundle-Localization-BarcodeScanner-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				PRODUCT_NAME = Localization;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				WRAPPER_EXTENSION = bundle;
-			};
-			name = Debug;
-		};
-		84FC38D1A34C274FC4B16AE88C210D92 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 59B0518B7FB69EFF3502DD900DFB9B8A /* NMSSH.debug.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				GCC_PREFIX_HEADER = "Target Support Files/NMSSH/NMSSH-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				MODULEMAP_FILE = Headers/Public/NMSSH/NMSSH.modulemap;
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_MODULE_NAME = NMSSH;
-				PRODUCT_NAME = NMSSH;
-				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		8A3650F6C8AC2EFFA814EA61C37468B1 /* Debug */ = {
+		4BC7450F9457737EE3E637BA155B56F7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -1143,6 +1139,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1181,36 +1178,37 @@
 			};
 			name = Debug;
 		};
-		8DFD9AFF9D91DDA3B12109D6347F31DC /* Debug */ = {
+		5B59466A8EE50D8EF525393E2B650A7E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CA68486EEB30C7C1E70B55872F2B03D5 /* BarcodeScanner.debug.xcconfig */;
+			baseConfigurationReference = 37258538D3240C103BDC83672AD9D01F /* ProgressHUD.release.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				GCC_PREFIX_HEADER = "Target Support Files/BarcodeScanner/BarcodeScanner-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				MODULEMAP_FILE = Headers/Public/BarcodeScanner/BarcodeScanner.modulemap;
+				GCC_PREFIX_HEADER = "Target Support Files/ProgressHUD/ProgressHUD-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MODULEMAP_FILE = Headers/Public/ProgressHUD/ProgressHUD.modulemap;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_MODULE_NAME = BarcodeScanner;
-				PRODUCT_NAME = BarcodeScanner;
+				PRODUCT_MODULE_NAME = ProgressHUD;
+				PRODUCT_NAME = ProgressHUD;
 				PUBLIC_HEADERS_FOLDER_PATH = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
 			};
-			name = Debug;
+			name = Release;
 		};
-		94678FE978CE30E16EDB2D1D8B24A27E /* Release */ = {
+		5CBBD6DA59D7C86EB4B78306EAAA2D38 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BC210A356669936A5B8BD94FE5E8C928 /* FDTake.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -1232,55 +1230,28 @@
 			};
 			name = Release;
 		};
-		986C0A9B8292504EAE273BC39D5EECEA /* Release */ = {
+		67782470ECD40F85E8A491C9C7A74109 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 84D162B52D69CFD88DB408BD1FA245A7 /* BarcodeScanner.release.xcconfig */;
+			baseConfigurationReference = CA68486EEB30C7C1E70B55872F2B03D5 /* BarcodeScanner.debug.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/BarcodeScanner";
 				IBSC_MODULE = BarcodeScanner;
-				INFOPLIST_FILE = "Target Support Files/BarcodeScanner/ResourceBundle-Localization-BarcodeScanner-Info.plist";
+				INFOPLIST_FILE = "Target Support Files/BarcodeScanner/ResourceBundle-BarcodeScanner-BarcodeScanner-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				PRODUCT_NAME = Localization;
+				PRODUCT_NAME = BarcodeScanner;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = bundle;
 			};
-			name = Release;
+			name = Debug;
 		};
-		A22837DC6DAC68D1B3BC5BD21A41F11E /* Release */ = {
+		730BA97CAA9CB62939DFF1CD2D162577 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 07F6A2FF95145F8F1F848A57879F7866 /* NMSSH.release.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				GCC_PREFIX_HEADER = "Target Support Files/NMSSH/NMSSH-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				MODULEMAP_FILE = Headers/Public/NMSSH/NMSSH.modulemap;
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_MODULE_NAME = NMSSH;
-				PRODUCT_NAME = NMSSH;
-				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		AAA6C87FE9A913662BC839E237522154 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = F442AC0EDF6461A4152447D98001CDB4 /* Pods-Segler.debug.xcconfig */;
+			baseConfigurationReference = B6CB8BFF9368ADF89A21A38F43EC8ADE /* Pods-Segler.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -1294,13 +1265,54 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		85239F1684148F21F8D88C336E48C8C1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CA68486EEB30C7C1E70B55872F2B03D5 /* BarcodeScanner.debug.xcconfig */;
+			buildSettings = {
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/BarcodeScanner";
+				IBSC_MODULE = BarcodeScanner;
+				INFOPLIST_FILE = "Target Support Files/BarcodeScanner/ResourceBundle-Localization-BarcodeScanner-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				PRODUCT_NAME = Localization;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = bundle;
 			};
 			name = Debug;
 		};
-		AF1F8D2941B0228930706FA0F2C9BB78 /* Release */ = {
+		871E60ED6A48DE50A4B0C73424294555 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CA68486EEB30C7C1E70B55872F2B03D5 /* BarcodeScanner.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/BarcodeScanner/BarcodeScanner-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MODULEMAP_FILE = Headers/Public/BarcodeScanner/BarcodeScanner.modulemap;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = BarcodeScanner;
+				PRODUCT_NAME = BarcodeScanner;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8B5A46FF8D3C1289CDEE3BAFACABCD2A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -1323,6 +1335,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1357,23 +1370,43 @@
 			};
 			name = Release;
 		};
-		D31CB58A472E3E269925046FF27E36D2 /* Release */ = {
+		A87F153E509D5C820AA6983B203AE93A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 37258538D3240C103BDC83672AD9D01F /* ProgressHUD.release.xcconfig */;
+			baseConfigurationReference = 59B0518B7FB69EFF3502DD900DFB9B8A /* NMSSH.debug.xcconfig */;
 			buildSettings = {
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				GCC_PREFIX_HEADER = "Target Support Files/ProgressHUD/ProgressHUD-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				MODULEMAP_FILE = Headers/Public/ProgressHUD/ProgressHUD.modulemap;
-				OTHER_LDFLAGS = "";
+				GCC_PREFIX_HEADER = "Target Support Files/NMSSH/NMSSH-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				MODULEMAP_FILE = Headers/Public/NMSSH/NMSSH.modulemap;
 				OTHER_LIBTOOLFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_MODULE_NAME = ProgressHUD;
-				PRODUCT_NAME = ProgressHUD;
+				PRODUCT_MODULE_NAME = NMSSH;
+				PRODUCT_NAME = NMSSH;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C9A924104C7E70853B537DA1A3B270FA /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 07F6A2FF95145F8F1F848A57879F7866 /* NMSSH.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/NMSSH/NMSSH-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				MODULEMAP_FILE = Headers/Public/NMSSH/NMSSH.modulemap;
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = NMSSH;
+				PRODUCT_NAME = NMSSH;
 				PUBLIC_HEADERS_FOLDER_PATH = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -1384,11 +1417,10 @@
 			};
 			name = Release;
 		};
-		D8F810A5363AD64372AAA3F0630C05A6 /* Debug */ = {
+		CC452CB688594C22235D87BD1E21CC18 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CA68486EEB30C7C1E70B55872F2B03D5 /* BarcodeScanner.debug.xcconfig */;
+			baseConfigurationReference = 84D162B52D69CFD88DB408BD1FA245A7 /* BarcodeScanner.release.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/BarcodeScanner";
 				IBSC_MODULE = BarcodeScanner;
 				INFOPLIST_FILE = "Target Support Files/BarcodeScanner/ResourceBundle-BarcodeScanner-BarcodeScanner-Info.plist";
@@ -1398,48 +1430,6 @@
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = bundle;
-			};
-			name = Debug;
-		};
-		DA525585408C66A62DD0844D48A2E021 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 84D162B52D69CFD88DB408BD1FA245A7 /* BarcodeScanner.release.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/BarcodeScanner";
-				IBSC_MODULE = BarcodeScanner;
-				INFOPLIST_FILE = "Target Support Files/BarcodeScanner/ResourceBundle-BarcodeScanner-BarcodeScanner-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				PRODUCT_NAME = BarcodeScanner;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				WRAPPER_EXTENSION = bundle;
-			};
-			name = Release;
-		};
-		E0F32247C3EC2F814A02A0C94EF90D49 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 84D162B52D69CFD88DB408BD1FA245A7 /* BarcodeScanner.release.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				GCC_PREFIX_HEADER = "Target Support Files/BarcodeScanner/BarcodeScanner-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				MODULEMAP_FILE = Headers/Public/BarcodeScanner/BarcodeScanner.modulemap;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_MODULE_NAME = BarcodeScanner;
-				PRODUCT_NAME = BarcodeScanner;
-				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
@@ -1449,8 +1439,8 @@
 		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				8A3650F6C8AC2EFFA814EA61C37468B1 /* Debug */,
-				AF1F8D2941B0228930706FA0F2C9BB78 /* Release */,
+				4BC7450F9457737EE3E637BA155B56F7 /* Debug */,
+				8B5A46FF8D3C1289CDEE3BAFACABCD2A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1458,8 +1448,8 @@
 		4F1BF9011D5F103E111016A706ACDE6B /* Build configuration list for PBXNativeTarget "ProgressHUD" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				5A80A98098837723A70CFE8ED8887D92 /* Debug */,
-				D31CB58A472E3E269925046FF27E36D2 /* Release */,
+				40FD3D82905FF8FEAEFD8BB47EB2E8AC /* Debug */,
+				5B59466A8EE50D8EF525393E2B650A7E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1467,8 +1457,8 @@
 		59FC39AC5D93CD52637F186CFFB0CB3A /* Build configuration list for PBXNativeTarget "Pods-Segler" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				AAA6C87FE9A913662BC839E237522154 /* Debug */,
-				1D0A25784F1EF1BD889037BD5085A2D8 /* Release */,
+				0904C580325BD5014FB8B60A9A134C46 /* Debug */,
+				730BA97CAA9CB62939DFF1CD2D162577 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1476,8 +1466,8 @@
 		67183B91C5533EBDAC38354D0278201F /* Build configuration list for PBXNativeTarget "BarcodeScanner" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				8DFD9AFF9D91DDA3B12109D6347F31DC /* Debug */,
-				E0F32247C3EC2F814A02A0C94EF90D49 /* Release */,
+				871E60ED6A48DE50A4B0C73424294555 /* Debug */,
+				0D640CEEA031B12B75E0A0731055CA13 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1485,8 +1475,8 @@
 		9C416696AD3FE465DC35DFD8DCC0D9C6 /* Build configuration list for PBXNativeTarget "NMSSH" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				84FC38D1A34C274FC4B16AE88C210D92 /* Debug */,
-				A22837DC6DAC68D1B3BC5BD21A41F11E /* Release */,
+				A87F153E509D5C820AA6983B203AE93A /* Debug */,
+				C9A924104C7E70853B537DA1A3B270FA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1494,8 +1484,8 @@
 		AB81606FBCE2C7292F583DF35C9F58D0 /* Build configuration list for PBXNativeTarget "FDTake" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				45B1C6461D70666F181D20D987A878A6 /* Debug */,
-				94678FE978CE30E16EDB2D1D8B24A27E /* Release */,
+				12C681064F19A55F1DADB8408C98FE07 /* Debug */,
+				5CBBD6DA59D7C86EB4B78306EAAA2D38 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1503,8 +1493,8 @@
 		ADF6AAA9E9C5B74448786BFC1A9B5531 /* Build configuration list for PBXNativeTarget "BarcodeScanner-BarcodeScanner" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D8F810A5363AD64372AAA3F0630C05A6 /* Debug */,
-				DA525585408C66A62DD0844D48A2E021 /* Release */,
+				67782470ECD40F85E8A491C9C7A74109 /* Debug */,
+				CC452CB688594C22235D87BD1E21CC18 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1512,8 +1502,8 @@
 		F76A6683409C764299D196A078741425 /* Build configuration list for PBXNativeTarget "BarcodeScanner-Localization" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				6AEC4DE3747F1CE06721E8018F3261A0 /* Debug */,
-				986C0A9B8292504EAE273BC39D5EECEA /* Release */,
+				85239F1684148F21F8D88C336E48C8C1 /* Debug */,
+				12CC624BA8F0D398900777C8FFDB8ADD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

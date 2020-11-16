@@ -86,9 +86,10 @@ struct Add_View: View {
                                                 }).zIndex(1)
                                                 ZStack {
                                                     AVPlayerView(videoURL: $mediaVM.selectedVideo).frame(width: geometry.size.width - 20, height: geometry.size.height - 150).padding(.leading, 0)
+                                                }
                                             }.padding(.top, geometry.size.height/2 - 350).zIndex(1)
-                                                Color.white.opacity(0.8).zIndex(-100)
-                                            }}
+                                            Color.white.opacity(1).zIndex(-100)
+                                        }
                                     }.zIndex(100)
                                 }
                                 if mediaVM.showImage {
@@ -106,7 +107,7 @@ struct Add_View: View {
                                                 }).zIndex(1)
                                                 Image(uiImage: mediaVM.selectedImage!).resizable().aspectRatio(mediaVM.selectedImage!.size, contentMode: .fit).frame(width: geometry.size.width - 20, height: geometry.size.height - 150).padding(.leading, 0)
                                             }.padding(.top, geometry.size.height/2 - 350).zIndex(1)
-                                                Color.white.opacity(0.8).zIndex(-100)
+                                                Color.white.opacity(1).zIndex(-100)
                                         }
                                     }.zIndex(100)
                                 }
