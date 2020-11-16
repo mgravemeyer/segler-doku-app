@@ -13,11 +13,9 @@
 		E301A5A623CDF474006A72D5 /* MediaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E301A5A523CDF474006A72D5 /* MediaViewModel.swift */; };
 		E301A5A823CDF4A0006A72D5 /* ColorSeglerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E301A5A723CDF4A0006A72D5 /* ColorSeglerViewModel.swift */; };
 		E31A5C1523D4602900ED647C /* BarcodeScannerSegler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31A5C1423D4602900ED647C /* BarcodeScannerSegler.swift */; };
-		E342EA3C23D71A3C00ABE64D /* KeyboardResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E342EA3B23D71A3C00ABE64D /* KeyboardResponder.swift */; };
 		E35319742517EAC0005768DD /* URLModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35319732517EAC0005768DD /* URLModel.swift */; };
 		E357E1B524B23940009871F1 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E357E1B424B23940009871F1 /* ErrorView.swift */; };
 		E368AFBE23CCC427009DD849 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E368AFBD23CCC427009DD849 /* Comment.swift */; };
-		E368AFC523CCC5C1009DD849 /* downloadJSONController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E368AFC423CCC5C1009DD849 /* downloadJSONController.swift */; };
 		E39A9D6323D8930D00418E51 /* AdminLoginPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39A9D6223D8930D00418E51 /* AdminLoginPassword.swift */; };
 		E3A3BC7823A26C53002BDE18 /* FTPUploadController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A3BC7723A26C53002BDE18 /* FTPUploadController.swift */; };
 		E3A3BC7A23A28E72002BDE18 /* ImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A3BC7923A28E72002BDE18 /* ImagePickerController.swift */; };
@@ -52,11 +50,9 @@
 		E32E148123F3481700C9BA1D /* BarcodeScanner.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = BarcodeScanner.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		E33E8FDD254A27E2003953E8 /* libBarcodeScanner.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libBarcodeScanner.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E33E8FDF254A27F9003953E8 /* libNMSSH.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libNMSSH.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		E342EA3B23D71A3C00ABE64D /* KeyboardResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardResponder.swift; sourceTree = "<group>"; };
 		E35319732517EAC0005768DD /* URLModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLModel.swift; sourceTree = "<group>"; };
 		E357E1B424B23940009871F1 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		E368AFBD23CCC427009DD849 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
-		E368AFC423CCC5C1009DD849 /* downloadJSONController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = downloadJSONController.swift; sourceTree = "<group>"; };
 		E39A9D6223D8930D00418E51 /* AdminLoginPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminLoginPassword.swift; sourceTree = "<group>"; };
 		E3A3BC7723A26C53002BDE18 /* FTPUploadController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTPUploadController.swift; sourceTree = "<group>"; };
 		E3A3BC7923A28E72002BDE18 /* ImagePickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerController.swift; sourceTree = "<group>"; };
@@ -168,8 +164,6 @@
 				E31A5C1423D4602900ED647C /* BarcodeScannerSegler.swift */,
 				E3A3BC7923A28E72002BDE18 /* ImagePickerController.swift */,
 				E3A3BC7723A26C53002BDE18 /* FTPUploadController.swift */,
-				E368AFC423CCC5C1009DD849 /* downloadJSONController.swift */,
-				E342EA3B23D71A3C00ABE64D /* KeyboardResponder.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -349,7 +343,6 @@
 				E357E1B524B23940009871F1 /* ErrorView.swift in Sources */,
 				E3D6A0D523A1838A000F35E9 /* AppDelegate.swift in Sources */,
 				E39A9D6323D8930D00418E51 /* AdminLoginPassword.swift in Sources */,
-				E342EA3C23D71A3C00ABE64D /* KeyboardResponder.swift in Sources */,
 				E3A3BC7823A26C53002BDE18 /* FTPUploadController.swift in Sources */,
 				E368AFBE23CCC427009DD849 /* Comment.swift in Sources */,
 				E301A5A623CDF474006A72D5 /* MediaViewModel.swift in Sources */,
@@ -365,7 +358,6 @@
 				E35319742517EAC0005768DD /* URLModel.swift in Sources */,
 				E3A3BC7A23A28E72002BDE18 /* ImagePickerController.swift in Sources */,
 				E31A5C1523D4602900ED647C /* BarcodeScannerSegler.swift in Sources */,
-				E368AFC523CCC5C1009DD849 /* downloadJSONController.swift in Sources */,
 				E3D6A0D723A1838A000F35E9 /* SceneDelegate.swift in Sources */,
 				E3EA711B23D132F900340463 /* LoginView.swift in Sources */,
 				E3B808DF23D06DE5007A7595 /* SettingsViewModel.swift in Sources */,
