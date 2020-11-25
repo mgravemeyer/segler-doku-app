@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2EA3681E25607C640056D508 /* MediaQualityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA3681D25607C640056D508 /* MediaQualityModel.swift */; };
-		6F91727D829FD35BF34174B6 /* libPods-Segler.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D097EC5A2F1615B645E9BFDC /* libPods-Segler.a */; };
+		C63A0A8B51DE2A9BAE9845D2 /* libPods-Segler.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9959BB111C402453CB8AAD66 /* libPods-Segler.a */; };
 		E301A5A423CDF44A006A72D5 /* OrderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E301A5A323CDF44A006A72D5 /* OrderViewModel.swift */; };
 		E301A5A623CDF474006A72D5 /* MediaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E301A5A523CDF474006A72D5 /* MediaViewModel.swift */; };
 		E301A5A823CDF4A0006A72D5 /* ColorSeglerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E301A5A723CDF4A0006A72D5 /* ColorSeglerViewModel.swift */; };
@@ -38,10 +38,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2867D9662D924109AEA75843 /* Pods-Segler.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Segler.release.xcconfig"; path = "Target Support Files/Pods-Segler/Pods-Segler.release.xcconfig"; sourceTree = "<group>"; };
+		2B709C98B3A981F96DB6E006 /* Pods-Segler.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Segler.debug.xcconfig"; path = "Target Support Files/Pods-Segler/Pods-Segler.debug.xcconfig"; sourceTree = "<group>"; };
 		2EA3681D25607C640056D508 /* MediaQualityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaQualityModel.swift; sourceTree = "<group>"; };
-		D097EC5A2F1615B645E9BFDC /* libPods-Segler.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Segler.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		D455C0911398682CDAF0BB33 /* Pods-Segler.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Segler.debug.xcconfig"; path = "Target Support Files/Pods-Segler/Pods-Segler.debug.xcconfig"; sourceTree = "<group>"; };
+		50F8533D78045E1F565D1EE1 /* Pods-Segler.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Segler.release.xcconfig"; path = "Target Support Files/Pods-Segler/Pods-Segler.release.xcconfig"; sourceTree = "<group>"; };
+		9959BB111C402453CB8AAD66 /* libPods-Segler.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Segler.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E301A5A323CDF44A006A72D5 /* OrderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewModel.swift; sourceTree = "<group>"; };
 		E301A5A523CDF474006A72D5 /* MediaViewModel.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = MediaViewModel.swift; sourceTree = "<group>"; tabWidth = 4; };
 		E301A5A723CDF4A0006A72D5 /* ColorSeglerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSeglerViewModel.swift; sourceTree = "<group>"; };
@@ -83,7 +83,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6F91727D829FD35BF34174B6 /* libPods-Segler.a in Frameworks */,
+				C63A0A8B51DE2A9BAE9845D2 /* libPods-Segler.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,8 +93,8 @@
 		4201FC457981F448FBE2B5D8 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				D455C0911398682CDAF0BB33 /* Pods-Segler.debug.xcconfig */,
-				2867D9662D924109AEA75843 /* Pods-Segler.release.xcconfig */,
+				2B709C98B3A981F96DB6E006 /* Pods-Segler.debug.xcconfig */,
+				50F8533D78045E1F565D1EE1 /* Pods-Segler.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -108,7 +108,7 @@
 				E3A7B58F23F34C6C00235D5A /* BarcodeScanner.framework */,
 				E32E148123F3481700C9BA1D /* BarcodeScanner.bundle */,
 				E32E147A23F347DC00C9BA1D /* BarcodeScanner.framework */,
-				D097EC5A2F1615B645E9BFDC /* libPods-Segler.a */,
+				9959BB111C402453CB8AAD66 /* libPods-Segler.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -229,11 +229,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E3D6A0E823A18395000F35E9 /* Build configuration list for PBXNativeTarget "Segler" */;
 			buildPhases = (
-				16693DF06234BAFFA94F9C2B /* [CP] Check Pods Manifest.lock */,
+				FFB6370F3FBE56FB34BC5ABA /* [CP] Check Pods Manifest.lock */,
 				E3D6A0CD23A1838A000F35E9 /* Sources */,
 				E3D6A0CE23A1838A000F35E9 /* Frameworks */,
 				E3D6A0CF23A1838A000F35E9 /* Resources */,
-				A0C01BF49159B386F481C5FA /* [CP] Copy Pods Resources */,
+				809CDACCC4C53737D22B3923 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -251,7 +251,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1120;
-				LastUpgradeCheck = 1120;
+				LastUpgradeCheck = 1220;
 				ORGANIZATIONNAME = "Maximilian Gravemeyer";
 				TargetAttributes = {
 					E3D6A0D023A1838A000F35E9 = {
@@ -291,7 +291,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		16693DF06234BAFFA94F9C2B /* [CP] Check Pods Manifest.lock */ = {
+		809CDACCC4C53737D22B3923 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Segler/Pods-Segler-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Segler/Pods-Segler-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Segler/Pods-Segler-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FFB6370F3FBE56FB34BC5ABA /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -311,23 +328,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A0C01BF49159B386F481C5FA /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Segler/Pods-Segler-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Segler/Pods-Segler-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Segler/Pods-Segler-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -405,6 +405,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -466,6 +467,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -496,7 +498,7 @@
 		};
 		E3D6A0E923A18395000F35E9 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D455C0911398682CDAF0BB33 /* Pods-Segler.debug.xcconfig */;
+			baseConfigurationReference = 2B709C98B3A981F96DB6E006 /* Pods-Segler.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -526,7 +528,7 @@
 		};
 		E3D6A0EA23A18395000F35E9 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2867D9662D924109AEA75843 /* Pods-Segler.release.xcconfig */;
+			baseConfigurationReference = 50F8533D78045E1F565D1EE1 /* Pods-Segler.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";

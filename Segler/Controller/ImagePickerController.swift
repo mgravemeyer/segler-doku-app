@@ -73,6 +73,17 @@ struct ImagePicker: UIViewControllerRepresentable {
     
     class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
         
+        func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+            if let error = error {
+                // we got back an error!
+                let ac = UIAlertController(title: "Save error", message: error.localizedDescription, preferredStyle: .alert)
+                ac.addAction(UIAlertAction(title: "OK", style: .default))
+            } else {
+                let ac = UIAlertController(title: "Saved!", message: "Your altered image has been saved to your photos.", preferredStyle: .alert)
+                ac.addAction(UIAlertAction(title: "OK", style: .default))
+            }
+        }
+        
         @ObservedObject var mediaVM : MediaViewModel
         
         var assetWriter:AVAssetWriter?
@@ -89,12 +100,30 @@ struct ImagePicker: UIViewControllerRepresentable {
             
             if mediaType.isEqual(to: kUTTypeImage as String) {
                 let uiimage = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
-                mediaVM.imagesCamera.append(ImageModelCamera(image: uiimage, order: mediaVM.getOrderNumber()))
+                UIImageWriteToSavedPhotosAlbum(uiimage, nil, nil, nil)
+                var orientation = ""
+                if uiimage.size.width > uiimage.size.height {
+                    orientation = "horizontal"
+                } else if uiimage.size.width < uiimage.size.height {
+                    orientation = "vertical"
+                } else {
+                    orientation = "quadratisch"
+                }
+                mediaVM.imagesCamera.append(ImageModelCamera(image: uiimage, order: mediaVM.getOrderNumber(), orientation: orientation))
             } else {
                 let url: URL = info[UIImagePickerController.InfoKey(rawValue: UIImagePickerController.InfoKey.mediaURL.rawValue)] as! URL
+                UISaveVideoAtPathToSavedPhotosAlbum(url.path, nil, nil, nil)
                 let videoData = try! Data(contentsOf: url, options: [])
                 let thumbnail = url.generateThumbnail()
-                mediaVM.videosCamera.append(VideoModelCamera(url: url, video: videoData, thumbnail: thumbnail, order: mediaVM.getOrderNumber()))
+                var orientation = ""
+                if thumbnail.size.width > thumbnail.size.height {
+                    orientation = "horizontal"
+                } else if thumbnail.size.width < thumbnail.size.height {
+                    orientation = "vertical"
+                } else {
+                    orientation = "quadratisch"
+                }
+                mediaVM.videosCamera.append(VideoModelCamera(url: url, video: videoData, thumbnail: thumbnail, order: mediaVM.getOrderNumber(), orientation: orientation))
             }
             mediaVM.showImagePicker = false
         }

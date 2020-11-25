@@ -75,31 +75,23 @@ struct FTPUploadController {
     
     class VideoCompress {
         
-        var assetWriter:AVAssetWriter?
-        var assetReader:AVAssetReader?
-        
         @ObservedObject var settingsVM : SettingsViewModel
         
         init(settingsVM : ObservedObject<SettingsViewModel>) {
+            
             _settingsVM = settingsVM
             
             if UIDevice.current.name.contains("iPhone") {
                 let number = Int(settingsVM.projectedValue.qv_iPhone.wrappedValue)
-                print(number!)
                 bitrate = NSNumber(value: number!)
-                print(bitrate)
             } else
             if UIDevice.current.name.contains("iPod touch") {
                 let number = Int(settingsVM.projectedValue.qv_iPod.wrappedValue)
-                print(number!)
                 bitrate = NSNumber(value: number!)
-                print(bitrate)
             } else
             if UIDevice.current.name.contains("iPad") {
                 let number = Int(settingsVM.projectedValue.qv_iPad.wrappedValue)
-                print(number!)
                 bitrate = NSNumber(value: number!)
-                print(bitrate)
             }
         }
         
@@ -109,7 +101,8 @@ struct FTPUploadController {
         
         func compressFile(urlToCompress: URL, outputURL: URL, completion:@escaping (URL)->Void) {
             
-            print("Bitrate: \(bitrate)")
+            var assetWriter:AVAssetWriter?
+            var assetReader:AVAssetReader?
             
             var audioFinished = false
             var videoFinished = false
@@ -119,7 +112,7 @@ struct FTPUploadController {
             do{
                 assetReader = try AVAssetReader(asset: asset)
             } catch {
-                self.assetReader = nil
+                assetReader = nil
             }
             
             guard let reader = assetReader else {
@@ -166,7 +159,7 @@ struct FTPUploadController {
                     fatalError("assetWriter was nil")
                 }
             
-            writer.shouldOptimizeForNetworkUse = true
+            writer.shouldOptimizeForNetworkUse = false
                 writer.add(videoInput)
                 writer.add(audioInput)
                 writer.startWriting()
@@ -174,11 +167,13 @@ struct FTPUploadController {
             writer.startSession(atSourceTime: CMTime.zero)
             
             let closeWriter:()->Void = {
-                if (audioFinished && videoFinished){
-                    self.assetWriter?.finishWriting(completionHandler: {
-                        completion((self.assetWriter?.outputURL)!)
+                if (audioFinished && videoFinished) {
+                    assetWriter?.finishWriting(completionHandler: {
+                        completion((assetWriter?.outputURL)!)
                     })
-                    self.assetReader?.cancelReading()
+                    assetReader?.cancelReading()
+                } else {
+                    print("NOT FINISHED STOP")
                 }
             }
             
@@ -227,8 +222,8 @@ struct FTPUploadController {
         var orderNrCheck = false
         var orderPositionCheck = false
         
-        var imagesCheck = false
-        var commentCheck = false
+//        var imagesCheck = false
+//        var commentCheck = false
         
         var jsonObject = Data()
         
@@ -248,10 +243,6 @@ struct FTPUploadController {
         let session = NMSSHSession.init(host: "\(self.settingsVM.ip)", andUsername: "\(self.settingsVM.serverUsername)")
         session.connect()
         session.authenticate(byPassword: "\(self.settingsVM.serverPassword)")
-        
-            DispatchQueue.main.async {
-                
-                Thread.printCurrent()
 
                 //CHECK orderNr for Valid Numbers
                 for char in self.orderViewModel.orderNr {
@@ -291,13 +282,14 @@ struct FTPUploadController {
                 
                 if remarksVM.selectedComment == "" {
                     error = true
-                    commentCheck = false
+//                    commentCheck = false
 //                    remarksVM.commentIsOk = false
                     errorMessage = errorMessage + "Kein Kommentar ausgewählt! \n"
-                } else {
-                    commentCheck = true
-//                    remarksVM.commentIsOk = true
                 }
+//                else {
+////                    commentCheck = true
+////                    remarksVM.commentIsOk = true
+//                }
                 
                 if !orderNrCheck {
                     error = true
@@ -351,25 +343,8 @@ struct FTPUploadController {
                 }
                 
                 let group = DispatchGroup()
-
-                for video in mediaViewModel.videos {
-                    if video.selected {
-                        group.enter()
-                        let formatter = DateFormatter()
-                        formatter.dateFormat = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'"
-                        let date = Date()
-                        let documentsPath = NSTemporaryDirectory()
-                        let outputPath = "\(documentsPath)/\(formatter.string(from: date))\(video.id).mp4"
-                        let newOutputUrl = URL(fileURLWithPath: outputPath)
-                        var videoData = Data()
-                        VideoCompress(settingsVM: _settingsVM).compressFile(urlToCompress: video.assetURL, outputURL: newOutputUrl) { (URL) in
-                            videoData = try! NSData(contentsOf: newOutputUrl, options: .mappedIfSafe) as Data
-                            finishedVideoArray.append(videoData as Data)
-                            print("HALLO DATEN FERTIG: \(videoData)")
-                            group.leave()
-                        }
-                    }
-                }
+        
+                let videoCompress = VideoCompress(settingsVM: _settingsVM)
                 
                 for video in mediaViewModel.videosCamera {
                     group.enter()
@@ -380,11 +355,33 @@ struct FTPUploadController {
                     let outputPath = "\(documentsPath)/\(formatter.string(from: date))\(video.id).mp4"
                     let newOutputUrl = URL(fileURLWithPath: outputPath)
                     var videoData = Data()
-                    VideoCompress(settingsVM: _settingsVM).compressFile(urlToCompress: video.url, outputURL: newOutputUrl) { (URL) in
+                    videoCompress.compressFile(urlToCompress: video.url, outputURL: newOutputUrl) { (URL) in
                         videoData = try! NSData(contentsOf: newOutputUrl, options: .mappedIfSafe) as Data
                         finishedVideoArray.append(videoData as Data)
-                        print("HALLO DATEN FERTIG: \(videoData)")
                         group.leave()
+                    }
+                }
+
+                for video in mediaViewModel.videos {
+                    if video.selected {
+                        print(video)
+                        group.enter()
+                        let formatter = DateFormatter()
+                        formatter.dateFormat = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'"
+                        let date = Date()
+                        let documentsPath = NSTemporaryDirectory()
+                        let outputPath = "\(documentsPath)/\(formatter.string(from: date))\(video.id).mp4"
+                        print(outputPath)
+                        let newOutputUrl = URL(fileURLWithPath: outputPath)
+                        print(newOutputUrl)
+                        var videoData = Data()
+                        print("VIDEO DATA: \(video.fetchVideo())")
+                        Thread.printCurrent()
+                        videoCompress.compressFile(urlToCompress: video.assetURL, outputURL: newOutputUrl) { (URL) in
+                            videoData = try! NSData(contentsOf: newOutputUrl, options: .mappedIfSafe) as Data
+                            finishedVideoArray.append(videoData as Data)
+                            group.leave()
+                        }
                     }
                 }
                 
@@ -392,12 +389,13 @@ struct FTPUploadController {
                     
                 if finishedPhotoArray.isEmpty && finishedVideoArray.isEmpty {
                     error = true
-                    imagesCheck = false
+//                    imagesCheck = false
                     errorMessage = errorMessage + "Kein Bild/Video ausgewählt! \n"
-                } else {
-                    imagesCheck = true
-//                    self.mediaViewModel.imagesIsOk = true
                 }
+//                else {
+//                    imagesCheck = true
+////                    self.mediaViewModel.imagesIsOk = true
+//                }
                 
                 if error {
                     completion(errorMessage)
@@ -414,6 +412,8 @@ struct FTPUploadController {
             DispatchQueue.main.async {
             let sftpsession = NMSFTP(session : session)
             sftpsession.connect()
+                
+                
             
                 if sftpsession.isConnected && !error {
                         
@@ -443,6 +443,6 @@ struct FTPUploadController {
                 }
             }
             }
-        }
+        
     }
 }

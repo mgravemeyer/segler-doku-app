@@ -16,7 +16,7 @@ class RemarksViewModel: ObservableObject {
     func decoda(jsonData : Foundation.Data) {
         let decoder = JSONDecoder()
         do {
-            var tempComments = try decoder.decode(ResponseComments.self, from: jsonData)
+            let tempComments = try decoder.decode(ResponseComments.self, from: jsonData)
             comments = tempComments.comments
 //            self.comments = [try decoder.decode(Comment.self, from: jsonData)]
         } catch {

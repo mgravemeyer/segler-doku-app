@@ -67,7 +67,7 @@ struct SetupView: View {
                     self.value = height
                 }
                 NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillHideNotification, object: nil, queue: .main) { (noti) in
-                    let value = noti.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! CGRect
+                    _ = noti.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! CGRect
                     let height : CGFloat = -30
                     self.value = height
                 }

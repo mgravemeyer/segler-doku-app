@@ -9,6 +9,7 @@ struct VideoModel: Identifiable, Hashable {
     var assetURL: URL
     var thumbnail: UIImage
     var order: Int
+    var orientation: String
     
     func fetchVideo() -> Data {
             let video = try? NSData(contentsOf: assetURL, options: .mappedIfSafe)
@@ -22,6 +23,7 @@ struct ImageModel: Identifiable, Hashable {
     var assetURL: URL
     var thumbnail: UIImage
     var order: Int
+    var orientation: String
     
     func fetchImage() -> Data {
             let photo = try? NSData(contentsOf: assetURL, options: .mappedIfSafe)
@@ -33,6 +35,7 @@ struct ImageModelCamera: Identifiable, Hashable {
     let id = UUID()
     var image: UIImage
     var order: Int
+    var orientation: String
 }
 
 struct VideoModelCamera: Identifiable, Hashable {
@@ -41,6 +44,7 @@ struct VideoModelCamera: Identifiable, Hashable {
     var video: Data
     var thumbnail: UIImage
     var order: Int
+    var orientation: String
 }
 
 class MediaViewModel : ObservableObject {
@@ -132,16 +136,11 @@ class MediaViewModel : ObservableObject {
                     }
                     
                     if !isAlreadyInArray {
-                        self.images.append(ImageModel(assetURL: imgURL, thumbnail: self.getAssetThumbnail(asset: phAsset), order: self.getOrderNumber()))
+                        self.images.append(ImageModel(assetURL: imgURL, thumbnail: self.getAssetThumbnail(asset: phAsset), order: self.getOrderNumber(), orientation: "horizontal"))
                     }
                   }
                 }
                 
-//                PHCachingImageManager.default().requestImage(for: phAsset, targetSize: .init(), contentMode: .default, options: options) { (asset, _) in
-//                    self.images.append(ImageModel(assetURL: asset?.imageAsset., thumbnail: self.getAssetThumbnail(asset: phAsset)))
-//                }
-            }
-            
             reqVideo.enumerateObjects { (phAsset, _, _) in
                 let options = PHImageRequestOptions()
                 options.isSynchronous  = true
@@ -158,12 +157,11 @@ class MediaViewModel : ObservableObject {
                         }
                         
                         if !isAlreadyInArray {
-                            self.videos.append(VideoModel(assetURL: asset.url, thumbnail: self.getAssetThumbnail(asset: phAsset), order: self.getOrderNumber()))
+                            self.videos.append(VideoModel(assetURL: asset.url, thumbnail: self.getAssetThumbnail(asset: phAsset), order: self.getOrderNumber(), orientation: "horizontal"))
                         }
                     }
                 }
             }
-            
-        
+        }
     }
 }

@@ -37,6 +37,7 @@ struct AVPlayerView: UIViewControllerRepresentable {
         return AVPlayer(url: videoURL!)
     }
 
+
     func updateUIViewController(_ playerController: AVPlayerViewController, context: Context) {
         playerController.showsPlaybackControls = true
         playerController.player = player
@@ -72,7 +73,6 @@ struct Add_View: View {
                             ZStack {
                                 if mediaVM.showVideo {
                                     GeometryReader { geometry in
-
                                         ZStack {
                                             VStack {
                                                 Button(action: {
@@ -85,95 +85,99 @@ struct Add_View: View {
                                                     }
                                                 }).zIndex(1)
                                                 ZStack {
+                                                    if mediaVM.selectedVideo.orientation == "horizontal" {
                                                     AVPlayerView(videoURL: $mediaVM.selectedVideo).frame(width: geometry.size.width - 20, height: geometry.size.height - 150).padding(.leading, 0)
+                                                    } else {
+                                                        AVPlayerView(videoURL: $mediaVM.selectedVideo).frame(width: geometry.size.width - 20, height: geometry.size.height - 150).padding(.leading, 0).degrees (90)
+                                                    }
                                                 }
                                             }.padding(.top, geometry.size.height/2 - 350).zIndex(1)
                                             Color.white.opacity(1).zIndex(-100)
                                         }
                                     }.zIndex(100)
                                 }
-                                if mediaVM.showImage {
-                                    GeometryReader { geometry in
-                                        ZStack {
-                                            VStack {
-                                                Button(action: {
-                                                    mediaVM.showImage = false
-                                                    mediaVM.showVideo = false
-                                                }, label: {
-                                                    ZStack {
-                                                        Color.gray.frame(width: geometry.size.width - 20, height: 40).padding(.leading, 0).cornerRadius(10).zIndex(1)
-                                                        Text("Anzeige schließen").foregroundColor(Color.white).zIndex(50000)
-                                                    }
-                                                }).zIndex(1)
-                                                Image(uiImage: mediaVM.selectedImage!).resizable().aspectRatio(mediaVM.selectedImage!.size, contentMode: .fit).frame(width: geometry.size.width - 20, height: geometry.size.height - 150).padding(.leading, 0)
-                                            }.padding(.top, geometry.size.height/2 - 350).zIndex(1)
-                                                Color.white.opacity(1).zIndex(-100)
-                                        }
-                                    }.zIndex(100)
-                                }
-                                
-                                List {
-                                    SectionOrder(orderVM : self.orderVM, mediaVM : self.mediaVM)
-                                        .accentColor(colors.color)
-                                        .frame(height: 34)
-                                    SectionRemarks(remarksVM : self.remarksVM)
-                                        .frame(height: 34)
-                                    SectionFreeTextField(remarksVM: self.remarksVM)
-                                    SectionBilder(mediaVM : self.mediaVM)
-                                    if !(settingsVM.errorsJSON.isEmpty) {
-                                        Image("Warning").resizable().frame(width: 50, height: 50)
-                                        ForEach(settingsVM.errorsJSON, id: \.self) { error in
-                                            Text(error).foregroundColor(Color.red)
-                                        }
-                                    }
-                                }.environment(\.defaultMinListRowHeight, 8).zIndex(0)
-                                VStack {
-                                    Spacer()
-                                    SaveButton(settingsVM: self.settingsVM, mediaVM: self.mediaVM, orderVM: self.orderVM, remarksVM: self.remarksVM, userVM: self.userVM).zIndex(100)
-                                }
+//                                if mediaVM.showImage {
+//                                    GeometryReader { geometry in
+//                                        ZStack {
+//                                            VStack {
+//                                                Button(action: {
+//                                                    mediaVM.showImage = false
+//                                                    mediaVM.showVideo = false
+//                                                }, label: {
+//                                                    ZStack {
+//                                                        Color.gray.frame(width: geometry.size.width - 20, height: 40).padding(.leading, 0).cornerRadius(10).zIndex(1)
+//                                                        Text("Anzeige schließen").foregroundColor(Color.white).zIndex(50000)
+//                                                    }
+//                                                }).zIndex(1)
+//                                                Image(uiImage: mediaVM.selectedImage!).resizable().aspectRatio(mediaVM.selectedImage!.size, contentMode: .fit).frame(width: geometry.size.width - 20, height: geometry.size.height - 150).padding(.leading, 0)
+//                                            }.padding(.top, geometry.size.height/2 - 350).zIndex(1)
+//                                                Color.white.opacity(1).zIndex(-100)
+//                                        }
+//                                    }.zIndex(100)
+//                                }
+
+//                                List {
+//                                    SectionOrder(orderVM : self.orderVM, mediaVM : self.mediaVM)
+//                                        .accentColor(colors.color)
+//                                        .frame(height: 34)
+//                                    SectionRemarks(remarksVM : self.remarksVM)
+//                                        .frame(height: 34)
+//                                    SectionFreeTextField(remarksVM: self.remarksVM)
+//                                    SectionBilder(mediaVM : self.mediaVM)
+//                                    if !(settingsVM.errorsJSON.isEmpty) {
+//                                        Image("Warning").resizable().frame(width: 50, height: 50)
+//                                        ForEach(settingsVM.errorsJSON, id: \.self) { error in
+//                                            Text(error).foregroundColor(Color.red)
+//                                        }
+//                                    }
+//                                }.environment(\.defaultMinListRowHeight, 8).zIndex(0)
+//                                VStack {
+//                                    Spacer()
+//                                    SaveButton(settingsVM: self.settingsVM, mediaVM: self.mediaVM, orderVM: self.orderVM, remarksVM: self.remarksVM, userVM: self.userVM).zIndex(100)
+//                                }
                             }
-                        .navigationBarItems(leading:(
-                        HStack {
-                            NavigationLink(destination: Settings_View(settingsVM: self.settingsVM, userVM: self.userVM, mediaVM: self.mediaVM, remarksVM: self.remarksVM, orderVM: self.orderVM)) {
-                                Image(systemName: "gear").font(.system(size: 25))
-                            }
-                            if !settingsVM.useFixedUser {
-                                NavigationLink(destination: Webview(url: "\(settingsVM.helpURL)").navigationBarTitle("Hilfe")) {
-                                    Image(systemName: "questionmark.circle").font(.system(size: 25))
-                                }
-                            }
-                        }
-                        ), trailing:
-                            (
-                        HStack {
-                            Button(action: {
-                            self.userVM.username = ""
-                            self.userVM.loggedIn = false
-                            self.orderVM.machineName = ""
-                            self.orderVM.orderNr = ""
-                            self.orderVM.orderPosition = ""
-                            self.mediaVM.images.removeAll()
-                            self.remarksVM.selectedComment = ""
-                            self.remarksVM.additionalComment = ""
-                            self.orderVM.orderNrIsOk = true
-                            self.remarksVM.commentIsOk = true
-                            self.mediaVM.imagesIsOk = true
-                            }, label: {
-                                if settingsVM.useFixedUser {
-                                    Text("")
-                                } else {
-                                    Image(systemName: "xmark").font(.system(size: 25))
-                                }
-                            })
-                            if settingsVM.useFixedUser {
-                                NavigationLink(destination: Webview(url: "\(settingsVM.helpURL)").navigationBarTitle("Hilfe")) {
-                                    Image(systemName: "questionmark.circle").font(.system(size: 25))
-                                }
-                            }
-                        }
-                        )
-//                            Button(action: {}, label: {Image(systemName: "gear")})
-                        ).navigationBarTitle(settingsVM.useFixedUser ? Text("\(settingsVM.userUsername)") : Text("\(userVM.username)"), displayMode: .inline)
+//                        .navigationBarItems(leading:(
+//                        HStack {
+//                            NavigationLink(destination: Settings_View(settingsVM: self.settingsVM, userVM: self.userVM, mediaVM: self.mediaVM, remarksVM: self.remarksVM, orderVM: self.orderVM)) {
+//                                Image(systemName: "gear").font(.system(size: 25))
+//                            }
+//                            if !settingsVM.useFixedUser {
+//                                NavigationLink(destination: Webview(url: "\(settingsVM.helpURL)").navigationBarTitle("Hilfe")) {
+//                                    Image(systemName: "questionmark.circle").font(.system(size: 25))
+//                                }
+//                            }
+//                        }
+//                        ), trailing:
+//                            (
+//                        HStack {
+//                            Button(action: {
+//                            self.userVM.username = ""
+//                            self.userVM.loggedIn = false
+//                            self.orderVM.machineName = ""
+//                            self.orderVM.orderNr = ""
+//                            self.orderVM.orderPosition = ""
+//                            self.mediaVM.images.removeAll()
+//                            self.remarksVM.selectedComment = ""
+//                            self.remarksVM.additionalComment = ""
+//                            self.orderVM.orderNrIsOk = true
+//                            self.remarksVM.commentIsOk = true
+//                            self.mediaVM.imagesIsOk = true
+//                            }, label: {
+//                                if settingsVM.useFixedUser {
+//                                    Text("")
+//                                } else {
+//                                    Image(systemName: "xmark").font(.system(size: 25))
+//                                }
+//                            })
+//                            if settingsVM.useFixedUser {
+//                                NavigationLink(destination: Webview(url: "\(settingsVM.helpURL)").navigationBarTitle("Hilfe")) {
+//                                    Image(systemName: "questionmark.circle").font(.system(size: 25))
+//                                }
+//                            }
+//                        }
+//                        )
+////                            Button(action: {}, label: {Image(systemName: "gear")})
+//                        ).navigationBarTitle(settingsVM.useFixedUser ? Text("\(settingsVM.userUsername)") : Text("\(userVM.username)"), displayMode: .inline)
                         }
                     }
                 }

@@ -39,7 +39,7 @@ struct BarcodeScannerSegler : UIViewControllerRepresentable {
         func splitOrderNrAndOrderPosition(_ code: String) -> (String, String) {
             
             var foundP : Bool = false
-            var foundA : Bool = false
+            let foundA : Bool = false
             var orderNr : String = ""
             var orderPosition : String = ""
             
