@@ -96,12 +96,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2E0AE1A1256FF65B0038871A /* AppStartViews */ = {
+			isa = PBXGroup;
+			children = (
+				E3B808E023D077A6007A7595 /* StartView.swift */,
+				E3B808DA23D063D9007A7595 /* SetupView.swift */,
+				E3EA711A23D132F900340463 /* LoginView.swift */,
+			);
+			path = AppStartViews;
+			sourceTree = "<group>";
+		};
 		2E53050C256FB13F00E862B4 /* ReportViews */ = {
 			isa = PBXGroup;
 			children = (
 				E3D6A0DB23A1838A000F35E9 /* ReportView.swift */,
 				2E53050E256FB26A00E862B4 /* PhotoDetail.swift */,
 				2E530511256FB39100E862B4 /* VideoDetail.swift */,
+				E3D6A0EF23A26537000F35E9 /* SettingsView.swift */,
 			);
 			path = ReportViews;
 			sourceTree = "<group>";
@@ -110,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				2E530515256FB3E200E862B4 /* AVPlayer.swift */,
+				E357E1B424B23940009871F1 /* ErrorView.swift */,
 			);
 			path = SupportViews;
 			sourceTree = "<group>";
@@ -154,12 +166,8 @@
 		E301A5A223CDF38C006A72D5 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				2E0AE1A1256FF65B0038871A /* AppStartViews */,
 				2E53050C256FB13F00E862B4 /* ReportViews */,
-				E3B808E023D077A6007A7595 /* StartView.swift */,
-				E3B808DA23D063D9007A7595 /* SetupView.swift */,
-				E3EA711A23D132F900340463 /* LoginView.swift */,
-				E357E1B424B23940009871F1 /* ErrorView.swift */,
-				E3D6A0EF23A26537000F35E9 /* SettingsView.swift */,
 				2E530514256FB3D000E862B4 /* SupportViews */,
 			);
 			path = View;

@@ -17,18 +17,6 @@ struct NavigationConfigurator: UIViewControllerRepresentable {
     }
 }
 
-struct Divider_custom: View {
-    
-    let seglerColor: Color = Color(red: 232/255, green: 232/255, blue: 232/255)
-    
-    var body: some View {
-        Image("Keyboard")
-        .resizable()
-            .frame(width: 0, height: 10)
-            .listRowBackground(seglerColor)
-    }
-}
-
 struct Add_View: View {
     
     let toPresent = UIHostingController(rootView: AnyView(EmptyView()))
