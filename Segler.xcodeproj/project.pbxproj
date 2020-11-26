@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E53050F256FB26A00E862B4 /* PhotoDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E53050E256FB26A00E862B4 /* PhotoDetail.swift */; };
+		2E530512256FB39100E862B4 /* VideoDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E530511256FB39100E862B4 /* VideoDetail.swift */; };
+		2E530516256FB3E200E862B4 /* AVPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E530515256FB3E200E862B4 /* AVPlayer.swift */; };
 		2EA3681E25607C640056D508 /* MediaQualityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA3681D25607C640056D508 /* MediaQualityModel.swift */; };
 		C63A0A8B51DE2A9BAE9845D2 /* libPods-Segler.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9959BB111C402453CB8AAD66 /* libPods-Segler.a */; };
 		E301A5A423CDF44A006A72D5 /* OrderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E301A5A323CDF44A006A72D5 /* OrderViewModel.swift */; };
@@ -39,6 +42,9 @@
 
 /* Begin PBXFileReference section */
 		2B709C98B3A981F96DB6E006 /* Pods-Segler.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Segler.debug.xcconfig"; path = "Target Support Files/Pods-Segler/Pods-Segler.debug.xcconfig"; sourceTree = "<group>"; };
+		2E53050E256FB26A00E862B4 /* PhotoDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetail.swift; sourceTree = "<group>"; };
+		2E530511256FB39100E862B4 /* VideoDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDetail.swift; sourceTree = "<group>"; };
+		2E530515256FB3E200E862B4 /* AVPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVPlayer.swift; sourceTree = "<group>"; };
 		2EA3681D25607C640056D508 /* MediaQualityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaQualityModel.swift; sourceTree = "<group>"; };
 		50F8533D78045E1F565D1EE1 /* Pods-Segler.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Segler.release.xcconfig"; path = "Target Support Files/Pods-Segler/Pods-Segler.release.xcconfig"; sourceTree = "<group>"; };
 		9959BB111C402453CB8AAD66 /* libPods-Segler.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Segler.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -90,6 +96,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2E53050C256FB13F00E862B4 /* ReportViews */ = {
+			isa = PBXGroup;
+			children = (
+				E3D6A0DB23A1838A000F35E9 /* ReportView.swift */,
+				2E53050E256FB26A00E862B4 /* PhotoDetail.swift */,
+				2E530511256FB39100E862B4 /* VideoDetail.swift */,
+			);
+			path = ReportViews;
+			sourceTree = "<group>";
+		};
+		2E530514256FB3D000E862B4 /* SupportViews */ = {
+			isa = PBXGroup;
+			children = (
+				2E530515256FB3E200E862B4 /* AVPlayer.swift */,
+			);
+			path = SupportViews;
+			sourceTree = "<group>";
+		};
 		4201FC457981F448FBE2B5D8 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -130,12 +154,13 @@
 		E301A5A223CDF38C006A72D5 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				2E53050C256FB13F00E862B4 /* ReportViews */,
 				E3B808E023D077A6007A7595 /* StartView.swift */,
 				E3B808DA23D063D9007A7595 /* SetupView.swift */,
 				E3EA711A23D132F900340463 /* LoginView.swift */,
-				E3D6A0DB23A1838A000F35E9 /* ReportView.swift */,
 				E357E1B424B23940009871F1 /* ErrorView.swift */,
 				E3D6A0EF23A26537000F35E9 /* SettingsView.swift */,
+				2E530514256FB3D000E862B4 /* SupportViews */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -338,6 +363,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E301A5A823CDF4A0006A72D5 /* ColorSeglerViewModel.swift in Sources */,
+				2E53050F256FB26A00E862B4 /* PhotoDetail.swift in Sources */,
 				E3BDDD81250028D000C07EA0 /* UserViewModel.swift in Sources */,
 				E3B808DB23D063D9007A7595 /* SetupView.swift in Sources */,
 				E357E1B524B23940009871F1 /* ErrorView.swift in Sources */,
@@ -348,6 +374,7 @@
 				E301A5A623CDF474006A72D5 /* MediaViewModel.swift in Sources */,
 				E301A5A423CDF44A006A72D5 /* OrderViewModel.swift in Sources */,
 				E3C33BAF23CDB05E00E941FB /* RemarksViewModel.swift in Sources */,
+				2E530512256FB39100E862B4 /* VideoDetail.swift in Sources */,
 				E3B808E123D077A6007A7595 /* StartView.swift in Sources */,
 				E3D6A0F023A26537000F35E9 /* SettingsView.swift in Sources */,
 				E3BE190F23A7C7D200137883 /* ftpConst.swift in Sources */,
@@ -355,6 +382,7 @@
 				2EA3681E25607C640056D508 /* MediaQualityModel.swift in Sources */,
 				E3D6A0DC23A1838A000F35E9 /* ReportView.swift in Sources */,
 				E3EA711E23D133A500340463 /* Session.swift in Sources */,
+				2E530516256FB3E200E862B4 /* AVPlayer.swift in Sources */,
 				E35319742517EAC0005768DD /* URLModel.swift in Sources */,
 				E3A3BC7A23A28E72002BDE18 /* ImagePickerController.swift in Sources */,
 				E31A5C1523D4602900ED647C /* BarcodeScannerSegler.swift in Sources */,

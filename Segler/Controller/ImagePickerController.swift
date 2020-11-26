@@ -24,7 +24,11 @@ struct ImagePicker: UIViewControllerRepresentable {
         let vc = UIImagePickerController()
         vc.allowsEditing = false
         vc.sourceType = .camera
-        vc.mediaTypes = [kUTTypeMovie as String, kUTTypeImage as String]
+        if mediaVM.returnVideoCount() > 2 {
+            vc.mediaTypes = [kUTTypeImage as String]
+        } else {
+            vc.mediaTypes = [kUTTypeMovie as String, kUTTypeImage as String]
+        }
         vc.videoQuality = .typeHigh
         
 //        if UIDevice.current.name.contains("iPhone") {

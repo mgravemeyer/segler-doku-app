@@ -49,6 +49,21 @@ struct VideoModelCamera: Identifiable, Hashable {
 
 class MediaViewModel : ObservableObject {
     
+    func returnVideoCount() -> Int {
+        
+        var count = 0
+        
+        for video in videos {
+            if video.selected {
+                count += 1
+            }
+        }
+        
+        count += videosCamera.count
+        
+        return count
+    }
+    
     var highestOrderNumber = 0
     
     @Published var showVideo: Bool = false
