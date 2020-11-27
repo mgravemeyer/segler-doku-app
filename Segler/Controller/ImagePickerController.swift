@@ -105,15 +105,7 @@ struct ImagePicker: UIViewControllerRepresentable {
             if mediaType.isEqual(to: kUTTypeImage as String) {
                 let uiimage = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
                 UIImageWriteToSavedPhotosAlbum(uiimage, nil, nil, nil)
-                var orientation = ""
-                if uiimage.size.width > uiimage.size.height {
-                    orientation = "horizontal"
-                } else if uiimage.size.width < uiimage.size.height {
-                    orientation = "vertical"
-                } else {
-                    orientation = "quadratisch"
-                }
-                mediaVM.imagesCamera.append(ImageModelCamera(image: uiimage, order: mediaVM.getOrderNumber(), orientation: orientation))
+                mediaVM.imagesCamera.append(ImageModelCamera(image: uiimage, order: mediaVM.getOrderNumber()))
             } else {
                 let url: URL = info[UIImagePickerController.InfoKey(rawValue: UIImagePickerController.InfoKey.mediaURL.rawValue)] as! URL
                 UISaveVideoAtPathToSavedPhotosAlbum(url.path, nil, nil, nil)

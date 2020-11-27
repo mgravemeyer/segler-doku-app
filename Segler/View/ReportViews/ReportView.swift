@@ -40,9 +40,17 @@ struct Add_View: View {
                             ZStack {
                                 if mediaVM.showVideo {
                                     VideoDetail(mediaVM: self.mediaVM)
+                                        .onAppear {
+                                            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                                        }
                                 }
                                 if mediaVM.showImage {
-                                    PhotoDetail(mediaVM: self.mediaVM)
+                                    if mediaVM.selectedImageNeedsAjustment {
+                                        PhotoDetail(mediaVM: self.mediaVM)
+                                            .onAppear {
+                                                UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                                            }
+                                    }
                                 }
                                 List {
                                     SectionOrder(orderVM : self.orderVM, mediaVM : self.mediaVM)
@@ -740,7 +748,7 @@ struct testImageCameraView: View {
     }
     func toggleShowImage() {
         mediaVM.showImage.toggle()
-        mediaVM.selectedImage = UIImage(data: (imageObject.image.pngData()!))
+        mediaVM.selectedImage = UIImage(data: (imageObject.image.jpegData(compressionQuality: 1)!))
     }
     func deleto(id: UUID) {
         if let index = mediaVM.imagesCamera.firstIndex(where: {$0.id == id}) {

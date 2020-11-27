@@ -26,10 +26,14 @@ struct PhotoDetail: View {
                         }
                     }).zIndex(1)
                     if mediaVM.selectedImage!.size.width > mediaVM.selectedImage!.size.height {
-                        Image(uiImage: mediaVM.selectedImage!).resizable().aspectRatio(mediaVM.selectedImage!.size, contentMode: .fit).frame(width: geometry.size.width - 20, height: geometry.size.height - 150).rotationEffect(.degrees(-90))
+                        Image(uiImage: mediaVM.selectedImage!).resizable().aspectRatio(contentMode: .fit).rotationEffect(.degrees(-90))
+                            .frame(maxWidth: geometry.size.width - 20, maxHeight: geometry.size.height - 150, alignment: .center)
+                            .frame(width: geometry.size.width - 20, height: geometry.size.height - 150)
+                            .scaleEffect(CGSize(width: 1.4, height: 1.4))
                     } else {
-                        Image(uiImage: mediaVM.selectedImage!).resizable().aspectRatio(mediaVM.selectedImage!.size, contentMode: .fit).frame(width: geometry.size.width - 20, height: geometry.size.height - 150).padding(.leading, 0)
+                        Image(uiImage: mediaVM.selectedImage!).resizable().scaledToFit().frame(width: geometry.size.width - 20, height: geometry.size.height - 150)
                     }
+                    
                 }.padding(.top, geometry.size.height/2 - 350).zIndex(1)
                     Color.white.opacity(1).zIndex(-100)
             }

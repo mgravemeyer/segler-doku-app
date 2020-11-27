@@ -35,7 +35,6 @@ struct ImageModelCamera: Identifiable, Hashable {
     let id = UUID()
     var image: UIImage
     var order: Int
-    var orientation: String
 }
 
 struct VideoModelCamera: Identifiable, Hashable {
@@ -70,6 +69,7 @@ class MediaViewModel : ObservableObject {
     @Published var showImage: Bool = false
     
     @Published var selectedImage: UIImage?
+    @Published var selectedImageNeedsAjustment = true
     @Published var selectedVideo: URL?
     
     func getOrderNumber() -> Int {

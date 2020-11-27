@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E32BD0A2570030900EDD668 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E32BD092570030900EDD668 /* StartView.swift */; };
 		2E53050F256FB26A00E862B4 /* PhotoDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E53050E256FB26A00E862B4 /* PhotoDetail.swift */; };
 		2E530512256FB39100E862B4 /* VideoDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E530511256FB39100E862B4 /* VideoDetail.swift */; };
 		2E530516256FB3E200E862B4 /* AVPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E530515256FB3E200E862B4 /* AVPlayer.swift */; };
@@ -24,7 +25,6 @@
 		E3A3BC7A23A28E72002BDE18 /* ImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A3BC7923A28E72002BDE18 /* ImagePickerController.swift */; };
 		E3B808DB23D063D9007A7595 /* SetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B808DA23D063D9007A7595 /* SetupView.swift */; };
 		E3B808DF23D06DE5007A7595 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B808DE23D06DE5007A7595 /* SettingsViewModel.swift */; };
-		E3B808E123D077A6007A7595 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B808E023D077A6007A7595 /* StartView.swift */; };
 		E3BDDD81250028D000C07EA0 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3BDDD80250028D000C07EA0 /* UserViewModel.swift */; };
 		E3BE190F23A7C7D200137883 /* ftpConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3BE190E23A7C7D200137883 /* ftpConst.swift */; };
 		E3C33BAF23CDB05E00E941FB /* RemarksViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C33BAE23CDB05E00E941FB /* RemarksViewModel.swift */; };
@@ -42,6 +42,7 @@
 
 /* Begin PBXFileReference section */
 		2B709C98B3A981F96DB6E006 /* Pods-Segler.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Segler.debug.xcconfig"; path = "Target Support Files/Pods-Segler/Pods-Segler.debug.xcconfig"; sourceTree = "<group>"; };
+		2E32BD092570030900EDD668 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
 		2E53050E256FB26A00E862B4 /* PhotoDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetail.swift; sourceTree = "<group>"; };
 		2E530511256FB39100E862B4 /* VideoDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDetail.swift; sourceTree = "<group>"; };
 		2E530515256FB3E200E862B4 /* AVPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVPlayer.swift; sourceTree = "<group>"; };
@@ -65,7 +66,6 @@
 		E3A7B58F23F34C6C00235D5A /* BarcodeScanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BarcodeScanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3B808DA23D063D9007A7595 /* SetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupView.swift; sourceTree = "<group>"; };
 		E3B808DE23D06DE5007A7595 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
-		E3B808E023D077A6007A7595 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
 		E3BDDD80250028D000C07EA0 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		E3BE190E23A7C7D200137883 /* ftpConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ftpConst.swift; sourceTree = "<group>"; };
 		E3C33BAE23CDB05E00E941FB /* RemarksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemarksViewModel.swift; sourceTree = "<group>"; };
@@ -99,7 +99,7 @@
 		2E0AE1A1256FF65B0038871A /* AppStartViews */ = {
 			isa = PBXGroup;
 			children = (
-				E3B808E023D077A6007A7595 /* StartView.swift */,
+				2E32BD092570030900EDD668 /* StartView.swift */,
 				E3B808DA23D063D9007A7595 /* SetupView.swift */,
 				E3EA711A23D132F900340463 /* LoginView.swift */,
 			);
@@ -383,11 +383,11 @@
 				E301A5A423CDF44A006A72D5 /* OrderViewModel.swift in Sources */,
 				E3C33BAF23CDB05E00E941FB /* RemarksViewModel.swift in Sources */,
 				2E530512256FB39100E862B4 /* VideoDetail.swift in Sources */,
-				E3B808E123D077A6007A7595 /* StartView.swift in Sources */,
 				E3D6A0F023A26537000F35E9 /* SettingsView.swift in Sources */,
 				E3BE190F23A7C7D200137883 /* ftpConst.swift in Sources */,
 				E3D6A0DA23A1838A000F35E9 /* Segler.xcdatamodeld in Sources */,
 				2EA3681E25607C640056D508 /* MediaQualityModel.swift in Sources */,
+				2E32BD0A2570030900EDD668 /* StartView.swift in Sources */,
 				E3D6A0DC23A1838A000F35E9 /* ReportView.swift in Sources */,
 				E3EA711E23D133A500340463 /* Session.swift in Sources */,
 				2E530516256FB3E200E862B4 /* AVPlayer.swift in Sources */,
@@ -554,7 +554,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.5.3;
+				MARKETING_VERSION = 1.5.6;
 				PRODUCT_BUNDLE_IDENTIFIER = eu.segler.seglerdokuapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -585,7 +585,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.5.3;
+				MARKETING_VERSION = 1.5.6;
 				PRODUCT_BUNDLE_IDENTIFIER = eu.segler.seglerdokuapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
