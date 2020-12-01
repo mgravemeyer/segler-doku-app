@@ -573,7 +573,7 @@ struct reportModal: View {
                 Button(action: {
                     deleteMedia()
                 }) {
-                    Text("Schließen").frame(height: 34)
+                    Text("Schließen").frame(height: 34).foregroundColor(Color.blue)
                 }
             }.padding(.top, 40).onDisappear {
                 deleteMedia()
