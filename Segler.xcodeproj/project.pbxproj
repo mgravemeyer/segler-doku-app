@@ -23,6 +23,7 @@
 		E3787807261A54C5003323B9 /* PDFListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3787806261A54C5003323B9 /* PDFListView.swift */; };
 		E3787809261A54E2003323B9 /* PDFListDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3787808261A54E2003323B9 /* PDFListDetailView.swift */; };
 		E378780B261A5500003323B9 /* PDFDetailUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E378780A261A5500003323B9 /* PDFDetailUIView.swift */; };
+		E378780D261A7973003323B9 /* PDF.swift in Sources */ = {isa = PBXBuildFile; fileRef = E378780C261A7973003323B9 /* PDF.swift */; };
 		E39A9D6323D8930D00418E51 /* AdminLoginPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39A9D6223D8930D00418E51 /* AdminLoginPassword.swift */; };
 		E3A3BC7823A26C53002BDE18 /* FTPUploadController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A3BC7723A26C53002BDE18 /* FTPUploadController.swift */; };
 		E3A3BC7A23A28E72002BDE18 /* ImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A3BC7923A28E72002BDE18 /* ImagePickerController.swift */; };
@@ -66,6 +67,7 @@
 		E3787806261A54C5003323B9 /* PDFListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFListView.swift; sourceTree = "<group>"; };
 		E3787808261A54E2003323B9 /* PDFListDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFListDetailView.swift; sourceTree = "<group>"; };
 		E378780A261A5500003323B9 /* PDFDetailUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFDetailUIView.swift; sourceTree = "<group>"; };
+		E378780C261A7973003323B9 /* PDF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDF.swift; sourceTree = "<group>"; };
 		E39A9D6223D8930D00418E51 /* AdminLoginPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminLoginPassword.swift; sourceTree = "<group>"; };
 		E3A3BC7723A26C53002BDE18 /* FTPUploadController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTPUploadController.swift; sourceTree = "<group>"; };
 		E3A3BC7923A28E72002BDE18 /* ImagePickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerController.swift; sourceTree = "<group>"; };
@@ -194,6 +196,7 @@
 				E39A9D6223D8930D00418E51 /* AdminLoginPassword.swift */,
 				E35319732517EAC0005768DD /* URLModel.swift */,
 				2EA3681D25607C640056D508 /* MediaQualityModel.swift */,
+				E378780C261A7973003323B9 /* PDF.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -410,6 +413,7 @@
 				2E32BD0A2570030900EDD668 /* StartView.swift in Sources */,
 				E3D6A0DC23A1838A000F35E9 /* ReportView.swift in Sources */,
 				E3EA711E23D133A500340463 /* Session.swift in Sources */,
+				E378780D261A7973003323B9 /* PDF.swift in Sources */,
 				2E530516256FB3E200E862B4 /* AVPlayer.swift in Sources */,
 				E35319742517EAC0005768DD /* URLModel.swift in Sources */,
 				E3A3BC7A23A28E72002BDE18 /* ImagePickerController.swift in Sources */,

@@ -46,6 +46,15 @@ extension SettingsViewModel {
                 let sftpsession = NMSFTP(session : session)
                 sftpsession.connect()
                     let content = sftpsession.contents(atPath: "config/config.json")
+                    
+                    let tempPdfData = sftpsession.contentsOfDirectory(atPath: "protokolle")
+                    if tempPdfData != nil {
+                        for pdfData in tempPdfData! {
+                            pdfNames.append(pdfData.filename)
+                            self.pdfData.append(sftpsession.contents(atPath: "protokolle/\(pdfData.filename)")!)
+                        }
+                    }
+                
                     if content != nil {
                     if let string = String(bytes: content!, encoding: .utf8) {
                         let jsonData = Foundation.Data(string.data(using: .utf8)!)
@@ -183,3 +192,4 @@ extension SettingsViewModel {
         }
     }
 }
+

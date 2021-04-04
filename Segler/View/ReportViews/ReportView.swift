@@ -230,6 +230,26 @@ struct SectionRemarks: View {
     }
 }
 
+struct SectionPDF: View {
+    @ObservedObject var settingsVM: SettingsViewModel
+    var body: some View {
+        if settingsVM.selectedPdf == "" {
+//            NavigationLink("Protokoll", destination: SectionPDFSelection(settingsVM: self.settingsVM)).foregroundColor(.gray)
+        } else {
+            HStack {
+//                NavigationLink("\(settingsVM.selectedPdf)".dropLast(4), destination: SectionPDFSelection(settingsVM: self.settingsVM))
+                Button(action: {
+//                    self.settingsVM.selectedPdf = ""
+                }) {
+                    Image("Delete")
+                        .renderingMode(.template)
+                        .buttonStyle(BorderlessButtonStyle())
+                }.buttonStyle(BorderlessButtonStyle()).frame(width: 30)
+            }
+        }
+    }
+}
+
 struct SectionFreeTextField: View {
     
     @ObservedObject var remarksVM : RemarksViewModel
