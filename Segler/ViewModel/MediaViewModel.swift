@@ -194,4 +194,8 @@ class MediaViewModel : ObservableObject {
             print(error.localizedDescription)
         }
     }
+    
+    func addPDF(name: String) {
+        self.pdfNameList.append(name)
+    }
 }
