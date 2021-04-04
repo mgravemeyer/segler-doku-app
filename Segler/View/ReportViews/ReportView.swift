@@ -56,6 +56,7 @@ struct Add_View: View {
                                     SectionOrder(orderVM : self.orderVM, mediaVM : self.mediaVM)
                                         .accentColor(colors.color)
                                         .frame(height: 34)
+                                    SectionPDF(settingsVM: self.settingsVM)
                                     SectionRemarks(remarksVM : self.remarksVM)
                                         .frame(height: 34)
                                     SectionFreeTextField(remarksVM: self.remarksVM)
@@ -233,7 +234,7 @@ struct SectionRemarks: View {
 struct SectionPDF: View {
     @ObservedObject var settingsVM: SettingsViewModel
     var body: some View {
-        if settingsVM.selectedPdf == "" {
+        if settingsVM.selectedPDF == "" {
 //            NavigationLink("Protokoll", destination: SectionPDFSelection(settingsVM: self.settingsVM)).foregroundColor(.gray)
         } else {
             HStack {

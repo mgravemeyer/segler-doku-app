@@ -4,6 +4,9 @@ import ProgressHUD
 
 class SettingsViewModel: ObservableObject {
     
+    @Published var pdfs = [PDF]()
+    @Published var selectedPDF = ""
+    
     @Published var ip = String()
     @Published var adminMenuePassword = String()
     @Published var helpURL = String()
@@ -50,8 +53,8 @@ extension SettingsViewModel {
                     let tempPdfData = sftpsession.contentsOfDirectory(atPath: "protokolle")
                     if tempPdfData != nil {
                         for pdfData in tempPdfData! {
-                            pdfNames.append(pdfData.filename)
-                            self.pdfData.append(sftpsession.contents(atPath: "protokolle/\(pdfData.filename)")!)
+                            self.pdfs.append(PDF(name: "\(pdfData.filename)", data: sftpsession.contents(atPath: "protokolle/\(pdfData.filename)")!))
+                            print(pdfData.filename)
                         }
                     }
                 
