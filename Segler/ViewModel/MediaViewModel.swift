@@ -65,6 +65,8 @@ class MediaViewModel : ObservableObject {
     
     var highestOrderNumber = 0
     
+    @Published private(set) var pdfNameList = [String]()
+    
     @Published var showVideo: Bool = false
     @Published var showImage: Bool = false
     
@@ -177,6 +179,19 @@ class MediaViewModel : ObservableObject {
                     }
                 }
             }
+        }
+    }
+    
+    func loadLocalPDFNames() {
+        let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
+        do {
+            let urls = try FileManager.default.contentsOfDirectory(at: url!, includingPropertiesForKeys: nil)
+            for url in urls {
+                print(url.lastPathComponent)
+                pdfNameList.append(url.lastPathComponent)
+            }
+        } catch {
+            print(error.localizedDescription)
         }
     }
 }
