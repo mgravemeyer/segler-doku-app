@@ -235,7 +235,7 @@ struct SectionPDF: View {
     @ObservedObject var settingsVM: SettingsViewModel
     var body: some View {
         if settingsVM.selectedPDF == "" {
-//            NavigationLink("Protokoll", destination: SectionPDFSelection(settingsVM: self.settingsVM)).foregroundColor(.gray)
+            NavigationLink("Protokoll", destination: PDFListView(settingsVM: self.settingsVM)).foregroundColor(.gray).frame(height: 34)
         } else {
             HStack {
 //                NavigationLink("\(settingsVM.selectedPdf)".dropLast(4), destination: SectionPDFSelection(settingsVM: self.settingsVM))

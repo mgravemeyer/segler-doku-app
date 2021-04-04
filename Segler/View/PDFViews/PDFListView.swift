@@ -1,25 +1,23 @@
-//import SwiftUI
-//
-//struct PDFListView: View {
-//    
-//    @EnvironmentObject var pdfMediaVM: PDFMediaViewModel
-//    
-//    var body: some View {
-//        ScrollView(.vertical, showsIndicators: true) {
-//            VStack {
-//                ForEach(pdfMediaVM.pdfNameList, id: \.self) {
-//                    PDFListRowView(name: $0)
-//                }
-//            }
-//        }.navigationBarTitle("Stored PDF's List", displayMode: .large)
-//    }
-//}
+import SwiftUI
+
+struct PDFListView: View {
+
+    @ObservedObject var settingsVM: SettingsViewModel
+
+    var body: some View {
+        List {
+            ForEach(settingsVM.pdfs, id: \.self) {
+                NavigationLink($0.name, destination: PDFListDetailView(pdfDetailUIView: PDFDetailUIView(selection: settingsVM.selectedPDF)))
+//                PDFListRowView(selectedPDF: $0)
+            }
+        }
+    }
+}
 //
 //struct PDFListRowView: View {
-//    
-//    let name: String
-//    @EnvironmentObject var pdfMediaVM: PDFMediaViewModel
-//    
+//
+//    let selectedPDF: PDF
+//
 //    var body: some View {
 //        HStack {
 //            NavigationLink(String(name).dropLast(4), destination: PDFListDetailView(pdfDetailUIView: PDFDetailUIView(selection: name), name: name))
