@@ -22,6 +22,7 @@
 		E368AFBE23CCC427009DD849 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E368AFBD23CCC427009DD849 /* Comment.swift */; };
 		E3787807261A54C5003323B9 /* PDFListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3787806261A54C5003323B9 /* PDFListView.swift */; };
 		E3787809261A54E2003323B9 /* PDFListDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3787808261A54E2003323B9 /* PDFListDetailView.swift */; };
+		E378780B261A5500003323B9 /* PDFDetailUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E378780A261A5500003323B9 /* PDFDetailUIView.swift */; };
 		E39A9D6323D8930D00418E51 /* AdminLoginPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39A9D6223D8930D00418E51 /* AdminLoginPassword.swift */; };
 		E3A3BC7823A26C53002BDE18 /* FTPUploadController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A3BC7723A26C53002BDE18 /* FTPUploadController.swift */; };
 		E3A3BC7A23A28E72002BDE18 /* ImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A3BC7923A28E72002BDE18 /* ImagePickerController.swift */; };
@@ -64,6 +65,7 @@
 		E368AFBD23CCC427009DD849 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		E3787806261A54C5003323B9 /* PDFListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFListView.swift; sourceTree = "<group>"; };
 		E3787808261A54E2003323B9 /* PDFListDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFListDetailView.swift; sourceTree = "<group>"; };
+		E378780A261A5500003323B9 /* PDFDetailUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFDetailUIView.swift; sourceTree = "<group>"; };
 		E39A9D6223D8930D00418E51 /* AdminLoginPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminLoginPassword.swift; sourceTree = "<group>"; };
 		E3A3BC7723A26C53002BDE18 /* FTPUploadController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTPUploadController.swift; sourceTree = "<group>"; };
 		E3A3BC7923A28E72002BDE18 /* ImagePickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerController.swift; sourceTree = "<group>"; };
@@ -211,6 +213,7 @@
 			children = (
 				E3787806261A54C5003323B9 /* PDFListView.swift */,
 				E3787808261A54E2003323B9 /* PDFListDetailView.swift */,
+				E378780A261A5500003323B9 /* PDFDetailUIView.swift */,
 			);
 			path = PDFViews;
 			sourceTree = "<group>";
@@ -398,6 +401,7 @@
 				E3C33BAF23CDB05E00E941FB /* RemarksViewModel.swift in Sources */,
 				2E530512256FB39100E862B4 /* VideoDetail.swift in Sources */,
 				E3787807261A54C5003323B9 /* PDFListView.swift in Sources */,
+				E378780B261A5500003323B9 /* PDFDetailUIView.swift in Sources */,
 				E3787809261A54E2003323B9 /* PDFListDetailView.swift in Sources */,
 				E3D6A0F023A26537000F35E9 /* SettingsView.swift in Sources */,
 				E3BE190F23A7C7D200137883 /* ftpConst.swift in Sources */,
