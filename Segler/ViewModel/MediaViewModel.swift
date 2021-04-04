@@ -198,4 +198,19 @@ class MediaViewModel : ObservableObject {
     func addPDF(name: String) {
         self.pdfNameList.append(name)
     }
+    
+    func deletePDFFileManager(selection: String) {
+        guard
+            let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
+        else {
+            print("error while finding file")
+            return
+        }
+        let fileURL = url.appendingPathComponent("\(selection)")
+        do {
+            try FileManager.default.removeItem(at: fileURL)
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
 }
