@@ -4,18 +4,19 @@ import PDFKit
 struct PDFListDetailView: View {
     
     @ObservedObject var settingsVM: SettingsViewModel
-    let selectedPDF: PDF
-    let pdfDetailUIView: PDFDetailUIView
+    @State var selectedPDF: PDF
+    @State var saveState = false
     
     var body: some View {
-        VStack {
-            pdfDetailUIView
-            Button("Save") {
-                pdfDetailUIView.savePDF()
-            }
-            .navigationBarTitle("\(settingsVM.selectedPDF.name)".dropLast(4), displayMode: .inline)
-        }.onAppear {
-            settingsVM.selectedPDF = selectedPDF
-        }
+        var pdf = PDFDetailUIView(selectedPDF: $selectedPDF, saveState: $saveState, settingsVM: self._settingsVM)
+        pdf
+        .navigationBarTitle("\(settingsVM.selectedPDF.name)"
+        .dropLast(4), displayMode: .inline)
+//        .onAppear {
+//            settingsVM.selectedPDF = selectedPDF
+//        }
+            .navigationBarItems(trailing: Button("Speichern", action: {
+                pdf.savePDF()
+            }))
     }
 }

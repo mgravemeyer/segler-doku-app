@@ -4,6 +4,8 @@ import ProgressHUD
 
 class SettingsViewModel: ObservableObject {
     
+    @Published var savedPDF = PDF(name: "", data: Data())
+    
     @Published var pdfs = [PDF]()
     @Published var selectedPDF = PDF(name: "", data: Data())
     

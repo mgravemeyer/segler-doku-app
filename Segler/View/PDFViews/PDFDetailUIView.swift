@@ -2,25 +2,57 @@ import SwiftUI
 import PDFKit
 
 struct PDFDetailUIView: UIViewRepresentable {
+    func makeCoordinator() -> Coordinator {
+        return Coordinator(selectedPDF: $selectedPDF, saveState: $saveState, settingsVM: _settingsVM)
+    }
+    
 
-    init(selectedPDF: PDF) {
-        self.selectedPDF = selectedPDF
-        pdfView.autoScales = false
-        print("old data: \(selectedPDF.data)")
+    @State var pdfView = PDFView()
+
+    @Binding var selectedPDF: PDF
+    
+    @Binding var saveState: Bool
+    
+    @ObservedObject var settingsVM: SettingsViewModel
+    
+    class Coordinator: NSObject, PDFViewDelegate {
+
+        @Binding var selectedPDF: PDF
+        
+        @Binding var saveState: Bool
+        
+        @ObservedObject var settingsVM: SettingsViewModel
+
+        init(selectedPDF: Binding<PDF>, saveState: Binding<Bool>, settingsVM: ObservedObject<SettingsViewModel>) {
+            _selectedPDF = selectedPDF
+            _saveState = saveState
+            _settingsVM = settingsVM
+        }
+        
+        
+    }
+    
+    init(selectedPDF: Binding<PDF>, saveState: Binding<Bool>, settingsVM: ObservedObject<SettingsViewModel>) {
+        _selectedPDF = selectedPDF
+        _saveState = saveState
+        _settingsVM = settingsVM
     }
 
-    let pdfView = PDFView()
-
-    let selectedPDF: PDF
-
     func makeUIView(context: Context) -> PDFView {
-        print(selectedPDF.name.dropLast(4))
+        UserDefaults.standard.set(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
+        pdfView.autoScales = false
         pdfView.document = PDFDocument(data: selectedPDF.data)
         return pdfView
     }
 
     func updateUIView(_ uiView: PDFView, context: Context) {
-
+        
+        if saveState {
+            savePDF()
+            print(settingsVM.savedPDF)
+            
+        }
+        
     }
 
     func savePDF() {
@@ -31,7 +63,9 @@ struct PDFDetailUIView: UIViewRepresentable {
                 print("error while saving or finding files")
                 return
             }
-        print("new data: \(pdfView.document!.dataRepresentation())")
+        print("new data: \(String(describing: pdfView.document!.dataRepresentation()))")
+        settingsVM.savedPDF.data = data
+        saveState = false
         let fileURL = url.appendingPathComponent("\(UUID().uuidString).pdf")
         do {
             try data.write(to: fileURL)
@@ -39,4 +73,5 @@ struct PDFDetailUIView: UIViewRepresentable {
             print(error.localizedDescription)
         }
     }
+    
 }
