@@ -5,7 +5,7 @@ struct PDFDetailUIView: UIViewRepresentable {
 
     init(selectedPDF: PDF) {
         self.selectedPDF = selectedPDF
-        pdfView.autoScales = true
+        pdfView.autoScales = false
     }
 
     let pdfView = PDFView()

@@ -3,6 +3,7 @@ import SwiftUI
 struct PDFListDetailView: View {
     
     @ObservedObject var settingsVM: SettingsViewModel
+    let selectedPDF: PDF
     let pdfDetailUIView: PDFDetailUIView
     
     var body: some View {
@@ -11,7 +12,9 @@ struct PDFListDetailView: View {
             Button("Save") {
                 pdfDetailUIView.savePDF()
             }
-            .navigationBarTitle("\(settingsVM.selectedPDF)".dropLast(4), displayMode: .inline)
+            .navigationBarTitle("\(settingsVM.selectedPDF.name)".dropLast(4), displayMode: .inline)
+        }.onAppear {
+            settingsVM.selectedPDF = selectedPDF
         }
     }
 }

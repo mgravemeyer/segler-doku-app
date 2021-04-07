@@ -233,17 +233,27 @@ struct SectionRemarks: View {
 
 struct SectionPDF: View {
     @ObservedObject var settingsVM: SettingsViewModel
+    let colors = ColorSeglerViewModel()
     var body: some View {
         if settingsVM.selectedPDF.name == "" {
             NavigationLink("Protokoll", destination: PDFListView(settingsVM: self.settingsVM)).foregroundColor(.gray).frame(height: 34)
         } else {
             HStack {
-//                NavigationLink("\(settingsVM.selectedPdf)".dropLast(4), destination: SectionPDFSelection(settingsVM: self.settingsVM))
+                NavigationLink("\(settingsVM.selectedPDF.name)".dropLast(4), destination: PDFListView(settingsVM: self.settingsVM))
                 Button(action: {
-//                    self.settingsVM.selectedPdf = ""
+//                    self.settingsVM.selectedPDF.name = ""
                 }) {
-                    Image("Delete")
-                        .renderingMode(.template)
+                    Image(systemName: "pencil.circle.fill")
+                        .font(.system(size: 30))
+                        .foregroundColor(colors.color)
+                        .buttonStyle(BorderlessButtonStyle())
+                }.buttonStyle(BorderlessButtonStyle()).frame(width: 30).frame(height: 30)
+                Button(action: {
+                    self.settingsVM.selectedPDF.name = ""
+                }) {
+                    Image(systemName: "xmark.circle.fill")
+                        .font(.system(size: 30))
+                        .foregroundColor(colors.color)
                         .buttonStyle(BorderlessButtonStyle())
                 }.buttonStyle(BorderlessButtonStyle()).frame(width: 30)
             }
