@@ -5,7 +5,7 @@ import ProgressHUD
 class SettingsViewModel: ObservableObject {
     
     @Published var pdfs = [PDF]()
-    @Published var selectedPDF = ""
+    @Published var selectedPDF = PDF(name: "", data: Data())
     
     @Published var ip = String()
     @Published var adminMenuePassword = String()
@@ -196,3 +196,36 @@ extension SettingsViewModel {
     }
 }
 
+extension SettingsViewModel {
+//    func loadLocalPDFNames() {
+//        let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
+//        do {
+//            let urls = try FileManager.default.contentsOfDirectory(at: url!, includingPropertiesForKeys: nil)
+//            for url in urls {
+//                print(url.lastPathComponent)
+//                pdfNameList.append(url.lastPathComponent)
+//            }
+//        } catch {
+//            print(error.localizedDescription)
+//        }
+//    }
+//
+//    func addPDF(name: String) {
+//        self.pdfNameList.append(name)
+//    }
+    
+//    func deletePDFFileManager(selection: String) {
+//        guard
+//            let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
+//        else {
+//            print("error while finding file")
+//            return
+//        }
+//        let fileURL = url.appendingPathComponent("\(selection)")
+//        do {
+//            try FileManager.default.removeItem(at: fileURL)
+//        } catch {
+//            print(error.localizedDescription)
+//        }
+//    }
+}

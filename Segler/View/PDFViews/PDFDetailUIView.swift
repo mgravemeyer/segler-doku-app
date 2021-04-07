@@ -13,8 +13,8 @@ struct PDFDetailUIView: UIViewRepresentable {
     let selectedPDF: PDF
 
     func makeUIView(context: Context) -> PDFView {
-        let fileURL = Bundle.main.url(forResource: "samplePdf", withExtension: "pdf")
-        pdfView.document = PDFDocument(url: fileURL!)
+        print(selectedPDF.name.dropLast(4))
+        pdfView.document = PDFDocument(data: selectedPDF.data)
         return pdfView
     }
 
