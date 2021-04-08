@@ -368,7 +368,12 @@ struct listComments: View {
                             .frame(height: 34)
                     }
                 }
-                NavigationLink("Protokoll", destination: PDFListView(show: $show, settingsVM: self.settingsVM)).foregroundColor(.gray).frame(height: 34)
+                NavigationLink(destination: PDFListView(show: $show, settingsVM: self.settingsVM)) {
+                    HStack {
+                        Image(systemName: "newspaper.fill")
+                        Text("Protokoll")
+                    }.frame(height: 34)
+                }.frame(height: 34)
 //                Button(action: {
 //                    self.remarksVM.selectedComment = ""
 //                    self.remarksVM.secondHirarActive = false
