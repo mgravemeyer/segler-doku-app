@@ -5,6 +5,7 @@ struct PDFListDetailView: View {
     @ObservedObject var settingsVM: SettingsViewModel
     var selectedPDF: PDF
     @State var saveState = false
+    @Binding var show: Bool
     
     var body: some View {
         let pdf = PDFDetailUIView(selectedPDF: selectedPDF, saveState: $saveState, settingsVM: self._settingsVM)
@@ -14,6 +15,7 @@ struct PDFListDetailView: View {
                 pdf.savePDF()
                 settingsVM.savedPDF.name = "\(selectedPDF.name)"
                 saveState = true
+                show = false
             }))
     }
 }

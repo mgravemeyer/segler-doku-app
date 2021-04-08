@@ -250,7 +250,7 @@ struct SectionPDF: View {
 //                        .foregroundColor(colors.color)
 //                }.frame(width: 30, height: 30).buttonStyle(BorderlessButtonStyle())
                 
-                NavigationLink(destination: PDFListDetailView(settingsVM: settingsVM, selectedPDF: settingsVM.savedPDF, saveState: false), isActive: $editViewVisible) { EmptyView() }.frame(width: 0).hidden().labelsHidden().buttonStyle((BorderlessButtonStyle())).zIndex(-100000).disabled(true)
+                NavigationLink(destination: PDFEditDetailView(settingsVM: settingsVM, saveState: false), isActive: $editViewVisible) { EmptyView() }.frame(width: 0).hidden().labelsHidden().buttonStyle((BorderlessButtonStyle())).zIndex(-100000).disabled(true)
                 
                 Button(action: {
 //                    self.settingsVM.selectedPDF.name = ""
