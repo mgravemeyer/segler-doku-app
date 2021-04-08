@@ -4,6 +4,8 @@ import ProgressHUD
 
 class SettingsViewModel: ObservableObject {
     
+    @Published var pdfsToSearchOnServer = [ResponsePDF]()
+    
     @Published var savedPDF = PDF(name: "", data: Data())
     
     @Published var pdfs = [PDF]()
@@ -52,13 +54,17 @@ extension SettingsViewModel {
                 sftpsession.connect()
                     let content = sftpsession.contents(atPath: "config/config.json")
                     
+                    decodaPDFs(jsonData: content!)
+                
                     let tempPdfData = sftpsession.contentsOfDirectory(atPath: "protokolle")
-                    if tempPdfData != nil {
-                        for pdfData in tempPdfData! {
-                            self.pdfs.append(PDF(name: "\(pdfData.filename)", data: sftpsession.contents(atPath: "protokolle/\(pdfData.filename)")!))
-                            print(pdfData.filename)
-                        }
+                    
+                    for pdf in pdfsToSearchOnServer {
+                        let content = sftpsession.contents(atPath: "protokolle/\(pdf.datei).pdf")
+                        pdfs.append(PDF(name: pdf.name, data: content!))
+                        print("append \(pdf)")
                     }
+                
+                    print("full array: \(pdfs)")
                 
                     if content != nil {
                     if let string = String(bytes: content!, encoding: .utf8) {
@@ -194,6 +200,60 @@ extension SettingsViewModel {
             
         } catch {
             print(error.localizedDescription)
+        }
+    }
+}
+
+extension SettingsViewModel {
+    
+    struct ResponsePDF: Decodable, Encodable, Identifiable {
+        var id = UUID()
+        let name: String
+        let datei: String
+        private enum Keys: String, CodingKey {
+            case name = "Name"
+            case datei = "Datei"
+        }
+        init(from decoder: Decoder) throws {
+              let values = try decoder.container(keyedBy: Keys.self)
+
+              name = try values.decodeIfPresent(String.self, forKey: .name)!
+              datei = try values.decodeIfPresent(String.self, forKey: .datei)!
+          }
+    }
+    
+    struct ResponsePDFs: Codable {
+      var pdfs: [ResponsePDF]
+      enum CodingKeys: String, CodingKey {
+        case response = "Einstellungen"
+        case pdfsArray = "Protokolle"
+      }
+
+      init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        let response = try container.nestedContainer(keyedBy:
+        CodingKeys.self, forKey: .response)
+        
+        self.pdfs = try response.decode([ResponsePDF].self, forKey: .pdfsArray)
+      }
+
+      func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        var response = container.nestedContainer(keyedBy: CodingKeys.self, forKey: .response)
+        try response.encode(self.pdfs, forKey: .pdfsArray)
+       }
+    }
+}
+
+extension SettingsViewModel {
+    func decodaPDFs(jsonData : Foundation.Data) {
+        let decoder = JSONDecoder()
+        do {
+            let tempPDFs = try decoder.decode(ResponsePDFs.self, from: jsonData)
+            pdfsToSearchOnServer = tempPDFs.pdfs
+//            self.comments = [try decoder.decode(Comment.self, from: jsonData)]
+        } catch {
+            print("KOMMENTARE KONNTEN NICHT GELADEN WERDEN")
         }
     }
 }

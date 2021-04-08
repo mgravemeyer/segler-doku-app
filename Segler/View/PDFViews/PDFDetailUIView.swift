@@ -65,6 +65,7 @@ struct PDFDetailUIView: UIViewRepresentable {
             }
         print("new data: \(String(describing: pdfView.document!.dataRepresentation()))")
         settingsVM.savedPDF.data = data
+        settingsVM.selectedPDF.name = "test"
         saveState = false
         let fileURL = url.appendingPathComponent("\(UUID().uuidString).pdf")
         do {

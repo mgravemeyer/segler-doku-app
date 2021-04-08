@@ -234,12 +234,21 @@ struct SectionRemarks: View {
 struct SectionPDF: View {
     @ObservedObject var settingsVM: SettingsViewModel
     let colors = ColorSeglerViewModel()
+    @State var fakeBool = false
     var body: some View {
         if settingsVM.selectedPDF.name == "" {
             NavigationLink("Protokoll", destination: PDFListView(settingsVM: self.settingsVM)).foregroundColor(.gray).frame(height: 34)
         } else {
             HStack {
-                NavigationLink("\(settingsVM.selectedPDF.name)".dropLast(4), destination: PDFListView(settingsVM: self.settingsVM))
+                NavigationLink("\(settingsVM.savedPDF.name)", destination: PDFListView(settingsVM: self.settingsVM))
+                
+//                NavigationLink(destination: PDFDetailUIView(selectedPDF: $settingsVM.savedPDF, saveState: self.$fakeBool, settingsVM: _settingsVM)) {
+//                    Image(systemName: "pencil.circle.fill")
+//                        .frame(width: 30, height: 30)
+//                        .font(.system(size: 30))
+//                        .foregroundColor(colors.color)
+//                }.frame(width: 30, height: 30).buttonStyle(BorderlessButtonStyle())
+                
                 Button(action: {
 //                    self.settingsVM.selectedPDF.name = ""
                 }) {
