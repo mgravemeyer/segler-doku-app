@@ -234,9 +234,10 @@ struct SectionRemarks: View {
 struct SectionPDF: View {
     @ObservedObject var settingsVM: SettingsViewModel
     let colors = ColorSeglerViewModel()
+    @State var editViewVisible = false
     @State var fakeBool = false
     var body: some View {
-        if settingsVM.selectedPDF.name == "" {
+        if settingsVM.savedPDF.name == "" {
             NavigationLink("Protokoll", destination: PDFListView(settingsVM: self.settingsVM)).foregroundColor(.gray).frame(height: 34)
         } else {
             HStack {
@@ -249,8 +250,11 @@ struct SectionPDF: View {
 //                        .foregroundColor(colors.color)
 //                }.frame(width: 30, height: 30).buttonStyle(BorderlessButtonStyle())
                 
+                NavigationLink(destination: PDFListDetailView(settingsVM: settingsVM, selectedPDF: settingsVM.savedPDF, saveState: false), isActive: $editViewVisible) { EmptyView() }.frame(width: 0).hidden().labelsHidden().buttonStyle((BorderlessButtonStyle())).zIndex(-100000).disabled(true)
+                
                 Button(action: {
 //                    self.settingsVM.selectedPDF.name = ""
+                    editViewVisible.toggle()
                 }) {
                     Image(systemName: "pencil.circle.fill")
                         .font(.system(size: 30))
@@ -258,7 +262,8 @@ struct SectionPDF: View {
                         .buttonStyle(BorderlessButtonStyle())
                 }.buttonStyle(BorderlessButtonStyle()).frame(width: 30).frame(height: 30)
                 Button(action: {
-                    self.settingsVM.selectedPDF.name = ""
+                    self.settingsVM.savedPDF.name = ""
+                    self.settingsVM.savedPDF.data = Data()
                 }) {
                     Image(systemName: "xmark.circle.fill")
                         .font(.system(size: 30))

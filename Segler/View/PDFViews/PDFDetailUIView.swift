@@ -3,39 +3,41 @@ import PDFKit
 
 struct PDFDetailUIView: UIViewRepresentable {
     func makeCoordinator() -> Coordinator {
-        return Coordinator(selectedPDF: $selectedPDF, saveState: $saveState, settingsVM: _settingsVM)
+        return Coordinator(selectedPDF: selectedPDF, saveState: $saveState, settingsVM: _settingsVM, pdfView: $pdfView)
     }
-    
 
     @State var pdfView = PDFView()
 
-    @Binding var selectedPDF: PDF
+    var selectedPDF: PDF
     
     @Binding var saveState: Bool
     
     @ObservedObject var settingsVM: SettingsViewModel
     
     class Coordinator: NSObject, PDFViewDelegate {
+        
+        @Binding var pdfView: PDFView
 
-        @Binding var selectedPDF: PDF
+        var selectedPDF: PDF
         
         @Binding var saveState: Bool
         
         @ObservedObject var settingsVM: SettingsViewModel
 
-        init(selectedPDF: Binding<PDF>, saveState: Binding<Bool>, settingsVM: ObservedObject<SettingsViewModel>) {
-            _selectedPDF = selectedPDF
+        init(selectedPDF: PDF, saveState: Binding<Bool>, settingsVM: ObservedObject<SettingsViewModel>, pdfView: Binding<PDFView>) {
+            self.selectedPDF = selectedPDF
             _saveState = saveState
             _settingsVM = settingsVM
+            _pdfView = pdfView
         }
-        
         
     }
     
-    init(selectedPDF: Binding<PDF>, saveState: Binding<Bool>, settingsVM: ObservedObject<SettingsViewModel>) {
-        _selectedPDF = selectedPDF
+    init(selectedPDF: PDF, saveState: Binding<Bool>, settingsVM: ObservedObject<SettingsViewModel>) {
+        self.selectedPDF = selectedPDF
         _saveState = saveState
         _settingsVM = settingsVM
+//        pdfView.document = PDFDocument(data: selectedPDF.data)
     }
 
     func makeUIView(context: Context) -> PDFView {
@@ -44,15 +46,13 @@ struct PDFDetailUIView: UIViewRepresentable {
         pdfView.document = PDFDocument(data: selectedPDF.data)
         return pdfView
     }
+    
+    @State fileprivate var shouldDismiss = false
 
     func updateUIView(_ uiView: PDFView, context: Context) {
-        
         if saveState {
-            savePDF()
-            print(settingsVM.savedPDF)
-            
+            context.environment.presentationMode.wrappedValue.dismiss()
         }
-        
     }
 
     func savePDF() {
@@ -63,16 +63,16 @@ struct PDFDetailUIView: UIViewRepresentable {
                 print("error while saving or finding files")
                 return
             }
-        print("new data: \(String(describing: pdfView.document!.dataRepresentation()))")
+        print("new data: \(String(describing: data))")
         settingsVM.savedPDF.data = data
-        settingsVM.selectedPDF.name = "test"
+        settingsVM.savedPDF.name = selectedPDF.name
         saveState = false
-        let fileURL = url.appendingPathComponent("\(UUID().uuidString).pdf")
-        do {
-            try data.write(to: fileURL)
-        } catch {
-            print(error.localizedDescription)
-        }
+//        let fileURL = url.appendingPathComponent("\(UUID().uuidString).pdf")
+//        do {
+//            try data.write(to: fileURL)
+//        } catch {
+//            print(error.localizedDescription)
+//        }
     }
     
 }
