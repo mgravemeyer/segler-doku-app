@@ -56,8 +56,8 @@ struct Add_View: View {
                                     SectionOrder(orderVM : self.orderVM, mediaVM : self.mediaVM)
                                         .accentColor(colors.color)
                                         .frame(height: 34)
-                                    SectionPDF(settingsVM: self.settingsVM)
-                                    SectionRemarks(remarksVM : self.remarksVM)
+//                                    SectionPDF(settingsVM: self.settingsVM)
+                                    SectionRemarks(remarksVM : self.remarksVM, settingsVM: settingsVM)
                                         .frame(height: 34)
                                     SectionFreeTextField(remarksVM: self.remarksVM)
                                     SectionBilder(mediaVM : self.mediaVM)
@@ -215,45 +215,29 @@ struct SectionRemarks: View {
     
     @ObservedObject var remarksVM : RemarksViewModel
     @State var isVisible = Bool()
-    
-    let colors = ColorSeglerViewModel()
-    
-    var body: some View {
-
-            NavigationLink(destination: listComments(remarksVM: self.remarksVM, show: true)) {
-                if remarksVM.selectedComment == "" {
-                    Text("Kommentar").foregroundColor(.gray)
-                } else {
-                    Text("\(remarksVM.selectedComment)")
-                }
-            }.listRowBackground(self.remarksVM.commentIsOk ? colors.correctRowColor : colors.warningRowColor)
-
-    }
-}
-
-struct SectionPDF: View {
     @ObservedObject var settingsVM: SettingsViewModel
+    
     let colors = ColorSeglerViewModel()
     @State var editViewVisible = false
-    @State var fakeBool = false
+    
     var body: some View {
+        
+        
         if settingsVM.savedPDF.name == "" {
-            NavigationLink("Protokoll", destination: PDFListView(settingsVM: self.settingsVM)).foregroundColor(.gray).frame(height: 34)
+            NavigationLink(destination: listComments(remarksVM: self.remarksVM, settingsVM: settingsVM, show: true)) {
+                    if remarksVM.selectedComment == "" {
+                        Text("Kommentar").foregroundColor(.gray)
+                    } else {
+                        Text("\(remarksVM.selectedComment)")
+                    }
+                }.listRowBackground(self.remarksVM.commentIsOk ? colors.correctRowColor : colors.warningRowColor)
         } else {
             HStack {
-                NavigationLink("\(settingsVM.savedPDF.name)", destination: PDFListView(settingsVM: self.settingsVM))
-                
-//                NavigationLink(destination: PDFDetailUIView(selectedPDF: $settingsVM.savedPDF, saveState: self.$fakeBool, settingsVM: _settingsVM)) {
-//                    Image(systemName: "pencil.circle.fill")
-//                        .frame(width: 30, height: 30)
-//                        .font(.system(size: 30))
-//                        .foregroundColor(colors.color)
-//                }.frame(width: 30, height: 30).buttonStyle(BorderlessButtonStyle())
-                
+                NavigationLink(destination: listComments(remarksVM: self.remarksVM, settingsVM: settingsVM, show: true)) {
+                    Text(settingsVM.savedPDF.name)
+                }
                 NavigationLink(destination: PDFEditDetailView(settingsVM: settingsVM, saveState: false), isActive: $editViewVisible) { EmptyView() }.frame(width: 0).hidden().labelsHidden().buttonStyle((BorderlessButtonStyle())).zIndex(-100000).disabled(true)
-                
                 Button(action: {
-//                    self.settingsVM.selectedPDF.name = ""
                     editViewVisible.toggle()
                 }) {
                     Image(systemName: "pencil.circle.fill")
@@ -274,6 +258,50 @@ struct SectionPDF: View {
         }
     }
 }
+
+//struct SectionPDF: View {
+//    @ObservedObject var settingsVM: SettingsViewModel
+//    let colors = ColorSeglerViewModel()
+//    @State var editViewVisible = false
+//    @State var fakeBool = false
+//    var body: some View {
+//        if settingsVM.savedPDF.name == "" {
+//            NavigationLink("Protokoll", destination: PDFListView(settingsVM: self.settingsVM)).foregroundColor(.gray).frame(height: 34)
+//        } else {
+//            HStack {
+//                NavigationLink("\(settingsVM.savedPDF.name)", destination: PDFListView(settingsVM: self.settingsVM))
+//
+////                NavigationLink(destination: PDFDetailUIView(selectedPDF: $settingsVM.savedPDF, saveState: self.$fakeBool, settingsVM: _settingsVM)) {
+////                    Image(systemName: "pencil.circle.fill")
+////                        .frame(width: 30, height: 30)
+////                        .font(.system(size: 30))
+////                        .foregroundColor(colors.color)
+////                }.frame(width: 30, height: 30).buttonStyle(BorderlessButtonStyle())
+//
+//                NavigationLink(destination: PDFEditDetailView(settingsVM: settingsVM, saveState: false), isActive: $editViewVisible) { EmptyView() }.frame(width: 0).hidden().labelsHidden().buttonStyle((BorderlessButtonStyle())).zIndex(-100000).disabled(true)
+//
+//                Button(action: {
+////                    self.settingsVM.selectedPDF.name = ""
+//                    editViewVisible.toggle()
+//                }) {
+//                    Image(systemName: "pencil.circle.fill")
+//                        .font(.system(size: 30))
+//                        .foregroundColor(colors.color)
+//                        .buttonStyle(BorderlessButtonStyle())
+//                }.buttonStyle(BorderlessButtonStyle()).frame(width: 30).frame(height: 30)
+//                Button(action: {
+//                    self.settingsVM.savedPDF.name = ""
+//                    self.settingsVM.savedPDF.data = Data()
+//                }) {
+//                    Image(systemName: "xmark.circle.fill")
+//                        .font(.system(size: 30))
+//                        .foregroundColor(colors.color)
+//                        .buttonStyle(BorderlessButtonStyle())
+//                }.buttonStyle(BorderlessButtonStyle()).frame(width: 30)
+//            }
+//        }
+//    }
+//}
 
 struct SectionFreeTextField: View {
     
@@ -323,7 +351,13 @@ struct listComments: View {
     
     @ObservedObject var remarksVM : RemarksViewModel
     @Environment(\.presentationMode) var presentationMode
-    @State var show : Bool
+    
+    @ObservedObject var settingsVM: SettingsViewModel
+    let colors = ColorSeglerViewModel()
+    @State var editViewVisible = false
+    @State var fakeBool = false
+    
+    @State var show = true
     
     var body: some View {
 
@@ -334,6 +368,7 @@ struct listComments: View {
                             .frame(height: 34)
                     }
                 }
+                NavigationLink("Protokoll", destination: PDFListView(show: $show, settingsVM: self.settingsVM)).foregroundColor(.gray).frame(height: 34)
 //                Button(action: {
 //                    self.remarksVM.selectedComment = ""
 //                    self.remarksVM.secondHirarActive = false
@@ -589,11 +624,11 @@ struct reportModal: View {
                 Text("Abgeschickt!").foregroundColor(Color.black).fontWeight(.bold).font(.largeTitle)
                 Text("Auftrags-Nr: \(orderVM.orderNr)").frame(height: 34)
                 Text("Auftrags-Position: \(orderVM.orderPosition)").frame(height: 34)
+                if remarksVM.selectedComment != "" && settingsVM.savedPDF.name == "" {
+                    Text("Kommentar: \(remarksVM.selectedComment)").frame(height: 34)
+                }
                 if remarksVM.additionalComment != "" {
                     Text("Freitext: \(remarksVM.additionalComment)").frame(height: 34)
-                }
-                if remarksVM.selectedComment != "" {
-                    Text("Kommentar: \(remarksVM.selectedComment)").frame(height: 34)
                 }
                 if settingsVM.savedPDF.name != "" {
                     Text("Protokoll: \(settingsVM.savedPDF.name)")

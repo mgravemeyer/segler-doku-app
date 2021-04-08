@@ -3,7 +3,7 @@ import SwiftUI
 struct PDFListView: View {
 
     @Environment(\.presentationMode) var presentationMode
-    @State var show = true
+    @Binding var show: Bool
     @ObservedObject var settingsVM: SettingsViewModel
     
     var body: some View {
