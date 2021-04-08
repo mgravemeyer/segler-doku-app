@@ -14,6 +14,7 @@ struct PDFListDetailView: View {
             .navigationBarItems(trailing: Button("Speichern", action: {
                 pdf.savePDF()
                 settingsVM.savedPDF.name = "\(selectedPDF.name)"
+                print(settingsVM.savedPDF)
                 saveState = true
                 show = false
             }))

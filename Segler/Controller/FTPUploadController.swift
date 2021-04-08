@@ -213,6 +213,8 @@ struct FTPUploadController {
     
     func someAsyncFunction(remarksVM : RemarksViewModel,_ shouldThrow: Bool, completion: @escaping(String?) -> ()) {
         
+        print(settingsVM.savedPDF)
+        
         var finishedPhotoArray = [Data]()
         var finishedVideoArray = [Data]()
         
@@ -280,7 +282,7 @@ struct FTPUploadController {
 //                    self.orderViewModel.orderPositionIsOk = false
                 }
                 
-                if remarksVM.selectedComment == "" {
+                if remarksVM.selectedComment == "" && settingsVM.savedPDF.name == ""  {
                     error = true
 //                    commentCheck = false
 //                    remarksVM.commentIsOk = false
@@ -387,7 +389,7 @@ struct FTPUploadController {
                 
                 group.notify(queue: .main) {
                     
-                if finishedPhotoArray.isEmpty && finishedVideoArray.isEmpty {
+                    if finishedPhotoArray.isEmpty && finishedVideoArray.isEmpty && settingsVM.savedPDF.name == "" {
                     error = true
 //                    imagesCheck = false
                     errorMessage = errorMessage + "Kein Bild/Video ausgewählt! \n"
@@ -401,20 +403,25 @@ struct FTPUploadController {
                     completion(errorMessage)
                 }
                         
-                //setting up json file
-                if self.settingsVM.useFixedUser {
-                    jsonObject = self.createJSON(bereich: "\(remarksVM.bereich)", meldungstyp: "\(remarksVM.selectedComment)", freitext: remarksVM.additionalComment, user: self.settingsVM.userUsername)!
-                } else {
-                    jsonObject = self.createJSON(bereich: "\(remarksVM.bereich)", meldungstyp: "\(remarksVM.selectedComment)", freitext: remarksVM.additionalComment, user: self.userVM.username)!
-                }
-            
+                    //setting up json file
+                    if self.settingsVM.useFixedUser {
+                        if settingsVM.savedPDF.name != "" {
+                            jsonObject = self.createJSON(bereich: "Protokoll", meldungstyp: String(settingsVM.savedPDF.name), freitext: remarksVM.additionalComment, user: self.settingsVM.userUsername)!
+                        } else {
+                            jsonObject = self.createJSON(bereich: "\(remarksVM.bereich)", meldungstyp: "\(remarksVM.selectedComment)", freitext: remarksVM.additionalComment, user: self.settingsVM.userUsername)!
+                        }
+                    } else {
+                        if settingsVM.savedPDF.name != "" {
+                            jsonObject = self.createJSON(bereich: "Protokoll", meldungstyp: String(settingsVM.savedPDF.name), freitext: remarksVM.additionalComment, user: self.userVM.username)!
+                        } else {
+                            jsonObject = self.createJSON(bereich: "\(remarksVM.bereich)", meldungstyp: "\(remarksVM.selectedComment)", freitext: remarksVM.additionalComment, user: self.userVM.username)!
+                        }
+                    }
             
             DispatchQueue.main.async {
             let sftpsession = NMSFTP(session : session)
             sftpsession.connect()
-                
-                
-            
+                print("CONNECTION ESTABLISHED!")
                 if sftpsession.isConnected && !error {
                         
                     var counter = 0
@@ -435,6 +442,17 @@ struct FTPUploadController {
                             counter += 1
                         }
                     }
+                    
+                    print(settingsVM.savedPDF)
+                    
+                    if settingsVM.savedPDF.name != "" {
+                        print(settingsVM.savedPDF.data)
+                        print("SENT!")
+                        sftpsession.writeContents(jsonObject, toFileAtPath: "\("\(self.orderViewModel.orderNr)_\(self.orderViewModel.orderPosition)_\(convertedDate)_\(convertedDateTime)_\(counter)").json")
+                        sftpsession.writeContents(settingsVM.savedPDF.data, toFileAtPath: "\("\(self.orderViewModel.orderNr)_\(self.orderViewModel.orderPosition)_\(convertedDate)_\(convertedDateTime)_\(counter)").pdf")
+                        counter += 1
+                    }
+                    
                     mediaViewModel.selectedPhotoAmount = 0
                     mediaViewModel.selectedVideoAmount = 0
                     completion(nil)

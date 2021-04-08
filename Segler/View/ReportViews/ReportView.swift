@@ -589,28 +589,37 @@ struct reportModal: View {
                 Text("Abgeschickt!").foregroundColor(Color.black).fontWeight(.bold).font(.largeTitle)
                 Text("Auftrags-Nr: \(orderVM.orderNr)").frame(height: 34)
                 Text("Auftrags-Position: \(orderVM.orderPosition)").frame(height: 34)
-                Text("Freitext: \(remarksVM.additionalComment)").frame(height: 34)
-                Text("Kommentar: \(remarksVM.selectedComment)").frame(height: 34)
-                HStack {
-                    ForEach((0...mediaVM.highestOrderNumber).reversed(), id:\.self) { i in
-                        ForEach(mediaVM.images, id:\.self) { image in
-                            if image.selected && image.order == i {
-                                Image(uiImage: image.thumbnail).renderingMode(.original).resizable().frame(width: 80, height: 80)
+                if remarksVM.additionalComment != "" {
+                    Text("Freitext: \(remarksVM.additionalComment)").frame(height: 34)
+                }
+                if remarksVM.selectedComment != "" {
+                    Text("Kommentar: \(remarksVM.selectedComment)").frame(height: 34)
+                }
+                if settingsVM.savedPDF.name != "" {
+                    Text("Protokoll: \(settingsVM.savedPDF.name)")
+                }
+                if !mediaVM.images.isEmpty || !mediaVM.imagesCamera.isEmpty || !mediaVM.videos.isEmpty || !mediaVM.videosCamera.isEmpty {
+                    HStack {
+                        ForEach((0...mediaVM.highestOrderNumber).reversed(), id:\.self) { i in
+                            ForEach(mediaVM.images, id:\.self) { image in
+                                if image.selected && image.order == i {
+                                    Image(uiImage: image.thumbnail).renderingMode(.original).resizable().frame(width: 80, height: 80)
+                                }
                             }
-                        }
-                        ForEach(mediaVM.imagesCamera, id:\.self) { image in
-                            if image.order == i {
-                                Image(uiImage: image.image).renderingMode(.original).resizable().frame(width: 80, height: 80)
+                            ForEach(mediaVM.imagesCamera, id:\.self) { image in
+                                if image.order == i {
+                                    Image(uiImage: image.image).renderingMode(.original).resizable().frame(width: 80, height: 80)
+                                }
                             }
-                        }
-                        ForEach(mediaVM.videos, id:\.self) { video in
-                            if video.selected && video.order == i {
-                                Image(uiImage: video.thumbnail).renderingMode(.original).resizable().frame(width: 80, height: 80)
+                            ForEach(mediaVM.videos, id:\.self) { video in
+                                if video.selected && video.order == i {
+                                    Image(uiImage: video.thumbnail).renderingMode(.original).resizable().frame(width: 80, height: 80)
+                                }
                             }
-                        }
-                        ForEach(mediaVM.videosCamera, id:\.self) { video in
-                            if video.order == i {
-                                Image(uiImage: video.thumbnail).renderingMode(.original).resizable().frame(width: 80, height: 80)
+                            ForEach(mediaVM.videosCamera, id:\.self) { video in
+                                if video.order == i {
+                                    Image(uiImage: video.thumbnail).renderingMode(.original).resizable().frame(width: 80, height: 80)
+                                }
                             }
                         }
                     }
@@ -640,6 +649,7 @@ struct reportModal: View {
         self.remarksVM.commentIsOk = true
         self.mediaVM.imagesIsOk = true
         self.showReport = false
+        self.settingsVM.savedPDF = PDF(name: "", data: Data())
     }
 
 }
