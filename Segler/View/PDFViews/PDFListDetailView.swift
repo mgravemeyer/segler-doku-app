@@ -3,6 +3,7 @@ import PDFKit
 
 struct PDFListDetailView: View {
     @ObservedObject var settingsVM: SettingsViewModel
+    @ObservedObject var remarksVM : RemarksViewModel
     var selectedPDF: PDF
     @State var saveState = false
     @Binding var show: Bool
@@ -14,6 +15,7 @@ struct PDFListDetailView: View {
             .navigationBarItems(trailing: Button("Speichern", action: {
                 pdf.savePDF()
                 settingsVM.savedPDF.name = "\(selectedPDF.name)"
+                remarksVM.selectedComment = ""
                 print(settingsVM.savedPDF)
                 saveState = true
                 show = false

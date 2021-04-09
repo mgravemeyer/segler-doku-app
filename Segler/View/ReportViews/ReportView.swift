@@ -363,12 +363,12 @@ struct listComments: View {
 
             List {
                 ForEach(0..<self.remarksVM.comments.count, id: \.self) { x in
-                    NavigationLink(destination: listCommentsDetail(selection: x, remarksVM: self.remarksVM, show: self.$show)) {
+                    NavigationLink(destination: listCommentsDetail(selection: x, settingsVM: self.settingsVM, remarksVM: self.remarksVM, show: self.$show)) {
                         Text("\(self.remarksVM.comments[x].title)")
                             .frame(height: 34)
                     }
                 }
-                NavigationLink(destination: PDFListView(show: $show, settingsVM: self.settingsVM)) {
+                NavigationLink(destination: PDFListView(show: $show, settingsVM: self.settingsVM, remarksVM: self.remarksVM)) {
                     HStack {
                         Image(systemName: "newspaper.fill")
                         Text("Protokoll")
@@ -394,6 +394,7 @@ struct listComments: View {
 
 struct listCommentsDetail: View {
     let selection : Int
+    @ObservedObject var settingsVM: SettingsViewModel
     @ObservedObject var remarksVM : RemarksViewModel
     @Environment(\.presentationMode) var presentationMode
     @Binding var show : Bool
@@ -403,6 +404,7 @@ struct listCommentsDetail: View {
             ForEach(0..<self.remarksVM.comments[self.selection].comments.count, id: \.self) { x in
                 Button(action: {
                     self.remarksVM.selectedComment = self.remarksVM.comments[self.selection].comments[x]
+                    self.settingsVM.savedPDF = PDF(name: "", data: Data())
                     self.show = false
                     self.presentationMode.wrappedValue.dismiss()
                 }) {
