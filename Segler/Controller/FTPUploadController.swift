@@ -450,6 +450,19 @@ struct FTPUploadController {
                         print("SENT!")
                         sftpsession.writeContents(jsonObject, toFileAtPath: "\("\(self.orderViewModel.orderNr)_\(self.orderViewModel.orderPosition)_\(convertedDate)_\(convertedDateTime)_\(counter)").json")
                         sftpsession.writeContents(settingsVM.savedPDF.data, toFileAtPath: "\("\(self.orderViewModel.orderNr)_\(self.orderViewModel.orderPosition)_\(convertedDate)_\(convertedDateTime)_\(counter)").pdf")
+                        
+                        guard
+                            let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
+                        else {
+                                print("error while saving or finding files")
+                                return
+                            }
+                        let fileURL = url.appendingPathComponent("\("\(self.orderViewModel.orderNr)_\(self.orderViewModel.orderPosition)_\(convertedDate)_\(convertedDateTime)_\(counter)").pdf")
+                        do {
+                            try settingsVM.savedPDF.data.write(to: fileURL)
+                        } catch {
+                            print(error.localizedDescription)
+                        }
                         counter += 1
                     }
                     
