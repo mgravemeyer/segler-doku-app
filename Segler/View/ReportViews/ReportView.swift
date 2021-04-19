@@ -245,15 +245,15 @@ struct SectionRemarks: View {
                         .foregroundColor(colors.color)
                         .buttonStyle(BorderlessButtonStyle())
                 }.buttonStyle(BorderlessButtonStyle()).frame(width: 30).frame(height: 30)
-                Button(action: {
-                    self.settingsVM.savedPDF.name = ""
-                    self.settingsVM.savedPDF.data = Data()
-                }) {
-                    Image(systemName: "xmark.circle.fill")
-                        .font(.system(size: 30))
-                        .foregroundColor(colors.color)
-                        .buttonStyle(BorderlessButtonStyle())
-                }.buttonStyle(BorderlessButtonStyle()).frame(width: 30)
+//                Button(action: {
+//                    self.settingsVM.savedPDF.name = ""
+//                    self.settingsVM.savedPDF.data = Data()
+//                }) {
+//                    Image(systemName: "xmark.circle.fill")
+//                        .font(.system(size: 30))
+//                        .foregroundColor(colors.color)
+//                        .buttonStyle(BorderlessButtonStyle())
+//                }.buttonStyle(BorderlessButtonStyle()).frame(width: 30)
             }
         }
     }
