@@ -6,6 +6,8 @@ class SettingsViewModel: ObservableObject {
     
     @Published var pdfsToSearchOnServer = [ResponsePDF]()
     
+    @Published var archive = [PDF]()
+    
     @Published var savedPDF = PDF(name: "", data: Data())
     
     @Published var pdfs = [PDF]()
@@ -42,6 +44,24 @@ extension SettingsViewModel {
     func getJSON() {
         
         loadSavedSettings()
+        
+        guard
+            let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
+        
+        else {
+                print("error while saving or finding files")
+                return
+            }
+        do {
+            let fileURLs = try FileManager.default.contentsOfDirectory(at: url, includingPropertiesForKeys: nil)
+            for url in fileURLs {
+                try archive.append(PDF(name: url.lastPathComponent, data: Data(contentsOf: url)))
+            }
+            print(fileURLs)
+        } catch {
+            print("erroror")
+            print(error.localizedDescription)
+        }
         
 
         
