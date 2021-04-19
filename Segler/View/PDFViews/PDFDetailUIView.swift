@@ -39,11 +39,20 @@ struct PDFDetailUIView: UIViewRepresentable {
         _settingsVM = settingsVM
 //        pdfView.document = PDFDocument(data: selectedPDF.data)
     }
+    
+
 
     func makeUIView(context: Context) -> PDFView {
-        UserDefaults.standard.set(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
-        pdfView.autoScales = false
+        
         pdfView.document = PDFDocument(data: selectedPDF.data)
+        
+        pdfView.displayMode = .singlePage
+        
+        UITextField.appearance().tintColor = .black
+//
+        UserDefaults.standard.set(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
+        pdfView.autoScales = true
+        
         return pdfView
     }
     
@@ -53,6 +62,14 @@ struct PDFDetailUIView: UIViewRepresentable {
         if saveState {
             context.environment.presentationMode.wrappedValue.dismiss()
         }
+    }
+    
+    func forward() {
+        pdfView.goToNextPage(nil)
+    }
+    
+    func back() {
+        pdfView.goToPreviousPage(nil)
     }
 
     func savePDF() {
