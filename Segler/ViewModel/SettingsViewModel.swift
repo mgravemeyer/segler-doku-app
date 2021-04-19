@@ -55,7 +55,7 @@ extension SettingsViewModel {
         do {
             let fileURLs = try FileManager.default.contentsOfDirectory(at: url, includingPropertiesForKeys: nil)
             for url in fileURLs {
-                try archive.append(PDF(name: url.lastPathComponent, data: Data(contentsOf: url)))
+                try archive.append(PDF(name: "\((url.lastPathComponent).dropLast(4))", data: Data(contentsOf: url)))
             }
             print(fileURLs)
         } catch {
