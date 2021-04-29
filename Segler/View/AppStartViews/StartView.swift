@@ -8,8 +8,6 @@ struct AppStart: View {
         UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.white]
     }
     
-    let seglerColor: Color = Color(red: 200/255, green: 0/255, blue: 0/255)
-    
     //CREATING ALL DATA MODULES FOR THE VIEWS
     @StateObject var userVM = UserViewModel()
     @StateObject var settingsVM = SettingsViewModel()
@@ -20,17 +18,17 @@ struct AppStart: View {
     @State var value : CGFloat = -30
     
     var body: some View {
-        ZStack {
+        Group {
             if !settingsVM.hasSettedUp {
                 SetupView()
             } else if (userVM.loggedIn && settingsVM.configLoaded && remarksVM.configLoaded) || settingsVM.useFixedUser {
-                Add_View().accentColor(seglerColor)
+                Add_View()
             } else if !userVM.loggedIn && !settingsVM.configLoaded && !remarksVM.configLoaded {
                 ErrorView()
             } else {
                 UserLogin()
             }
-        }
+        }.accentColor(Color.seglerRed)
         .environmentObject(userVM)
         .environmentObject(settingsVM)
         .environmentObject(mediaVM)
