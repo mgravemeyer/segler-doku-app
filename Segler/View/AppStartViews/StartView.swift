@@ -35,6 +35,7 @@ struct AppStart: View {
                 AppView()
                     .onAppear {
                         self.settingsVM.loadJSON()
+                        self.remarksVM.loadJSON()
                     }
             } else if self.appIsReady {
                 LoginView()

@@ -117,8 +117,5 @@ struct AppView: View {
                     BarcodeScannerSegler(sourceType: 0)
                 }
             }
-            .onAppear() {
-            self.remarksVM.getJSON(session: self.settingsVM.ip, username: self.settingsVM.serverUsername, password: self.settingsVM.serverPassword)
-        }
     }
 }
