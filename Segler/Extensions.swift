@@ -8,3 +8,9 @@ extension UIColor {
 extension Color {
     static let seglerRed = Color(red: 210.0/255.0, green: 105.0/255.0, blue: 130.0/255.0)
 }
+
+extension UIScreen{
+   static let screenWidth = UIScreen.main.bounds.size.width
+   static let screenHeight = UIScreen.main.bounds.size.height
+   static let screenSize = UIScreen.main.bounds.size
+}
