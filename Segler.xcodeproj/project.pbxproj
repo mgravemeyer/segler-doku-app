@@ -27,6 +27,9 @@
 		E38D8A93263AA9B700502077 /* SectionOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38D8A92263AA9B700502077 /* SectionOrder.swift */; };
 		E38D8A95263AAA5100502077 /* SectionRemarks.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38D8A94263AAA5100502077 /* SectionRemarks.swift */; };
 		E38D8A97263AAA8000502077 /* SectionFreeTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38D8A96263AAA8000502077 /* SectionFreeTextField.swift */; };
+		E38D8A99263AABD700502077 /* ImageSelectionModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38D8A98263AABD700502077 /* ImageSelectionModalView.swift */; };
+		E38D8A9B263AAC1000502077 /* ListCommentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38D8A9A263AAC1000502077 /* ListCommentsView.swift */; };
+		E38D8A9D263AAC2D00502077 /* ListCommentsDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38D8A9C263AAC2D00502077 /* ListCommentsDetailView.swift */; };
 		E39851D5263A97EB0008F68A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39851D4263A97EB0008F68A /* Extensions.swift */; };
 		E39851D9263A9E1F0008F68A /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39851D8263A9E1F0008F68A /* WebView.swift */; };
 		E39A9D6323D8930D00418E51 /* AdminLoginPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39A9D6223D8930D00418E51 /* AdminLoginPassword.swift */; };
@@ -76,6 +79,9 @@
 		E38D8A92263AA9B700502077 /* SectionOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionOrder.swift; sourceTree = "<group>"; };
 		E38D8A94263AAA5100502077 /* SectionRemarks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionRemarks.swift; sourceTree = "<group>"; };
 		E38D8A96263AAA8000502077 /* SectionFreeTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionFreeTextField.swift; sourceTree = "<group>"; };
+		E38D8A98263AABD700502077 /* ImageSelectionModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSelectionModalView.swift; sourceTree = "<group>"; };
+		E38D8A9A263AAC1000502077 /* ListCommentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCommentsView.swift; sourceTree = "<group>"; };
+		E38D8A9C263AAC2D00502077 /* ListCommentsDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCommentsDetailView.swift; sourceTree = "<group>"; };
 		E39851D4263A97EB0008F68A /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		E39851D8263A9E1F0008F68A /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		E39A9D6223D8930D00418E51 /* AdminLoginPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminLoginPassword.swift; sourceTree = "<group>"; };
@@ -301,6 +307,8 @@
 			isa = PBXGroup;
 			children = (
 				E38D8A94263AAA5100502077 /* SectionRemarks.swift */,
+				E38D8A9A263AAC1000502077 /* ListCommentsView.swift */,
+				E38D8A9C263AAC2D00502077 /* ListCommentsDetailView.swift */,
 			);
 			path = SectionRemarks;
 			sourceTree = "<group>";
@@ -318,6 +326,7 @@
 			children = (
 				2E53050E256FB26A00E862B4 /* PhotoDetail.swift */,
 				2E530511256FB39100E862B4 /* VideoDetail.swift */,
+				E38D8A98263AABD700502077 /* ImageSelectionModalView.swift */,
 			);
 			path = SectionImageVideo;
 			sourceTree = "<group>";
@@ -445,11 +454,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E38D8A99263AABD700502077 /* ImageSelectionModalView.swift in Sources */,
 				E301A5A823CDF4A0006A72D5 /* ColorSeglerViewModel.swift in Sources */,
 				2E53050F256FB26A00E862B4 /* PhotoDetail.swift in Sources */,
 				E3BDDD81250028D000C07EA0 /* UserViewModel.swift in Sources */,
 				E3B808DB23D063D9007A7595 /* SetupView.swift in Sources */,
 				E357E1B524B23940009871F1 /* ErrorView.swift in Sources */,
+				E38D8A9D263AAC2D00502077 /* ListCommentsDetailView.swift in Sources */,
 				E38D8A95263AAA5100502077 /* SectionRemarks.swift in Sources */,
 				E3D6A0D523A1838A000F35E9 /* AppDelegate.swift in Sources */,
 				E39A9D6323D8930D00418E51 /* AdminLoginPassword.swift in Sources */,
@@ -474,6 +485,7 @@
 				E3EA711E23D133A500340463 /* Session.swift in Sources */,
 				E378780D261A7973003323B9 /* PDF.swift in Sources */,
 				2E530516256FB3E200E862B4 /* AVPlayer.swift in Sources */,
+				E38D8A9B263AAC1000502077 /* ListCommentsView.swift in Sources */,
 				E35319742517EAC0005768DD /* URLModel.swift in Sources */,
 				E3A3BC7A23A28E72002BDE18 /* ImagePickerController.swift in Sources */,
 				E39851D5263A97EB0008F68A /* Extensions.swift in Sources */,
