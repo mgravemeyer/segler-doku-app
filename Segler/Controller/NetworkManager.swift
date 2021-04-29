@@ -15,7 +15,7 @@ class NetworkDataManager {
     
     var session: NMSFTP?
     
-    func connect(host: String, username: String, password: String) {
+    func connect(host: String, username: String, password: String) -> Bool {
         let connection = NMSSHSession.init(host: host, andUsername: username)
         if (session == nil) {
             connection.connect()
@@ -26,8 +26,10 @@ class NetworkDataManager {
                     self.session!.connect()
                     config = self.session!.contents(atPath: "config/config.json")
                     protokolle = self.session!.contentsOfDirectory(atPath: "protokolle")!
+                    return true
                 }
             }
         }
+        return false
     }
 }
