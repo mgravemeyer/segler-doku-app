@@ -4,6 +4,11 @@ import ProgressHUD
 
 class SettingsViewModel: ObservableObject {
     
+    init() {
+        NetworkManager.shared.connect(host: UserDefaults.standard.string(forKey: "ip")!, username: UserDefaults.standard.string(forKey: "serverUsername")!, password: UserDefaults.standard.string(forKey: "serverPassword")!)
+        getJSON()
+    }
+    
     @Published var pdfsToSearchOnServer = [ResponsePDF]()
     
     @Published var archive = [PDF]()
@@ -65,40 +70,71 @@ extension SettingsViewModel {
         
 
         
-        let session = NMSSHSession.init(host: "\(self.ip)", andUsername: "\(self.serverUsername)")
-        session.connect()
-        if session.isConnected{
-            session.authenticate(byPassword: "\(self.serverPassword)")
-            if session.isAuthorized {
-                let sftpsession = NMSFTP(session : session)
-                sftpsession.connect()
-                    let content = sftpsession.contents(atPath: "config/config.json")
-                    
-                    decodaPDFs(jsonData: content!)
+        let configData = NetworkManager.shared.loadData(data: .config)
+        decoderAdminPassword(jsonData: configData as! Data)
+        decoderURL(jsonData: configData as! Data)
+        
+//        decodaPDFs(jsonData: content as! Data)
+//        let string = String(bytes: content, encoding: .utf8)
                 
-                    let tempPdfData = sftpsession.contentsOfDirectory(atPath: "protokolle")
-                    
-                    for pdf in pdfsToSearchOnServer {
-                        let content = sftpsession.contents(atPath: "protokolle/\(pdf.datei).pdf")
-                        pdfs.append(PDF(name: pdf.name, data: content!))
-                        print("append \(pdf)")
-                    }
+//                    let tempPdfData = sftpsession.contentsOfDirectory(atPath: "protokolle")
+//
+//                    for pdf in pdfsToSearchOnServer {
+//                        let content = sftpsession.contents(atPath: "protokolle/\(pdf.datei).pdf")
+//                        pdfs.append(PDF(name: pdf.name, data: content!))
+//                        print("append \(pdf)")
+//                    }
+//
+//                    print("full array: \(pdfs)")
                 
-                    print("full array: \(pdfs)")
-                
-                    if content != nil {
-                    if let string = String(bytes: content!, encoding: .utf8) {
-                        let jsonData = Foundation.Data(string.data(using: .utf8)!)
-                        decoda(jsonData: jsonData)
-                        decodaURL(jsonData: jsonData)
-                        decodaMediaQualityModel(jsonData: jsonData)
-                        configLoaded = true
-                    }
-                } else {
-                    configLoaded = false
-                }
-            }
-        }
+
+//                    if let string = String(bytes: content, encoding: .utf8) {
+//                        let jsonData = Foundation.Data(string.data(using: .utf8)!)
+//                        decoda(jsonData: jsonData)
+//                        decodaURL(jsonData: jsonData)
+//                        decodaMediaQualityModel(jsonData: jsonData)
+//                        configLoaded = true
+//                    }
+        
+//                }
+//            }
+//        }
+        
+        
+//        let session = NMSSHSession.init(host: "\(self.ip)", andUsername: "\(self.serverUsername)")
+//        session.connect()
+//        if session.isConnected{
+//            session.authenticate(byPassword: "\(self.serverPassword)")
+//            if session.isAuthorized {
+//                let sftpsession = NMSFTP(session : session)
+//                sftpsession.connect()
+//                    let content = sftpsession.contents(atPath: "config/config.json")
+//
+//
+//                    decodaPDFs(jsonData: content!)
+//
+//                    let tempPdfData = sftpsession.contentsOfDirectory(atPath: "protokolle")
+//
+//                    for pdf in pdfsToSearchOnServer {
+//                        let content = sftpsession.contents(atPath: "protokolle/\(pdf.datei).pdf")
+//                        pdfs.append(PDF(name: pdf.name, data: content!))
+//                        print("append \(pdf)")
+//                    }
+//
+//                    print("full array: \(pdfs)")
+//
+//                    if content != nil {
+//                    if let string = String(bytes: content!, encoding: .utf8) {
+//                        let jsonData = Foundation.Data(string.data(using: .utf8)!)
+//                        decoda(jsonData: jsonData)
+//                        decodaURL(jsonData: jsonData)
+//                        decodaMediaQualityModel(jsonData: jsonData)
+//                        configLoaded = true
+//                    }
+//                } else {
+//                    configLoaded = false
+//                }
+//            }
     }
 }
 
@@ -153,7 +189,7 @@ extension SettingsViewModel {
 }
 
 extension SettingsViewModel {
-    func decoda(jsonData : Foundation.Data) {
+    func decoderAdminPassword(jsonData : Foundation.Data) {
         let decoder = JSONDecoder()
         do {
             let adminMenuePasswordTemp = try decoder.decode(AdminLoginPassword.self, from: jsonData)
@@ -165,7 +201,7 @@ extension SettingsViewModel {
 }
 
 extension SettingsViewModel {
-    func decodaURL(jsonData : Foundation.Data) {
+    func decoderURL(jsonData : Foundation.Data) {
         let decoder = JSONDecoder()
         do {
             let adminMenuePasswordTemp = try decoder.decode(URLModel.self, from: jsonData)

@@ -6,13 +6,16 @@ enum SelectedDataFromServer {
     case pdfs
 }
 
-class NetworkManager {
+class NetworkDataManager {
     
-    static let shared = NetworkManager()
+    static let shared = NetworkDataManager()
+    
+    var config: Data?
+    var protokolle: [NMSFTPFile]?
     
     var session: NMSFTP?
     
-    func connect(host: String, username: String, password: String) -> Bool {
+    func connect(host: String, username: String, password: String) {
         let connection = NMSSHSession.init(host: host, andUsername: username)
         if (session == nil) {
             connection.connect()
@@ -21,33 +24,10 @@ class NetworkManager {
                 if connection.isAuthorized {
                     self.session = NMSFTP(session: connection)
                     self.session!.connect()
+                    config = self.session!.contents(atPath: "config/config.json")
+                    protokolle = self.session!.contentsOfDirectory(atPath: "protokolle")!
                 }
             }
-            return true
-        } else {
-            return false
-        }
-    }
-    func loadData(data: SelectedDataFromServer) -> Any {
-        if (session != nil) {
-            switch (data) {
-            case .config:
-                let data = self.session!.contents(atPath: "config/config.json")
-                if (data != nil) {
-                    return data!
-                } else {
-                    return Data()
-                }
-            case .pdfs:
-                let data = self.session!.contentsOfDirectory(atPath: "protokolle")
-                if (data != nil) {
-                    return data!
-                } else {
-                    return Data()
-                }
-            }
-        } else {
-            return Data()
         }
     }
 }
