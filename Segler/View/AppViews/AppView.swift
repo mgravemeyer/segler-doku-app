@@ -265,13 +265,6 @@ struct reportModal: View {
 
 }
 
-//KEYBOARD HIDING
-extension UIApplication {
-    func endEditing() {
-        sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-    }
-}
-
 struct SectionBilder: View {
     
     let colors = ColorSeglerViewModel()
@@ -291,7 +284,7 @@ struct SectionBilder: View {
                                 }
                                 ForEach(mediaVM.imagesCamera, id:\.self) { image in
                                     if image.order == i  {
-                                        testImageCameraView(imageObject: image,id: image.id)
+                                        ImageCameraPreviewView(imageObject: image,id: image.id)
                                     }
                                 }
                                 ForEach(mediaVM.videos, id:\.self) { video in
@@ -310,7 +303,7 @@ struct SectionBilder: View {
                                     testImageView(imageObject: image,id: image.id)
                                 }
                                 ForEach(mediaVM.imagesCamera, id:\.self) { image in
-                                    testImageCameraView(imageObject: image,id: image.id)
+                                    ImageCameraPreviewView(imageObject: image,id: image.id)
                                 }
                                 ForEach(mediaVM.videos, id:\.self) { video in
                                     testVideoView(videoObject: video, id: video.id)
@@ -321,84 +314,6 @@ struct SectionBilder: View {
                         }
                 }
             }.padding(.horizontal, -15).listRowBackground(self.mediaVM.imagesIsOk ? colors.correctRowColor : colors.warningRowColor)
-    }
-}
-
-    struct testImageViewSmall: View {
-        
-        @EnvironmentObject var mediaVM: MediaViewModel
-        @State var imageObject : ImageModel
-        @State var showSheet = false
-        @State var id : UUID
-        
-        var body: some View {
-            Button(action: {
-                self.showSheet = !self.showSheet
-            }) {
-                ZStack {
-                    Rectangle().background(Color.gray)
-                        .frame(width: 80, height: 80)
-                        .opacity(1)
-                        .zIndex(1)
-                    Image(uiImage: imageObject.thumbnail).renderingMode(.original)
-                        .resizable()
-                        .frame(width: 80, height: 80)
-                        .zIndex(0)
-                    .actionSheet(isPresented: self.$showSheet) { () -> ActionSheet in
-                        ActionSheet(title: Text("Bild löschen"), message: Text("Wirklich Bild löschen?"), buttons: [
-                            ActionSheet.Button.default(Text("Ja"), action: {
-                                self.toggle(id: self.id)
-                            }),
-                            ActionSheet.Button.cancel()
-                        ])
-                    }
-                }
-            }
-        }
-        func toggle(id: UUID) {
-            if let index = mediaVM.images.firstIndex(where: {$0.id == id}) {
-                mediaVM.images[index].selected.toggle()
-            }
-        }
-    }
-
-struct testImageCameraView: View {
-    
-    @EnvironmentObject var mediaVM: MediaViewModel
-    @State var imageObject : ImageModelCamera
-    @State var showSheet = false
-    @State var id : UUID
-    
-    var body: some View {
-        Button(action: {
-            self.showSheet = !self.showSheet
-        }) {
-            ZStack {
-                Rectangle().frame(width: 100, height: 100).background(Color.black).opacity(0.3).zIndex(2)
-                Text("Foto").fontWeight(.bold).zIndex(1)
-                Image(uiImage: imageObject.image).renderingMode(.original).resizable().frame(width: 100, height: 100).scaledToFill().zIndex(0)
-            }
-            .actionSheet(isPresented: self.$showSheet) { () -> ActionSheet in
-                ActionSheet(title: Text("Anzeigen - Löschen"), buttons: [
-                    ActionSheet.Button.default(Text("Bild anzeigen"), action: {
-                        toggleShowImage()
-                    }),
-                    ActionSheet.Button.destructive(Text("Bild löschen"), action: {
-                        self.deleto(id: self.id)
-                    }),
-                    ActionSheet.Button.cancel()
-                ])
-            }
-        }
-    }
-    func toggleShowImage() {
-        mediaVM.showImage.toggle()
-        mediaVM.selectedImage = UIImage(data: (imageObject.image.jpegData(compressionQuality: 1)!))
-    }
-    func deleto(id: UUID) {
-        if let index = mediaVM.imagesCamera.firstIndex(where: {$0.id == id}) {
-            mediaVM.imagesCamera.remove(at: index)
-        }
     }
 }
 
