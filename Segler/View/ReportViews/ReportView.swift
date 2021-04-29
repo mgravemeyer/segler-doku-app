@@ -36,7 +36,6 @@ struct ReportView: View {
                                 List {
                                     SectionOrder()
                                         .frame(height: 34)
-//                                    SectionPDF(settingsVM: self.settingsVM)
                                     SectionRemarks()
                                         .frame(height: 34)
                                     SectionFreeTextField()
@@ -93,7 +92,6 @@ struct ReportView: View {
                             }
                         }
                         )
-//                            Button(action: {}, label: {Image(systemName: "gear")})
                         ).navigationBarTitle(settingsVM.useFixedUser ? Text("\(settingsVM.userUsername)") : Text("\(userVM.username)"), displayMode: .inline)
                         }
                     }
@@ -122,14 +120,6 @@ struct ReportView: View {
             .onAppear() {
             self.remarksVM.getJSON(session: self.settingsVM.ip, username: self.settingsVM.serverUsername, password: self.settingsVM.serverPassword)
         }
-    }
-}
-
-struct BottomPadding: View {
-    var body: some View {
-        Image("Keyboard")
-        .resizable()
-            .frame(width: UIScreen.screenWidth, height: 200).blur(radius: 7)
     }
 }
 
