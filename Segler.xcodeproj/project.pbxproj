@@ -36,6 +36,7 @@
 		E38D8AA5263AB02100502077 /* VideoCameraPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38D8AA4263AB02100502077 /* VideoCameraPreviewView.swift */; };
 		E38D8AA7263AB0D000502077 /* EmptyImageButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38D8AA6263AB0D000502077 /* EmptyImageButtonView.swift */; };
 		E38D8AA9263AB14A00502077 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38D8AA8263AB14A00502077 /* ImageView.swift */; };
+		E38D8AAB263AB31600502077 /* SaveButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38D8AAA263AB31600502077 /* SaveButtonView.swift */; };
 		E39851D5263A97EB0008F68A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39851D4263A97EB0008F68A /* Extensions.swift */; };
 		E39851D9263A9E1F0008F68A /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39851D8263A9E1F0008F68A /* WebView.swift */; };
 		E39A9D6323D8930D00418E51 /* AdminLoginPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39A9D6223D8930D00418E51 /* AdminLoginPassword.swift */; };
@@ -94,6 +95,7 @@
 		E38D8AA4263AB02100502077 /* VideoCameraPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCameraPreviewView.swift; sourceTree = "<group>"; };
 		E38D8AA6263AB0D000502077 /* EmptyImageButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyImageButtonView.swift; sourceTree = "<group>"; };
 		E38D8AA8263AB14A00502077 /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
+		E38D8AAA263AB31600502077 /* SaveButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveButtonView.swift; sourceTree = "<group>"; };
 		E39851D4263A97EB0008F68A /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		E39851D8263A9E1F0008F68A /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		E39A9D6223D8930D00418E51 /* AdminLoginPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminLoginPassword.swift; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 				E3E8B1F9263AA7CA0025E27D /* SectionFreeTextField */,
 				E3E8B1FA263AA7E50025E27D /* SectionImageVideo */,
 				E3E8B1FC263AA8180025E27D /* SettingsView */,
+				E38D8AAA263AB31600502077 /* SaveButtonView.swift */,
 			);
 			path = AppViews;
 			sourceTree = "<group>";
@@ -207,7 +210,6 @@
 			children = (
 				2E0AE1A1256FF65B0038871A /* AppStartViews */,
 				2E53050C256FB13F00E862B4 /* AppViews */,
-				E3787805261A54AB003323B9 /* PDFViews */,
 				2E530514256FB3D000E862B4 /* SupportViews */,
 			);
 			path = View;
@@ -318,6 +320,7 @@
 		E3E8B1F8263AA7BB0025E27D /* SectionRemarks */ = {
 			isa = PBXGroup;
 			children = (
+				E3787805261A54AB003323B9 /* PDFViews */,
 				E38D8A94263AAA5100502077 /* SectionRemarks.swift */,
 				E38D8A9A263AAC1000502077 /* ListCommentsView.swift */,
 				E38D8A9C263AAC2D00502077 /* ListCommentsDetailView.swift */,
@@ -505,6 +508,7 @@
 				2EA3681E25607C640056D508 /* MediaQualityModel.swift in Sources */,
 				2E32BD0A2570030900EDD668 /* StartView.swift in Sources */,
 				E39851D9263A9E1F0008F68A /* WebView.swift in Sources */,
+				E38D8AAB263AB31600502077 /* SaveButtonView.swift in Sources */,
 				E3D6A0DC23A1838A000F35E9 /* AppView.swift in Sources */,
 				E3EA711E23D133A500340463 /* Session.swift in Sources */,
 				E378780D261A7973003323B9 /* PDF.swift in Sources */,
