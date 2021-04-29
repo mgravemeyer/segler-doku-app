@@ -6,6 +6,7 @@ struct AppStart: View {
         UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.white]
         UINavigationBar.appearance().barTintColor = UIColor(red: 200/255, green: 0/255, blue: 0/255, alpha: 1)
         UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.white]
+        NetworkDataManager.shared.connect(host: UserDefaults.standard.string(forKey: "ip")!, username: UserDefaults.standard.string(forKey: "serverUsername")!, password: UserDefaults.standard.string(forKey: "serverPassword")!)
     }
     
     //CREATING ALL DATA MODULES FOR THE VIEWS

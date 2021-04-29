@@ -5,6 +5,7 @@ import ProgressHUD
 class SettingsViewModel: ObservableObject {
     
     init() {
+        loadSavedSettings()
         decoderURL(jsonData: NetworkDataManager.shared.config!)
         decoderAdminPassword(jsonData: NetworkDataManager.shared.config!)
     }
