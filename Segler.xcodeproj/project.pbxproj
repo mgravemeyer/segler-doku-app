@@ -37,6 +37,7 @@
 		E38D8AA7263AB0D000502077 /* EmptyImageButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38D8AA6263AB0D000502077 /* EmptyImageButtonView.swift */; };
 		E38D8AA9263AB14A00502077 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38D8AA8263AB14A00502077 /* ImageView.swift */; };
 		E38D8AAB263AB31600502077 /* SaveButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38D8AAA263AB31600502077 /* SaveButtonView.swift */; };
+		E38D8AAD263AB3DA00502077 /* SectionImageVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38D8AAC263AB3DA00502077 /* SectionImageVideoView.swift */; };
 		E39851D5263A97EB0008F68A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39851D4263A97EB0008F68A /* Extensions.swift */; };
 		E39851D9263A9E1F0008F68A /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39851D8263A9E1F0008F68A /* WebView.swift */; };
 		E39A9D6323D8930D00418E51 /* AdminLoginPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39A9D6223D8930D00418E51 /* AdminLoginPassword.swift */; };
@@ -96,6 +97,7 @@
 		E38D8AA6263AB0D000502077 /* EmptyImageButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyImageButtonView.swift; sourceTree = "<group>"; };
 		E38D8AA8263AB14A00502077 /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
 		E38D8AAA263AB31600502077 /* SaveButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveButtonView.swift; sourceTree = "<group>"; };
+		E38D8AAC263AB3DA00502077 /* SectionImageVideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionImageVideoView.swift; sourceTree = "<group>"; };
 		E39851D4263A97EB0008F68A /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		E39851D8263A9E1F0008F68A /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		E39A9D6223D8930D00418E51 /* AdminLoginPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminLoginPassword.swift; sourceTree = "<group>"; };
@@ -348,6 +350,7 @@
 				E38D8AA4263AB02100502077 /* VideoCameraPreviewView.swift */,
 				E38D8AA6263AB0D000502077 /* EmptyImageButtonView.swift */,
 				E38D8AA8263AB14A00502077 /* ImageView.swift */,
+				E38D8AAC263AB3DA00502077 /* SectionImageVideoView.swift */,
 			);
 			path = SectionImageVideo;
 			sourceTree = "<group>";
@@ -489,6 +492,7 @@
 				E3A3BC7823A26C53002BDE18 /* FTPUploadController.swift in Sources */,
 				E38D8A97263AAA8000502077 /* SectionFreeTextField.swift in Sources */,
 				E368AFBE23CCC427009DD849 /* Comment.swift in Sources */,
+				E38D8AAD263AB3DA00502077 /* SectionImageVideoView.swift in Sources */,
 				E301A5A623CDF474006A72D5 /* MediaViewModel.swift in Sources */,
 				E38D8AA9263AB14A00502077 /* ImageView.swift in Sources */,
 				E301A5A423CDF44A006A72D5 /* OrderViewModel.swift in Sources */,
