@@ -37,11 +37,8 @@ struct SetupView: View {
                     if connection.authenticate() {
                         ProgressHUD.showSuccess("Verbunden")
                         self.settingsVM.saveServerSettings()
-                        self.settingsVM.deviceIsSettedUp()
-                        self.settingsVM.getJSON()
                     } else {
                         ProgressHUD.showError("Keine Verbindung mit diesem Netzwerk möglich")
-                        self.settingsVM.deviceIsNotSettedUp()
                     }
                 }) {
                     HStack(alignment: .center) {

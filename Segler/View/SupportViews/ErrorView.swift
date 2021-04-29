@@ -24,7 +24,6 @@ struct ErrorView: View {
                 self.settingsVM.ip = ""
                 self.settingsVM.serverPassword = ""
                 self.settingsVM.serverUsername = ""
-                self.settingsVM.hasSettedUp = false
             }) {
                 Text("Zurück")
             }

@@ -24,7 +24,6 @@ class SettingsViewModel: ObservableObject {
     @Published var serverPassword = String()
     @Published var userUsername = String()
     @Published var userPassword = String()
-    @Published var hasSettedUp = UserDefaults.standard.bool(forKey: "hasSettedUp")
     @Published var jsonIsOnSameServer : Bool = Bool()
     @Published var configLoaded = false
     @Published var useFixedUser: Bool = UserDefaults.standard.bool(forKey: "useFixedUser")
@@ -52,8 +51,6 @@ extension SettingsViewModel {
     }
     
     func getJSON() {
-        
-        loadSavedSettings()
         
         guard
             let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
@@ -163,27 +160,6 @@ extension SettingsViewModel {
         if useFixedUser {
             self.userUsername = self.fixedUserName
         }
-    }
-}
-
-extension SettingsViewModel {
-    func deviceIsSettedUp() {
-        hasSettedUp = true
-        UserDefaults.standard.set(hasSettedUp, forKey: "hasSettedUp")
-    }
-}
-
-extension SettingsViewModel {
-    func deviceIsNotSettedUp() {
-        hasSettedUp = false
-        UserDefaults.standard.set(hasSettedUp, forKey: "hasSettedUp")
-    }
-}
-
-extension SettingsViewModel {
-    //RETURN FALSE IF hasSettedUp IS NEVER STORED -> DEVICE IS NEVER SETTED UP OR IP / USERNAME / PASSWORD IS EMPTY
-    func hasSettedUpCheck() -> Bool {
-        return UserDefaults.standard.object(forKey: "hasSettedUp") != nil
     }
 }
 
