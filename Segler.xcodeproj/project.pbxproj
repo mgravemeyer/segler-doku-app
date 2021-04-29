@@ -34,6 +34,7 @@
 		E38D8AA1263AAE4200502077 /* ImagePreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38D8AA0263AAE4200502077 /* ImagePreviewView.swift */; };
 		E38D8AA3263AAF5700502077 /* VideoPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38D8AA2263AAF5700502077 /* VideoPreviewView.swift */; };
 		E38D8AA5263AB02100502077 /* VideoCameraPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38D8AA4263AB02100502077 /* VideoCameraPreviewView.swift */; };
+		E38D8AA7263AB0D000502077 /* EmptyImageButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38D8AA6263AB0D000502077 /* EmptyImageButtonView.swift */; };
 		E39851D5263A97EB0008F68A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39851D4263A97EB0008F68A /* Extensions.swift */; };
 		E39851D9263A9E1F0008F68A /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39851D8263A9E1F0008F68A /* WebView.swift */; };
 		E39A9D6323D8930D00418E51 /* AdminLoginPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39A9D6223D8930D00418E51 /* AdminLoginPassword.swift */; };
@@ -90,6 +91,7 @@
 		E38D8AA0263AAE4200502077 /* ImagePreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePreviewView.swift; sourceTree = "<group>"; };
 		E38D8AA2263AAF5700502077 /* VideoPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPreviewView.swift; sourceTree = "<group>"; };
 		E38D8AA4263AB02100502077 /* VideoCameraPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCameraPreviewView.swift; sourceTree = "<group>"; };
+		E38D8AA6263AB0D000502077 /* EmptyImageButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyImageButtonView.swift; sourceTree = "<group>"; };
 		E39851D4263A97EB0008F68A /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		E39851D8263A9E1F0008F68A /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		E39A9D6223D8930D00418E51 /* AdminLoginPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminLoginPassword.swift; sourceTree = "<group>"; };
@@ -339,6 +341,7 @@
 				E38D8AA0263AAE4200502077 /* ImagePreviewView.swift */,
 				E38D8AA2263AAF5700502077 /* VideoPreviewView.swift */,
 				E38D8AA4263AB02100502077 /* VideoCameraPreviewView.swift */,
+				E38D8AA6263AB0D000502077 /* EmptyImageButtonView.swift */,
 			);
 			path = SectionImageVideo;
 			sourceTree = "<group>";
@@ -472,6 +475,7 @@
 				E3BDDD81250028D000C07EA0 /* UserViewModel.swift in Sources */,
 				E3B808DB23D063D9007A7595 /* SetupView.swift in Sources */,
 				E357E1B524B23940009871F1 /* ErrorView.swift in Sources */,
+				E38D8AA7263AB0D000502077 /* EmptyImageButtonView.swift in Sources */,
 				E38D8A9D263AAC2D00502077 /* ListCommentsDetailView.swift in Sources */,
 				E38D8A95263AAA5100502077 /* SectionRemarks.swift in Sources */,
 				E3D6A0D523A1838A000F35E9 /* AppDelegate.swift in Sources */,
