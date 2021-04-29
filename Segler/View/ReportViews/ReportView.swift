@@ -186,63 +186,10 @@ struct SectionRemarks: View {
                         .foregroundColor(colors.color)
                         .buttonStyle(BorderlessButtonStyle())
                 }.buttonStyle(BorderlessButtonStyle()).frame(width: 30).frame(height: 30)
-//                Button(action: {
-//                    self.settingsVM.savedPDF.name = ""
-//                    self.settingsVM.savedPDF.data = Data()
-//                }) {
-//                    Image(systemName: "xmark.circle.fill")
-//                        .font(.system(size: 30))
-//                        .foregroundColor(colors.color)
-//                        .buttonStyle(BorderlessButtonStyle())
-//                }.buttonStyle(BorderlessButtonStyle()).frame(width: 30)
             }
         }
     }
 }
-
-//struct SectionPDF: View {
-//    @EnvironmentObject var settingsVM: SettingsViewModel
-//    let colors = ColorSeglerViewModel()
-//    @State var editViewVisible = false
-//    @State var fakeBool = false
-//    var body: some View {
-//        if settingsVM.savedPDF.name == "" {
-//            NavigationLink("Protokoll", destination: PDFListView(settingsVM: self.settingsVM)).foregroundColor(.gray).frame(height: 34)
-//        } else {
-//            HStack {
-//                NavigationLink("\(settingsVM.savedPDF.name)", destination: PDFListView(settingsVM: self.settingsVM))
-//
-////                NavigationLink(destination: PDFDetailUIView(selectedPDF: $settingsVM.savedPDF, saveState: self.$fakeBool, settingsVM: _settingsVM)) {
-////                    Image(systemName: "pencil.circle.fill")
-////                        .frame(width: 30, height: 30)
-////                        .font(.system(size: 30))
-////                        .foregroundColor(colors.color)
-////                }.frame(width: 30, height: 30).buttonStyle(BorderlessButtonStyle())
-//
-//                NavigationLink(destination: PDFEditDetailView(settingsVM: settingsVM, saveState: false), isActive: $editViewVisible) { EmptyView() }.frame(width: 0).hidden().labelsHidden().buttonStyle((BorderlessButtonStyle())).zIndex(-100000).disabled(true)
-//
-//                Button(action: {
-////                    self.settingsVM.selectedPDF.name = ""
-//                    editViewVisible.toggle() 
-//                }) {
-//                    Image(systemName: "pencil.circle.fill")
-//                        .font(.system(size: 30))
-//                        .foregroundColor(colors.color)
-//                        .buttonStyle(BorderlessButtonStyle())
-//                }.buttonStyle(BorderlessButtonStyle()).frame(width: 30).frame(height: 30)
-//                Button(action: {
-//                    self.settingsVM.savedPDF.name = ""
-//                    self.settingsVM.savedPDF.data = Data()
-//                }) {
-//                    Image(systemName: "xmark.circle.fill")
-//                        .font(.system(size: 30))
-//                        .foregroundColor(colors.color)
-//                        .buttonStyle(BorderlessButtonStyle())
-//                }.buttonStyle(BorderlessButtonStyle()).frame(width: 30)
-//            }
-//        }
-//    }
-//}
 
 struct SectionFreeTextField: View {
     
@@ -315,14 +262,6 @@ struct listComments: View {
                         Text("Protokoll")
                     }.frame(height: 34)
                 }.frame(height: 34)
-//                Button(action: {
-//                    self.remarksVM.selectedComment = ""
-//                    self.remarksVM.secondHirarActive = false
-//                    self.presentationMode.wrappedValue.dismiss()
-//                }) {
-//                    Text("Keinen Kommentar").foregroundColor(.red)
-//                        .frame(height: 34)
-//                }
             }.navigationBarTitle("Kategorien", displayMode: .inline).onAppear{
                 if self.show != true {
                     self.presentationMode.wrappedValue.dismiss()
@@ -439,13 +378,8 @@ struct ImageSelectionModal: View {
                     Text("Bilder").foregroundColor(Color.black).fontWeight(.bold).font(.title)
                     LazyVGrid(columns: columns, spacing: 20) {
                         ForEach(mediaVM.images, id: \.self) { image in
-//                            if image.type == "image" {
                                 Button(action: {
                                     mediaVM.toggleElement(elementId: image.id)
-                                    
-                //                        mediaVM.images[image.].selected.toggle()
-                //                     $0.selected.toggle()
-                //                     image.selected.toggle()
                                 }, label: {
                                     ZStack {
                                         if image.selected {
@@ -466,7 +400,6 @@ struct ImageSelectionModal: View {
                                             .zIndex(0)
                                     }
                                 }).buttonStyle(BorderlessButtonStyle())
-//                            }
                         }
                     }
                     Button("Lade mehr Fotos") {
@@ -476,7 +409,6 @@ struct ImageSelectionModal: View {
                     Text("Videos").foregroundColor(Color.black).fontWeight(.bold).font(.title)
                     LazyVGrid(columns: columns, spacing: 20) {
                         ForEach(mediaVM.videos, id: \.self) { video in
-//                            if image.type == "video" {
                             if mediaVM.returnVideoCount() > 2 {
                                 if video.selected {
                                     Button(action: {
@@ -532,7 +464,6 @@ struct ImageSelectionModal: View {
                                 }).buttonStyle(BorderlessButtonStyle())
                                 
                             }
-//                            }
                         }
                     }
                     Button("Lade mehr Videos") {
@@ -651,7 +582,6 @@ struct PhotoCaptureView: View {
     
     var body: some View {
         Text("HI")
-//        ImagePicker(isShown: $showImagePicker, image: $image)
     }
 }
 
@@ -738,9 +668,6 @@ struct SectionBilder: View {
                         ActionSheet(title: Text("Bild löschen"), message: Text("Wirklich Bild löschen?"), buttons: [
                             ActionSheet.Button.default(Text("Ja"), action: {
                                 self.toggle(id: self.id)
-    //                            self.mediaVM.images.remove(at: imageObject.)
-    //                            self.delete(at:self.$mediaVM.images.firstIndex(where: { $0.id == imageObject.id })!)
-    //                          self.mediaVM.images.remove(at: self.index)
                             }),
                             ActionSheet.Button.cancel()
                         ])
@@ -992,9 +919,7 @@ struct EmptyImgButton: View {
                 }
             }
         }
-//        if UIDevice.current.name.contains("iPod touch") {
-//
-//        }
+
             .actionSheet(isPresented: self.$showSheet) { () -> ActionSheet in
                 ActionSheet(title: Text("Bild/Video hinzufügen"), message: Text("Kamera oder Galerie auswählen"), buttons: [
                     ActionSheet.Button.default(Text("Kamera"), action: {
