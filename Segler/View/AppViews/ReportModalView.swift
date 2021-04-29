@@ -1,0 +1,79 @@
+import SwiftUI
+
+struct ReportModalView: View {
+    
+    @Binding var showReport : Bool
+    @EnvironmentObject var settingsVM : SettingsViewModel
+    @EnvironmentObject var mediaVM : MediaViewModel
+    @EnvironmentObject var orderVM : OrderViewModel
+    @EnvironmentObject var remarksVM : RemarksViewModel
+    
+    var body: some View {
+            List {
+                Text("Abgeschickt!").foregroundColor(Color.black).fontWeight(.bold).font(.largeTitle)
+                Text("Auftrags-Nr: \(orderVM.orderNr)").frame(height: 34)
+                Text("Auftrags-Position: \(orderVM.orderPosition)").frame(height: 34)
+                if remarksVM.selectedComment != "" && settingsVM.savedPDF.name == "" {
+                    Text("Kommentar: \(remarksVM.selectedComment)").frame(height: 34)
+                }
+                if remarksVM.additionalComment != "" {
+                    Text("Freitext: \(remarksVM.additionalComment)").frame(height: 34)
+                }
+                if settingsVM.savedPDF.name != "" {
+                    Text("Protokoll: \(settingsVM.savedPDF.name)")
+                }
+                if !mediaVM.images.isEmpty || !mediaVM.imagesCamera.isEmpty || !mediaVM.videos.isEmpty || !mediaVM.videosCamera.isEmpty {
+                    HStack {
+                        ForEach((0...mediaVM.highestOrderNumber).reversed(), id:\.self) { i in
+                            ForEach(mediaVM.images, id:\.self) { image in
+                                if image.selected && image.order == i {
+                                    Image(uiImage: image.thumbnail).renderingMode(.original).resizable().frame(width: 80, height: 80)
+                                }
+                            }
+                            ForEach(mediaVM.imagesCamera, id:\.self) { image in
+                                if image.order == i {
+                                    Image(uiImage: image.image).renderingMode(.original).resizable().frame(width: 80, height: 80)
+                                }
+                            }
+                            ForEach(mediaVM.videos, id:\.self) { video in
+                                if video.selected && video.order == i {
+                                    Image(uiImage: video.thumbnail).renderingMode(.original).resizable().frame(width: 80, height: 80)
+                                }
+                            }
+                            ForEach(mediaVM.videosCamera, id:\.self) { video in
+                                if video.order == i {
+                                    Image(uiImage: video.thumbnail).renderingMode(.original).resizable().frame(width: 80, height: 80)
+                                }
+                            }
+                        }
+                    }
+                }
+                Button(action: {
+                    deleteMedia()
+                }) {
+                    Text("Schließen").frame(height: 34).foregroundColor(Color.blue)
+                }
+            }.padding(.top, 40).onDisappear {
+                deleteMedia()
+            }
+    }
+    
+    func deleteMedia() {
+        self.showReport = false
+        self.orderVM.machineName = ""
+        self.orderVM.orderNr = ""
+        self.orderVM.orderPosition = ""
+        self.mediaVM.images.removeAll()
+        self.mediaVM.videos.removeAll()
+        self.mediaVM.imagesCamera.removeAll()
+        self.mediaVM.videosCamera.removeAll()
+        self.remarksVM.selectedComment = ""
+        self.remarksVM.additionalComment = ""
+        self.orderVM.orderNrIsOk = true
+        self.remarksVM.commentIsOk = true
+        self.mediaVM.imagesIsOk = true
+        self.showReport = false
+        self.settingsVM.savedPDF = PDF(name: "", data: Data())
+    }
+
+}

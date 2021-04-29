@@ -60,7 +60,7 @@ struct SaveButtonView: View {
             }
     }.frame(height: 50).background(colors.color)
         .sheet(isPresented: $showReport) {
-            reportModal(showReport: self.$showReport)
+            ReportModalView(showReport: self.$showReport)
         }
     }
 }
