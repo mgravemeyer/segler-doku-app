@@ -20,7 +20,7 @@ struct AppStart: View {
             if !settingsVM.hasSettedUp {
                 SetupView()
             } else if (userVM.loggedIn && settingsVM.configLoaded && remarksVM.configLoaded) || settingsVM.useFixedUser {
-                ReportView()
+                AppView()
             } else if !userVM.loggedIn && !settingsVM.configLoaded && !remarksVM.configLoaded {
                 ErrorView()
             } else {

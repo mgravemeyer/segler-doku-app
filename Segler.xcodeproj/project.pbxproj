@@ -24,6 +24,7 @@
 		E3787809261A54E2003323B9 /* PDFListDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3787808261A54E2003323B9 /* PDFListDetailView.swift */; };
 		E378780B261A5500003323B9 /* PDFDetailUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E378780A261A5500003323B9 /* PDFDetailUIView.swift */; };
 		E378780D261A7973003323B9 /* PDF.swift in Sources */ = {isa = PBXBuildFile; fileRef = E378780C261A7973003323B9 /* PDF.swift */; };
+		E38D8A93263AA9B700502077 /* SectionOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38D8A92263AA9B700502077 /* SectionOrder.swift */; };
 		E39851D5263A97EB0008F68A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39851D4263A97EB0008F68A /* Extensions.swift */; };
 		E39851D9263A9E1F0008F68A /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39851D8263A9E1F0008F68A /* WebView.swift */; };
 		E39A9D6323D8930D00418E51 /* AdminLoginPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39A9D6223D8930D00418E51 /* AdminLoginPassword.swift */; };
@@ -37,7 +38,7 @@
 		E3D6A0D523A1838A000F35E9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D6A0D423A1838A000F35E9 /* AppDelegate.swift */; };
 		E3D6A0D723A1838A000F35E9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D6A0D623A1838A000F35E9 /* SceneDelegate.swift */; };
 		E3D6A0DA23A1838A000F35E9 /* Segler.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E3D6A0D823A1838A000F35E9 /* Segler.xcdatamodeld */; };
-		E3D6A0DC23A1838A000F35E9 /* ReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D6A0DB23A1838A000F35E9 /* ReportView.swift */; };
+		E3D6A0DC23A1838A000F35E9 /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D6A0DB23A1838A000F35E9 /* AppView.swift */; };
 		E3D6A0DE23A18395000F35E9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3D6A0DD23A18395000F35E9 /* Assets.xcassets */; };
 		E3D6A0E123A18395000F35E9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3D6A0E023A18395000F35E9 /* Preview Assets.xcassets */; };
 		E3D6A0E423A18395000F35E9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3D6A0E223A18395000F35E9 /* LaunchScreen.storyboard */; };
@@ -70,6 +71,7 @@
 		E3787808261A54E2003323B9 /* PDFListDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFListDetailView.swift; sourceTree = "<group>"; };
 		E378780A261A5500003323B9 /* PDFDetailUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFDetailUIView.swift; sourceTree = "<group>"; };
 		E378780C261A7973003323B9 /* PDF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDF.swift; sourceTree = "<group>"; };
+		E38D8A92263AA9B700502077 /* SectionOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionOrder.swift; sourceTree = "<group>"; };
 		E39851D4263A97EB0008F68A /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		E39851D8263A9E1F0008F68A /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		E39A9D6223D8930D00418E51 /* AdminLoginPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminLoginPassword.swift; sourceTree = "<group>"; };
@@ -86,7 +88,7 @@
 		E3D6A0D423A1838A000F35E9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E3D6A0D623A1838A000F35E9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		E3D6A0D923A1838A000F35E9 /* Segler.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Segler.xcdatamodel; sourceTree = "<group>"; };
-		E3D6A0DB23A1838A000F35E9 /* ReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportView.swift; sourceTree = "<group>"; };
+		E3D6A0DB23A1838A000F35E9 /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
 		E3D6A0DD23A18395000F35E9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E3D6A0E023A18395000F35E9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E3D6A0E323A18395000F35E9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -118,15 +120,17 @@
 			path = AppStartViews;
 			sourceTree = "<group>";
 		};
-		2E53050C256FB13F00E862B4 /* ReportViews */ = {
+		2E53050C256FB13F00E862B4 /* AppViews */ = {
 			isa = PBXGroup;
 			children = (
-				E3D6A0DB23A1838A000F35E9 /* ReportView.swift */,
-				2E53050E256FB26A00E862B4 /* PhotoDetail.swift */,
-				2E530511256FB39100E862B4 /* VideoDetail.swift */,
-				E3D6A0EF23A26537000F35E9 /* SettingsView.swift */,
+				E3D6A0DB23A1838A000F35E9 /* AppView.swift */,
+				E3E8B1F7263AA7B20025E27D /* SectionOrder */,
+				E3E8B1F8263AA7BB0025E27D /* SectionRemarks */,
+				E3E8B1F9263AA7CA0025E27D /* SectionFreeTextField */,
+				E3E8B1FA263AA7E50025E27D /* SectionImageVideo */,
+				E3E8B1FC263AA8180025E27D /* SettingsView */,
 			);
-			path = ReportViews;
+			path = AppViews;
 			sourceTree = "<group>";
 		};
 		2E530514256FB3D000E862B4 /* SupportViews */ = {
@@ -180,7 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				2E0AE1A1256FF65B0038871A /* AppStartViews */,
-				2E53050C256FB13F00E862B4 /* ReportViews */,
+				2E53050C256FB13F00E862B4 /* AppViews */,
 				E3787805261A54AB003323B9 /* PDFViews */,
 				2E530514256FB3D000E862B4 /* SupportViews */,
 			);
@@ -279,6 +283,45 @@
 				E3D6A0D623A1838A000F35E9 /* SceneDelegate.swift */,
 			);
 			path = Delegate;
+			sourceTree = "<group>";
+		};
+		E3E8B1F7263AA7B20025E27D /* SectionOrder */ = {
+			isa = PBXGroup;
+			children = (
+				E38D8A92263AA9B700502077 /* SectionOrder.swift */,
+			);
+			path = SectionOrder;
+			sourceTree = "<group>";
+		};
+		E3E8B1F8263AA7BB0025E27D /* SectionRemarks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SectionRemarks;
+			sourceTree = "<group>";
+		};
+		E3E8B1F9263AA7CA0025E27D /* SectionFreeTextField */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SectionFreeTextField;
+			sourceTree = "<group>";
+		};
+		E3E8B1FA263AA7E50025E27D /* SectionImageVideo */ = {
+			isa = PBXGroup;
+			children = (
+				2E53050E256FB26A00E862B4 /* PhotoDetail.swift */,
+				2E530511256FB39100E862B4 /* VideoDetail.swift */,
+			);
+			path = SectionImageVideo;
+			sourceTree = "<group>";
+		};
+		E3E8B1FC263AA8180025E27D /* SettingsView */ = {
+			isa = PBXGroup;
+			children = (
+				E3D6A0EF23A26537000F35E9 /* SettingsView.swift */,
+			);
+			path = SettingsView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -412,13 +455,14 @@
 				E3787807261A54C5003323B9 /* PDFListView.swift in Sources */,
 				E378780B261A5500003323B9 /* PDFDetailUIView.swift in Sources */,
 				E3787809261A54E2003323B9 /* PDFListDetailView.swift in Sources */,
+				E38D8A93263AA9B700502077 /* SectionOrder.swift in Sources */,
 				E3D6A0F023A26537000F35E9 /* SettingsView.swift in Sources */,
 				E3BE190F23A7C7D200137883 /* ftpConst.swift in Sources */,
 				E3D6A0DA23A1838A000F35E9 /* Segler.xcdatamodeld in Sources */,
 				2EA3681E25607C640056D508 /* MediaQualityModel.swift in Sources */,
 				2E32BD0A2570030900EDD668 /* StartView.swift in Sources */,
 				E39851D9263A9E1F0008F68A /* WebView.swift in Sources */,
-				E3D6A0DC23A1838A000F35E9 /* ReportView.swift in Sources */,
+				E3D6A0DC23A1838A000F35E9 /* AppView.swift in Sources */,
 				E3EA711E23D133A500340463 /* Session.swift in Sources */,
 				E378780D261A7973003323B9 /* PDF.swift in Sources */,
 				2E530516256FB3E200E862B4 /* AVPlayer.swift in Sources */,
