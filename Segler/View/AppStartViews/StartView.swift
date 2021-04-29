@@ -20,6 +20,8 @@ struct AppStart: View {
         }
     }
     
+    @State var appIsReady: Bool
+    
     //CREATING ALL DATA MODULES FOR THE VIEWS
     @StateObject var userVM = UserViewModel()
     @StateObject var settingsVM = SettingsViewModel()
@@ -27,12 +29,13 @@ struct AppStart: View {
     @StateObject var orderVM = OrderViewModel()
     @StateObject var remarksVM = RemarksViewModel()
     
-    @State var appIsReady: Bool
-    
     var body: some View {
         Group {
             if appIsReady && userVM.loggedIn {
                 AppView()
+                    .onAppear {
+                        self.settingsVM.loadJSON()
+                    }
             } else if appIsReady {
                 UserLogin()
             } else {

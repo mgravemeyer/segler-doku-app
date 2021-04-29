@@ -4,10 +4,6 @@ import ProgressHUD
 
 struct SetupView: View {
     @EnvironmentObject var settingsVM: SettingsViewModel
-    @EnvironmentObject var remarksVM: RemarksViewModel
-    @EnvironmentObject var mediaVM: MediaViewModel
-    @EnvironmentObject var orderVM: OrderViewModel
-    @EnvironmentObject var userVM: UserViewModel
     
     @State var value : CGFloat = -30
     var body: some View {
@@ -43,7 +39,6 @@ struct SetupView: View {
                         self.settingsVM.saveServerSettings()
                         self.settingsVM.deviceIsSettedUp()
                         self.settingsVM.getJSON()
-                        self.remarksVM.getJSON(session: self.settingsVM.ip, username: self.settingsVM.serverUsername, password: self.settingsVM.serverPassword)
                     } else {
                         ProgressHUD.showError("Keine Verbindung mit diesem Netzwerk möglich")
                         self.settingsVM.deviceIsNotSettedUp()

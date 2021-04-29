@@ -6,8 +6,6 @@ class SettingsViewModel: ObservableObject {
     
     init() {
         loadSavedSettings()
-        decoderURL(jsonData: NetworkDataManager.shared.config!)
-        decoderAdminPassword(jsonData: NetworkDataManager.shared.config!)
     }
     
     @Published var pdfsToSearchOnServer = [ResponsePDF]()
@@ -47,6 +45,12 @@ class SettingsViewModel: ObservableObject {
 }
 
 extension SettingsViewModel {
+    
+    func loadJSON() {
+        decoderURL(jsonData: NetworkDataManager.shared.config!)
+        decoderAdminPassword(jsonData: NetworkDataManager.shared.config!)
+    }
+    
     func getJSON() {
         
         loadSavedSettings()
