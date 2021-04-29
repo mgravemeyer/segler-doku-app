@@ -1,11 +1,6 @@
 import Foundation
 import NMSSH
 
-enum SelectedDataFromServer {
-    case config
-    case pdfs
-}
-
 class NetworkDataManager {
     
     static let shared = NetworkDataManager()
