@@ -1,8 +1,6 @@
 import SwiftUI
 
 struct UserLogin: View {
-    
-//    @ObservedObject var keyboard = KeyboardResponder()
     @EnvironmentObject var userVM : UserViewModel
     @EnvironmentObject var mediaVM : MediaViewModel
     @EnvironmentObject var orderVM : OrderViewModel
