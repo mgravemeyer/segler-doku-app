@@ -26,6 +26,7 @@
 		E378780D261A7973003323B9 /* PDF.swift in Sources */ = {isa = PBXBuildFile; fileRef = E378780C261A7973003323B9 /* PDF.swift */; };
 		E38D8A93263AA9B700502077 /* SectionOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38D8A92263AA9B700502077 /* SectionOrder.swift */; };
 		E38D8A95263AAA5100502077 /* SectionRemarks.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38D8A94263AAA5100502077 /* SectionRemarks.swift */; };
+		E38D8A97263AAA8000502077 /* SectionFreeTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38D8A96263AAA8000502077 /* SectionFreeTextField.swift */; };
 		E39851D5263A97EB0008F68A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39851D4263A97EB0008F68A /* Extensions.swift */; };
 		E39851D9263A9E1F0008F68A /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39851D8263A9E1F0008F68A /* WebView.swift */; };
 		E39A9D6323D8930D00418E51 /* AdminLoginPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39A9D6223D8930D00418E51 /* AdminLoginPassword.swift */; };
@@ -74,6 +75,7 @@
 		E378780C261A7973003323B9 /* PDF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDF.swift; sourceTree = "<group>"; };
 		E38D8A92263AA9B700502077 /* SectionOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionOrder.swift; sourceTree = "<group>"; };
 		E38D8A94263AAA5100502077 /* SectionRemarks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionRemarks.swift; sourceTree = "<group>"; };
+		E38D8A96263AAA8000502077 /* SectionFreeTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionFreeTextField.swift; sourceTree = "<group>"; };
 		E39851D4263A97EB0008F68A /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		E39851D8263A9E1F0008F68A /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		E39A9D6223D8930D00418E51 /* AdminLoginPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminLoginPassword.swift; sourceTree = "<group>"; };
@@ -306,6 +308,7 @@
 		E3E8B1F9263AA7CA0025E27D /* SectionFreeTextField */ = {
 			isa = PBXGroup;
 			children = (
+				E38D8A96263AAA8000502077 /* SectionFreeTextField.swift */,
 			);
 			path = SectionFreeTextField;
 			sourceTree = "<group>";
@@ -451,6 +454,7 @@
 				E3D6A0D523A1838A000F35E9 /* AppDelegate.swift in Sources */,
 				E39A9D6323D8930D00418E51 /* AdminLoginPassword.swift in Sources */,
 				E3A3BC7823A26C53002BDE18 /* FTPUploadController.swift in Sources */,
+				E38D8A97263AAA8000502077 /* SectionFreeTextField.swift in Sources */,
 				E368AFBE23CCC427009DD849 /* Comment.swift in Sources */,
 				E301A5A623CDF474006A72D5 /* MediaViewModel.swift in Sources */,
 				E301A5A423CDF44A006A72D5 /* OrderViewModel.swift in Sources */,
