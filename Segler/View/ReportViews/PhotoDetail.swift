@@ -1,11 +1,3 @@
-//
-//  PhotoDetail.swift
-//  Segler
-//
-//  Created by Maximilian Gravemeyer on 26.11.20.
-//  Copyright © 2020 Maximilian Gravemeyer. All rights reserved.
-//
-
 import SwiftUI
 
 struct PhotoDetail: View {

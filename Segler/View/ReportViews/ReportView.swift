@@ -282,7 +282,7 @@ struct SectionRemarks: View {
 //
 //                Button(action: {
 ////                    self.settingsVM.selectedPDF.name = ""
-//                    editViewVisible.toggle()
+//                    editViewVisible.toggle() 
 //                }) {
 //                    Image(systemName: "pencil.circle.fill")
 //                        .font(.system(size: 30))
