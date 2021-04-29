@@ -3,7 +3,7 @@ import ProgressHUD
 import Photos
 import AVKit
 
-struct Add_View: View {
+struct ReportView: View {
     
     @EnvironmentObject var settingsVM : SettingsViewModel
     @EnvironmentObject var userVM : UserViewModel
