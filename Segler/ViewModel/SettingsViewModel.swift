@@ -5,8 +5,8 @@ import ProgressHUD
 class SettingsViewModel: ObservableObject {
     
     init() {
-        NetworkManager.shared.connect(host: UserDefaults.standard.string(forKey: "ip")!, username: UserDefaults.standard.string(forKey: "serverUsername")!, password: UserDefaults.standard.string(forKey: "serverPassword")!)
-        getJSON()
+        decoderURL(jsonData: NetworkDataManager.shared.config!)
+        decoderAdminPassword(jsonData: NetworkDataManager.shared.config!)
     }
     
     @Published var pdfsToSearchOnServer = [ResponsePDF]()
@@ -67,12 +67,6 @@ extension SettingsViewModel {
             print("erroror")
             print(error.localizedDescription)
         }
-        
-
-        
-        let configData = NetworkManager.shared.loadData(data: .config)
-        decoderAdminPassword(jsonData: configData as! Data)
-        decoderURL(jsonData: configData as! Data)
         
 //        decodaPDFs(jsonData: content as! Data)
 //        let string = String(bytes: content, encoding: .utf8)

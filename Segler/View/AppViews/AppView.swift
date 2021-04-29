@@ -5,6 +5,10 @@ import AVKit
 
 struct AppView: View {
     
+    init() {
+        NetworkDataManager.shared.connect(host: UserDefaults.standard.string(forKey: "ip")!, username: UserDefaults.standard.string(forKey: "serverUsername")!, password: UserDefaults.standard.string(forKey: "serverPassword")!)
+    }
+    
     @EnvironmentObject var settingsVM : SettingsViewModel
     @EnvironmentObject var userVM : UserViewModel
     @EnvironmentObject var mediaVM : MediaViewModel
