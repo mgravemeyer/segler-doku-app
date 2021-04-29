@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct UserLogin: View {
+struct LoginView: View {
     @EnvironmentObject var userVM : UserViewModel
     @EnvironmentObject var mediaVM : MediaViewModel
     @EnvironmentObject var orderVM : OrderViewModel

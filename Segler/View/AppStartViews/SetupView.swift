@@ -11,7 +11,7 @@ struct SetupView: View {
                 Image("Segler")
                 .resizable()
                 .aspectRatio(contentMode: ContentMode.fit)
-                    .frame(width: 280)
+                .frame(width: 280)
                 .padding(Edge.Set.bottom, 20)
 
                 TextField("Server / Hostname", text: $settingsVM.ip)

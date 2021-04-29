@@ -31,13 +31,13 @@ struct AppStart: View {
     
     var body: some View {
         Group {
-            if appIsReady && userVM.loggedIn {
+            if self.appIsReady && userVM.loggedIn {
                 AppView()
                     .onAppear {
                         self.settingsVM.loadJSON()
                     }
-            } else if appIsReady {
-                UserLogin()
+            } else if self.appIsReady {
+                LoginView()
             } else {
                 SetupView()
             }
