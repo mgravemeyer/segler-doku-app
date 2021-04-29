@@ -8,17 +8,19 @@ struct AppStart: View {
         UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.white]
         if(
             UserDefaults.standard.string(forKey: "ip") != nil &&
-            UserDefaults.standard.string(forKey: "ip") != nil &&
-            UserDefaults.standard.string(forKey: "ip") != nil
+            UserDefaults.standard.string(forKey: "serverUsername") != nil &&
+            UserDefaults.standard.string(forKey: "serverPassword") != nil
         ){
             self.appIsReady = NetworkDataManager.shared.connect(
                 host: UserDefaults.standard.string(forKey: "ip")!,
                 username: UserDefaults.standard.string(forKey: "serverUsername")!,
                 password: UserDefaults.standard.string(forKey: "serverPassword")!)
+        } else {
+            self.appIsReady = false
         }
     }
     
-    @State var appIsReady = false
+    @State var appIsReady: Bool
     
     //CREATING ALL DATA MODULES FOR THE VIEWS
     @StateObject var userVM = UserViewModel()
@@ -30,8 +32,8 @@ struct AppStart: View {
     var body: some View {
         Group {
             if appIsReady && userVM.loggedIn {
-               AppView()
-           } else if appIsReady {
+                AppView()
+            } else if appIsReady {
                 UserLogin()
             } else {
                 SetupView()
