@@ -17,7 +17,7 @@ struct SetupView: View {
                 .aspectRatio(contentMode: ContentMode.fit)
                     .frame(width: 280)
                 .padding(Edge.Set.bottom, 20)
-//              Text("Gerät registrieren").bold().font(.title)
+
                 TextField("Server / Hostname", text: $settingsVM.ip)
                 .padding()
                 .background(Color(red: 241/255, green: 241/255, blue: 241/255))
@@ -35,12 +35,7 @@ struct SetupView: View {
                 .background(Color(red: 241/255, green: 241/255, blue: 241/255))
                 .cornerRadius(4.0)
                 .padding(EdgeInsets(top: 0, leading: 0, bottom: 15, trailing: 0))
-
-                //GETTING DEVICE ID AND DISPLAY AS TEXT
-//                Text("\(UIDevice.current.identifierForVendor!)")
-//                .font(.subheadline)
-//                .padding(EdgeInsets(top: 0, leading: 0, bottom: 70, trailing: 0))
-
+                
                 Button(action: {
                     let connection = FTPUploadController()
                     if connection.authenticate() {
