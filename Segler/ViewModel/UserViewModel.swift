@@ -6,10 +6,12 @@ class UserViewModel: ObservableObject {
         if(UserDefaults.standard.bool(forKey: "useFixedUser")){
             self.username = UserDefaults.standard.string(forKey: "fixedUserName") ?? ""
             self.loggedIn = true
+        } else {
+            self.loggedIn = false
         }
     }
     
     @Published var username = String()
     @Published var password = String()
-    @Published var loggedIn = false
+    @Published var loggedIn: Bool
 }

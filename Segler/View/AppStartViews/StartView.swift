@@ -20,14 +20,14 @@ struct AppStart: View {
         }
     }
     
-    @State var appIsReady: Bool
-    
     //CREATING ALL DATA MODULES FOR THE VIEWS
     @StateObject var userVM = UserViewModel()
     @StateObject var settingsVM = SettingsViewModel()
     @StateObject var mediaVM = MediaViewModel()
     @StateObject var orderVM = OrderViewModel()
     @StateObject var remarksVM = RemarksViewModel()
+    
+    @State var appIsReady: Bool
     
     var body: some View {
         Group {
