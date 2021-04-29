@@ -5,10 +5,6 @@ import AVKit
 
 struct Add_View: View {
     
-    let toPresent = UIHostingController(rootView: AnyView(EmptyView()))
-    
-    let colors = ColorSeglerViewModel()
-    
     @EnvironmentObject var settingsVM : SettingsViewModel
     @EnvironmentObject var userVM : UserViewModel
     @EnvironmentObject var mediaVM : MediaViewModel
@@ -17,7 +13,6 @@ struct Add_View: View {
 
     @State var keyboardIsShown = false
     
-
     var body: some View {
             ZStack {
                 NavigationView {
@@ -40,7 +35,6 @@ struct Add_View: View {
                                 }
                                 List {
                                     SectionOrder()
-                                        .accentColor(colors.color)
                                         .frame(height: 34)
 //                                    SectionPDF(settingsVM: self.settingsVM)
                                     SectionRemarks()
