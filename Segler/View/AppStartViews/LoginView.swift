@@ -20,7 +20,6 @@ struct UserLogin: View {
                 
                 Button(action: {
                     self.mediaVM.loginShowImageScannner = true
-
                 }) {
                     HStack(alignment: .center) {
                         Spacer()

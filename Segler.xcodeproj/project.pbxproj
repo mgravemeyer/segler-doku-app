@@ -25,6 +25,7 @@
 		E378780B261A5500003323B9 /* PDFDetailUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E378780A261A5500003323B9 /* PDFDetailUIView.swift */; };
 		E378780D261A7973003323B9 /* PDF.swift in Sources */ = {isa = PBXBuildFile; fileRef = E378780C261A7973003323B9 /* PDF.swift */; };
 		E39851D5263A97EB0008F68A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39851D4263A97EB0008F68A /* Extensions.swift */; };
+		E39851D9263A9E1F0008F68A /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39851D8263A9E1F0008F68A /* WebView.swift */; };
 		E39A9D6323D8930D00418E51 /* AdminLoginPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39A9D6223D8930D00418E51 /* AdminLoginPassword.swift */; };
 		E3A3BC7823A26C53002BDE18 /* FTPUploadController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A3BC7723A26C53002BDE18 /* FTPUploadController.swift */; };
 		E3A3BC7A23A28E72002BDE18 /* ImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A3BC7923A28E72002BDE18 /* ImagePickerController.swift */; };
@@ -70,6 +71,7 @@
 		E378780A261A5500003323B9 /* PDFDetailUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFDetailUIView.swift; sourceTree = "<group>"; };
 		E378780C261A7973003323B9 /* PDF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDF.swift; sourceTree = "<group>"; };
 		E39851D4263A97EB0008F68A /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		E39851D8263A9E1F0008F68A /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		E39A9D6223D8930D00418E51 /* AdminLoginPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminLoginPassword.swift; sourceTree = "<group>"; };
 		E3A3BC7723A26C53002BDE18 /* FTPUploadController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTPUploadController.swift; sourceTree = "<group>"; };
 		E3A3BC7923A28E72002BDE18 /* ImagePickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerController.swift; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 			children = (
 				2E530515256FB3E200E862B4 /* AVPlayer.swift */,
 				E357E1B424B23940009871F1 /* ErrorView.swift */,
+				E39851D8263A9E1F0008F68A /* WebView.swift */,
 			);
 			path = SupportViews;
 			sourceTree = "<group>";
@@ -414,6 +417,7 @@
 				E3D6A0DA23A1838A000F35E9 /* Segler.xcdatamodeld in Sources */,
 				2EA3681E25607C640056D508 /* MediaQualityModel.swift in Sources */,
 				2E32BD0A2570030900EDD668 /* StartView.swift in Sources */,
+				E39851D9263A9E1F0008F68A /* WebView.swift in Sources */,
 				E3D6A0DC23A1838A000F35E9 /* ReportView.swift in Sources */,
 				E3EA711E23D133A500340463 /* Session.swift in Sources */,
 				E378780D261A7973003323B9 /* PDF.swift in Sources */,
