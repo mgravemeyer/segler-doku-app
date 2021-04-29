@@ -265,23 +265,6 @@ struct reportModal: View {
 
 }
 
-struct CheckBevoreSendView: View {
-    var body: some View {
-        Text("Bitte eingaben überprüfen")
-    }
-}
-
-struct PhotoCaptureView: View {
-    
-    @State var noPhotosTaken: CGFloat = 0
-    @Binding var showImagePicker: Bool
-    @Binding var image: Image?
-    
-    var body: some View {
-        Text("HI")
-    }
-}
-
 //KEYBOARD HIDING
 extension UIApplication {
     func endEditing() {
