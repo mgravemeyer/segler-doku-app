@@ -15,8 +15,6 @@ struct AppStart: View {
     @StateObject var orderVM = OrderViewModel()
     @StateObject var remarksVM = RemarksViewModel()
     
-    @State var value : CGFloat = -30
-    
     var body: some View {
         Group {
             if !settingsVM.hasSettedUp {
@@ -34,9 +32,5 @@ struct AppStart: View {
         .environmentObject(mediaVM)
         .environmentObject(orderVM)
         .environmentObject(remarksVM)
-//        .onAppear {
-//            self.settingsVM.getJSON()
-//            self.remarksVM.getJSON(session: self.settingsVM.ip, username: self.settingsVM.serverUsername, password: self.settingsVM.serverPassword)
-//        }
     }
 }
