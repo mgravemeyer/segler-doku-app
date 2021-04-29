@@ -24,10 +24,10 @@ extension Thread {
 
 struct FTPUploadController {
     
-    @ObservedObject var settingsVM : SettingsViewModel
-    @ObservedObject var mediaViewModel : MediaViewModel
-    @ObservedObject var orderViewModel : OrderViewModel
-    @ObservedObject var userVM: UserViewModel
+    @EnvironmentObject var settingsVM: SettingsViewModel
+    @EnvironmentObject var mediaVM: MediaViewModel
+    @EnvironmentObject var orderViewModel: OrderViewModel
+    @EnvironmentObject var userVM: UserViewModel
     
     func createJSON(bereich: String, meldungstyp: String, freitext: String, user: String) -> Data? {
         
@@ -50,13 +50,6 @@ struct FTPUploadController {
         }
     }
 
-    init(settingsVM: SettingsViewModel,mediaVM: MediaViewModel, orderViewModel: OrderViewModel, userVM: UserViewModel) {
-        self.mediaViewModel = mediaVM
-        self.settingsVM = settingsVM
-        self.orderViewModel = orderViewModel
-        self.userVM = userVM
-     }
-
     func authenticate() -> Bool  {
         var bool: Bool = false
         let session = NMSSHSession.init(host: "\(settingsVM.ip)", andUsername: "\(settingsVM.serverUsername)")
@@ -75,24 +68,24 @@ struct FTPUploadController {
     
     class VideoCompress {
         
-        @ObservedObject var settingsVM : SettingsViewModel
+        @EnvironmentObject var settingsVM: SettingsViewModel
         
-        init(settingsVM : ObservedObject<SettingsViewModel>) {
+        init() {
             
-            _settingsVM = settingsVM
+            let number = 2000
             
-            if UIDevice.current.name.contains("iPhone") {
-                let number = Int(settingsVM.projectedValue.qv_iPhone.wrappedValue)
-                bitrate = NSNumber(value: number!)
-            } else
-            if UIDevice.current.name.contains("iPod touch") {
-                let number = Int(settingsVM.projectedValue.qv_iPod.wrappedValue)
-                bitrate = NSNumber(value: number!)
-            } else
-            if UIDevice.current.name.contains("iPad") {
-                let number = Int(settingsVM.projectedValue.qv_iPad.wrappedValue)
-                bitrate = NSNumber(value: number!)
-            }
+//            if UIDevice.current.name.contains("iPhone") {
+//                let number = Int(settingsVM.projectedValue.qv_iPhone.wrappedValue)
+//                bitrate = NSNumber(value: number!)
+//            } else
+//            if UIDevice.current.name.contains("iPod touch") {
+//                let number = Int(settingsVM.projectedValue.qv_iPod.wrappedValue)
+//                bitrate = NSNumber(value: number!)
+//            } else
+//            if UIDevice.current.name.contains("iPad") {
+//                let number = Int(settingsVM.projectedValue.qv_iPad.wrappedValue)
+//                bitrate = NSNumber(value: number!)
+//            }
         }
         
         
@@ -211,9 +204,11 @@ struct FTPUploadController {
         }
     }
     
-    func someAsyncFunction(remarksVM : RemarksViewModel,_ shouldThrow: Bool, completion: @escaping(String?) -> ()) {
+    func someAsyncFunction(_ shouldThrow: Bool, completion: @escaping(String?) -> ()) {
         
-        print(settingsVM.savedPDF)
+        var remarksVM = RemarksViewModel()
+        
+//        print(settingsVM.savedPDF)
         
         var finishedPhotoArray = [Data]()
         var finishedVideoArray = [Data]()
@@ -313,7 +308,7 @@ struct FTPUploadController {
 //                    self.orderViewModel.orderPositionIsOk = true
                 }
                     
-                for image in mediaViewModel.images {
+                for image in mediaVM.images {
                     if image.selected {
                         let image = UIImage(data: image.fetchImage())
                         if UIDevice.current.name.contains("iPhone") {
@@ -330,7 +325,7 @@ struct FTPUploadController {
                     }
                 }
             
-                for image in mediaViewModel.imagesCamera {
+                for image in mediaVM.imagesCamera {
                     if UIDevice.current.name.contains("iPhone") {
                         finishedPhotoArray.append((image.image.jpegData(compressionQuality: CGFloat(settingsVM.qp_iPhone.floatValue)))!)
                     } else
@@ -346,9 +341,9 @@ struct FTPUploadController {
                 
                 let group = DispatchGroup()
         
-                let videoCompress = VideoCompress(settingsVM: _settingsVM)
+                let videoCompress = VideoCompress()
                 
-                for video in mediaViewModel.videosCamera {
+                for video in mediaVM.videosCamera {
                     group.enter()
                     let formatter = DateFormatter()
                     formatter.dateFormat = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'"
@@ -364,7 +359,7 @@ struct FTPUploadController {
                     }
                 }
 
-                for video in mediaViewModel.videos {
+                for video in mediaVM.videos {
                     if video.selected {
                         print(video)
                         group.enter()
@@ -396,7 +391,7 @@ struct FTPUploadController {
                 }
 //                else {
 //                    imagesCheck = true
-////                    self.mediaViewModel.imagesIsOk = true
+////                    self.mediaVM.imagesIsOk = true
 //                }
                 
                 if error {
@@ -466,8 +461,8 @@ struct FTPUploadController {
                         counter += 1
                     }
                     
-                    mediaViewModel.selectedPhotoAmount = 0
-                    mediaViewModel.selectedVideoAmount = 0
+                    mediaVM.selectedPhotoAmount = 0
+                    mediaVM.selectedVideoAmount = 0
                     completion(nil)
                 } else {
                     print("ERROR ÜBERTRAGUNG")

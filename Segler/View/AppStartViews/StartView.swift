@@ -11,28 +11,34 @@ struct AppStart: View {
     let seglerColor: Color = Color(red: 200/255, green: 0/255, blue: 0/255)
     
     //CREATING ALL DATA MODULES FOR THE VIEWS
-    @ObservedObject var userVM = UserViewModel()
-    @ObservedObject var settingsVM = SettingsViewModel()
-    @ObservedObject var mediaVM = MediaViewModel()
-    @ObservedObject var orderVM = OrderViewModel()
-    @ObservedObject var remarksVM = RemarksViewModel()
+    @StateObject var userVM = UserViewModel()
+    @StateObject var settingsVM = SettingsViewModel()
+    @StateObject var mediaVM = MediaViewModel()
+    @StateObject var orderVM = OrderViewModel()
+    @StateObject var remarksVM = RemarksViewModel()
     
     @State var value : CGFloat = -30
     
     var body: some View {
-        Group {
+        ZStack {
             if !settingsVM.hasSettedUp {
-                SetupView(settingsVM : self.settingsVM, remarksVM: self.remarksVM, userVM: self.userVM)
+                SetupView()
             } else if (userVM.loggedIn && settingsVM.configLoaded && remarksVM.configLoaded) || settingsVM.useFixedUser {
-                Add_View(settingsVM: self.settingsVM, userVM: self.userVM, mediaVM: self.mediaVM, remarksVM: self.remarksVM, orderVM: self.orderVM).accentColor(seglerColor)
+                Add_View().accentColor(seglerColor)
             } else if !userVM.loggedIn && !settingsVM.configLoaded && !remarksVM.configLoaded {
-                ErrorView(userVM: self.userVM, settingsVM: self.settingsVM, mediaVM: self.mediaVM, orderVM: self.orderVM, remarksVM: self.remarksVM)
+                ErrorView()
             } else {
-                UserLogin(userVM: self.userVM, mediaVM: self.mediaVM, orderVM: self.orderVM)
+                UserLogin()
             }
-        }.onAppear {
-            self.settingsVM.getJSON()
-            self.remarksVM.getJSON(session: self.settingsVM.ip, username: self.settingsVM.serverUsername, password: self.settingsVM.serverPassword)
         }
+        .environmentObject(userVM)
+        .environmentObject(settingsVM)
+        .environmentObject(mediaVM)
+        .environmentObject(orderVM)
+        .environmentObject(remarksVM)
+//        .onAppear {
+//            self.settingsVM.getJSON()
+//            self.remarksVM.getJSON(session: self.settingsVM.ip, username: self.settingsVM.serverUsername, password: self.settingsVM.serverPassword)
+//        }
     }
 }

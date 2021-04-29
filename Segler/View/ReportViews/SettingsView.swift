@@ -10,11 +10,11 @@ extension String {
 
 struct Settings_View: View {
     
-    @ObservedObject var settingsVM : SettingsViewModel
-    @ObservedObject var userVM : UserViewModel
-    @ObservedObject var mediaVM : MediaViewModel
-    @ObservedObject var remarksVM : RemarksViewModel
-    @ObservedObject var orderVM : OrderViewModel
+    @EnvironmentObject var settingsVM: SettingsViewModel
+    @EnvironmentObject var userVM: UserViewModel
+    @EnvironmentObject var mediaVM : MediaViewModel
+    @EnvironmentObject var remarksVM : RemarksViewModel
+    @EnvironmentObject var orderVM : OrderViewModel
     @State var adminMenueUnlocked : Bool = false
     @State private var showModal = false
     let deviceUser = UIDevice.current.name
@@ -57,7 +57,7 @@ struct Settings_View: View {
                         TextField("Benutzername", text: $settingsVM.serverUsername).accentColor(colors.color)
                         SecureField("Passwort:", text: $settingsVM.serverPassword).accentColor(colors.color)
                         Button(action: {
-                            let connection = FTPUploadController(settingsVM: self.settingsVM, mediaVM: self.mediaVM, orderViewModel: self.orderVM, userVM: self.userVM)
+                            let connection = FTPUploadController()
                             if connection.authenticate() {
                                 ProgressHUD.showSuccess("Erfolgreich")
                             } else {
@@ -104,13 +104,13 @@ struct Settings_View: View {
                 
                 
             }.navigationBarTitle("Einstellungen").listStyle(GroupedListStyle()).sheet(isPresented: $showModal) {
-                ModalView(settingsVM : self.settingsVM, showModal: self.$showModal, adminMenueUnlocked: self.$adminMenueUnlocked)
+                ModalView(showModal: self.$showModal, adminMenueUnlocked: self.$adminMenueUnlocked)
             }
     }
 }
 
 struct ModalView: View {
-    @ObservedObject var settingsVM : SettingsViewModel
+    @EnvironmentObject var settingsVM: SettingsViewModel
     @Binding var showModal : Bool
     @Binding var adminMenueUnlocked : Bool
     @State var password : String = ""

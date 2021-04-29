@@ -10,11 +10,11 @@ import SwiftUI
 
 struct ErrorView: View {
     
-    @ObservedObject var userVM : UserViewModel
-    @ObservedObject var settingsVM : SettingsViewModel
-    @ObservedObject var mediaVM : MediaViewModel
-    @ObservedObject var orderVM : OrderViewModel
-    @ObservedObject var remarksVM : RemarksViewModel
+    @EnvironmentObject var userVM: UserViewModel
+    @EnvironmentObject var settingsVM: SettingsViewModel
+    @EnvironmentObject var mediaVM : MediaViewModel
+    @EnvironmentObject var orderVM : OrderViewModel
+    @EnvironmentObject var remarksVM : RemarksViewModel
     
     var body: some View {
         VStack {

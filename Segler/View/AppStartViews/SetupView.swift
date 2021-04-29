@@ -3,11 +3,11 @@ import CoreData
 import ProgressHUD
 
 struct SetupView: View {
-    @ObservedObject var settingsVM : SettingsViewModel
-    @ObservedObject var remarksVM : RemarksViewModel
-    @ObservedObject var mediaVM = MediaViewModel()
-    @ObservedObject var orderVM = OrderViewModel()
-    @ObservedObject var userVM = UserViewModel()
+    @EnvironmentObject var settingsVM: SettingsViewModel
+    @EnvironmentObject var remarksVM: RemarksViewModel
+    @EnvironmentObject var mediaVM: MediaViewModel
+    @EnvironmentObject var orderVM: OrderViewModel
+    @EnvironmentObject var userVM: UserViewModel
     
     @State var value : CGFloat = -30
     var body: some View {
@@ -42,7 +42,7 @@ struct SetupView: View {
 //                .padding(EdgeInsets(top: 0, leading: 0, bottom: 70, trailing: 0))
 
                 Button(action: {
-                    let connection = FTPUploadController(settingsVM: self.settingsVM, mediaVM: self.mediaVM, orderViewModel: self.orderVM, userVM: self.userVM)
+                    let connection = FTPUploadController()
                     if connection.authenticate() {
                         ProgressHUD.showSuccess("Verbunden")
                         self.settingsVM.saveServerSettings()

@@ -3,7 +3,7 @@ import PDFKit
 
 struct PDFDetailUIView: UIViewRepresentable {
     func makeCoordinator() -> Coordinator {
-        return Coordinator(selectedPDF: selectedPDF, saveState: $saveState, settingsVM: _settingsVM, pdfView: $pdfView)
+        return Coordinator(selectedPDF: selectedPDF, saveState: $saveState, pdfView: $pdfView)
     }
 
     @State var pdfView = PDFView()
@@ -12,7 +12,7 @@ struct PDFDetailUIView: UIViewRepresentable {
     
     @Binding var saveState: Bool
     
-    @ObservedObject var settingsVM: SettingsViewModel
+    @EnvironmentObject var settingsVM: SettingsViewModel
     
     class Coordinator: NSObject, PDFViewDelegate {
         
@@ -22,21 +22,19 @@ struct PDFDetailUIView: UIViewRepresentable {
         
         @Binding var saveState: Bool
         
-        @ObservedObject var settingsVM: SettingsViewModel
+        @EnvironmentObject var settingsVM: SettingsViewModel
 
-        init(selectedPDF: PDF, saveState: Binding<Bool>, settingsVM: ObservedObject<SettingsViewModel>, pdfView: Binding<PDFView>) {
+        init(selectedPDF: PDF, saveState: Binding<Bool>, pdfView: Binding<PDFView>) {
             self.selectedPDF = selectedPDF
             _saveState = saveState
-            _settingsVM = settingsVM
             _pdfView = pdfView
         }
         
     }
     
-    init(selectedPDF: PDF, saveState: Binding<Bool>, settingsVM: ObservedObject<SettingsViewModel>) {
+    init(selectedPDF: PDF, saveState: Binding<Bool>) {
         self.selectedPDF = selectedPDF
         _saveState = saveState
-        _settingsVM = settingsVM
 //        pdfView.document = PDFDocument(data: selectedPDF.data)
     }
     

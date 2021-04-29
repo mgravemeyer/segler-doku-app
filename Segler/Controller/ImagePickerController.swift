@@ -4,8 +4,8 @@ import MobileCoreServices
 
 struct ImagePicker: UIViewControllerRepresentable {
 
-    @ObservedObject var settingsVM: SettingsViewModel
-    @ObservedObject var mediaVM : MediaViewModel
+    @EnvironmentObject var settingsVM: SettingsViewModel
+    @EnvironmentObject var mediaVM : MediaViewModel
 
     var lastPoint = CGPoint.zero
     var red: CGFloat = 0.0
@@ -88,13 +88,13 @@ struct ImagePicker: UIViewControllerRepresentable {
             }
         }
         
-        @ObservedObject var mediaVM : MediaViewModel
+        @EnvironmentObject var mediaVM : MediaViewModel
         
         var assetWriter:AVAssetWriter?
          var assetReader:AVAssetReader?
          let bitrate:NSNumber = NSNumber(value:250000)
         
-        init(mediaVM : ObservedObject<MediaViewModel>) {
+        init(mediaVM : EnvironmentObject<MediaViewModel>) {
             _mediaVM = mediaVM
         }
 

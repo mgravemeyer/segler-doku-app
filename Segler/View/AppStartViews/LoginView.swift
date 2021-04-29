@@ -3,9 +3,9 @@ import SwiftUI
 struct UserLogin: View {
     
 //    @ObservedObject var keyboard = KeyboardResponder()
-    @ObservedObject var userVM : UserViewModel
-    @ObservedObject var mediaVM : MediaViewModel
-    @ObservedObject var orderVM : OrderViewModel
+    @EnvironmentObject var userVM : UserViewModel
+    @EnvironmentObject var mediaVM : MediaViewModel
+    @EnvironmentObject var orderVM : OrderViewModel
     
     @State var value : CGFloat = -30
     
@@ -36,7 +36,7 @@ struct UserLogin: View {
                     }.padding().background(Color.green).cornerRadius(4.0)
                 }.padding().zIndex(0).offset(y: -50)
             if self.mediaVM.loginShowImageScannner {
-                BarcodeScannerSegler(userVM: self.userVM, sourceType: 1, mediaVM: self.mediaVM, orderVM: self.orderVM).zIndex(1)
+                BarcodeScannerSegler(sourceType: 1).zIndex(1)
             }
         }
     }

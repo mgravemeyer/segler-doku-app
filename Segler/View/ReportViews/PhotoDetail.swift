@@ -2,7 +2,7 @@ import SwiftUI
 
 struct PhotoDetail: View {
     
-    @ObservedObject var mediaVM : MediaViewModel
+    @EnvironmentObject var mediaVM : MediaViewModel
     
     var body: some View {
         GeometryReader { geometry in

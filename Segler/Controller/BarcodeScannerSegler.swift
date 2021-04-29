@@ -8,12 +8,12 @@ struct BarcodeScannerSegler : UIViewControllerRepresentable {
     
     typealias UIViewControllerType = BarcodeScannerViewController
     
-    @ObservedObject var userVM: UserViewModel
+    @EnvironmentObject var userVM: UserViewModel
     
     var sourceType : Int
     
-    @ObservedObject var mediaVM: MediaViewModel
-    @ObservedObject var orderVM: OrderViewModel
+    @EnvironmentObject var mediaVM: MediaViewModel
+    @EnvironmentObject var orderVM: OrderViewModel
     
     
     func makeCoordinator() -> Coordinator {
@@ -61,13 +61,13 @@ struct BarcodeScannerSegler : UIViewControllerRepresentable {
             }
                 return (orderNr, orderPosition)
         }
-        @ObservedObject var userVM : UserViewModel
-        @ObservedObject var mediaVM : MediaViewModel
-        @ObservedObject var orderVM : OrderViewModel
+        @EnvironmentObject var userVM: UserViewModel
+        @EnvironmentObject var mediaVM : MediaViewModel
+        @EnvironmentObject var orderVM : OrderViewModel
         var sourceType : Int
         
         
-        init(sourceType: Int, userVM: ObservedObject<UserViewModel>,mediaVM : ObservedObject<MediaViewModel>, orderVM : ObservedObject<OrderViewModel>) {
+        init(sourceType: Int, userVM: EnvironmentObject<UserViewModel>,mediaVM : EnvironmentObject<MediaViewModel>, orderVM : EnvironmentObject<OrderViewModel>) {
             _userVM = userVM
             self.sourceType = sourceType
             _mediaVM = mediaVM

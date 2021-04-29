@@ -2,14 +2,14 @@ import SwiftUI
 import PDFKit
 
 struct PDFListDetailView: View {
-    @ObservedObject var settingsVM: SettingsViewModel
-    @ObservedObject var remarksVM : RemarksViewModel
+    @EnvironmentObject var settingsVM: SettingsViewModel
+    @EnvironmentObject var remarksVM : RemarksViewModel
     var selectedPDF: PDF
     @State var saveState = false
     @Binding var show: Bool
     
     var body: some View {
-        let pdf = PDFDetailUIView(selectedPDF: selectedPDF, saveState: $saveState, settingsVM: self._settingsVM)
+        let pdf = PDFDetailUIView(selectedPDF: selectedPDF, saveState: $saveState)
         return ZStack {
             pdf
                 .navigationBarTitle("\(selectedPDF.name)", displayMode: .inline)
@@ -51,11 +51,11 @@ struct PDFListDetailView: View {
 
 struct PDFEditDetailView: View {
     
-    @ObservedObject var settingsVM: SettingsViewModel
+    @EnvironmentObject var settingsVM: SettingsViewModel
     @State var saveState = false
     
     var body: some View {
-        let pdf = PDFDetailUIView(selectedPDF: settingsVM.savedPDF, saveState: $saveState, settingsVM: self._settingsVM)
+        let pdf = PDFDetailUIView(selectedPDF: settingsVM.savedPDF, saveState: $saveState)
         pdf
             .navigationBarTitle("\(settingsVM.savedPDF.name)", displayMode: .inline)
             .navigationBarItems(trailing: Button("Speichern", action: {

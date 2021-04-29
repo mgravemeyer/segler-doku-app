@@ -23,11 +23,11 @@ struct Add_View: View {
     
     let colors = ColorSeglerViewModel()
     
-    @ObservedObject var settingsVM : SettingsViewModel
-    @ObservedObject var userVM : UserViewModel
-    @ObservedObject var mediaVM : MediaViewModel
-    @ObservedObject var remarksVM : RemarksViewModel
-    @ObservedObject var orderVM : OrderViewModel
+    @EnvironmentObject var settingsVM : SettingsViewModel
+    @EnvironmentObject var userVM : UserViewModel
+    @EnvironmentObject var mediaVM : MediaViewModel
+    @EnvironmentObject var remarksVM : RemarksViewModel
+    @EnvironmentObject var orderVM : OrderViewModel
 
     @State var keyboardIsShown = false
     
@@ -39,28 +39,28 @@ struct Add_View: View {
                         Group {
                             ZStack {
                                 if mediaVM.showVideo {
-                                    VideoDetail(mediaVM: self.mediaVM)
+                                    VideoDetail()
                                         .onAppear {
                                             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                                         }
                                 }
                                 if mediaVM.showImage {
                                     if mediaVM.selectedImageNeedsAjustment {
-                                        PhotoDetail(mediaVM: self.mediaVM)
+                                        PhotoDetail()
                                             .onAppear {
                                                 UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                                             }
                                     }
                                 }
                                 List {
-                                    SectionOrder(orderVM : self.orderVM, mediaVM : self.mediaVM)
+                                    SectionOrder()
                                         .accentColor(colors.color)
                                         .frame(height: 34)
 //                                    SectionPDF(settingsVM: self.settingsVM)
-                                    SectionRemarks(remarksVM : self.remarksVM, settingsVM: settingsVM)
+                                    SectionRemarks()
                                         .frame(height: 34)
-                                    SectionFreeTextField(remarksVM: self.remarksVM)
-                                    SectionBilder(mediaVM : self.mediaVM)
+                                    SectionFreeTextField()
+                                    SectionBilder()
                                     if !(settingsVM.errorsJSON.isEmpty) {
                                         Image("Warning").resizable().frame(width: 50, height: 50)
                                         ForEach(settingsVM.errorsJSON, id: \.self) { error in
@@ -70,12 +70,12 @@ struct Add_View: View {
                                 }.environment(\.defaultMinListRowHeight, 8).zIndex(0)
                                 VStack {
                                     Spacer()
-                                    SaveButton(settingsVM: self.settingsVM, mediaVM: self.mediaVM, orderVM: self.orderVM, remarksVM: self.remarksVM, userVM: self.userVM).zIndex(100)
+                                    SaveButton().zIndex(100)
                                 }
                             }
                         .navigationBarItems(leading:(
                         HStack {
-                            NavigationLink(destination: Settings_View(settingsVM: self.settingsVM, userVM: self.userVM, mediaVM: self.mediaVM, remarksVM: self.remarksVM, orderVM: self.orderVM)) {
+                            NavigationLink(destination: Settings_View()) {
                                 Image(systemName: "gear").font(.system(size: 25))
                             }
                             if !settingsVM.useFixedUser {
@@ -119,7 +119,7 @@ struct Add_View: View {
                     }
                 }
                 .sheet(isPresented: self.$mediaVM.showImagePickerNew) {
-                    ImageSelectionModal(mediaVM: self.mediaVM)
+                    ImageSelectionModal()
                     .onAppear {
                         mediaVM.fetchMedia()
                     }
@@ -133,10 +133,10 @@ struct Add_View: View {
                     }
                 }.accentColor(Color.white).navigationViewStyle(StackNavigationViewStyle())
                 if self.mediaVM.showImagePicker {
-                    ImagePicker(settingsVM: self.settingsVM, mediaVM : self.mediaVM)
+                    ImagePicker()
                 }
                 if self.mediaVM.showImageScanner {
-                    BarcodeScannerSegler(userVM: self.userVM,sourceType: 0,mediaVM: self.mediaVM, orderVM: self.orderVM)
+                    BarcodeScannerSegler(sourceType: 0)
                 }
             }
             .onAppear() {
@@ -185,8 +185,8 @@ struct BottomPadding: View {
 struct SectionOrder: View {
 
     let colors = ColorSeglerViewModel()
-    @ObservedObject var orderVM : OrderViewModel
-    @ObservedObject var mediaVM : MediaViewModel
+    @EnvironmentObject var orderVM : OrderViewModel
+    @EnvironmentObject var mediaVM : MediaViewModel
     
     var body: some View {
                 HStack {
@@ -213,9 +213,9 @@ struct SectionOrder: View {
 
 struct SectionRemarks: View {
     
-    @ObservedObject var remarksVM : RemarksViewModel
+    @EnvironmentObject var remarksVM : RemarksViewModel
     @State var isVisible = Bool()
-    @ObservedObject var settingsVM: SettingsViewModel
+    @EnvironmentObject var settingsVM: SettingsViewModel
     
     let colors = ColorSeglerViewModel()
     @State var editViewVisible = false
@@ -224,7 +224,7 @@ struct SectionRemarks: View {
         
         
         if settingsVM.savedPDF.name == "" {
-            NavigationLink(destination: listComments(remarksVM: self.remarksVM, settingsVM: settingsVM, show: true)) {
+            NavigationLink(destination: listComments(show: true)) {
                     if remarksVM.selectedComment == "" {
                         Text("Kommentar").foregroundColor(.gray)
                     } else {
@@ -233,10 +233,10 @@ struct SectionRemarks: View {
                 }.listRowBackground(self.remarksVM.commentIsOk ? colors.correctRowColor : colors.warningRowColor)
         } else {
             HStack {
-                NavigationLink(destination: listComments(remarksVM: self.remarksVM, settingsVM: settingsVM, show: true)) {
+                NavigationLink(destination: listComments(show: true)) {
                     Text(settingsVM.savedPDF.name)
                 }
-                NavigationLink(destination: PDFEditDetailView(settingsVM: settingsVM, saveState: false), isActive: $editViewVisible) { EmptyView() }.frame(width: 0).hidden().labelsHidden().buttonStyle((BorderlessButtonStyle())).zIndex(-100000).disabled(true)
+                NavigationLink(destination: PDFEditDetailView(saveState: false), isActive: $editViewVisible) { EmptyView() }.frame(width: 0).hidden().labelsHidden().buttonStyle((BorderlessButtonStyle())).zIndex(-100000).disabled(true)
                 Button(action: {
                     editViewVisible.toggle()
                 }) {
@@ -260,7 +260,7 @@ struct SectionRemarks: View {
 }
 
 //struct SectionPDF: View {
-//    @ObservedObject var settingsVM: SettingsViewModel
+//    @EnvironmentObject var settingsVM: SettingsViewModel
 //    let colors = ColorSeglerViewModel()
 //    @State var editViewVisible = false
 //    @State var fakeBool = false
@@ -305,7 +305,7 @@ struct SectionRemarks: View {
 
 struct SectionFreeTextField: View {
     
-    @ObservedObject var remarksVM : RemarksViewModel
+    @EnvironmentObject var remarksVM : RemarksViewModel
     
     let colors = ColorSeglerViewModel()
     
@@ -349,10 +349,10 @@ struct SectionFreeTextField: View {
 
 struct listComments: View {
     
-    @ObservedObject var remarksVM : RemarksViewModel
+    @EnvironmentObject var remarksVM : RemarksViewModel
     @Environment(\.presentationMode) var presentationMode
     
-    @ObservedObject var settingsVM: SettingsViewModel
+    @EnvironmentObject var settingsVM: SettingsViewModel
     let colors = ColorSeglerViewModel()
     @State var editViewVisible = false
     @State var fakeBool = false
@@ -363,12 +363,12 @@ struct listComments: View {
 
             List {
                 ForEach(0..<self.remarksVM.comments.count, id: \.self) { x in
-                    NavigationLink(destination: listCommentsDetail(selection: x, settingsVM: self.settingsVM, remarksVM: self.remarksVM, show: self.$show)) {
+                    NavigationLink(destination: listCommentsDetail(selection: x, show: self.$show)) {
                         Text("\(self.remarksVM.comments[x].title)")
                             .frame(height: 34)
                     }
                 }
-                NavigationLink(destination: PDFListView(show: $show, settingsVM: self.settingsVM, remarksVM: self.remarksVM)) {
+                NavigationLink(destination: PDFListView(show: $show)) {
                     HStack {
                         Image(systemName: "newspaper.fill")
                         Text("Protokoll")
@@ -394,8 +394,8 @@ struct listComments: View {
 
 struct listCommentsDetail: View {
     let selection : Int
-    @ObservedObject var settingsVM: SettingsViewModel
-    @ObservedObject var remarksVM : RemarksViewModel
+    @EnvironmentObject var settingsVM: SettingsViewModel
+    @EnvironmentObject var remarksVM : RemarksViewModel
     @Environment(\.presentationMode) var presentationMode
     @Binding var show : Bool
     
@@ -421,11 +421,11 @@ struct listCommentsDetail: View {
 
 struct SaveButton: View {
     
-    @ObservedObject var settingsVM : SettingsViewModel
-    @ObservedObject var mediaVM : MediaViewModel
-    @ObservedObject var orderVM : OrderViewModel
-    @ObservedObject var remarksVM : RemarksViewModel
-    @ObservedObject var userVM : UserViewModel
+    @EnvironmentObject var settingsVM : SettingsViewModel
+    @EnvironmentObject var mediaVM : MediaViewModel
+    @EnvironmentObject var orderVM : OrderViewModel
+    @EnvironmentObject var remarksVM : RemarksViewModel
+    @EnvironmentObject var userVM : UserViewModel
     @State var showReport = false
     
     let colors = ColorSeglerViewModel()
@@ -434,7 +434,7 @@ struct SaveButton: View {
 //    lazy var connection = FTPUploadController(mediaVM: self.mediaVM)
     
     var connection: FTPUploadController {
-        return FTPUploadController(settingsVM: settingsVM, mediaVM: mediaVM, orderViewModel: self.orderVM, userVM: self.userVM)
+        return FTPUploadController()
     }
     
     @State var keyboardIsShown = false
@@ -443,7 +443,7 @@ struct SaveButton: View {
         HStack {
             Button(action: {
                 typealias ThrowableCallback = () throws -> Bool
-                self.connection.someAsyncFunction(remarksVM: self.remarksVM, true) { (error) -> Void in
+                self.connection.someAsyncFunction(true) { (error) -> Void in
                     if error != nil {
                         ProgressHUD.showError(error)
                         return
@@ -478,7 +478,7 @@ struct SaveButton: View {
             }
     }.frame(height: 50).background(colors.color)
         .sheet(isPresented: $showReport) {
-            reportModal(showReport: self.$showReport, settingsVM: self.settingsVM, mediaVM: self.mediaVM, orderVM: self.orderVM, remarksVM: self.remarksVM)
+            reportModal(showReport: self.$showReport)
         }
     }
 }
@@ -486,7 +486,7 @@ struct SaveButton: View {
 struct ImageSelectionModal: View {
     
     @Environment(\.presentationMode) private var presentationMode
-    @ObservedObject var mediaVM : MediaViewModel
+    @EnvironmentObject var mediaVM : MediaViewModel
     let columns = [
             GridItem(.adaptive(minimum: 80))
     ]
@@ -621,10 +621,10 @@ struct ImageSelectionModal: View {
 struct reportModal: View {
     
     @Binding var showReport : Bool
-    @ObservedObject var settingsVM : SettingsViewModel
-    @ObservedObject var mediaVM : MediaViewModel
-    @ObservedObject var orderVM : OrderViewModel
-    @ObservedObject var remarksVM : RemarksViewModel
+    @EnvironmentObject var settingsVM : SettingsViewModel
+    @EnvironmentObject var mediaVM : MediaViewModel
+    @EnvironmentObject var orderVM : OrderViewModel
+    @EnvironmentObject var remarksVM : RemarksViewModel
     
     var body: some View {
             List {
@@ -724,48 +724,48 @@ extension UIApplication {
 struct SectionBilder: View {
     
     let colors = ColorSeglerViewModel()
-    @ObservedObject var mediaVM : MediaViewModel
+    @EnvironmentObject var mediaVM : MediaViewModel
     
     var body: some View {
 
             ScrollView(.horizontal) {
                 HStack {
-                        EmptyImgButton(mediaVM : self.mediaVM).accentColor(self.colors.color).padding(.leading, 15)
+                        EmptyImgButton().accentColor(self.colors.color).padding(.leading, 15)
                         if mediaVM.getNumberOfImages()>0 {
                             ForEach((0...mediaVM.highestOrderNumber).reversed(), id:\.self) { i in
                                 ForEach(mediaVM.images, id:\.self) { image in
                                     if image.selected && image.order == i {
-                                        testImageView(mediaVM: self.mediaVM, imageObject: image,id: image.id)
+                                        testImageView(imageObject: image,id: image.id)
                                     }
                                 }
                                 ForEach(mediaVM.imagesCamera, id:\.self) { image in
                                     if image.order == i  {
-                                        testImageCameraView(mediaVM: self.mediaVM, imageObject: image,id: image.id)
+                                        testImageCameraView(imageObject: image,id: image.id)
                                     }
                                 }
                                 ForEach(mediaVM.videos, id:\.self) { video in
                                     if video.selected && video.order == i {
-                                        testVideoView(mediaVM: self.mediaVM, videoObject: video, id: video.id)
+                                        testVideoView(videoObject: video, id: video.id)
                                     }
                                 }
                                 ForEach(mediaVM.videosCamera, id:\.self) { video in
                                     if video.order == i {
-                                        testVideoCameraView(mediaVM: self.mediaVM, videoObject: video, id: video.id)
+                                        testVideoCameraView(videoObject: video, id: video.id)
                                     }
                                 }
                             }
                         } else {
                                 ForEach(mediaVM.images, id:\.self) { image in
-                                    testImageView(mediaVM: self.mediaVM, imageObject: image,id: image.id)
+                                    testImageView(imageObject: image,id: image.id)
                                 }
                                 ForEach(mediaVM.imagesCamera, id:\.self) { image in
-                                    testImageCameraView(mediaVM: self.mediaVM, imageObject: image,id: image.id)
+                                    testImageCameraView(imageObject: image,id: image.id)
                                 }
                                 ForEach(mediaVM.videos, id:\.self) { video in
-                                    testVideoView(mediaVM: self.mediaVM, videoObject: video, id: video.id)
+                                    testVideoView(videoObject: video, id: video.id)
                                 }
                                 ForEach(mediaVM.videosCamera, id:\.self) { video in
-                                    testVideoCameraView(mediaVM: self.mediaVM, videoObject: video, id: video.id)
+                                    testVideoCameraView(videoObject: video, id: video.id)
                                 }
                         }
                 }
@@ -775,7 +775,7 @@ struct SectionBilder: View {
 
     struct testImageViewSmall: View {
         
-        @ObservedObject var mediaVM: MediaViewModel
+        @EnvironmentObject var mediaVM: MediaViewModel
         @State var imageObject : ImageModel
         @State var showSheet = false
         @State var id : UUID
@@ -816,7 +816,7 @@ struct SectionBilder: View {
 
 struct testImageCameraView: View {
     
-    @ObservedObject var mediaVM: MediaViewModel
+    @EnvironmentObject var mediaVM: MediaViewModel
     @State var imageObject : ImageModelCamera
     @State var showSheet = false
     @State var id : UUID
@@ -856,7 +856,7 @@ struct testImageCameraView: View {
 
 struct testVideoCameraView: View {
     
-    @ObservedObject var mediaVM: MediaViewModel
+    @EnvironmentObject var mediaVM: MediaViewModel
     @State var videoObject : VideoModelCamera
     @State var showSheet = false
     @State var id : UUID
@@ -897,7 +897,7 @@ struct testVideoCameraView: View {
     
     struct testImageView: View {
         
-        @ObservedObject var mediaVM: MediaViewModel
+        @EnvironmentObject var mediaVM: MediaViewModel
         @State var imageObject : ImageModel
         @State var showSheet = false
         @State var id : UUID
@@ -937,7 +937,7 @@ struct testVideoCameraView: View {
 
 struct testVideoView: View {
 
-    @ObservedObject var mediaVM: MediaViewModel
+    @EnvironmentObject var mediaVM: MediaViewModel
     @State var videoObject : VideoModel
     @State var showSheet = false
     @State var id : UUID
@@ -977,7 +977,7 @@ struct testVideoView: View {
 
 struct ImageView: View {
     
-    @ObservedObject var mediaVM : MediaViewModel
+    @EnvironmentObject var mediaVM : MediaViewModel
     @State var index: Int
     @State var showSheet = false
     
@@ -1002,7 +1002,7 @@ struct ImageView: View {
 
 struct EmptyImgButton: View {
     
-    @ObservedObject var mediaVM : MediaViewModel
+    @EnvironmentObject var mediaVM : MediaViewModel
     
     @State var showSheet = false
     
