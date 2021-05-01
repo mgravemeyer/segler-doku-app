@@ -4,7 +4,7 @@ struct AppStart: View {
     
     init() {
         UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.white]
-        UINavigationBar.appearance().barTintColor = UIColor(red: 200/255, green: 0/255, blue: 0/255, alpha: 1)
+        UINavigationBar.appearance().barTintColor = UIColor.seglerRed
         UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.white]
         if(
             UserDefaults.standard.string(forKey: "ip") != nil &&

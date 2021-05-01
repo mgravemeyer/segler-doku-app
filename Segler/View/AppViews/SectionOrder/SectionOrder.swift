@@ -1,8 +1,6 @@
 import SwiftUI
 
 struct SectionOrder: View {
-
-    let colors = ColorSeglerViewModel()
     @EnvironmentObject var orderVM : OrderViewModel
     @EnvironmentObject var mediaVM : MediaViewModel
     
@@ -21,12 +19,12 @@ struct SectionOrder: View {
                         Image("QR-Icon")
                         .resizable()
                         .frame(width: 33, height: 33)
-                        .foregroundColor(self.colors.color)
+                        .foregroundColor(Color.seglerRed)
                     }.buttonStyle(BorderlessButtonStyle()).zIndex(1000000)
-                }.listRowBackground(self.orderVM.orderNrIsOk ? colors.correctRowColor : colors.warningRowColor)
+                }.listRowBackground(self.orderVM.orderNrIsOk ? Color.white : Color.seglerRowWarning)
                 TextField("Auftrags-Position", text: $orderVM.orderPosition)
                     .keyboardType(.numbersAndPunctuation)
-                    .listRowBackground(self.orderVM.orderPositionIsOk ? colors.correctRowColor : colors.warningRowColor)
-                .disableAutocorrection(true).accentColor(colors.color)
+                    .listRowBackground(self.orderVM.orderPositionIsOk ? Color.white : Color.seglerRowWarning)
+                    .disableAutocorrection(true).accentColor(Color.seglerRed)
     }
 }
