@@ -33,12 +33,11 @@ struct SetupView: View {
                 .padding(EdgeInsets(top: 0, leading: 0, bottom: 15, trailing: 0))
                 
                 Button(action: {
-                    let connection = FTPUploadController()
-                    if connection.authenticate() {
+                    if NetworkDataManager.shared.connect(host: settingsVM.ip, username: settingsVM.serverUsername, password: settingsVM.serverPassword) {
                         ProgressHUD.showSuccess("Verbunden")
-                        self.settingsVM.saveServerSettings()
                     } else {
                         ProgressHUD.showError("Keine Verbindung mit diesem Netzwerk möglich")
+                        self.settingsVM.saveServerSettings()
                     }
                 }) {
                     HStack(alignment: .center) {
