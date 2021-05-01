@@ -10,7 +10,6 @@ class RemarksViewModel: ObservableObject {
     @Published var additionalComment = String()
     @Published var firstHirarActive : Bool = Bool()
     @Published var secondHirarActive : Bool = Bool()
-    @Published var configLoaded = false
     @Published var commentIsOk = true
     
     func loadJSON() {

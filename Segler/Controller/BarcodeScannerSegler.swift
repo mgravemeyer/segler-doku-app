@@ -4,7 +4,7 @@ import UIKit
 import SwiftUI
 import ProgressHUD
 
-struct BarcodeScannerSegler : UIViewControllerRepresentable {
+struct BarcodeScannerView : UIViewControllerRepresentable {
     
     typealias UIViewControllerType = BarcodeScannerViewController
     

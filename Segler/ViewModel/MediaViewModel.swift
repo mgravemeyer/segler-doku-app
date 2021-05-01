@@ -71,7 +71,6 @@ class MediaViewModel : ObservableObject {
     @Published var showImage: Bool = false
     
     @Published var selectedImage: UIImage?
-    @Published var selectedImageNeedsAjustment = true
     @Published var selectedVideo: URL?
     
     func getOrderNumber() -> Int {

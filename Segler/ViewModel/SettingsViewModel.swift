@@ -25,7 +25,6 @@ class SettingsViewModel: ObservableObject {
     @Published var userUsername = String()
     @Published var userPassword = String()
     @Published var jsonIsOnSameServer : Bool = Bool()
-    @Published var configLoaded = false
     @Published var useFixedUser: Bool = UserDefaults.standard.bool(forKey: "useFixedUser")
     @Published var useFixedUserTemp: Bool = UserDefaults.standard.bool(forKey: "useFixedUser")
     @Published var fixedUserName: String = UserDefaults.standard.string(forKey: "fixedUserName") ?? ""

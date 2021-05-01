@@ -29,7 +29,7 @@ struct LoginView: View {
                 }.padding().background(Color.green).cornerRadius(4.0)
                 }.padding().zIndex(0).offset(y: -50)
             if self.mediaVM.loginShowImageScannner {
-                BarcodeScannerSegler(sourceType: 1).zIndex(1)
+                BarcodeScannerView(sourceType: 1).zIndex(1)
             }
         }
     }

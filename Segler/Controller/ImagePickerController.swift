@@ -2,7 +2,7 @@ import SwiftUI
 import AVFoundation
 import MobileCoreServices
 
-struct ImagePicker: UIViewControllerRepresentable {
+struct MediaPickerView: UIViewControllerRepresentable {
 
     @EnvironmentObject var settingsVM: SettingsViewModel
     @EnvironmentObject var mediaVM : MediaViewModel
