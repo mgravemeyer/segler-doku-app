@@ -10,6 +10,8 @@ struct BarcodeScannerView : UIViewControllerRepresentable {
     
     @EnvironmentObject var userVM: UserViewModel
     
+    @Binding var showBarcodeScannerView: Bool
+    
     var sourceType : Int
     
     @EnvironmentObject var mediaVM: MediaViewModel
@@ -17,7 +19,7 @@ struct BarcodeScannerView : UIViewControllerRepresentable {
     
     
     func makeCoordinator() -> Coordinator {
-        Coordinator(sourceType: self.sourceType, userVM: _userVM, mediaVM : _mediaVM, orderVM : _orderVM)
+        Coordinator(sourceType: self.sourceType, userVM: _userVM, mediaVM : _mediaVM, orderVM : _orderVM, showBarcodeScannerView: self.$showBarcodeScannerView)
     }
     
     func makeUIViewController(context: Context) -> BarcodeScannerViewController {
@@ -66,12 +68,15 @@ struct BarcodeScannerView : UIViewControllerRepresentable {
         @EnvironmentObject var orderVM : OrderViewModel
         var sourceType : Int
         
+        @Binding var showBarcodeScannerView: Bool
         
-        init(sourceType: Int, userVM: EnvironmentObject<UserViewModel>,mediaVM : EnvironmentObject<MediaViewModel>, orderVM : EnvironmentObject<OrderViewModel>) {
+        
+        init(sourceType: Int, userVM: EnvironmentObject<UserViewModel>,mediaVM : EnvironmentObject<MediaViewModel>, orderVM : EnvironmentObject<OrderViewModel>, showBarcodeScannerView: Binding<Bool>) {
             _userVM = userVM
             self.sourceType = sourceType
             _mediaVM = mediaVM
             _orderVM = orderVM
+            _showBarcodeScannerView = showBarcodeScannerView
         }
         
         func scanner(_ controller: BarcodeScannerViewController, didCaptureCode code: String, type: String) {
@@ -84,15 +89,15 @@ struct BarcodeScannerView : UIViewControllerRepresentable {
                 let splitted = splitOrderNrAndOrderPosition(code)
                 orderVM.orderNr = splitted.0
                 orderVM.orderPosition = splitted.1
-                mediaVM.showImageScanner = false
+                self.showBarcodeScannerView = false
                 controller.dismiss(animated: true, completion: nil)
             } else if sourceType == 0 {
                 ProgressHUD.showError("Barcode nicht erkannt")
-                mediaVM.showImageScanner = false
+                self.showBarcodeScannerView = false
                 controller.dismiss(animated: true, completion: nil)
             } else {
                 controller.dismiss(animated: true, completion: nil)
-                mediaVM.showImageScanner = false
+                self.showBarcodeScannerView = false
             }
             
             var found_ = false
@@ -113,16 +118,16 @@ struct BarcodeScannerView : UIViewControllerRepresentable {
                 }
 
                 userVM.loggedIn = true
-                mediaVM.loginShowImageScannner = false
+                self.showBarcodeScannerView = false
                 controller.dismiss(animated: true, completion: nil)
             } else if sourceType == 1 {
                 ProgressHUD.showError("Falscher Barcode")
                 userVM.loggedIn = false
                 controller.dismiss(animated: true, completion: nil)
-                mediaVM.loginShowImageScannner = false
+                self.showBarcodeScannerView = false
             } else {
                 controller.dismiss(animated: true, completion: nil)
-                mediaVM.loginShowImageScannner = false
+                self.showBarcodeScannerView = false
             }
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
@@ -135,8 +140,7 @@ struct BarcodeScannerView : UIViewControllerRepresentable {
         }
             
         func scannerDidDismiss(_ controller: BarcodeScannerViewController) {
-            mediaVM.showImageScanner = false
-            mediaVM.loginShowImageScannner = false
+            self.showBarcodeScannerView = false
             controller.dismiss(animated: true, completion: nil)
         }
     }

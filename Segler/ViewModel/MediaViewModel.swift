@@ -95,8 +95,6 @@ class MediaViewModel : ObservableObject {
     @Published var sourceType: Int = 0
     @Published var showImagePicker: Bool = false
     @Published var askForCameraOrGallery: Bool = false
-    @Published var showImageScanner : Bool = false
-    @Published var loginShowImageScannner : Bool = false
     @Published var imagesIsOk = true
     @Published var showImagePickerNew = false
     

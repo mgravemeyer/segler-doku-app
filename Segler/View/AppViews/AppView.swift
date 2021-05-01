@@ -13,12 +13,14 @@ struct AppView: View {
 
     @State var keyboardIsShown = false
     
+    @State var showBarcodeScannerView = false
+    
     var body: some View {
             NavigationView {
                 ZStack {
                     ZStack {
                         List {
-                            SectionOrder()
+                            SectionOrder(showBarcodeScannerView: self.$showBarcodeScannerView)
                                 .frame(height: 34)
                             SectionRemarks()
                                 .frame(height: 34)
@@ -113,8 +115,8 @@ struct AppView: View {
         if self.mediaVM.showImagePicker {
             MediaPickerView()
         }
-        if self.mediaVM.showImageScanner {
-            BarcodeScannerView(sourceType: 0)
+        if self.showBarcodeScannerView {
+            BarcodeScannerView(showBarcodeScannerView: self.$showBarcodeScannerView, sourceType: 1)
         }
     }
 }

@@ -6,6 +6,8 @@ struct SectionOrder: View {
     @EnvironmentObject var orderVM : OrderViewModel
     @EnvironmentObject var mediaVM : MediaViewModel
     
+    @Binding var showBarcodeScannerView: Bool
+    
     var body: some View {
                 HStack {
                     TextField("Auftrags-Nr", text: $orderVM.orderNr)
@@ -14,7 +16,7 @@ struct SectionOrder: View {
                         .keyboardType(.numbersAndPunctuation)
                     Button(action: {
                         UIApplication.shared.endEditing()
-                        self.mediaVM.showImageScanner = true
+                        self.showBarcodeScannerView = true
                     }) {
                         Image("QR-Icon")
                         .resizable()

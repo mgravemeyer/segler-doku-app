@@ -7,7 +7,7 @@ struct LoginView: View {
     
     @State var value : CGFloat = -30
     
-    @State var showBarcodeScanner = false
+    @State var showBarcodeScannerView = false
     
     var body: some View {
         ZStack {
@@ -19,7 +19,7 @@ struct LoginView: View {
                 .padding(Edge.Set.bottom, 20)
                 
                 Button(action: {
-                    self.mediaVM.loginShowImageScannner = true
+                    self.showBarcodeScannerView = true
                 }) {
                     HStack(alignment: .center) {
                         Spacer()
@@ -28,8 +28,8 @@ struct LoginView: View {
                     }
                 }.padding().background(Color.green).cornerRadius(4.0)
                 }.padding().zIndex(0).offset(y: -50)
-            if self.mediaVM.loginShowImageScannner {
-                BarcodeScannerView(sourceType: 1).zIndex(1)
+            if self.showBarcodeScannerView {
+                BarcodeScannerView(showBarcodeScannerView: self.$showBarcodeScannerView, sourceType: 1).zIndex(1)
             }
         }
     }
