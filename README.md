@@ -20,11 +20,12 @@ A requierement was to send the images with additional comments over the internal
 Two ways could be:
     send the data on the image via meta-data.
     send a json file along the image.
-The company already worked with JSON so the IT-Department and I decided to use JSON along with the Image. One problem could be if the Image successfully was transfered but the JSON not, there could be problems on the Server. Therefor the Server searches for both files and if one is not existing then it will throw an error to the IT-Department. The Server-side stuff was not written by me.
+The company already worked with JSON so the IT-Department and I decided to use JSON along with the Image. One problem could be if the Image successfully was transfered but the JSON not, there could be problems on the Server. Therefor the Server searches for both files and if one is not existing then it will throw an error to the IT-Department.
+SwiftUI was not really ready when i started using it. Therefore, there where a lot of refactorings involved, because when SwiftUI released, there was nearly every week an update that changed a lot. Thats why here and there in the app there could be some old code, but i reafactored as much as i could possibly do till today so far.
 
 ### Program Sequence 🟢
 <p align="center">
-![sequence segler app](https://i.ibb.co/3BXScjq/SE.png)
+    <img src="https://i.ibb.co/3BXScjq/SE.png" max-height="500">
 </p>
 
 ##### 1. Getting Server Connetion and Download config.json
