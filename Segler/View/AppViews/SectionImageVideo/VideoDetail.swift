@@ -35,5 +35,5 @@ struct VideoDetail: View {
 func resolutionSizeForLocalVideo(url:URL) -> CGSize? {
     guard let track = AVAsset(url: url as URL).tracks(withMediaType: AVMediaType.video).first else { return nil }
     let size = track.naturalSize.applying(track.preferredTransform)
-    return CGSize(width: abs(size.width), height: fabs(size.height))
+    return CGSize(width: abs(size.width), height: abs(size.height))
 }
