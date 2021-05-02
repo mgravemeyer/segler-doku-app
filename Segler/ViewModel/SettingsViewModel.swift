@@ -8,14 +8,14 @@ class SettingsViewModel: ObservableObject {
         loadSavedSettings()
     }
     
-    @Published var pdfsToSearchOnServer = [ResponsePDF]()
-    
-    @Published var archive = [PDF]()
-    
-    @Published var savedPDF = PDF(name: "", data: Data())
-    
-    @Published var pdfs = [PDF]()
-    @Published var selectedPDF = PDF(name: "", data: Data())
+//    @Published var pdfsToSearchOnServer = [ResponsePDF]()
+//
+//    @Published var archive = [PDF]()
+//
+//    @Published var savedPDF = PDF(name: "", data: Data())
+//
+//    @Published var pdfs = [PDF]()
+//    @Published var selectedPDF = PDF(name: "", data: Data())
     
     @Published var ip = String()
     @Published var adminMenuePassword = String()
@@ -275,18 +275,18 @@ extension SettingsViewModel {
     }
 }
 
-extension SettingsViewModel {
-    func decodaPDFs(jsonData : Foundation.Data) {
-        let decoder = JSONDecoder()
-        do {
-            let tempPDFs = try decoder.decode(ResponsePDFs.self, from: jsonData)
-            pdfsToSearchOnServer = tempPDFs.pdfs
-//            self.comments = [try decoder.decode(Comment.self, from: jsonData)]
-        } catch {
-            print("KOMMENTARE KONNTEN NICHT GELADEN WERDEN")
-        }
-    }
-}
+//extension SettingsViewModel {
+//    func decodaPDFs(jsonData : Foundation.Data) {
+//        let decoder = JSONDecoder()
+//        do {
+//            let tempPDFs = try decoder.decode(ResponsePDFs.self, from: jsonData)
+//            pdfsToSearchOnServer = tempPDFs.pdfs
+////            self.comments = [try decoder.decode(Comment.self, from: jsonData)]
+//        } catch {
+//            print("KOMMENTARE KONNTEN NICHT GELADEN WERDEN")
+//        }
+//    }
+//}
 
 extension SettingsViewModel {
 //    func loadLocalPDFNames() {

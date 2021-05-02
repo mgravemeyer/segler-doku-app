@@ -2,22 +2,23 @@ import SwiftUI
 import PDFKit
 
 struct PDFListDetailView: View {
-    @EnvironmentObject var settingsVM: SettingsViewModel
+    @EnvironmentObject var mediaVM: MediaViewModel
     @EnvironmentObject var remarksVM : RemarksViewModel
     var selectedPDF: PDF
     @State var saveState = false
     @Binding var show: Bool
     
     var body: some View {
-        let pdf = PDFDetailUIView(selectedPDF: selectedPDF, saveState: $saveState)
+        let pdf = PDFDetailUIView(selectedPDF: selectedPDF, saveState: $saveState, mediaVM: _mediaVM)
         return ZStack {
             pdf
+                .environmentObject(mediaVM)
                 .navigationBarTitle("\(selectedPDF.name)", displayMode: .inline)
                 .navigationBarItems(trailing: Button("Speichern", action: {
                     pdf.savePDF()
-                    settingsVM.savedPDF.name = "\(selectedPDF.name)"
+                    mediaVM.savedPDF.name = "\(selectedPDF.name)"
                     remarksVM.selectedComment = ""
-                    print(settingsVM.savedPDF)
+                    print(mediaVM.savedPDF)
                     saveState = true
                     show = false
                 })).zIndex(0)
@@ -51,13 +52,14 @@ struct PDFListDetailView: View {
 
 struct PDFEditDetailView: View {
     
-    @EnvironmentObject var settingsVM: SettingsViewModel
+    @EnvironmentObject var mediaVM: MediaViewModel
     @State var saveState = false
     
     var body: some View {
-        let pdf = PDFDetailUIView(selectedPDF: settingsVM.savedPDF, saveState: $saveState)
+        let pdf = PDFDetailUIView(selectedPDF: mediaVM.savedPDF, saveState: $saveState, mediaVM: _mediaVM)
         pdf
-            .navigationBarTitle("\(settingsVM.savedPDF.name)", displayMode: .inline)
+            .environmentObject(mediaVM)
+            .navigationBarTitle("\(mediaVM.savedPDF.name)", displayMode: .inline)
             .navigationBarItems(trailing: Button("Speichern", action: {
                 pdf.savePDF()
                 saveState = true

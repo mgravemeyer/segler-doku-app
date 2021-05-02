@@ -277,7 +277,7 @@ struct FTPUploadController {
 //                    self.orderViewModel.orderPositionIsOk = false
                 }
                 
-                if remarksVM.selectedComment == "" && settingsVM.savedPDF.name == ""  {
+                if remarksVM.selectedComment == "" && mediaVM.savedPDF.name == ""  {
                     error = true
 //                    commentCheck = false
 //                    remarksVM.commentIsOk = false
@@ -384,7 +384,7 @@ struct FTPUploadController {
                 
                 group.notify(queue: .main) {
                     
-                    if finishedPhotoArray.isEmpty && finishedVideoArray.isEmpty && settingsVM.savedPDF.name == "" {
+                    if finishedPhotoArray.isEmpty && finishedVideoArray.isEmpty && mediaVM.savedPDF.name == "" {
                     error = true
 //                    imagesCheck = false
                     errorMessage = errorMessage + "Kein Bild/Video ausgewählt! \n"
@@ -400,14 +400,14 @@ struct FTPUploadController {
                         
                     //setting up json file
                     if self.settingsVM.useFixedUser {
-                        if settingsVM.savedPDF.name != "" {
-                            jsonObject = self.createJSON(bereich: "Protokoll", meldungstyp: String(settingsVM.savedPDF.name), freitext: remarksVM.additionalComment, user: self.settingsVM.userUsername)!
+                        if mediaVM.savedPDF.name != "" {
+                            jsonObject = self.createJSON(bereich: "Protokoll", meldungstyp: String(mediaVM.savedPDF.name), freitext: remarksVM.additionalComment, user: self.settingsVM.userUsername)!
                         } else {
                             jsonObject = self.createJSON(bereich: "\(remarksVM.bereich)", meldungstyp: "\(remarksVM.selectedComment)", freitext: remarksVM.additionalComment, user: self.settingsVM.userUsername)!
                         }
                     } else {
-                        if settingsVM.savedPDF.name != "" {
-                            jsonObject = self.createJSON(bereich: "Protokoll", meldungstyp: String(settingsVM.savedPDF.name), freitext: remarksVM.additionalComment, user: self.userVM.username)!
+                        if mediaVM.savedPDF.name != "" {
+                            jsonObject = self.createJSON(bereich: "Protokoll", meldungstyp: String(mediaVM.savedPDF.name), freitext: remarksVM.additionalComment, user: self.userVM.username)!
                         } else {
                             jsonObject = self.createJSON(bereich: "\(remarksVM.bereich)", meldungstyp: "\(remarksVM.selectedComment)", freitext: remarksVM.additionalComment, user: self.userVM.username)!
                         }
@@ -438,13 +438,13 @@ struct FTPUploadController {
                         }
                     }
                     
-                    print(settingsVM.savedPDF)
+                    print(mediaVM.savedPDF)
                     
-                    if settingsVM.savedPDF.name != "" {
-                        print(settingsVM.savedPDF.data)
+                    if mediaVM.savedPDF.name != "" {
+                        print(mediaVM.savedPDF.data)
                         print("SENT!")
                         sftpsession.writeContents(jsonObject, toFileAtPath: "\("\(self.orderViewModel.orderNr)_\(self.orderViewModel.orderPosition)_\(convertedDate)_\(convertedDateTime)_\(counter)").json")
-                        sftpsession.writeContents(settingsVM.savedPDF.data, toFileAtPath: "\("\(self.orderViewModel.orderNr)_\(self.orderViewModel.orderPosition)_\(convertedDate)_\(convertedDateTime)_\(counter)").pdf")
+                        sftpsession.writeContents(mediaVM.savedPDF.data, toFileAtPath: "\("\(self.orderViewModel.orderNr)_\(self.orderViewModel.orderPosition)_\(convertedDate)_\(convertedDateTime)_\(counter)").pdf")
                         
                         guard
                             let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
@@ -454,7 +454,7 @@ struct FTPUploadController {
                             }
                         let fileURL = url.appendingPathComponent("\("\(self.orderViewModel.orderNr)_\(self.orderViewModel.orderPosition)_\(convertedDate)_\(convertedDateTime)_\(counter)").pdf")
                         do {
-                            try settingsVM.savedPDF.data.write(to: fileURL)
+                            try mediaVM.savedPDF.data.write(to: fileURL)
                         } catch {
                             print(error.localizedDescription)
                         }

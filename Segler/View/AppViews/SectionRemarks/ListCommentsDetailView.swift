@@ -2,7 +2,7 @@ import SwiftUI
 
 struct ListCommentsDetailView: View {
     let selection : Int
-    @EnvironmentObject var settingsVM: SettingsViewModel
+    @EnvironmentObject var mediaVM: MediaViewModel
     @EnvironmentObject var remarksVM : RemarksViewModel
     @Environment(\.presentationMode) var presentationMode
     @Binding var show : Bool
@@ -12,7 +12,7 @@ struct ListCommentsDetailView: View {
             ForEach(0..<self.remarksVM.comments[self.selection].comments.count, id: \.self) { x in
                 Button(action: {
                     self.remarksVM.selectedComment = self.remarksVM.comments[self.selection].comments[x]
-                    self.settingsVM.savedPDF = PDF(name: "", data: Data())
+                    self.mediaVM.savedPDF = PDF(name: "", data: Data())
                     self.show = false
                     self.presentationMode.wrappedValue.dismiss()
                 }) {

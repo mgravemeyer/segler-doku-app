@@ -6,7 +6,7 @@ import SwiftUI
 class MediaViewModel : ObservableObject {
     
     init() {
-        loadServerPDFs()
+        loadPDFs()
     }
 
     func decoderPDFs(jsonData : Foundation.Data) -> [ResponsePDF]? {
@@ -21,7 +21,7 @@ class MediaViewModel : ObservableObject {
         return nil
     }
     
-    func getLocalSavedPDFs() {
+    func loadArchivePDFs() {
         guard
             let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
         else {
@@ -40,9 +40,9 @@ class MediaViewModel : ObservableObject {
         }
     }
     
-    func loadJSON() {
-        getLocalSavedPDFs()
-        
+    func loadPDFs() {
+        loadArchivePDFs()
+        loadServerPDFs()
     }
     
     func loadServerPDFs() {

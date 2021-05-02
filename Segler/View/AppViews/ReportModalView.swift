@@ -13,14 +13,14 @@ struct ReportModalView: View {
                 Text("Abgeschickt!").foregroundColor(Color.black).fontWeight(.bold).font(.largeTitle)
                 Text("Auftrags-Nr: \(orderVM.orderNr)").frame(height: 34)
                 Text("Auftrags-Position: \(orderVM.orderPosition)").frame(height: 34)
-                if remarksVM.selectedComment != "" && settingsVM.savedPDF.name == "" {
+                if remarksVM.selectedComment != "" && mediaVM.savedPDF.name == "" {
                     Text("Kommentar: \(remarksVM.selectedComment)").frame(height: 34)
                 }
                 if remarksVM.additionalComment != "" {
                     Text("Freitext: \(remarksVM.additionalComment)").frame(height: 34)
                 }
-                if settingsVM.savedPDF.name != "" {
-                    Text("Protokoll: \(settingsVM.savedPDF.name)")
+                if mediaVM.savedPDF.name != "" {
+                    Text("Protokoll: \(mediaVM.savedPDF.name)")
                 }
                 if !mediaVM.images.isEmpty || !mediaVM.imagesCamera.isEmpty || !mediaVM.videos.isEmpty || !mediaVM.videosCamera.isEmpty {
                     HStack {
@@ -73,7 +73,7 @@ struct ReportModalView: View {
         self.remarksVM.commentIsOk = true
         self.mediaVM.imagesIsOk = true
         self.showReport = false
-        self.settingsVM.savedPDF = PDF(name: "", data: Data())
+        self.mediaVM.savedPDF = PDF(name: "", data: Data())
     }
 
 }

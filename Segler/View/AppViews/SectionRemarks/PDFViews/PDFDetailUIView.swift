@@ -3,7 +3,7 @@ import PDFKit
 
 struct PDFDetailUIView: UIViewRepresentable {
     func makeCoordinator() -> Coordinator {
-        return Coordinator(selectedPDF: selectedPDF, saveState: $saveState, pdfView: $pdfView)
+        return Coordinator(selectedPDF: selectedPDF, saveState: $saveState, pdfView: $pdfView, mediaVM: _mediaVM)
     }
 
     @State var pdfView = PDFView()
@@ -12,7 +12,7 @@ struct PDFDetailUIView: UIViewRepresentable {
     
     @Binding var saveState: Bool
     
-    @EnvironmentObject var settingsVM: SettingsViewModel
+    @EnvironmentObject var mediaVM: MediaViewModel
     
     class Coordinator: NSObject, PDFViewDelegate {
         
@@ -22,19 +22,21 @@ struct PDFDetailUIView: UIViewRepresentable {
         
         @Binding var saveState: Bool
         
-        @EnvironmentObject var settingsVM: SettingsViewModel
+        @EnvironmentObject var mediaVM: MediaViewModel
 
-        init(selectedPDF: PDF, saveState: Binding<Bool>, pdfView: Binding<PDFView>) {
+        init(selectedPDF: PDF, saveState: Binding<Bool>, pdfView: Binding<PDFView>, mediaVM: EnvironmentObject<MediaViewModel>) {
             self.selectedPDF = selectedPDF
             _saveState = saveState
             _pdfView = pdfView
+            _mediaVM = mediaVM
         }
         
     }
     
-    init(selectedPDF: PDF, saveState: Binding<Bool>) {
+    init(selectedPDF: PDF, saveState: Binding<Bool>, mediaVM: EnvironmentObject<MediaViewModel>) {
         self.selectedPDF = selectedPDF
         _saveState = saveState
+        _mediaVM = mediaVM
 //        pdfView.document = PDFDocument(data: selectedPDF.data)
     }
     
@@ -79,8 +81,8 @@ struct PDFDetailUIView: UIViewRepresentable {
                 return
             }
         print("new data: \(String(describing: data))")
-        settingsVM.savedPDF.data = data
-        settingsVM.savedPDF.name = selectedPDF.name
+        mediaVM.savedPDF.data = data
+        mediaVM.savedPDF.name = selectedPDF.name
         saveState = false
 //        let fileURL = url.appendingPathComponent("\(UUID().uuidString).pdf")
 //        do {

@@ -4,7 +4,7 @@ struct SectionRemarks: View {
     
     @EnvironmentObject var remarksVM : RemarksViewModel
     @State var isVisible = Bool()
-    @EnvironmentObject var settingsVM: SettingsViewModel
+    @EnvironmentObject var mediaVM: MediaViewModel
     
     let colors = ColorSeglerViewModel()
     @State var editViewVisible = false
@@ -12,7 +12,7 @@ struct SectionRemarks: View {
     var body: some View {
         
         
-        if settingsVM.savedPDF.name == "" {
+        if mediaVM.savedPDF.name == "" {
             NavigationLink(destination: ListCommentsView(show: true)) {
                     if remarksVM.selectedComment == "" {
                         Text("Kommentar").foregroundColor(.gray)
@@ -23,7 +23,7 @@ struct SectionRemarks: View {
         } else {
             HStack {
                 NavigationLink(destination: ListCommentsView(show: true)) {
-                    Text(settingsVM.savedPDF.name)
+                    Text(mediaVM.savedPDF.name)
                 }
                 NavigationLink(destination: PDFEditDetailView(saveState: false), isActive: $editViewVisible) { EmptyView() }.frame(width: 0).hidden().labelsHidden().buttonStyle((BorderlessButtonStyle())).zIndex(-100000).disabled(true)
                 Button(action: {
