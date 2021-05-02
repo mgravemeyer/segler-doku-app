@@ -31,28 +31,6 @@ class NetworkDataManager {
         return false
     }
     
-    func prepImagesData(mediaVM: MediaViewModel) -> [Data] {
-        var data = [Data]()
-        for image in mediaVM.images {
-            data.append(image.fetchImage())
-        }
-        for image in mediaVM.imagesCamera {
-            data.append(image.image.pngData()!)
-        }
-        return data
-    }
-    
-    func prepVideosData(mediaVM: MediaViewModel) -> [Data] {
-        var data = [Data]()
-        for video in mediaVM.videos {
-            data.append(video.fetchVideo())
-        }
-        for video in mediaVM.videosCamera {
-            data.append(video.video)
-        }
-        return data
-    }
-    
     func sendToFTP(photos: [Data], videos: [Data], pdf: Data, mediaVM: MediaViewModel, userVM: UserViewModel, orderVM: OrderViewModel, remarksVM: RemarksViewModel) {
         let filename = generateDataName(orderVM: orderVM)
         let json = generateJSON(userVM: userVM, remarksVM: remarksVM)
@@ -67,7 +45,29 @@ class NetworkDataManager {
         }
     }
     
-    func sendPhotos(filename: String, data: [Data], json: Data) {
+    private func prepImagesData(mediaVM: MediaViewModel) -> [Data] {
+        var data = [Data]()
+        for image in mediaVM.images {
+            data.append(image.fetchImage())
+        }
+        for image in mediaVM.imagesCamera {
+            data.append(image.image.pngData()!)
+        }
+        return data
+    }
+    
+    private func prepVideosData(mediaVM: MediaViewModel) -> [Data] {
+        var data = [Data]()
+        for video in mediaVM.videos {
+            data.append(video.fetchVideo())
+        }
+        for video in mediaVM.videosCamera {
+            data.append(video.video)
+        }
+        return data
+    }
+    
+    private func sendPhotos(filename: String, data: [Data], json: Data) {
         DispatchQueue.main.async {
             for (index, photo) in data.enumerated() {
                 self.session!.writeContents(json, toFileAtPath: "\(filename)\(index).json")
@@ -76,7 +76,7 @@ class NetworkDataManager {
         }
     }
     
-    func sendVideos(filename: String, data: [Data], json: Data) {
+    private func sendVideos(filename: String, data: [Data], json: Data) {
         DispatchQueue.main.async {
             for (index, video) in data.enumerated() {
                 self.session!.writeContents(json, toFileAtPath: "\(filename)\(index).json")
@@ -85,7 +85,7 @@ class NetworkDataManager {
         }
     }
     
-    func sendPDF(filename: String, pdfData: Data, jsonData: Data) {
+    private func sendPDF(filename: String, pdfData: Data, jsonData: Data) {
         DispatchQueue.main.async {
             self.session!.writeContents(jsonData, toFileAtPath: "\(filename).json")
             self.session!.writeContents(pdfData, toFileAtPath: "\(filename).pdf")
@@ -104,11 +104,11 @@ class NetworkDataManager {
         }
     }
     
-    func generateDataName(orderVM: OrderViewModel) -> String {
+    private func generateDataName(orderVM: OrderViewModel) -> String {
         return ("\(orderVM.orderNr)\(orderVM.orderPosition)\(getDate())\(getTime())")
     }
     
-    func getDate() -> String {
+    private func getDate() -> String {
         let currentDate = Date()
         let dateFormatter = DateFormatter()
         dateFormatter.locale = NSLocale.current
@@ -116,7 +116,7 @@ class NetworkDataManager {
         return dateFormatter.string(from: currentDate)
     }
     
-    func getTime() -> String {
+    private func getTime() -> String {
         let currentDate = Date()
         let dateFormatter = DateFormatter()
         dateFormatter.locale = NSLocale.current
@@ -124,7 +124,7 @@ class NetworkDataManager {
         return dateFormatter.string(from: currentDate)
     }
     
-    func generateJSON(userVM: UserViewModel, remarksVM: RemarksViewModel) -> Data? {
+    private func generateJSON(userVM: UserViewModel, remarksVM: RemarksViewModel) -> Data? {
         
         let keyValuePairs = [
             ("Bereich", "\(remarksVM.bereich)"),
