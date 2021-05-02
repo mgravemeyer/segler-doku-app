@@ -43,7 +43,7 @@
 		E38D8AAB263AB31600502077 /* SaveButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38D8AAA263AB31600502077 /* SaveButtonView.swift */; };
 		E38D8AAD263AB3DA00502077 /* SectionImageVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38D8AAC263AB3DA00502077 /* SectionImageVideoView.swift */; };
 		E38D8AAF263AB43100502077 /* ReportModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38D8AAE263AB43100502077 /* ReportModalView.swift */; };
-		E38D8AB1263ABA8A00502077 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38D8AB0263ABA8A00502077 /* NetworkManager.swift */; };
+		E38D8AB1263ABA8A00502077 /* NetworkDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38D8AB0263ABA8A00502077 /* NetworkDataManager.swift */; };
 		E39851D5263A97EB0008F68A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39851D4263A97EB0008F68A /* Extensions.swift */; };
 		E39851D9263A9E1F0008F68A /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39851D8263A9E1F0008F68A /* WebView.swift */; };
 		E39A9D6323D8930D00418E51 /* AdminLoginPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39A9D6223D8930D00418E51 /* AdminLoginPassword.swift */; };
@@ -108,7 +108,7 @@
 		E38D8AAA263AB31600502077 /* SaveButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveButtonView.swift; sourceTree = "<group>"; };
 		E38D8AAC263AB3DA00502077 /* SectionImageVideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionImageVideoView.swift; sourceTree = "<group>"; };
 		E38D8AAE263AB43100502077 /* ReportModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportModalView.swift; sourceTree = "<group>"; };
-		E38D8AB0263ABA8A00502077 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		E38D8AB0263ABA8A00502077 /* NetworkDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataManager.swift; sourceTree = "<group>"; };
 		E39851D4263A97EB0008F68A /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		E39851D8263A9E1F0008F68A /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		E39A9D6223D8930D00418E51 /* AdminLoginPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminLoginPassword.swift; sourceTree = "<group>"; };
@@ -257,7 +257,7 @@
 				E31A5C1423D4602900ED647C /* BarcodeScannerSegler.swift */,
 				E3A3BC7923A28E72002BDE18 /* ImagePickerController.swift */,
 				E3A3BC7723A26C53002BDE18 /* FTPUploadController.swift */,
-				E38D8AB0263ABA8A00502077 /* NetworkManager.swift */,
+				E38D8AB0263ABA8A00502077 /* NetworkDataManager.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -526,7 +526,7 @@
 				E38D8AA1263AAE4200502077 /* ImagePreviewView.swift in Sources */,
 				E3D6A0DA23A1838A000F35E9 /* Segler.xcdatamodeld in Sources */,
 				E38D8A9F263AADD000502077 /* ImageCameraPreviewView.swift in Sources */,
-				E38D8AB1263ABA8A00502077 /* NetworkManager.swift in Sources */,
+				E38D8AB1263ABA8A00502077 /* NetworkDataManager.swift in Sources */,
 				E37230A6263ED8DC00538F11 /* ImageModelCamera.swift in Sources */,
 				2EA3681E25607C640056D508 /* MediaQualityModel.swift in Sources */,
 				2E32BD0A2570030900EDD668 /* StartView.swift in Sources */,
