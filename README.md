@@ -85,3 +85,9 @@ Go to the Folder of the Project (Segler-Master)
 * Storing Server Credentials not in UserDefaults, instead in CoreData. (UserDefaults is not encrypted so it is currently a security risk)!
 * Evnetually: refactoring the whole state process management. Back then, SwiftUI had really limited capabilities to work with it. (example: had to pass EnvironmentObjects manually to every child view (what a mess!)). Now, i reafctored already a lot to use newer and better techniques.
 * Creating a bidirectional system to transfer data. We are currently exploring the capabilities of websockets to transfer realtime data. Idea is, use types something into the project number search field, the app suggests him already what kind of projects he can choose and wich ones are valid/existing.
+
+
+## Other App
+If you want to see a implementation of CoreData and fetchin APIs, i also have another project called Chimp. It is a MacOS App, but it uses exactly the same methods, functions and components with SwiftUI like a iOS App. Therfore, there is not really a difference and it could run also on an iPhone without too much effort (the benefit of SwiftUI). CoreData has here again the following benefits:
+Better structured data then UserDefaults (UserDefaults can only store primitive datatypes)
+Encrypted Data, better security
