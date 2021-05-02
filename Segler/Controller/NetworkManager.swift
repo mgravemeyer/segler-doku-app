@@ -31,35 +31,35 @@ class NetworkDataManager {
         return false
     }
     
-    func sendPhotos(filename: String, data: [Data], json: Data) {
+    func sendPhotos(filename: String, data: [Data], json: Data, orderNr: String, orderPosition: String) {
         DispatchQueue.main.async {
             for data in data {
-                self.session!.writeContents(json, toFileAtPath: "\(filename).json")
-                self.session!.writeContents(data, toFileAtPath: "\(filename).jpg")
+                self.session!.writeContents(json, toFileAtPath: "\(self.generateDataName(orderNr: orderNr, orderPosition: orderPosition)).json")
+                self.session!.writeContents(data, toFileAtPath: "\(self.generateDataName(orderNr: orderNr, orderPosition: orderPosition)).json")
             }
         }
     }
     
-    func sendVideos(filename: String, data: [Data], json: Data) {
+    func sendVideos(filename: String, data: [Data], json: Data, orderNr: String, orderPosition: String) {
         DispatchQueue.main.async {
             for data in data {
-                self.session!.writeContents(json, toFileAtPath: "\(filename).json")
-                self.session!.writeContents(data, toFileAtPath: "\(filename).mp4")
+                self.session!.writeContents(json, toFileAtPath: "\(self.generateDataName(orderNr: orderNr, orderPosition: orderPosition)).json")
+                self.session!.writeContents(data, toFileAtPath: "\(self.generateDataName(orderNr: orderNr, orderPosition: orderPosition)).json")
             }
         }
     }
     
-    func sendPDF(filename: String, pdfData: Data, json: Data) {
+    func sendPDF(pdfData: Data, jsonData: Data, orderNr: String, orderPosition: String) {
         DispatchQueue.main.async {
-            self.session!.writeContents(json, toFileAtPath: "\(filename)")
-            self.session!.writeContents(pdfData, toFileAtPath: "\(filename)")
+            self.session!.writeContents(jsonData, toFileAtPath: "\(self.generateDataName(orderNr: orderNr, orderPosition: orderPosition)).json")
+            self.session!.writeContents(pdfData, toFileAtPath: "\(self.generateDataName(orderNr: orderNr, orderPosition: orderPosition)).pdf")
             guard
                 let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
             else {
                     print("error while saving or finding files")
                     return
                 }
-            let fileURL = url.appendingPathComponent("\(filename).pdf")
+            let fileURL = url.appendingPathComponent("\(self.generateDataName(orderNr: orderNr, orderPosition: orderPosition)).pdf")
             do {
                 try pdfData.write(to: fileURL)
             } catch {
@@ -68,8 +68,8 @@ class NetworkDataManager {
         }
     }
     
-    func generateDataName(orderNr: String, orderPosition: String) {
-        let fileName = ("\(orderNr)\(orderPosition)\(getDate())\(getTime())")
+    func generateDataName(orderNr: String, orderPosition: String) -> String {
+        return ("\(orderNr)\(orderPosition)\(getDate())\(getTime())")
     }
     
     func getDate() -> String {
