@@ -64,7 +64,6 @@
 		E3D6A0E423A18395000F35E9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3D6A0E223A18395000F35E9 /* LaunchScreen.storyboard */; };
 		E3D6A0F023A26537000F35E9 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D6A0EF23A26537000F35E9 /* SettingsView.swift */; };
 		E3EA711B23D132F900340463 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3EA711A23D132F900340463 /* LoginView.swift */; };
-		E3EA711E23D133A500340463 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3EA711D23D133A500340463 /* Session.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -135,7 +134,6 @@
 		E3D6A0E523A18395000F35E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E3D6A0EF23A26537000F35E9 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		E3EA711A23D132F900340463 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
-		E3EA711D23D133A500340463 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -211,7 +209,6 @@
 		E301A5A123CDF31E006A72D5 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				E3EA711D23D133A500340463 /* Session.swift */,
 				E301A5A323CDF44A006A72D5 /* OrderViewModel.swift */,
 				E3C33BAE23CDB05E00E941FB /* RemarksViewModel.swift */,
 				E301A5A523CDF474006A72D5 /* MediaViewModel.swift */,
@@ -541,7 +538,6 @@
 				E38D8AAB263AB31600502077 /* SaveButtonView.swift in Sources */,
 				E3D6A0DC23A1838A000F35E9 /* AppView.swift in Sources */,
 				E38D8AAF263AB43100502077 /* ReportModalView.swift in Sources */,
-				E3EA711E23D133A500340463 /* Session.swift in Sources */,
 				E378780D261A7973003323B9 /* PDF.swift in Sources */,
 				2E530516256FB3E200E862B4 /* AVPlayer.swift in Sources */,
 				E38D8A9B263AAC1000502077 /* ListCommentsView.swift in Sources */,
