@@ -96,7 +96,7 @@ struct AppView: View {
                         }
                     }
                     )
-                    ).navigationBarTitle(settingsVM.useFixedUser ? Text("\(settingsVM.userUsername)") : Text("\(userVM.username)"), displayMode: .inline)
+                    ).navigationBarTitle(userVM.username, displayMode: .inline)
                 }
             }
             .accentColor(Color.seglerRed)
