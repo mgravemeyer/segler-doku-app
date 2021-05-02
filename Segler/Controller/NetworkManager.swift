@@ -2,6 +2,7 @@ import Foundation
 import NMSSH
 import ProgressHUD
 import AVKit
+import SwiftUI
 
 //to:do handles currently network stuff and also perparing data to be send. could be later splitted up to data and a seperate network manager.
 class NetworkDataManager {
@@ -33,16 +34,70 @@ class NetworkDataManager {
         return false
     }
     
-    func sendToFTP(mediaVM: MediaViewModel, userVM: UserViewModel, orderVM: OrderViewModel, remarksVM: RemarksViewModel,_ shouldThrow: Bool, completion: @escaping(String?) -> ()) {
-        let filename = generateDataName(orderVM: orderVM)
-        let json = generateJSON(userVM: userVM, remarksVM: remarksVM)
-        ProgressHUD.show()
-        DispatchQueue.global(qos: .userInitiated).async {
-            self.sendPhotos(filename: filename, data: self.prepImagesData(mediaVM: mediaVM), json: json!)
-            self.sendVideos(filename: filename, data: self.prepVideosData(mediaVM: mediaVM), json: json!)
-            completion(nil)
-        }
+    func sendToFTP(mediaVM: MediaViewModel, userVM: UserViewModel, orderVM: OrderViewModel, remarksVM: RemarksViewModel, _ shouldThrow: Bool, completion: @escaping(String?) -> ()) {
+            if !checkIfDataIsCorrect(mediaVM: mediaVM, orderVM: orderVM, remarksVM: remarksVM) {
+                let filename = generateDataName(orderVM: orderVM)
+                let json = generateJSON(userVM: userVM, remarksVM: remarksVM)
+                ProgressHUD.show()
+                DispatchQueue.global(qos: .userInitiated).async {
+                    self.sendPhotos(filename: filename, data: self.prepImagesData(mediaVM: mediaVM), json: json!)
+                    self.sendVideos(filename: filename, data: self.prepVideosData(mediaVM: mediaVM), json: json!)
+                    completion(nil)
+                }
+            } else {
+                completion("error")
+            }
 //        sendPDF(filename: filename, pdfData: Data(), jsonData: json!)
+    }
+    
+    func checkIfDataIsCorrect(mediaVM: MediaViewModel, orderVM: OrderViewModel, remarksVM: RemarksViewModel) -> Bool {
+        
+        var error = ""
+        
+        //check orderNumber
+        if (orderVM.orderNr.count == 5) {
+            for char in orderVM.orderNr {
+                if !char.isNumber {
+                    error += "Falsche Auftrags-Nr \n"
+                    orderVM.orderNrIsOk = false
+                    break
+                } else {
+                    orderVM.orderNrIsOk = true
+                }
+            }
+        } else {
+            error += "Falsche Auftrags-Nr \n"
+            orderVM.orderNrIsOk = false
+        }
+        
+        //check orderPosition
+        if (orderVM.orderPosition.count >= 1 && orderVM.orderNr.count <= 3) {
+            for char in orderVM.orderPosition {
+                if !char.isNumber {
+                    error += "Falsche Positions-Nr \n"
+                    orderVM.orderPositionIsOk = false
+                    break
+                } else {
+                    orderVM.orderPositionIsOk = true
+                }
+            }
+        } else {
+            error += "Falsche Positions-Nr \n"
+            orderVM.orderPositionIsOk = false
+        }
+        
+        if (remarksVM.selectedComment == "") {
+            error += "Keinen Kommentar ausgewählt"
+            remarksVM.commentIsOk = false
+        }
+        
+        if (error == "") {
+            ProgressHUD.showError(error)
+            return false
+        } else {
+            return true
+        }
+        
     }
     
     private func prepImagesData(mediaVM: MediaViewModel) -> [Data] {
@@ -220,10 +275,10 @@ class NetworkDataManager {
             }
         
         writer.shouldOptimizeForNetworkUse = false
-            writer.add(videoInput)
-            writer.add(audioInput)
-            writer.startWriting()
-            reader.startReading()
+        writer.add(videoInput)
+        writer.add(audioInput)
+        writer.startWriting()
+        reader.startReading()
         writer.startSession(atSourceTime: CMTime.zero)
         
         let closeWriter:()->Void = {

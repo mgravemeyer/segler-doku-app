@@ -28,8 +28,7 @@ struct SaveButtonView: View {
                 NetworkDataManager.shared.sendToFTP(mediaVM: mediaVM, userVM: userVM, orderVM: orderVM, remarksVM: remarksVM, true) { (error) -> Void in
                     if error != nil {
                         print("Hilwe error")
-                        ProgressHUD.dismiss()
-                        ProgressHUD.showError(error)
+                        ProgressHUD.showError("Daten ungültig")
                         return
                     } else {
                         ProgressHUD.showSuccess("Hochgeladen")
