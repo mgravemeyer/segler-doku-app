@@ -61,7 +61,6 @@ struct ReportModalView: View {
     
     func deleteMedia() {
         self.showReport = false
-        self.orderVM.machineName = ""
         self.orderVM.orderNr = ""
         self.orderVM.orderPosition = ""
         self.mediaVM.images.removeAll()

@@ -83,7 +83,6 @@ struct Settings_View: View {
                 if !settingsVM.useFixedUser {
                     Button(action: {
                         self.userVM.username = ""
-                        self.orderVM.machineName = ""
                         self.orderVM.orderNr = ""
                         self.orderVM.orderPosition = ""
                         self.mediaVM.images.removeAll()
