@@ -1,11 +1,3 @@
-//
-//  Error.swift
-//  Segler
-//
-//  Created by Maximilian Gravemeyer on 05.07.20.
-//  Copyright © 2020 Maximilian Gravemeyer. All rights reserved.
-//
-
 import SwiftUI
 
 struct ErrorView: View {

@@ -8,6 +8,7 @@ struct Settings_View: View {
     @EnvironmentObject var mediaVM : MediaViewModel
     @EnvironmentObject var remarksVM : RemarksViewModel
     @EnvironmentObject var orderVM : OrderViewModel
+    
     @State var adminMenueUnlocked : Bool = false
     @State private var showModal = false
     let deviceUser = UIDevice.current.name
