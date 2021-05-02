@@ -42,7 +42,7 @@ struct SetupView: View {
                 }) {
                     HStack(alignment: .center) {
                         Spacer()
-                        Text("Registrieren").foregroundColor(Color.white).bold()
+                        Text("Verbinden").foregroundColor(Color.white).bold()
                         Spacer()
                     }
                 }.padding().background(Color.green).cornerRadius(4.0)

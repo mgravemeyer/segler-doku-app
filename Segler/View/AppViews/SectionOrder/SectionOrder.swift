@@ -25,6 +25,6 @@ struct SectionOrder: View {
                 TextField("Auftrags-Position", text: $orderVM.orderPosition)
                     .keyboardType(.numbersAndPunctuation)
                     .listRowBackground(self.orderVM.orderPositionIsOk ? Color.white : Color.seglerRowWarning)
-                    .disableAutocorrection(true).accentColor(Color.seglerRed)
+                    .disableAutocorrection(true)
     }
 }
