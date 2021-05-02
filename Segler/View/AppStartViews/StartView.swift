@@ -14,7 +14,8 @@ struct AppStart: View {
             self.appIsReady = NetworkDataManager.shared.connect(
                 host: UserDefaults.standard.string(forKey: "ip")!,
                 username: UserDefaults.standard.string(forKey: "serverUsername")!,
-                password: UserDefaults.standard.string(forKey: "serverPassword")!)
+                password: UserDefaults.standard.string(forKey: "serverPassword")!,
+                isInit: true)
         } else {
             self.appIsReady = false
         }

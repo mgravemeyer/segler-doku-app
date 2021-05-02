@@ -33,7 +33,7 @@ struct SetupView: View {
                 .padding(EdgeInsets(top: 0, leading: 0, bottom: 15, trailing: 0))
                 
                 Button(action: {
-                    if NetworkDataManager.shared.connect(host: settingsVM.ip, username: settingsVM.serverUsername, password: settingsVM.serverPassword) {
+                    if NetworkDataManager.shared.connect(host: settingsVM.ip, username: settingsVM.serverUsername, password: settingsVM.serverPassword, isInit: true) {
                         ProgressHUD.showSuccess("Verbunden")
                     } else {
                         ProgressHUD.showError("Keine Verbindung mit diesem Netzwerk möglich")
