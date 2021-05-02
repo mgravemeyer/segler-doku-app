@@ -131,7 +131,7 @@ class NetworkDataManager {
             if video.selected {
                 group.enter()
                 let outputURL = URL(fileURLWithPath: "\(documentsPath)\(UUID())\(video.id).mp4")
-                compressVideo(urlToCompress: video.assetURL, outputURL: outputURL)  { URL in
+                compressVideo(urlToCompress: video.assetURL, outputURL: outputURL, mediaVM: mediaVM)  { URL in
                     group.wait()
                     let videoData = try! NSData(contentsOf: outputURL, options: .mappedIfSafe) as Data
                     data.append(videoData)
@@ -142,7 +142,7 @@ class NetworkDataManager {
         for video in mediaVM.videosCamera {
             group.enter()
             let outputURL = URL(fileURLWithPath: "\(documentsPath)\(UUID())\(video.id).mp4")
-            compressVideo(urlToCompress: video.url, outputURL: outputURL)  { URL in
+            compressVideo(urlToCompress: video.url, outputURL: outputURL, mediaVM: mediaVM)  { URL in
                 let videoData = try! NSData(contentsOf: outputURL, options: .mappedIfSafe) as Data
                 data.append(videoData)
                 group.leave()
@@ -224,9 +224,9 @@ class NetworkDataManager {
         }
     }
     
-    func compressVideo(urlToCompress: URL, outputURL: URL, completion:@escaping (URL)->Void) {
+    func compressVideo(urlToCompress: URL, outputURL: URL, mediaVM: MediaViewModel, completion:@escaping (URL)->Void) {
         
-        let bitrate: NSNumber = 50000
+        var bitrate = mediaVM.qualityVideo
         
         var assetWriter:AVAssetWriter?
         var assetReader:AVAssetReader?

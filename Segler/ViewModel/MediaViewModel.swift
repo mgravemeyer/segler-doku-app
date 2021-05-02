@@ -7,6 +7,7 @@ class MediaViewModel : ObservableObject {
     
     init() {
         loadPDFs()
+        loadQuality()
     }
 
     func decoderPDFs(jsonData : Foundation.Data) -> [ResponsePDF]? {
@@ -224,14 +225,14 @@ class MediaViewModel : ObservableObject {
         }
     }
     
-    func decodaMediaQualityModel(jsonData : Foundation.Data) {
+    func loadQuality() {
         let decoder = JSONDecoder()
         do {
-            let mediaQualityModel = try decoder.decode(MediaQualityModel.self, from: jsonData)
+            let mediaQualityModel = try decoder.decode(MediaQualityModel.self, from: NetworkDataManager.shared.config!)
             
             if UIDevice.current.name.contains("iPhone") {
-                qualityPicture = NSNumber(value: Int(mediaQualityModel.Qp_iPhone)!)
-                qualityVideo = NSNumber(value: Int(mediaQualityModel.Qv_iPhone)!)
+                qualityPicture = NSNumber(value: Double(mediaQualityModel.Qp_iPhone)!)
+                qualityVideo = NSNumber(value: Double(mediaQualityModel.Qv_iPhone)!)
             } else
             if UIDevice.current.name.contains("iPod touch") {
                 qualityPicture = NSNumber(value: Int(mediaQualityModel.Qp_iPod)!)
