@@ -69,11 +69,11 @@ struct FTPUploadController {
     class VideoCompress {
         
         @EnvironmentObject var settingsVM: SettingsViewModel
-//        
+//
 //        init() {
-//            
+//
 //            let number = 2000
-//            
+//
 ////            if UIDevice.current.name.contains("iPhone") {
 ////                let number = Int(settingsVM.projectedValue.qv_iPhone.wrappedValue)
 ////                bitrate = NSNumber(value: number!)

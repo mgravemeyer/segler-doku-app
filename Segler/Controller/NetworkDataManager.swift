@@ -112,11 +112,12 @@ class NetworkDataManager {
         var data = [Data]()
         for image in mediaVM.images {
             if image.selected {
-                data.append(image.fetchImage())
+                let uIImage = UIImage(data: image.fetchImage())
+                data.append((uIImage?.jpegData(compressionQuality: CGFloat(truncating: mediaVM.qualityPicture)))!)
             }
         }
         for image in mediaVM.imagesCamera {
-            data.append(image.image.pngData()!)
+            data.append(image.image.jpegData(compressionQuality: CGFloat(truncating: mediaVM.qualityPicture))!)
         }
         return data
     }
