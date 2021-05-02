@@ -31,35 +31,71 @@ class NetworkDataManager {
         return false
     }
     
-    func sendPhotos(filename: String, data: [Data], json: Data, orderNr: String, orderPosition: String) {
+    func prepImagesData(mediaVM: MediaViewModel) -> [Data] {
+        var data = [Data]()
+        for image in mediaVM.images {
+            data.append(image.fetchImage())
+        }
+        for image in mediaVM.imagesCamera {
+            data.append(image.image.pngData()!)
+        }
+        return data
+    }
+    
+    func prepVideosData(mediaVM: MediaViewModel) -> [Data] {
+        var data = [Data]()
+        for video in mediaVM.videos {
+            data.append(video.fetchVideo())
+        }
+        for video in mediaVM.videosCamera {
+            data.append(video.video)
+        }
+        return data
+    }
+    
+    func sendToFTP(photos: [Data], videos: [Data], pdf: Data, mediaVM: MediaViewModel, userVM: UserViewModel, orderVM: OrderViewModel, remarksVM: RemarksViewModel) {
+        let filename = generateDataName(orderVM: orderVM)
+        let json = generateJSON(userVM: userVM, remarksVM: remarksVM)
+        if !photos.isEmpty {
+            sendPhotos(filename: filename, data: prepImagesData(mediaVM: mediaVM), json: json!)
+        }
+        if !videos.isEmpty {
+            sendVideos(filename: filename, data: prepVideosData(mediaVM: mediaVM), json: json!)
+        }
+        if !pdf.isEmpty {
+            sendPDF(filename: filename, pdfData: pdf, jsonData: json!)
+        }
+    }
+    
+    func sendPhotos(filename: String, data: [Data], json: Data) {
         DispatchQueue.main.async {
-            for data in data {
-                self.session!.writeContents(json, toFileAtPath: "\(self.generateDataName(orderNr: orderNr, orderPosition: orderPosition)).json")
-                self.session!.writeContents(data, toFileAtPath: "\(self.generateDataName(orderNr: orderNr, orderPosition: orderPosition)).json")
+            for photo in data {
+                self.session!.writeContents(json, toFileAtPath: "\(filename).json")
+                self.session!.writeContents(photo, toFileAtPath: "\(filename).json")
             }
         }
     }
     
-    func sendVideos(filename: String, data: [Data], json: Data, orderNr: String, orderPosition: String) {
+    func sendVideos(filename: String, data: [Data], json: Data) {
         DispatchQueue.main.async {
-            for data in data {
-                self.session!.writeContents(json, toFileAtPath: "\(self.generateDataName(orderNr: orderNr, orderPosition: orderPosition)).json")
-                self.session!.writeContents(data, toFileAtPath: "\(self.generateDataName(orderNr: orderNr, orderPosition: orderPosition)).json")
+            for video in data {
+                self.session!.writeContents(json, toFileAtPath: "\(filename).json")
+                self.session!.writeContents(video, toFileAtPath: "\(filename).mp4")
             }
         }
     }
     
-    func sendPDF(pdfData: Data, jsonData: Data, orderNr: String, orderPosition: String) {
+    func sendPDF(filename: String, pdfData: Data, jsonData: Data) {
         DispatchQueue.main.async {
-            self.session!.writeContents(jsonData, toFileAtPath: "\(self.generateDataName(orderNr: orderNr, orderPosition: orderPosition)).json")
-            self.session!.writeContents(pdfData, toFileAtPath: "\(self.generateDataName(orderNr: orderNr, orderPosition: orderPosition)).pdf")
+            self.session!.writeContents(jsonData, toFileAtPath: "\(filename).json")
+            self.session!.writeContents(pdfData, toFileAtPath: "\(filename).pdf")
             guard
                 let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
             else {
                     print("error while saving or finding files")
                     return
                 }
-            let fileURL = url.appendingPathComponent("\(self.generateDataName(orderNr: orderNr, orderPosition: orderPosition)).pdf")
+            let fileURL = url.appendingPathComponent("\(filename).pdf")
             do {
                 try pdfData.write(to: fileURL)
             } catch {
@@ -68,8 +104,8 @@ class NetworkDataManager {
         }
     }
     
-    func generateDataName(orderNr: String, orderPosition: String) -> String {
-        return ("\(orderNr)\(orderPosition)\(getDate())\(getTime())")
+    func generateDataName(orderVM: OrderViewModel) -> String {
+        return ("\(orderVM.orderNr)\(orderVM.orderPosition)\(getDate())\(getTime())")
     }
     
     func getDate() -> String {
@@ -87,4 +123,26 @@ class NetworkDataManager {
         dateFormatter.dateFormat = "HHmmss"
         return dateFormatter.string(from: currentDate)
     }
+    
+    func generateJSON(userVM: UserViewModel, remarksVM: RemarksViewModel) -> Data? {
+        
+        let keyValuePairs = [
+            ("Bereich", "\(remarksVM.bereich)"),
+            ("Meldungstyp", "\(remarksVM.selectedComment)"),
+            ("Freitext", "\(remarksVM.additionalComment)"),
+            ("User", "\(userVM.username)"),
+            ("AppVersion", Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String),
+            ("Geraet", UIDevice.current.name)
+        ]
+        
+        let dict = Dictionary(keyValuePairs)
+
+        do {
+            let jsonData = try JSONSerialization.data(withJSONObject: dict, options: JSONSerialization.WritingOptions.prettyPrinted) as NSData
+                return jsonData as Data
+        } catch _ {
+            return nil
+        }
+    }
+
 }
