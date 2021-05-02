@@ -19,8 +19,6 @@ struct ErrorView: View {
             }) {
                 Text("Zurück")
             }
-        }.offset(y: -50).onAppear {
-            //1-3 stellig
-        }
+        }.offset(y: -50)
     }
 }

@@ -56,14 +56,16 @@ struct AppView: View {
                                     }
                             }
                         }
+                    .accentColor(Color.seglerRed)
                     .navigationBarItems(leading:(
                     HStack {
                         NavigationLink(destination: Settings_View()) {
                             Image(systemName: "gear").font(.system(size: 25))
+                                .foregroundColor(Color.white)
                         }
                         if !settingsVM.useFixedUser {
                             NavigationLink(destination: Webview(url: "\(settingsVM.helpURL)").navigationBarTitle("Hilfe")) {
-                                Image(systemName: "questionmark.circle").font(.system(size: 25))
+                                Image(systemName: "questionmark.circle").font(.system(size: 25)).foregroundColor(Color.white)
                             }
                         }
                     }
@@ -99,7 +101,7 @@ struct AppView: View {
                     ).navigationBarTitle(userVM.username, displayMode: .inline)
                 }
             }
-            .accentColor(Color.seglerRed)
+            
             .sheet(isPresented: self.$mediaVM.showImagePickerNew) {
                 ImageSelectionModal()
                 .onAppear {

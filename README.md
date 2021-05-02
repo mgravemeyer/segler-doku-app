@@ -8,23 +8,24 @@
 This project is produced as i worked as a freelancer for the company [Segler](https://www.segler.eu/home.html). It is a middle sized company based near osnabrück, germany and they are producing conveyor systems.
 
 ### Goal 🎯
-The goal was to build an app that helps the engineers to track mistakes that were made in the factory producing process. They should take a picture, write some comments about what is wrong with the part and then send it to a server. On this server the data will get scanned by a python algorythm and it will getting send to the right instituiton in segler that they can work things out.
+The goal was to build an app that helps the engineers to track mistakes that were made in the factory producing process. They should take a picture, write some comments about what is wrong with the broken part and then send it to a server. On this server the data will get processed by a python algorythm and it will send the image with the additonal information (json) to the right instituiton in segler that they can work things out.
 
 ### Features 📱
 * Scanning Barcodes from employes for login.
 * Scanning Barcodes from Drawings and fill that into the form.
-* Taking multiple photos.
-* Sending Photos, Videos or edited PDF's to a FTP Server with additional information stored in a JSON File.
+* Sending Photos, Videos, PDF's (also editing) to a FTP Server with additional information stored in a JSON File. Al
 
 ### Challenges 🧨
 A requierement was to send the images with additional comments over the internal network via SFTP.
 Two ways could be:
-    send the data on the image via meta-data. 
+    send the data on the image via meta-data.
     send a json file along the image.
 The company already worked with JSON so the IT-Department and I decided to use JSON along with the Image. One problem could be if the Image successfully was transfered but the JSON not, there could be problems on the Server. Therefor the Server searches for both files and if one is not existing then it will throw an error to the IT-Department. The Server-side stuff was not written by me.
 
 ### Program Sequence 🟢
+<p align="center">
 ![sequence segler app](https://i.ibb.co/3BXScjq/SE.png)
+</p>
 
 ##### 1. Getting Server Connetion and Download config.json
 The Application needs to get configured on the first time the user starts the app. Therefore the User has to fill out server connection credentials. Then the App will search for a file named: config.json. When it finds the file it will download it. There also files mentioned in the config.json that the app tries then to download. (currently only pdf's)
@@ -69,3 +70,9 @@ Go to the Folder of the Project (Segler-Master)
     * [BarcodeScanner](https://cocoapods.org/pods/BarcodeScanner) - using the CODE-128 encryption
     * [ProgressHUD](https://cocoapods.org/pods/ProgressHUD) - Displaying App feedback success or failure
     * [NMSSH](https://cocoapods.org/pods/NMSSH) - SFTP connection via SSH protocol
+
+## What's next?
+* Storing the downloaded PDF's in the FileManager system, with that, i dont need to redownload every pdf.
+* Storing Server Credentials not in UserDefaults, instead in CoreData. (UserDefaults is not encrypted so it is currently a security risk)!
+* Evnetually: refactoring the whole state process management. Back then, SwiftUI had really limited capabilities to work with it. (example: had to pass EnvironmentObjects manually to every child view (what a mess!)). Now, i reafctored already a lot to use newer and better techniques.
+* Creating a bidirectional system to transfer data. We are currently exploring the capabilities of websockets to transfer realtime data. Idea is, use types something into the project number search field, the app suggests him already what kind of projects he can choose and wich ones are valid/existing.

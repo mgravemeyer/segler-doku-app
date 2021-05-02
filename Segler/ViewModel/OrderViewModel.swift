@@ -7,4 +7,3 @@ class OrderViewModel : ObservableObject {
     @Published var orderNrIsOk = true
     @Published var orderPositionIsOk = true
 }
-
