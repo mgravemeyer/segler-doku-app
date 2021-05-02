@@ -69,18 +69,18 @@ class NetworkDataManager {
     
     func sendPhotos(filename: String, data: [Data], json: Data) {
         DispatchQueue.main.async {
-            for photo in data {
-                self.session!.writeContents(json, toFileAtPath: "\(filename).json")
-                self.session!.writeContents(photo, toFileAtPath: "\(filename).json")
+            for (index, photo) in data.enumerated() {
+                self.session!.writeContents(json, toFileAtPath: "\(filename)\(index).json")
+                self.session!.writeContents(photo, toFileAtPath: "\(filename)\(index).json")
             }
         }
     }
     
     func sendVideos(filename: String, data: [Data], json: Data) {
         DispatchQueue.main.async {
-            for video in data {
-                self.session!.writeContents(json, toFileAtPath: "\(filename).json")
-                self.session!.writeContents(video, toFileAtPath: "\(filename).mp4")
+            for (index, video) in data.enumerated() {
+                self.session!.writeContents(json, toFileAtPath: "\(filename)\(index).json")
+                self.session!.writeContents(video, toFileAtPath: "\(filename)\(index).mp4")
             }
         }
     }
