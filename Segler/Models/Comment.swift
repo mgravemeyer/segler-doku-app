@@ -33,49 +33,7 @@ struct Comment: Encodable, Decodable, Identifiable {
     
       init(from decoder: Decoder) throws {
             let values = try decoder.container(keyedBy: Keys.self)
-
             title = try values.decodeIfPresent(String.self, forKey: .title)!
             comments = try values.decodeIfPresent([String].self, forKey: .comments)!
-    //        title = try commentsArray.decodeIfPresent(String.self, forKey: .title)!
-    //        comments = try commentsArray.decodeIfPresent([String].self, forKey: .comments)!
         }
 }
-
-//struct CommentsArray: Decodable {
-//    var comments : [Comment]
-//
-//    private enum Keys: String, CodingKey {
-//        case response = "Response"
-//        case commentsArray = "commentsArray"
-//        case title = "title"
-//        case comments = "comments"
-//    }
-//
-//    init(from decoder: Decoder) throws {
-//        let values = try decoder.container(keyedBy: Keys.self)
-//        let response = try values.nestedContainer(keyedBy: Keys.self, forKey: .response)
-//        comments = try response.decodeIfPresent([Comment].self, forKey: .commentsArray)!
-//        print(comments)
-////        title = try commentsArray.decodeIfPresent(String.self, forKey: .title)!
-////        comments = try commentsArray.decodeIfPresent([String].self, forKey: .comments)!
-//    }
-//}
-
-//struct Response: Decodable {
-//    var commentsArray: [Comment]
-//
-//    init(from decoder: Decoder) {
-//        let container = try! decoder.container(keyedBy: ResponseCodingKeys.self)
-//        let response = try! container.nestedContainer(keyedBy: ListCodingKeys.self, forKey: .response)
-//        commentsArray = try! response.decode([Comment].self, forKey: .commentsArray)
-//    }
-//
-//    enum ResponseCodingKeys: String, CodingKey { case response = "Response" }
-//    enum ListCodingKeys: String, CodingKey { case commentsArray }
-//}
-//
-//struct Comment: Decodable {
-//    var id = UUID()
-//    var title: String
-//    var comments: [String]
-//}
