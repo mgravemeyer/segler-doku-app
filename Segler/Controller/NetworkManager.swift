@@ -71,7 +71,7 @@ class NetworkDataManager {
         }
         
         //check orderPosition
-        if (orderVM.orderPosition.count >= 1 && orderVM.orderNr.count <= 3) {
+        if (orderVM.orderPosition.count > 0 && orderVM.orderPosition.count < 4) {
             for char in orderVM.orderPosition {
                 if !char.isNumber {
                     error += "Falsche Positions-Nr \n"
@@ -82,6 +82,7 @@ class NetworkDataManager {
                 }
             }
         } else {
+            print(orderVM.orderPosition)
             error += "Falsche Positions-Nr \n"
             orderVM.orderPositionIsOk = false
         }
@@ -89,6 +90,8 @@ class NetworkDataManager {
         if (remarksVM.selectedComment == "") {
             error += "Keinen Kommentar ausgewählt"
             remarksVM.commentIsOk = false
+        } else {
+            remarksVM.commentIsOk = true
         }
         
         if (error == "") {
@@ -172,7 +175,7 @@ class NetworkDataManager {
     }
     
     private func generateDataName(orderVM: OrderViewModel) -> String {
-        return ("\(orderVM.orderNr)\(orderVM.orderPosition)\(getDate())\(getTime())")
+        return ("\(orderVM.orderNr)_\(orderVM.orderPosition)_\(getDate())_\(getTime())_")
     }
     
     private func getDate() -> String {
