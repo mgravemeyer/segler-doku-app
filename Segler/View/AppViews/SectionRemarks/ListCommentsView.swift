@@ -5,11 +5,6 @@ struct ListCommentsView: View {
     @EnvironmentObject var remarksVM : RemarksViewModel
     @Environment(\.presentationMode) var presentationMode
     
-    @EnvironmentObject var settingsVM: SettingsViewModel
-    let colors = ColorSeglerViewModel()
-    @State var editViewVisible = false
-    @State var fakeBool = false
-    
     @State var show = true
     
     var body: some View {
@@ -31,8 +26,6 @@ struct ListCommentsView: View {
                 if self.show != true {
                     self.presentationMode.wrappedValue.dismiss()
                 }
-            }.onAppear {
-                
-        }
+            }
     }
 }
