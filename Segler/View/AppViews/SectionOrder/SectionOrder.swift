@@ -1,8 +1,8 @@
 import SwiftUI
 
 struct SectionOrder: View {
+    
     @EnvironmentObject var orderVM : OrderViewModel
-    @EnvironmentObject var mediaVM : MediaViewModel
     
     @Binding var showBarcodeScannerView: Bool
     
