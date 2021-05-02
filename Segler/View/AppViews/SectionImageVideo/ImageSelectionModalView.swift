@@ -4,6 +4,7 @@ struct ImageSelectionModal: View {
     
     @Environment(\.presentationMode) private var presentationMode
     @EnvironmentObject var mediaVM : MediaViewModel
+    
     let columns = [
             GridItem(.adaptive(minimum: 80))
     ]

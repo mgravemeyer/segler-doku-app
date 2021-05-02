@@ -3,6 +3,7 @@ import SwiftUI
 struct VideoCameraPreviewView: View {
     
     @EnvironmentObject var mediaVM: MediaViewModel
+    
     @State var videoObject : VideoModelCamera
     @State var showSheet = false
     @State var id : UUID
