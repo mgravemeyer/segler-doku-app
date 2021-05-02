@@ -1,12 +1,11 @@
 import SwiftUI
 
-struct SectionRemarks: View {
+struct SectionRemarksView: View {
     
     @EnvironmentObject var remarksVM : RemarksViewModel
     @State var isVisible = Bool()
     @EnvironmentObject var mediaVM: MediaViewModel
     
-    let colors = ColorSeglerViewModel()
     @State var editViewVisible = false
     
     var body: some View {
@@ -19,7 +18,7 @@ struct SectionRemarks: View {
                     } else {
                         Text("\(remarksVM.selectedComment)")
                     }
-                }.listRowBackground(self.remarksVM.commentIsOk ? colors.correctRowColor : colors.warningRowColor)
+            }.listRowBackground(self.remarksVM.commentIsOk ? Color.white : Color.seglerRowWarning)
         } else {
             HStack {
                 NavigationLink(destination: ListCommentsView(show: true)) {
@@ -31,9 +30,9 @@ struct SectionRemarks: View {
                 }) {
                     Image(systemName: "pencil.circle.fill")
                         .font(.system(size: 30))
-                        .foregroundColor(colors.color)
+                        .foregroundColor(Color.seglerRed)
                         .buttonStyle(BorderlessButtonStyle())
-                }.buttonStyle(BorderlessButtonStyle()).frame(width: 30).frame(height: 30)
+                }.buttonStyle(BorderlessButtonStyle()).frame(width: 30)
             }
         }
     }

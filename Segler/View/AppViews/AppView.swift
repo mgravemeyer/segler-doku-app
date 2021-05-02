@@ -23,7 +23,7 @@ struct AppView: View {
                             List {
                                 SectionOrderView(showBarcodeScannerView: self.$showBarcodeScannerView)
                                     .frame(height: 34)
-                                SectionRemarks()
+                                SectionRemarksView()
                                     .frame(height: 34)
                                 SectionFreeTextField()
                                 SectionImageViewView()

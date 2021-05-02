@@ -30,8 +30,8 @@
 		E3787809261A54E2003323B9 /* PDFListDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3787808261A54E2003323B9 /* PDFListDetailView.swift */; };
 		E378780B261A5500003323B9 /* PDFDetailUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E378780A261A5500003323B9 /* PDFDetailUIView.swift */; };
 		E378780D261A7973003323B9 /* PDF.swift in Sources */ = {isa = PBXBuildFile; fileRef = E378780C261A7973003323B9 /* PDF.swift */; };
-		E38D8A93263AA9B700502077 /* SectionOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38D8A92263AA9B700502077 /* SectionOrder.swift */; };
-		E38D8A95263AAA5100502077 /* SectionRemarks.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38D8A94263AAA5100502077 /* SectionRemarks.swift */; };
+		E38D8A93263AA9B700502077 /* SectionOrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38D8A92263AA9B700502077 /* SectionOrderView.swift */; };
+		E38D8A95263AAA5100502077 /* SectionRemarksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38D8A94263AAA5100502077 /* SectionRemarksView.swift */; };
 		E38D8A97263AAA8000502077 /* SectionFreeTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38D8A96263AAA8000502077 /* SectionFreeTextField.swift */; };
 		E38D8A99263AABD700502077 /* ImageSelectionModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38D8A98263AABD700502077 /* ImageSelectionModalView.swift */; };
 		E38D8A9B263AAC1000502077 /* ListCommentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38D8A9A263AAC1000502077 /* ListCommentsView.swift */; };
@@ -98,8 +98,8 @@
 		E3787808261A54E2003323B9 /* PDFListDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFListDetailView.swift; sourceTree = "<group>"; };
 		E378780A261A5500003323B9 /* PDFDetailUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFDetailUIView.swift; sourceTree = "<group>"; };
 		E378780C261A7973003323B9 /* PDF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDF.swift; sourceTree = "<group>"; };
-		E38D8A92263AA9B700502077 /* SectionOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionOrder.swift; sourceTree = "<group>"; };
-		E38D8A94263AAA5100502077 /* SectionRemarks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionRemarks.swift; sourceTree = "<group>"; };
+		E38D8A92263AA9B700502077 /* SectionOrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionOrderView.swift; sourceTree = "<group>"; };
+		E38D8A94263AAA5100502077 /* SectionRemarksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionRemarksView.swift; sourceTree = "<group>"; };
 		E38D8A96263AAA8000502077 /* SectionFreeTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionFreeTextField.swift; sourceTree = "<group>"; };
 		E38D8A98263AABD700502077 /* ImageSelectionModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSelectionModalView.swift; sourceTree = "<group>"; };
 		E38D8A9A263AAC1000502077 /* ListCommentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCommentsView.swift; sourceTree = "<group>"; };
@@ -338,7 +338,7 @@
 		E3E8B1F7263AA7B20025E27D /* SectionOrder */ = {
 			isa = PBXGroup;
 			children = (
-				E38D8A92263AA9B700502077 /* SectionOrder.swift */,
+				E38D8A92263AA9B700502077 /* SectionOrderView.swift */,
 			);
 			path = SectionOrder;
 			sourceTree = "<group>";
@@ -347,7 +347,7 @@
 			isa = PBXGroup;
 			children = (
 				E3787805261A54AB003323B9 /* PDFViews */,
-				E38D8A94263AAA5100502077 /* SectionRemarks.swift */,
+				E38D8A94263AAA5100502077 /* SectionRemarksView.swift */,
 				E38D8A9A263AAC1000502077 /* ListCommentsView.swift */,
 				E38D8A9C263AAC2D00502077 /* ListCommentsDetailView.swift */,
 			);
@@ -511,7 +511,7 @@
 				E37230AC263ED94D00538F11 /* ResponsePDFs.swift in Sources */,
 				E38D8AA7263AB0D000502077 /* EmptyImageButtonView.swift in Sources */,
 				E38D8A9D263AAC2D00502077 /* ListCommentsDetailView.swift in Sources */,
-				E38D8A95263AAA5100502077 /* SectionRemarks.swift in Sources */,
+				E38D8A95263AAA5100502077 /* SectionRemarksView.swift in Sources */,
 				E3D6A0D523A1838A000F35E9 /* AppDelegate.swift in Sources */,
 				E37230A4263ED8CF00538F11 /* ImageModel.swift in Sources */,
 				E39A9D6323D8930D00418E51 /* AdminLoginPassword.swift in Sources */,
@@ -530,7 +530,7 @@
 				E38D8AA5263AB02100502077 /* VideoCameraPreviewView.swift in Sources */,
 				E37230A2263ED8B500538F11 /* VideoModel.swift in Sources */,
 				E3787809261A54E2003323B9 /* PDFListDetailView.swift in Sources */,
-				E38D8A93263AA9B700502077 /* SectionOrder.swift in Sources */,
+				E38D8A93263AA9B700502077 /* SectionOrderView.swift in Sources */,
 				E38D8AA3263AAF5700502077 /* VideoPreviewView.swift in Sources */,
 				E3D6A0F023A26537000F35E9 /* SettingsView.swift in Sources */,
 				E3BE190F23A7C7D200137883 /* ftpConst.swift in Sources */,
