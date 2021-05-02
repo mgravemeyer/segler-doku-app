@@ -1,10 +1,12 @@
 import SwiftUI
 
 struct ListCommentsDetailView: View {
-    let selection : Int
+    
+    @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var mediaVM: MediaViewModel
     @EnvironmentObject var remarksVM : RemarksViewModel
-    @Environment(\.presentationMode) var presentationMode
+    
+    let selection : Int
     @Binding var show : Bool
     
     var body: some View {
