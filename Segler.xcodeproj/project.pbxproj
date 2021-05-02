@@ -207,11 +207,11 @@
 		E301A5A123CDF31E006A72D5 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				E3BDDD80250028D000C07EA0 /* UserViewModel.swift */,
+				E3B808DE23D06DE5007A7595 /* SettingsViewModel.swift */,
 				E301A5A323CDF44A006A72D5 /* OrderViewModel.swift */,
 				E3C33BAE23CDB05E00E941FB /* RemarksViewModel.swift */,
 				E301A5A523CDF474006A72D5 /* MediaViewModel.swift */,
-				E3B808DE23D06DE5007A7595 /* SettingsViewModel.swift */,
-				E3BDDD80250028D000C07EA0 /* UserViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
