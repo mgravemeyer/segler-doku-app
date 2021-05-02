@@ -1,6 +1,7 @@
 import Foundation
 import NMSSH
 
+//to:do handles currently network stuff and also perparing data to be send. could be later splitted up to data and a seperate network manager.
 class NetworkDataManager {
     
     static let shared = NetworkDataManager()
@@ -30,11 +31,20 @@ class NetworkDataManager {
         return false
     }
     
-    func sendPhotosVideos(filename: String, data: [Data], json: Data) {
+    func sendPhotos(filename: String, data: [Data], json: Data) {
         DispatchQueue.main.async {
             for data in data {
-                self.session!.writeContents(json, toFileAtPath: "\(filename)")
-                self.session!.writeContents(data, toFileAtPath: "\(filename)")
+                self.session!.writeContents(json, toFileAtPath: "\(filename).json")
+                self.session!.writeContents(data, toFileAtPath: "\(filename).jpg")
+            }
+        }
+    }
+    
+    func sendVideos(filename: String, data: [Data], json: Data) {
+        DispatchQueue.main.async {
+            for data in data {
+                self.session!.writeContents(json, toFileAtPath: "\(filename).json")
+                self.session!.writeContents(data, toFileAtPath: "\(filename).mp4")
             }
         }
     }
