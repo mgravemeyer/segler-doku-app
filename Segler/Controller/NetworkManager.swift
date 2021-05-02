@@ -50,6 +50,11 @@ class NetworkDataManager {
 //        sendPDF(filename: filename, pdfData: Data(), jsonData: json!)
     }
     
+    func loadPDF(name: String, filename: String) -> PDF {
+        let content = session!.contents(atPath: "protokolle/\(filename).pdf")
+        return PDF(name: name, data: content!)
+    }
+    
     func checkIfDataIsCorrect(mediaVM: MediaViewModel, orderVM: OrderViewModel, remarksVM: RemarksViewModel) -> Bool {
         
         var error = ""

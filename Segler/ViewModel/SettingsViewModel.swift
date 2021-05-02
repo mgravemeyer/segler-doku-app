@@ -49,29 +49,29 @@ extension SettingsViewModel {
         decoderAdminPassword(jsonData: NetworkDataManager.shared.config!)
     }
     
-    func getJSON() {
-        
-        guard
-            let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
-        
-        else {
-                print("error while saving or finding files")
-                return
-            }
-        do {
-            let fileURLs = try FileManager.default.contentsOfDirectory(at: url, includingPropertiesForKeys: nil)
-            for url in fileURLs {
-                try archive.append(PDF(name: "\((url.lastPathComponent).dropLast(4))", data: Data(contentsOf: url)))
-            }
-            print(fileURLs)
-        } catch {
-            print("erroror")
-            print(error.localizedDescription)
-        }
-        
+//    func getJSON() {
+//
+//        guard
+//            let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
+//
+//        else {
+//                print("error while saving or finding files")
+//                return
+//            }
+//        do {
+//            let fileURLs = try FileManager.default.contentsOfDirectory(at: url, includingPropertiesForKeys: nil)
+//            for url in fileURLs {
+//                try archive.append(PDF(name: "\((url.lastPathComponent).dropLast(4))", data: Data(contentsOf: url)))
+//            }
+//            print(fileURLs)
+//        } catch {
+//            print("erroror")
+//            print(error.localizedDescription)
+//        }
+//
 //        decodaPDFs(jsonData: content as! Data)
 //        let string = String(bytes: content, encoding: .utf8)
-                
+//
 //                    let tempPdfData = sftpsession.contentsOfDirectory(atPath: "protokolle")
 //
 //                    for pdf in pdfsToSearchOnServer {
@@ -81,8 +81,8 @@ extension SettingsViewModel {
 //                    }
 //
 //                    print("full array: \(pdfs)")
-                
-
+//
+//
 //                    if let string = String(bytes: content, encoding: .utf8) {
 //                        let jsonData = Foundation.Data(string.data(using: .utf8)!)
 //                        decoda(jsonData: jsonData)
@@ -90,12 +90,12 @@ extension SettingsViewModel {
 //                        decodaMediaQualityModel(jsonData: jsonData)
 //                        configLoaded = true
 //                    }
-        
+//
 //                }
 //            }
 //        }
-        
-        
+//
+//
 //        let session = NMSSHSession.init(host: "\(self.ip)", andUsername: "\(self.serverUsername)")
 //        session.connect()
 //        if session.isConnected{
@@ -130,7 +130,7 @@ extension SettingsViewModel {
 //                    configLoaded = false
 //                }
 //            }
-    }
+//    }
 }
 
 extension SettingsViewModel {

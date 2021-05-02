@@ -48,6 +48,87 @@ struct VideoModelCamera: Identifiable, Hashable {
 
 class MediaViewModel : ObservableObject {
     
+    struct ResponsePDF: Decodable, Encodable, Identifiable {
+        var id = UUID()
+        let name: String
+        let datei: String
+        private enum Keys: String, CodingKey {
+            case name = "Name"
+            case datei = "Datei"
+        }
+        init(from decoder: Decoder) throws {
+              let values = try decoder.container(keyedBy: Keys.self)
+
+              name = try values.decodeIfPresent(String.self, forKey: .name)!
+              datei = try values.decodeIfPresent(String.self, forKey: .datei)!
+          }
+    }
+
+    struct ResponsePDFs: Codable {
+      var pdfs: [ResponsePDF]
+      enum CodingKeys: String, CodingKey {
+        case response = "Einstellungen"
+        case pdfsArray = "Protokolle"
+      }
+
+      init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        let response = try container.nestedContainer(keyedBy:
+        CodingKeys.self, forKey: .response)
+        
+        self.pdfs = try response.decode([ResponsePDF].self, forKey: .pdfsArray)
+      }
+
+      func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        var response = container.nestedContainer(keyedBy: CodingKeys.self, forKey: .response)
+        try response.encode(self.pdfs, forKey: .pdfsArray)
+       }
+    }
+
+    func decoderPDFs(jsonData : Foundation.Data) -> [ResponsePDF]? {
+        let decoder = JSONDecoder()
+        do {
+            let tempPDFs = try decoder.decode(ResponsePDFs.self, from: jsonData)
+//            pdfsToSearchOnServer = tempPDFs.pdfs
+            return tempPDFs.pdfs
+        } catch {
+            //to:do error handling
+        }
+        return nil
+    }
+    
+    func getLocalSavedPDFs() {
+        guard
+            let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
+        else {
+                print("error while saving or finding files")
+                return
+            }
+        do {
+            let fileURLs = try FileManager.default.contentsOfDirectory(at: url, includingPropertiesForKeys: nil)
+            for url in fileURLs {
+                try archive.append(PDF(name: "\((url.lastPathComponent).dropLast(4))", data: Data(contentsOf: url)))
+            }
+            print(fileURLs)
+        } catch {
+            print("erroror")
+            print(error.localizedDescription)
+        }
+    }
+    
+    func loadJSON() {
+        getLocalSavedPDFs()
+        
+    }
+    
+    func loadServerPDFs() {
+        for pdf in decoderPDFs(jsonData: NetworkDataManager.shared.config!)! {
+            let pdf = NetworkDataManager.shared.loadPDF(name: pdf.name, filename: pdf.datei)
+            pdfs.append(PDF(name: pdf.name, data: pdf.data))
+        }
+    }
+    
     func returnVideoCount() -> Int {
         
         var count = 0
@@ -97,6 +178,12 @@ class MediaViewModel : ObservableObject {
     @Published var askForCameraOrGallery: Bool = false
     @Published var imagesIsOk = true
     @Published var showImagePickerNew = false
+    
+    @Published var pdfsToSearchOnServer = [ResponsePDF]()
+    @Published var archive = [PDF]()
+    @Published var savedPDF = PDF(name: "", data: Data())
+    @Published var pdfs = [PDF]()
+    @Published var selectedPDF = PDF(name: "", data: Data())
     
     func toggleElement(elementId: UUID) {
         let index = images.firstIndex(where: { $0.id == elementId })
