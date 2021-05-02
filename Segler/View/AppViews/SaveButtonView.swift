@@ -25,8 +25,10 @@ struct SaveButtonView: View {
         HStack {
             Button(action: {
                 typealias ThrowableCallback = () throws -> Bool
-                self.connection.someAsyncFunction(true) { (error) -> Void in
+                NetworkDataManager.shared.sendToFTP(mediaVM: mediaVM, userVM: userVM, orderVM: orderVM, remarksVM: remarksVM, true) { (error) -> Void in
                     if error != nil {
+                        print("Hilwe error")
+                        ProgressHUD.dismiss()
                         ProgressHUD.showError(error)
                         return
                     } else {

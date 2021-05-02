@@ -1,5 +1,7 @@
 import Foundation
 import NMSSH
+import ProgressHUD
+import AVKit
 
 //to:do handles currently network stuff and also perparing data to be send. could be later splitted up to data and a seperate network manager.
 class NetworkDataManager {
@@ -31,18 +33,16 @@ class NetworkDataManager {
         return false
     }
     
-    func sendToFTP(photos: [Data], videos: [Data], pdf: Data, mediaVM: MediaViewModel, userVM: UserViewModel, orderVM: OrderViewModel, remarksVM: RemarksViewModel) {
+    func sendToFTP(mediaVM: MediaViewModel, userVM: UserViewModel, orderVM: OrderViewModel, remarksVM: RemarksViewModel,_ shouldThrow: Bool, completion: @escaping(String?) -> ()) {
         let filename = generateDataName(orderVM: orderVM)
         let json = generateJSON(userVM: userVM, remarksVM: remarksVM)
-        if !photos.isEmpty {
-            sendPhotos(filename: filename, data: prepImagesData(mediaVM: mediaVM), json: json!)
+        ProgressHUD.show()
+        DispatchQueue.global(qos: .userInitiated).async {
+            self.sendPhotos(filename: filename, data: self.prepImagesData(mediaVM: mediaVM), json: json!)
+            self.sendVideos(filename: filename, data: self.prepVideosData(mediaVM: mediaVM), json: json!)
+            completion(nil)
         }
-        if !videos.isEmpty {
-            sendVideos(filename: filename, data: prepVideosData(mediaVM: mediaVM), json: json!)
-        }
-        if !pdf.isEmpty {
-            sendPDF(filename: filename, pdfData: pdf, jsonData: json!)
-        }
+//        sendPDF(filename: filename, pdfData: Data(), jsonData: json!)
     }
     
     private func prepImagesData(mediaVM: MediaViewModel) -> [Data] {
@@ -68,39 +68,33 @@ class NetworkDataManager {
     }
     
     private func sendPhotos(filename: String, data: [Data], json: Data) {
-        DispatchQueue.main.async {
-            for (index, photo) in data.enumerated() {
-                self.session!.writeContents(json, toFileAtPath: "\(filename)\(index).json")
-                self.session!.writeContents(photo, toFileAtPath: "\(filename)\(index).json")
-            }
+        for (index, photo) in data.enumerated() {
+            self.session!.writeContents(json, toFileAtPath: "\(filename)\(index).json")
+            self.session!.writeContents(photo, toFileAtPath: "\(filename)\(index).jpg")
         }
     }
     
     private func sendVideos(filename: String, data: [Data], json: Data) {
-        DispatchQueue.main.async {
-            for (index, video) in data.enumerated() {
-                self.session!.writeContents(json, toFileAtPath: "\(filename)\(index).json")
-                self.session!.writeContents(video, toFileAtPath: "\(filename)\(index).mp4")
-            }
+        for (index, video) in data.enumerated() {
+            self.session!.writeContents(json, toFileAtPath: "\(filename)\(index).json")
+            self.session!.writeContents(video, toFileAtPath: "\(filename)\(index).mp4")
         }
     }
     
     private func sendPDF(filename: String, pdfData: Data, jsonData: Data) {
-        DispatchQueue.main.async {
-            self.session!.writeContents(jsonData, toFileAtPath: "\(filename).json")
-            self.session!.writeContents(pdfData, toFileAtPath: "\(filename).pdf")
-            guard
-                let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
-            else {
-                    print("error while saving or finding files")
-                    return
-                }
-            let fileURL = url.appendingPathComponent("\(filename).pdf")
-            do {
-                try pdfData.write(to: fileURL)
-            } catch {
-                print(error.localizedDescription)
+        self.session!.writeContents(jsonData, toFileAtPath: "\(filename).json")
+        self.session!.writeContents(pdfData, toFileAtPath: "\(filename).pdf")
+        guard
+            let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
+        else {
+                print("error while saving or finding files")
+                return
             }
+        let fileURL = url.appendingPathComponent("\(filename).pdf")
+        do {
+            try pdfData.write(to: fileURL)
+        } catch {
+            print(error.localizedDescription)
         }
     }
     
@@ -144,5 +138,117 @@ class NetworkDataManager {
             return nil
         }
     }
+    
+    func compressVideo(urlToCompress: URL, outputURL: URL, completion:@escaping (URL)->Void) {
+        
+        let bitrate: NSNumber = 50000
+        
+        var assetWriter:AVAssetWriter?
+        var assetReader:AVAssetReader?
+        
+        var audioFinished = false
+        var videoFinished = false
+        
+        let asset = AVAsset(url: urlToCompress);
 
+        do{
+            assetReader = try AVAssetReader(asset: asset)
+        } catch {
+            assetReader = nil
+        }
+        
+        guard let reader = assetReader else {
+            fatalError("Could not initalize asset reader probably failed its try catch")
+        }
+        
+        let videoTrack = asset.tracks(withMediaType: AVMediaType.video).first!
+        let audioTrack = asset.tracks(withMediaType: AVMediaType.audio).first!
+        
+        let videoReaderSettings: [String:Any] =  [kCVPixelBufferPixelFormatTypeKey as String:kCVPixelFormatType_32ARGB ]
+            // ADJUST BIT RATE OF VIDEO HERE
+            let videoSettings:[String:Any] = [
+                AVVideoCompressionPropertiesKey: [AVVideoAverageBitRateKey:bitrate],
+                AVVideoCodecKey: AVVideoCodecType.h264,
+                AVVideoHeightKey: videoTrack.naturalSize.height,
+                AVVideoWidthKey: videoTrack.naturalSize.width
+            ]
+        
+        let assetReaderVideoOutput = AVAssetReaderTrackOutput(track: videoTrack, outputSettings: videoReaderSettings)
+        let assetReaderAudioOutput = AVAssetReaderTrackOutput(track: audioTrack, outputSettings: nil)
+        if reader.canAdd(assetReaderVideoOutput){
+            reader.add(assetReaderVideoOutput)
+        }else{
+            fatalError("Couldn't add video output reader")
+        }
+        if reader.canAdd(assetReaderAudioOutput){
+            reader.add(assetReaderAudioOutput)
+        }else{
+            fatalError("Couldn't add audio output reader")
+        }
+        
+        let audioInput = AVAssetWriterInput(mediaType: AVMediaType.audio, outputSettings: nil)
+        let videoInput = AVAssetWriterInput(mediaType: AVMediaType.video, outputSettings: videoSettings)
+             videoInput.transform = videoTrack.preferredTransform
+        
+        let videoInputQueue = DispatchQueue(label: "videoQueue")
+            let audioInputQueue = DispatchQueue(label: "audioQueue")
+            do {
+                assetWriter = try AVAssetWriter(outputURL: outputURL, fileType: AVFileType.mov)
+            } catch {
+                assetWriter = nil
+            }
+            guard let writer = assetWriter else {
+                fatalError("assetWriter was nil")
+            }
+        
+        writer.shouldOptimizeForNetworkUse = false
+            writer.add(videoInput)
+            writer.add(audioInput)
+            writer.startWriting()
+            reader.startReading()
+        writer.startSession(atSourceTime: CMTime.zero)
+        
+        let closeWriter:()->Void = {
+            if (audioFinished && videoFinished) {
+                assetWriter?.finishWriting(completionHandler: {
+                    completion((assetWriter?.outputURL)!)
+                })
+                assetReader?.cancelReading()
+            } else {
+                print("NOT FINISHED STOP")
+            }
+        }
+        
+        audioInput.requestMediaDataWhenReady(on: audioInputQueue) {
+            while(audioInput.isReadyForMoreMediaData){
+                let sample = assetReaderAudioOutput.copyNextSampleBuffer()
+                if (sample != nil){
+                    audioInput.append(sample!)
+                }else{
+                    audioInput.markAsFinished()
+                    DispatchQueue.main.async {
+                        audioFinished = true
+                        closeWriter()
+                    }
+                    break;
+                }
+            }
+        }
+        videoInput.requestMediaDataWhenReady(on: videoInputQueue) {
+            //request data here
+            while(videoInput.isReadyForMoreMediaData){
+                let sample = assetReaderVideoOutput.copyNextSampleBuffer()
+                if (sample != nil){
+                    videoInput.append(sample!)
+                }else{
+                    videoInput.markAsFinished()
+                    DispatchQueue.main.async {
+                        videoFinished = true
+                        closeWriter()
+                    }
+                    break;
+                }
+            }
+        }
+    }
 }
