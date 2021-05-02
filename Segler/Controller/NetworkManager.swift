@@ -69,10 +69,10 @@ class NetworkDataManager {
     }
     
     func generateDataName(orderNr: String, orderPosition: String) {
-        let fileName = ("\(orderNr)\(orderPosition)")
+        let fileName = ("\(orderNr)\(orderPosition)\(getDate())\(getTime())")
     }
     
-    func getData() -> String {
+    func getDate() -> String {
         let currentDate = Date()
         let dateFormatter = DateFormatter()
         dateFormatter.locale = NSLocale.current
