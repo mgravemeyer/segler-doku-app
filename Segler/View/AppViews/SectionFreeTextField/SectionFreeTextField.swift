@@ -1,10 +1,8 @@
 import SwiftUI
 
-struct SectionFreeTextField: View {
+struct SectionFreeTextFieldView: View {
     
     @EnvironmentObject var remarksVM : RemarksViewModel
-    
-    let colors = ColorSeglerViewModel()
     
     var body: some View {
         HStack {
@@ -16,7 +14,7 @@ struct SectionFreeTextField: View {
                     TextEditor(text: $remarksVM.additionalComment)
                         .padding(.leading, -5)
                         .zIndex(1)
-                        .accentColor(colors.color)
+                        .accentColor(Color.seglerRed)
                         .keyboardType(.alphabet)
                         .disableAutocorrection(true)
                         .lineLimit(nil)
@@ -25,7 +23,7 @@ struct SectionFreeTextField: View {
             } else {
                 TextField("Freitextfeld", text: $remarksVM.additionalComment)
                 .frame(width: 200)
-                .accentColor(colors.color)
+                    .accentColor(Color.seglerRed)
                 .keyboardType(.alphabet)
                 .disableAutocorrection(true)
                 .lineLimit(nil)
@@ -37,7 +35,7 @@ struct SectionFreeTextField: View {
                     Image("Delete")
                         .renderingMode(.template)
                         .buttonStyle(BorderlessButtonStyle())
-                        .foregroundColor(self.colors.color)
+                        .foregroundColor(Color.seglerRed)
                 }.buttonStyle(BorderlessButtonStyle()).frame(width: 30)
             }
         }

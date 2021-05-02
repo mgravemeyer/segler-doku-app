@@ -25,7 +25,7 @@ struct AppView: View {
                                     .frame(height: 34)
                                 SectionRemarksView()
                                     .frame(height: 34)
-                                SectionFreeTextField()
+                                SectionFreeTextFieldView()
                                 SectionImageViewView()
                                 if !(settingsVM.errorsJSON.isEmpty) {
                                     Image("Warning").resizable().frame(width: 50, height: 50)
