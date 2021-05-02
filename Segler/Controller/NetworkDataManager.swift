@@ -111,7 +111,9 @@ class NetworkDataManager {
     private func prepImagesData(mediaVM: MediaViewModel) -> [Data] {
         var data = [Data]()
         for image in mediaVM.images {
-            data.append(image.fetchImage())
+            if image.selected {
+                data.append(image.fetchImage())
+            }
         }
         for image in mediaVM.imagesCamera {
             data.append(image.image.pngData()!)
@@ -126,13 +128,15 @@ class NetworkDataManager {
         
 
         for video in mediaVM.videos {
-            group.enter()
-            let outputURL = URL(fileURLWithPath: "\(documentsPath)\(UUID())\(video.id).mp4")
-            compressVideo(urlToCompress: video.assetURL, outputURL: outputURL)  { URL in
-                group.wait()
-                let videoData = try! NSData(contentsOf: outputURL, options: .mappedIfSafe) as Data
-                data.append(videoData)
-                group.leave()
+            if video.selected {
+                group.enter()
+                let outputURL = URL(fileURLWithPath: "\(documentsPath)\(UUID())\(video.id).mp4")
+                compressVideo(urlToCompress: video.assetURL, outputURL: outputURL)  { URL in
+                    group.wait()
+                    let videoData = try! NSData(contentsOf: outputURL, options: .mappedIfSafe) as Data
+                    data.append(videoData)
+                    group.leave()
+                }
             }
         }
         for video in mediaVM.videosCamera {
@@ -214,7 +218,7 @@ class NetworkDataManager {
 
         do {
             let jsonData = try JSONSerialization.data(withJSONObject: dict, options: JSONSerialization.WritingOptions.prettyPrinted) as NSData
-                return jsonData as Data
+            return jsonData as Data
         } catch _ {
             return nil
         }
