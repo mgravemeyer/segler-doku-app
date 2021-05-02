@@ -67,4 +67,24 @@ class NetworkDataManager {
             }
         }
     }
+    
+    func generateDataName(orderNr: String, orderPosition: String) {
+        let fileName = ("\(orderNr)\(orderPosition)")
+    }
+    
+    func getData() -> String {
+        let currentDate = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = NSLocale.current
+        dateFormatter.dateFormat = "yyyyMMdd"
+        return dateFormatter.string(from: currentDate)
+    }
+    
+    func getTime() -> String {
+        let currentDate = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = NSLocale.current
+        dateFormatter.dateFormat = "HHmmss"
+        return dateFormatter.string(from: currentDate)
+    }
 }
