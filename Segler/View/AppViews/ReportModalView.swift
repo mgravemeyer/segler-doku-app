@@ -2,11 +2,12 @@ import SwiftUI
 
 struct ReportModalView: View {
     
-    @Binding var showReport : Bool
     @EnvironmentObject var settingsVM : SettingsViewModel
     @EnvironmentObject var mediaVM : MediaViewModel
     @EnvironmentObject var orderVM : OrderViewModel
     @EnvironmentObject var remarksVM : RemarksViewModel
+    
+    @Binding var showReport : Bool
     
     var body: some View {
             List {
