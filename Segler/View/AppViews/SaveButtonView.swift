@@ -8,17 +8,9 @@ struct SaveButtonView: View {
     @EnvironmentObject var orderVM : OrderViewModel
     @EnvironmentObject var remarksVM : RemarksViewModel
     @EnvironmentObject var userVM : UserViewModel
+    
     @State var showReport = false
-    
-    let colors = ColorSeglerViewModel()
-    
     @State var isInProgress = false
-//    lazy var connection = FTPUploadController(mediaVM: self.mediaVM)
-    
-    var connection: FTPUploadController {
-        return FTPUploadController()
-    }
-    
     @State var keyboardIsShown = false
 
     var body: some View {
@@ -27,7 +19,6 @@ struct SaveButtonView: View {
                 typealias ThrowableCallback = () throws -> Bool
                 NetworkDataManager.shared.sendToFTP(mediaVM: mediaVM, userVM: userVM, orderVM: orderVM, remarksVM: remarksVM, true) { (error) -> Void in
                     if error != nil {
-                        print("Hilwe error")
                         ProgressHUD.showError("Daten ungültig")
                         return
                     } else {
@@ -47,7 +38,6 @@ struct SaveButtonView: View {
                     UIApplication.shared.endEditing()
                 }) {
                     Image(systemName: "keyboard.chevron.compact.down")
-    //                Text("Abschicken")
                         .font(.headline)
                         .foregroundColor(Color.white)
                 }.padding(.trailing, 14)
@@ -59,7 +49,7 @@ struct SaveButtonView: View {
             NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillHideNotification, object: nil, queue: .main) { (noti) in
                 self.keyboardIsShown = false
             }
-    }.frame(height: 50).background(colors.color)
+        }.frame(height: 50).background(Color.seglerRed)
         .sheet(isPresented: $showReport) {
             ReportModalView(showReport: self.$showReport)
         }

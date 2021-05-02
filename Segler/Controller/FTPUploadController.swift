@@ -308,36 +308,36 @@ struct FTPUploadController {
 //                    self.orderViewModel.orderPositionIsOk = true
                 }
                     
-                for image in mediaVM.images {
-                    if image.selected {
-                        let image = UIImage(data: image.fetchImage())
-                        if UIDevice.current.name.contains("iPhone") {
-                            finishedPhotoArray.append((image?.jpegData(compressionQuality: CGFloat(settingsVM.qp_iPhone.floatValue)))!)
-                        } else
-                        if UIDevice.current.name.contains("iPod touch") {
-                            finishedPhotoArray.append((image?.jpegData(compressionQuality: CGFloat(settingsVM.qp_iPod.floatValue)))!)
-                        } else
-                        if UIDevice.current.name.contains("iPad") {
-                            finishedPhotoArray.append((image?.jpegData(compressionQuality: CGFloat(settingsVM.qp_iPad.floatValue)))!)
-                        } else {
-                            finishedPhotoArray.append((image?.jpegData(compressionQuality: CGFloat(settingsVM.qp_iPod.floatValue)))!)
-                        }
-                    }
-                }
-            
-                for image in mediaVM.imagesCamera {
-                    if UIDevice.current.name.contains("iPhone") {
-                        finishedPhotoArray.append((image.image.jpegData(compressionQuality: CGFloat(settingsVM.qp_iPhone.floatValue)))!)
-                    } else
-                    if UIDevice.current.name.contains("iPod touch") {
-                        finishedPhotoArray.append((image.image.jpegData(compressionQuality: CGFloat(settingsVM.qp_iPod.floatValue)))!)
-                    } else
-                    if UIDevice.current.name.contains("iPad") {
-                        finishedPhotoArray.append((image.image.jpegData(compressionQuality: CGFloat(settingsVM.qp_iPad.floatValue)))!)
-                    } else {
-                        finishedPhotoArray.append((image.image.jpegData(compressionQuality: CGFloat(settingsVM.qp_iPod.floatValue)))!)
-                    }
-                }
+//                for image in mediaVM.images {
+//                    if image.selected {
+//                        let image = UIImage(data: image.fetchImage())
+//                        if UIDevice.current.name.contains("iPhone") {
+//                            finishedPhotoArray.append((image?.jpegData(compressionQuality: CGFloat(settingsVM.qp_iPhone.floatValue)))!)
+//                        } else
+//                        if UIDevice.current.name.contains("iPod touch") {
+//                            finishedPhotoArray.append((image?.jpegData(compressionQuality: CGFloat(settingsVM.qp_iPod.floatValue)))!)
+//                        } else
+//                        if UIDevice.current.name.contains("iPad") {
+//                            finishedPhotoArray.append((image?.jpegData(compressionQuality: CGFloat(settingsVM.qp_iPad.floatValue)))!)
+//                        } else {
+//                            finishedPhotoArray.append((image?.jpegData(compressionQuality: CGFloat(settingsVM.qp_iPod.floatValue)))!)
+//                        }
+//                    }
+//                }
+//            
+//                for image in mediaVM.imagesCamera {
+//                    if UIDevice.current.name.contains("iPhone") {
+//                        finishedPhotoArray.append((image.image.jpegData(compressionQuality: CGFloat(settingsVM.qp_iPhone.floatValue)))!)
+//                    } else
+//                    if UIDevice.current.name.contains("iPod touch") {
+//                        finishedPhotoArray.append((image.image.jpegData(compressionQuality: CGFloat(settingsVM.qp_iPod.floatValue)))!)
+//                    } else
+//                    if UIDevice.current.name.contains("iPad") {
+//                        finishedPhotoArray.append((image.image.jpegData(compressionQuality: CGFloat(settingsVM.qp_iPad.floatValue)))!)
+//                    } else {
+//                        finishedPhotoArray.append((image.image.jpegData(compressionQuality: CGFloat(settingsVM.qp_iPod.floatValue)))!)
+//                    }
+//                }
                 
                 let group = DispatchGroup()
         

@@ -1,13 +1,6 @@
 import SwiftUI
 import ProgressHUD
 
-extension String {
-    var floatValue: Float {
-        return (self as NSString).floatValue
-    }
-}
-
-
 struct Settings_View: View {
     
     @EnvironmentObject var settingsVM: SettingsViewModel
@@ -19,7 +12,6 @@ struct Settings_View: View {
     @State private var showModal = false
     let deviceUser = UIDevice.current.name
     let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
-    let colors = ColorSeglerViewModel()
     
     var body: some View {
             List {
@@ -50,12 +42,12 @@ struct Settings_View: View {
                 if adminMenueUnlocked {
                     Section(header: Text("Standard Benutzer")) {
                         Toggle("Standard Benutzer", isOn: self.$settingsVM.useFixedUserTemp)
-                        TextField("Benutzername", text: self.$settingsVM.fixedUserName).accentColor(colors.color)
+                        TextField("Benutzername", text: self.$settingsVM.fixedUserName).accentColor(Color.seglerRed)
                     }
                     Section(header: Text("Server")) {
-                        TextField("Server / Hostname", text: $settingsVM.ip).accentColor(colors.color)
-                        TextField("Benutzername", text: $settingsVM.serverUsername).accentColor(colors.color)
-                        SecureField("Passwort:", text: $settingsVM.serverPassword).accentColor(colors.color)
+                        TextField("Server / Hostname", text: $settingsVM.ip).accentColor(Color.seglerRed)
+                        TextField("Benutzername", text: $settingsVM.serverUsername).accentColor(Color.seglerRed)
+                        SecureField("Passwort:", text: $settingsVM.serverPassword).accentColor(Color.seglerRed)
                         Button(action: {
                             let connection = FTPUploadController()
                             if connection.authenticate() {
