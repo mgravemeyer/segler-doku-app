@@ -3,50 +3,11 @@ import UIKit
 import Photos
 import SwiftUI
 
-struct VideoModel: Identifiable, Hashable {
-    let id = UUID()
-    var selected = false
-    var assetURL: URL
-    var thumbnail: UIImage
-    var order: Int
-    var orientation: String
-    
-    func fetchVideo() -> Data {
-            let video = try? NSData(contentsOf: assetURL, options: .mappedIfSafe)
-            return video! as Data
-    }
-}
-
-struct ImageModel: Identifiable, Hashable {
-    let id = UUID()
-    var selected = false
-    var assetURL: URL
-    var thumbnail: UIImage
-    var order: Int
-    var orientation: String
-    
-    func fetchImage() -> Data {
-            let photo = try? NSData(contentsOf: assetURL, options: .mappedIfSafe)
-            return photo! as Data
-    }
-}
-
-struct ImageModelCamera: Identifiable, Hashable {
-    let id = UUID()
-    var image: UIImage
-    var order: Int
-}
-
-struct VideoModelCamera: Identifiable, Hashable {
-    let id = UUID()
-    var url: URL
-    var video: Data
-    var thumbnail: UIImage
-    var order: Int
-    var orientation: String
-}
-
 class MediaViewModel : ObservableObject {
+    
+    init() {
+        loadServerPDFs()
+    }
     
     struct ResponsePDF: Decodable, Encodable, Identifiable {
         var id = UUID()

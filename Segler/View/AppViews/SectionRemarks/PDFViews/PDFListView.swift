@@ -4,12 +4,13 @@ struct PDFListView: View {
 
     @Environment(\.presentationMode) var presentationMode
     @Binding var show: Bool
+    @EnvironmentObject var mediaVM: MediaViewModel
     @EnvironmentObject var settingsVM: SettingsViewModel
     @EnvironmentObject var remarksVM: RemarksViewModel
     
     var body: some View {
         List {
-            ForEach(settingsVM.pdfs, id: \.self) {
+            ForEach(mediaVM.pdfs, id: \.self) {
                 NavigationLink($0.name, destination: PDFListDetailView(selectedPDF: $0, show: self.$show))
                     .frame(height: 34)
             }
