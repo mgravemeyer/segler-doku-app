@@ -2,8 +2,9 @@ import SwiftUI
 
 struct SectionImageViewView: View {
     
-    let colors = ColorSeglerViewModel()
     @EnvironmentObject var mediaVM : MediaViewModel
+    
+    let colors = ColorSeglerViewModel()
     
     var body: some View {
 
@@ -48,6 +49,6 @@ struct SectionImageViewView: View {
                                 }
                         }
                 }
-            }.padding(.horizontal, -15).listRowBackground(self.mediaVM.imagesIsOk ? colors.correctRowColor : colors.warningRowColor)
+            }.padding(.horizontal, -15).listRowBackground(self.mediaVM.imagesIsOk ? Color.white : Color.seglerRowWarning)
     }
 }
