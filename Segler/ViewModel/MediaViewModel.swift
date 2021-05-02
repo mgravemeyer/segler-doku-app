@@ -108,12 +108,8 @@ class MediaViewModel : ObservableObject {
     @Published var pdfs = [PDF]()
     @Published var selectedPDF = PDF(name: "", data: Data())
     
-    @Published var qp_iPhone = ""
-    @Published var qv_iPhone = ""
-    @Published var qp_iPod = ""
-    @Published var qv_iPod = ""
-    @Published var qp_iPad = ""
-    @Published var qv_iPad = ""
+    @Published var qualityPicture = NSNumber()
+    @Published var qualityVideo = NSNumber()
     
     func toggleElement(elementId: UUID) {
         let index = images.firstIndex(where: { $0.id == elementId })
@@ -233,42 +229,18 @@ class MediaViewModel : ObservableObject {
         do {
             let mediaQualityModel = try decoder.decode(MediaQualityModel.self, from: jsonData)
             
-            if mediaQualityModel.Qp_iPhone == "error" || mediaQualityModel.Qp_iPhone == "" {
-                //to:do error handling
-            } else {
-                qp_iPhone = mediaQualityModel.Qp_iPhone
+            if UIDevice.current.name.contains("iPhone") {
+                qualityPicture = NSNumber(value: Int(mediaQualityModel.Qp_iPhone)!)
+                qualityVideo = NSNumber(value: Int(mediaQualityModel.Qv_iPhone)!)
+            } else
+            if UIDevice.current.name.contains("iPod touch") {
+                qualityPicture = NSNumber(value: Int(mediaQualityModel.Qp_iPod)!)
+                qualityVideo = NSNumber(value: Int(mediaQualityModel.Qv_iPod)!)
+            } else
+            if UIDevice.current.name.contains("iPad") {
+                qualityPicture = NSNumber(value: Int(mediaQualityModel.Qp_iPad)!)
+                qualityVideo = NSNumber(value: Int(mediaQualityModel.Qv_iPad)!)
             }
-            
-            if mediaQualityModel.Qv_iPhone == "error" || mediaQualityModel.Qv_iPhone == "" {
-                //to:do error handling
-            } else {
-                qv_iPhone = mediaQualityModel.Qv_iPhone
-            }
-            
-            if mediaQualityModel.Qp_iPod == "error" || mediaQualityModel.Qp_iPod == "" {
-                //to:do error handling
-            } else {
-                qp_iPod = mediaQualityModel.Qp_iPod
-            }
-            
-            if mediaQualityModel.Qv_iPod == "error" || mediaQualityModel.Qv_iPod == "" {
-                //to:do error handling
-            } else {
-                qv_iPod = mediaQualityModel.Qv_iPod
-            }
-            
-            if mediaQualityModel.Qp_iPad == "error" || mediaQualityModel.Qp_iPad == "" {
-                //to:do error handling
-            } else {
-                qp_iPad = mediaQualityModel.Qp_iPad
-            }
-            
-            if mediaQualityModel.Qv_iPad == "error" || mediaQualityModel.Qv_iPad == ""  {
-                //to:do error handling
-            } else {
-                qv_iPad = mediaQualityModel.Qv_iPad
-            }
-            
         } catch {
             print(error.localizedDescription)
         }
