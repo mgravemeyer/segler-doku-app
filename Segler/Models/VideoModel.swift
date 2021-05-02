@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 
 struct VideoModel: Identifiable, Hashable {
     let id = UUID()

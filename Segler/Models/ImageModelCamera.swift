@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 
 struct ImageModelCamera: Identifiable, Hashable {
     let id = UUID()

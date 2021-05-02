@@ -1,7 +1,11 @@
 import Foundation
+import UIKit
 
-struct ImageModelCamera: Identifiable, Hashable {
+struct VideoModelCamera: Identifiable, Hashable {
     let id = UUID()
-    var image: UIImage
+    var url: URL
+    var video: Data
+    var thumbnail: UIImage
     var order: Int
+    var orientation: String
 }
