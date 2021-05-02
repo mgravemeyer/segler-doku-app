@@ -99,6 +99,7 @@ struct AppView: View {
                     ).navigationBarTitle(settingsVM.useFixedUser ? Text("\(settingsVM.userUsername)") : Text("\(userVM.username)"), displayMode: .inline)
                 }
             }
+            .accentColor(Color.seglerRed)
             .sheet(isPresented: self.$mediaVM.showImagePickerNew) {
                 ImageSelectionModal()
                 .onAppear {
