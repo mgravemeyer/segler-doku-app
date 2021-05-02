@@ -6,8 +6,6 @@ struct EmptyImageButtonView: View {
     
     @State var showSheet = false
     
-    var color = ColorSeglerViewModel()
-    
     var body: some View {
         Group {
             Button(action: {
@@ -18,7 +16,7 @@ struct EmptyImageButtonView: View {
                     Image("Camera")
                         .resizable()
                         .renderingMode(.template)
-                        .foregroundColor(color.color)
+                        .foregroundColor(Color.seglerRed)
                         .frame(width: 40, height: 40)
                         .zIndex(1)
                     RoundedRectangle(cornerRadius: CGFloat(3))

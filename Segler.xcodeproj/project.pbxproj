@@ -15,7 +15,6 @@
 		C63A0A8B51DE2A9BAE9845D2 /* libPods-Segler.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9959BB111C402453CB8AAD66 /* libPods-Segler.a */; };
 		E301A5A423CDF44A006A72D5 /* OrderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E301A5A323CDF44A006A72D5 /* OrderViewModel.swift */; };
 		E301A5A623CDF474006A72D5 /* MediaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E301A5A523CDF474006A72D5 /* MediaViewModel.swift */; };
-		E301A5A823CDF4A0006A72D5 /* ColorSeglerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E301A5A723CDF4A0006A72D5 /* ColorSeglerViewModel.swift */; };
 		E31A5C1523D4602900ED647C /* BarcodeScannerSegler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31A5C1423D4602900ED647C /* BarcodeScannerSegler.swift */; };
 		E35319742517EAC0005768DD /* URLModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35319732517EAC0005768DD /* URLModel.swift */; };
 		E357E1B524B23940009871F1 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E357E1B424B23940009871F1 /* ErrorView.swift */; };
@@ -77,7 +76,6 @@
 		9959BB111C402453CB8AAD66 /* libPods-Segler.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Segler.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E301A5A323CDF44A006A72D5 /* OrderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewModel.swift; sourceTree = "<group>"; };
 		E301A5A523CDF474006A72D5 /* MediaViewModel.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = MediaViewModel.swift; sourceTree = "<group>"; tabWidth = 4; };
-		E301A5A723CDF4A0006A72D5 /* ColorSeglerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSeglerViewModel.swift; sourceTree = "<group>"; };
 		E31A5C1423D4602900ED647C /* BarcodeScannerSegler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeScannerSegler.swift; sourceTree = "<group>"; };
 		E32E147A23F347DC00C9BA1D /* BarcodeScanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BarcodeScanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E32E148123F3481700C9BA1D /* BarcodeScanner.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = BarcodeScanner.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -212,7 +210,6 @@
 				E301A5A323CDF44A006A72D5 /* OrderViewModel.swift */,
 				E3C33BAE23CDB05E00E941FB /* RemarksViewModel.swift */,
 				E301A5A523CDF474006A72D5 /* MediaViewModel.swift */,
-				E301A5A723CDF4A0006A72D5 /* ColorSeglerViewModel.swift */,
 				E3B808DE23D06DE5007A7595 /* SettingsViewModel.swift */,
 				E3BDDD80250028D000C07EA0 /* UserViewModel.swift */,
 			);
@@ -497,7 +494,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E38D8A99263AABD700502077 /* ImageSelectionModalView.swift in Sources */,
-				E301A5A823CDF4A0006A72D5 /* ColorSeglerViewModel.swift in Sources */,
 				2E53050F256FB26A00E862B4 /* PhotoDetail.swift in Sources */,
 				E3BDDD81250028D000C07EA0 /* UserViewModel.swift in Sources */,
 				E3B808DB23D063D9007A7595 /* SetupView.swift in Sources */,

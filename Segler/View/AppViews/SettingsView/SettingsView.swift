@@ -108,7 +108,6 @@ struct ModalView: View {
     @Binding var adminMenueUnlocked : Bool
     @State var password : String = ""
     @State var value : CGFloat = -30
-    let colors = ColorSeglerViewModel()
     var body: some View {
         VStack {
             Image("Segler")
@@ -117,7 +116,7 @@ struct ModalView: View {
             .frame(width: 280)
             .padding(Edge.Set.bottom, 20)
 //            Text("Admin Anmelden").bold().font(.title)
-            SecureField("Admin Passwort", text: $password).accentColor(colors.color)
+            SecureField("Admin Passwort", text: $password).accentColor(Color.seglerRed)
             .padding()
             .background(Color(red: 241/255, green: 241/255, blue: 241/255))
             .cornerRadius(4.0)

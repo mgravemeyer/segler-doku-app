@@ -31,7 +31,7 @@ struct PDFListDetailView: View {
                     } label: {
                         ZStack {
                             Image(systemName: "arrowshape.turn.up.left").zIndex(1)
-                            RoundedRectangle(cornerRadius: 20).frame(width: 80, height: 40).foregroundColor(ColorSeglerViewModel().color).zIndex(0)
+                            RoundedRectangle(cornerRadius: 20).frame(width: 80, height: 40).foregroundColor(Color.seglerRed).zIndex(0)
                         }
                     }.zIndex(100)
                     
@@ -40,7 +40,7 @@ struct PDFListDetailView: View {
                     } label: {
                         ZStack {
                             Image(systemName: "arrowshape.turn.up.right").zIndex(1)
-                            RoundedRectangle(cornerRadius: 20).frame(width: 80, height: 40).foregroundColor(ColorSeglerViewModel().color).zIndex(0)
+                            RoundedRectangle(cornerRadius: 20).frame(width: 80, height: 40).foregroundColor(Color.seglerRed).zIndex(0)
                         }
                     }.zIndex(100)
                     

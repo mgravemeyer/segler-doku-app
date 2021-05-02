@@ -4,13 +4,11 @@ struct SectionImageViewView: View {
     
     @EnvironmentObject var mediaVM : MediaViewModel
     
-    let colors = ColorSeglerViewModel()
-    
     var body: some View {
 
             ScrollView(.horizontal) {
                 HStack {
-                        EmptyImageButtonView().accentColor(self.colors.color).padding(.leading, 15)
+                    EmptyImageButtonView().accentColor(Color.seglerRed).padding(.leading, 15)
                         if mediaVM.getNumberOfImages()>0 {
                             ForEach((0...mediaVM.highestOrderNumber).reversed(), id:\.self) { i in
                                 ForEach(mediaVM.images, id:\.self) { image in
