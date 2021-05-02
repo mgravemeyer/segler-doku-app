@@ -58,12 +58,30 @@ class NetworkDataManager {
     
     private func prepVideosData(mediaVM: MediaViewModel) -> [Data] {
         var data = [Data]()
+        let group = DispatchGroup()
+        let documentsPath = NSTemporaryDirectory()
+        
+
         for video in mediaVM.videos {
-            data.append(video.fetchVideo())
+            group.enter()
+            let outputURL = URL(fileURLWithPath: "\(documentsPath)\(UUID())\(video.id).mp4")
+            compressVideo(urlToCompress: video.assetURL, outputURL: outputURL)  { URL in
+                group.wait()
+                let videoData = try! NSData(contentsOf: outputURL, options: .mappedIfSafe) as Data
+                data.append(videoData)
+                group.leave()
+            }
         }
         for video in mediaVM.videosCamera {
-            data.append(video.video)
+            group.enter()
+            let outputURL = URL(fileURLWithPath: "\(documentsPath)\(UUID())\(video.id).mp4")
+            compressVideo(urlToCompress: video.url, outputURL: outputURL)  { URL in
+                let videoData = try! NSData(contentsOf: outputURL, options: .mappedIfSafe) as Data
+                data.append(videoData)
+                group.leave()
+            }
         }
+        group.wait()
         return data
     }
     
@@ -215,7 +233,7 @@ class NetworkDataManager {
                 })
                 assetReader?.cancelReading()
             } else {
-                print("NOT FINISHED STOP")
+                //to:do error handling
             }
         }
         
