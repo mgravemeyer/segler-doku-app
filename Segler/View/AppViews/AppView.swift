@@ -21,7 +21,7 @@ struct AppView: View {
                     ZStack {
                         ZStack {
                             List {
-                                SectionOrder(showBarcodeScannerView: self.$showBarcodeScannerView)
+                                SectionOrderView(showBarcodeScannerView: self.$showBarcodeScannerView)
                                     .frame(height: 34)
                                 SectionRemarks()
                                     .frame(height: 34)

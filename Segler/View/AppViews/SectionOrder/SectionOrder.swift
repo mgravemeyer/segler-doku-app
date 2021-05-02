@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct SectionOrder: View {
+struct SectionOrderView: View {
     
     @EnvironmentObject var orderVM : OrderViewModel
     
