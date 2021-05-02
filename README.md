@@ -47,12 +47,20 @@ The sended JSON is structured in the following way:
 
 ```diff
 {
+    "AppVersion": "1.6.4",
+    "Geraet": "iPhone von Max",
+    "Bereich": "Sägen",
     "Meldungstyp": "Material fehlt",
     "User": "Max",
-    "Freitext": "Freitext",
-    "Bereich": "Sägen"
+    "Freitext": "Test Text"
 }
 ```
+
+And this is how it looks like in the end on the server:
+
+<p align="center">
+    <img src="https://i.ibb.co/pXr2g9V/Screenshot-2021-05-02-at-17-03-22.png" max-height="500">
+</p>
 
 ## Install 💿
 Just download the Project and open Segler.xcworkspace
