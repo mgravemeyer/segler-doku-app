@@ -25,7 +25,7 @@ struct BarcodeScannerView : UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> BarcodeScannerViewController {
         let viewController = BarcodeScannerViewController()
         viewController.title = "Barcode Scanner"
-        viewController.headerViewController.navigationBar.barTintColor = UIColor.seglerRed
+        viewController.headerViewController.navigationBar.barTintColor = UIColor(Color.seglerRed)
         viewController.headerViewController.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
         viewController.headerViewController.navigationBar.tintColor = UIColor.seglerRed
         viewController.codeDelegate = context.coordinator
