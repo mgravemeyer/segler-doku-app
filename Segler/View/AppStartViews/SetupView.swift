@@ -5,6 +5,8 @@ import ProgressHUD
 struct SetupView: View {
     @EnvironmentObject var settingsVM: SettingsViewModel
     
+    @Binding var appIsReady: Bool
+    
     @State var value : CGFloat = -30
     var body: some View {
             VStack {
@@ -35,9 +37,10 @@ struct SetupView: View {
                 Button(action: {
                     if NetworkDataManager.shared.connect(host: settingsVM.ip, username: settingsVM.serverUsername, password: settingsVM.serverPassword, isInit: true) {
                         ProgressHUD.showSuccess("Verbunden")
+                        settingsVM.saveServerSettings()
+                        appIsReady = true
                     } else {
                         ProgressHUD.showError("Keine Verbindung mit diesem Netzwerk möglich")
-                        self.settingsVM.saveServerSettings()
                     }
                 }) {
                     HStack(alignment: .center) {

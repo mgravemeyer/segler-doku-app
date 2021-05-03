@@ -119,7 +119,7 @@ struct AppView: View {
                 MediaPickerView()
             }
             if self.showBarcodeScannerView {
-                BarcodeScannerView(showBarcodeScannerView: self.$showBarcodeScannerView, sourceType: 1)
+                BarcodeScannerView(showBarcodeScannerView: self.$showBarcodeScannerView, sourceType: 0)
             }
         }
     }

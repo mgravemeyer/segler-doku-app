@@ -43,7 +43,7 @@ struct AppStart: View {
             } else if self.appIsReady {
                 LoginView()
             } else {
-                SetupView()
+                SetupView(appIsReady: $appIsReady)
             }
         }.accentColor(Color.seglerRed)
         .environmentObject(userVM)
