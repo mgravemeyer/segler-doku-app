@@ -13,8 +13,8 @@ struct VideoPreviewView: View {
             self.showSheet = !self.showSheet
         }) {
             ZStack {
-                Rectangle().frame(width: 100, height: 100).background(Color.black).opacity(0.3).zIndex(2)
-                Text("Video").fontWeight(.bold).zIndex(1)
+                Rectangle().frame(width: 100, height: 100).foregroundColor(Color.gray).opacity(0.3).zIndex(2)
+                Text("Video").foregroundColor(Color.white).fontWeight(.bold).zIndex(1)
                 Image(uiImage: videoObject.thumbnail).renderingMode(.original).resizable().frame(width: 100, height: 100).scaledToFill().zIndex(0)
             }
             .actionSheet(isPresented: self.$showSheet) { () -> ActionSheet in

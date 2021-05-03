@@ -100,8 +100,8 @@ class NetworkDataManager {
         }
         
         if !(mediaVM.getNumberOfMedia() > 0) {
+            mediaVM.imagesIsOk = false
             error += "Kein Bild oder Video ausgewählt"
-            return false
         }
         
         if (error == "") {

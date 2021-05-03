@@ -9,7 +9,7 @@ struct SectionImageViewView: View {
             ScrollView(.horizontal) {
                 HStack {
                     EmptyImageButtonView().accentColor(Color.seglerRed).padding(.leading, 15)
-                        if mediaVM.getNumberOfImages()>0 {
+                        if mediaVM.getNumberOfMedia()>0 {
                             ForEach((0...mediaVM.highestOrderNumber).reversed(), id:\.self) { i in
                                 ForEach(mediaVM.images, id:\.self) { image in
                                     if image.selected && image.order == i {

@@ -357,6 +357,7 @@
 		E3E8B1FA263AA7E50025E27D /* SectionImageVideo */ = {
 			isa = PBXGroup;
 			children = (
+				E38D8AAC263AB3DA00502077 /* SectionImageVideoView.swift */,
 				2E53050E256FB26A00E862B4 /* PhotoDetail.swift */,
 				2E530511256FB39100E862B4 /* VideoDetail.swift */,
 				E38D8A98263AABD700502077 /* ImageSelectionModalView.swift */,
@@ -365,7 +366,6 @@
 				E38D8AA2263AAF5700502077 /* VideoPreviewView.swift */,
 				E38D8AA4263AB02100502077 /* VideoCameraPreviewView.swift */,
 				E38D8AA6263AB0D000502077 /* EmptyImageButtonView.swift */,
-				E38D8AAC263AB3DA00502077 /* SectionImageVideoView.swift */,
 			);
 			path = SectionImageVideo;
 			sourceTree = "<group>";

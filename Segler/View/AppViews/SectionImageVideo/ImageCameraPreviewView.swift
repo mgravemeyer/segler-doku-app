@@ -13,8 +13,8 @@ struct ImageCameraPreviewView: View {
             self.showSheet = !self.showSheet
         }) {
             ZStack {
-                Rectangle().frame(width: 100, height: 100).background(Color.black).opacity(0.3).zIndex(2)
-                Text("Foto").fontWeight(.bold).zIndex(1)
+                Rectangle().frame(width: 100, height: 100).background(Color.black).opacity(0.3).zIndex(2).foregroundColor(Color.gray)
+                Text("Foto").foregroundColor(Color.white).fontWeight(.bold).zIndex(1)
                 Image(uiImage: imageObject.image).renderingMode(.original).resizable().frame(width: 100, height: 100).scaledToFill().zIndex(0)
             }
             .actionSheet(isPresented: self.$showSheet) { () -> ActionSheet in

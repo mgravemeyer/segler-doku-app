@@ -53,18 +53,29 @@ class MediaViewModel : ObservableObject {
         }
     }
     
-    func returnVideoCount() -> Int {
-        
+    func returnActiveMediaCount() -> Int {
+        return returnVideoCount() + returnImageCount()
+    }
+    
+    func returnImageCount() -> Int {
         var count = 0
-        
+        for image in images {
+            if image.selected {
+                count += 1
+            }
+        }
+        count += imagesCamera.count
+        return count
+    }
+    
+    func returnVideoCount() -> Int {
+        var count = 0
         for video in videos {
             if video.selected {
                 count += 1
             }
         }
-        
         count += videosCamera.count
-        
         return count
     }
     
