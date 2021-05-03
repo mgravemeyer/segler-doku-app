@@ -119,7 +119,8 @@ struct BarcodeScannerView : UIViewControllerRepresentable {
                         found_ = true
                     }
                 }
-
+                print("here it comes")
+                print(userVM.username)
                 userVM.loggedIn = true
                 self.showBarcodeScannerView = false
                 controller.dismiss(animated: true, completion: nil)
@@ -138,7 +139,7 @@ struct BarcodeScannerView : UIViewControllerRepresentable {
             }
         }
             
-        func scanner(_ controller: BarcodeScannerViewController, didReceiveError error: Error) {
+        func scanner(_ controller: BarcodeScannerViewController, didReceiveError error: Error) { 
             print(error)
         }
             

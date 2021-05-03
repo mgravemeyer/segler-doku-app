@@ -17,11 +17,7 @@ struct Settings_View: View {
     var body: some View {
             List {
                 Section(header: Text("Benutzer")) {
-                    if settingsVM.useFixedUser {
-                        Text("Angemeldet: \(settingsVM.userUsername)")
-                    } else {
                         Text("Angemeldet: \(userVM.username)")
-                    }
                 }
                 Section(header: Text("App Version")) {
                     Text(version)
@@ -62,12 +58,8 @@ struct Settings_View: View {
                     }
                     
                     Section(header: Text("Medienqualität")) {
-                        Text("Foto iPhone: " + settingsVM.qp_iPhone)
-                        Text("Video iPhone: " + settingsVM.qv_iPhone)
-                        Text("Foto iPod: " + settingsVM.qp_iPod)
-                        Text("Video iPod: " + settingsVM.qv_iPod)
-                        Text("Foto iPad: " + settingsVM.qp_iPad)
-                        Text("Video iPad: " + settingsVM.qv_iPad)
+                        Text("Foto: " + String(describing: mediaVM.qualityPicture))
+                        Text("Video: " + String(describing: mediaVM.qualityVideo))
                     }
                     
                     Section(header: Text("Einstellungen speichern")) {
