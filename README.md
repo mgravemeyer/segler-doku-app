@@ -85,6 +85,7 @@ Go to the Folder of the Project (Segler-Master)
 * Storing Server Credentials not in UserDefaults, instead in CoreData. (UserDefaults is not encrypted so it is currently a security risk)!
 * Evnetually: refactoring the whole state process management. Back then, SwiftUI had really limited capabilities to work with it. (example: had to pass EnvironmentObjects manually to every child view (what a mess!)). Now, i reafctored already a lot to use newer and better techniques.
 * Creating a bidirectional system to transfer data. We are currently exploring the capabilities of websockets to transfer realtime data. Idea is, use types something into the project number search field, the app suggests him already what kind of projects he can choose and wich ones are valid/existing.
+* Refactoring the whole Images and Video structs. I currently have 4 structs, ImageCamera, Image, Video, VideoCamera. I will combine them together with an enum + switch case method to simply adapt methods to the needs of the object. Sadly, hadn't enough time yet to refactor that.
 
 
 ## Other App
