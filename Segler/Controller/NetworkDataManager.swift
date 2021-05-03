@@ -99,7 +99,7 @@ class NetworkDataManager {
             remarksVM.commentIsOk = true
         }
         
-        if !(mediaVM.getNumberOfMedia() > 0) {
+        if !(mediaVM.returnActiveMediaCount() > 0) {
             mediaVM.imagesIsOk = false
             error += "Kein Bild oder Video ausgewählt"
         }
