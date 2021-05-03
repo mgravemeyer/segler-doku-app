@@ -139,7 +139,7 @@ struct ModalView: View {
         }.padding().onAppear{
                     NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification, object: nil, queue: .main) { (noti) in
                         let value = noti.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! CGRect
-                        let height = -value.height+120
+                        let height = -value.height+300
                         self.value = height
                     }
                     NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillHideNotification, object: nil, queue: .main) { (noti) in
