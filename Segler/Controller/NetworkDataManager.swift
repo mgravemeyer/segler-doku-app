@@ -99,6 +99,11 @@ class NetworkDataManager {
             remarksVM.commentIsOk = true
         }
         
+        if !(mediaVM.getNumberOfMedia() > 0) {
+            error += "Kein Bild oder Video ausgewählt"
+            return false
+        }
+        
         if (error == "") {
             ProgressHUD.showError(error)
             return false

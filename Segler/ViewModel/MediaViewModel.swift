@@ -83,7 +83,7 @@ class MediaViewModel : ObservableObject {
         return highestOrderNumber
     }
     
-    func getNumberOfImages() -> Int {
+    func getNumberOfMedia() -> Int {
         return imagesCamera.count + videosCamera.count + images.count + videos.count
     }
     
