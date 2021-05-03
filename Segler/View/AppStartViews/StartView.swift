@@ -37,6 +37,8 @@ struct AppStart: View {
                     .onAppear {
                         self.settingsVM.loadJSON()
                         self.remarksVM.loadJSON()
+                        self.mediaVM.loadPDFs()
+                        self.mediaVM.loadQuality()
                     }
             } else if self.appIsReady {
                 LoginView()

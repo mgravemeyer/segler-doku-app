@@ -21,9 +21,16 @@ struct MediaPickerView: UIViewControllerRepresentable {
 
     func makeUIViewController(context: Context) -> UIImagePickerController {
         
+        let screenSize = UIScreen.main.bounds.size
+        let cameraAspectRatio: Float = 4.0 / 3.0
+        let imageWidth = floorf(Float(screenSize.width) * cameraAspectRatio)
+        let scale: Float = ceilf((Float(screenSize.height) / imageWidth) * 10.0) / 10.0
+        
+        
         let vc = UIImagePickerController()
         vc.allowsEditing = false
         vc.sourceType = .camera
+        vc.cameraViewTransform = CGAffineTransform(scaleX: CGFloat(scale), y: CGFloat(scale));
         if mediaVM.returnVideoCount() > 2 {
             vc.mediaTypes = [kUTTypeImage as String]
         } else {

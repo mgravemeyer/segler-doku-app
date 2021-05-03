@@ -4,11 +4,6 @@ import Photos
 import SwiftUI
 
 class MediaViewModel : ObservableObject {
-    
-    init() {
-        loadPDFs()
-        loadQuality()
-    }
 
     func decoderPDFs(jsonData : Foundation.Data) -> [ResponsePDF]? {
         let decoder = JSONDecoder()
