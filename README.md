@@ -15,7 +15,16 @@ The goal was to build an app that helps the engineers to track mistakes that wer
 * Scanning Barcodes from Drawings and fill that into the form.
 * Sending Photos, Videos, PDFs (also editing) to an FTP Server with additional information stored in a JSON File. (Photos and Videos will be getting compressed)
 
-## Techonologies used 🧑🏼‍💻
+### Install 💿
+Just download the Project and open Segler.xcworkspace
+If there is an error, the pods need to be rebuild. This is because one of the pods causes sometimes a compiler error for newer Xcode versions. Just download cocoa pods 
+```sudo gem install cocoapods```
+Go to the Folder of the Project (Segler-Master)
+```pod deintegrate```
+```pod install```
+
+
+### Techonologies used 🧑🏼‍💻
 * [Swift](https://developer.apple.com/swift/) with [SwiftUI](https://developer.apple.com/xcode/swiftui/)
 * [UIKit](https://developer.apple.com/documentation/uikit) (UIViewRepresentable for SwiftUI)
 * [PDFKit](https://developer.apple.com/documentation/pdfkit)
@@ -82,14 +91,6 @@ And this is how it looks like in the end on the server:
 <p align="center">
     <img src="https://i.ibb.co/pXr2g9V/Screenshot-2021-05-02-at-17-03-22.png" max-height="500">
 </p>
-
-## Install 💿
-Just download the Project and open Segler.xcworkspace
-If there is an error, the pods need to be rebuild. This is because one of the pods causes sometimes a compiler error for newer Xcode versions. Just download cocoa pods 
-```sudo gem install cocoapods```
-Go to the Folder of the Project (Segler-Master)
-```pod deintegrate```
-```pod install```
 
 ## What's next?
 * Storing the downloaded PDFs in the FileManager system, with that, I don't need to redownload every pdf.
