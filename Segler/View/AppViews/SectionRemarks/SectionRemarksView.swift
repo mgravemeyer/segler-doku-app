@@ -29,10 +29,10 @@ struct SectionRemarksView: View {
                     editViewVisible.toggle()
                 }) {
                     Image(systemName: "pencil.circle.fill")
-                        .font(.system(size: 30))
+                        .font(.system(size: 20))
                         .foregroundColor(Color.seglerRed)
                         .buttonStyle(BorderlessButtonStyle())
-                }.buttonStyle(BorderlessButtonStyle()).frame(width: 30)
+                }.buttonStyle(BorderlessButtonStyle())
             }
         }
     }

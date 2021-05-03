@@ -34,6 +34,7 @@ struct SectionFreeTextFieldView: View {
                 }) {
                     Image("Delete")
                         .renderingMode(.template)
+                        .offset(x: 2)
                         .buttonStyle(BorderlessButtonStyle())
                         .foregroundColor(Color.seglerRed)
                 }.buttonStyle(BorderlessButtonStyle()).frame(width: 30)
