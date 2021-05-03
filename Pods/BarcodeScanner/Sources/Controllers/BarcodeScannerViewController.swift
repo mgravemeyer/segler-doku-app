@@ -92,7 +92,7 @@ open class BarcodeScannerViewController: UIViewController {
 
   open override func viewDidLoad() {
     super.viewDidLoad()
-    view.backgroundColor = UIColor.black
+    view.backgroundColor = UIColor.white
 
     add(childViewController: messageViewController)
     messageView.translatesAutoresizingMaskIntoConstraints = false

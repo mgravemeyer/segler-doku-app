@@ -89,7 +89,7 @@ public final class CameraViewController: UIViewController {
 
   public override func viewDidLoad() {
     super.viewDidLoad()
-    view.backgroundColor = .black
+    view.backgroundColor = .white
     videoPreviewLayer = AVCaptureVideoPreviewLayer(session: self.captureSession)
     videoPreviewLayer?.videoGravity = .resizeAspectFill
 
