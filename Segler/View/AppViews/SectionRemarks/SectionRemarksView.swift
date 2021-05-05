@@ -14,15 +14,18 @@ struct SectionRemarksView: View {
         if mediaVM.savedPDF.name == "" {
             NavigationLink(destination: ListCommentsView(show: true)) {
                     if remarksVM.selectedComment == "" {
-                        Text("Kommentar").foregroundColor(.gray)
+                        Text("Kommentar oder Protokoll").foregroundColor(.gray)
                     } else {
                         Text("\(remarksVM.selectedComment)")
                     }
             }.listRowBackground(self.remarksVM.commentIsOk ? Color.white : Color.seglerRowWarning)
         } else {
             HStack {
-                NavigationLink(destination: ListCommentsView(show: true)) {
-                    Text(mediaVM.savedPDF.name)
+                VStack {
+                    Divider().offset(y: -7).ignoresSafeArea(.keyboard, edges: .trailing)
+                        NavigationLink(destination: ListCommentsView(show: true)) {
+                        Text(mediaVM.savedPDF.name)
+                    }
                 }
                 NavigationLink(destination: PDFEditDetailView(saveState: false), isActive: $editViewVisible) { EmptyView() }.frame(width: 0).hidden().labelsHidden().buttonStyle((BorderlessButtonStyle())).zIndex(-100000).disabled(true)
                 Button(action: {

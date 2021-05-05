@@ -33,7 +33,11 @@ struct AppStart: View {
     var body: some View {
         Group {
             if self.appIsReady && userVM.loggedIn {
-                AppView()
+                ZStack {
+                    AppView()
+                    .zIndex(2)
+
+                }
                     .onAppear {
                         self.settingsVM.loadJSON()
                         self.remarksVM.loadJSON()

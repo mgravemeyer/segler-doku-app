@@ -27,12 +27,12 @@ struct AppView: View {
                                     .frame(height: 34)
                                 SectionFreeTextFieldView()
                                 SectionImageViewView()
-                                if !(settingsVM.errorsJSON.isEmpty) {
-                                    Image("Warning").resizable().frame(width: 50, height: 50)
-                                    ForEach(settingsVM.errorsJSON, id: \.self) { error in
-                                        Text(error).foregroundColor(Color.red)
-                                    }
-                                }
+//                                if !(settingsVM.errorsJSON.isEmpty) {
+//                                    Image("Warning").resizable().frame(width: 50, height: 50)
+//                                    ForEach(settingsVM.errorsJSON, id: \.self) { error in
+//                                        Text(error).foregroundColor(Color.red)
+//                                    }
+//                                }
                             }
                                 .zIndex(0)
                                 .environment(\.defaultMinListRowHeight, 8)
