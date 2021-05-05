@@ -17,6 +17,7 @@ struct SaveButtonView: View {
         HStack {
             Button(action: {
                 typealias ThrowableCallback = () throws -> Bool
+                UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                 NetworkDataManager.shared.sendToFTP(mediaVM: mediaVM, userVM: userVM, orderVM: orderVM, remarksVM: remarksVM, true) { (error) -> Void in
                     if error != nil {
                         ProgressHUD.showError("Daten ungültig")
