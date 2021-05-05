@@ -45,7 +45,8 @@ struct AppStart: View {
             } else {
                 SetupView(appIsReady: $appIsReady)
             }
-        }.accentColor(Color.seglerRed)
+        }
+        .accentColor(Color.seglerRed)
         .environmentObject(userVM)
         .environmentObject(settingsVM)
         .environmentObject(mediaVM)

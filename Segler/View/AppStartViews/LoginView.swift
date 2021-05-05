@@ -29,7 +29,17 @@ struct LoginView: View {
                 }.padding().background(Color.green).cornerRadius(4.0)
                 }.padding().zIndex(0).offset(y: -50)
             if self.showBarcodeScannerView {
-                BarcodeScannerView(showBarcodeScannerView: self.$showBarcodeScannerView, sourceType: 1).zIndex(1)
+                ZStack {
+                    BarcodeScannerView(showBarcodeScannerView: self.$showBarcodeScannerView, sourceType: 1)
+                    .zIndex(2)
+                    Rectangle()
+                    .zIndex(1)
+                    .foregroundColor(Color.white)
+                    Rectangle()
+                    .ignoresSafeArea(.all)
+                    .zIndex(0)
+                    .foregroundColor(Color.seglerRed)
+                }.zIndex(1)
             }
         }
     }
