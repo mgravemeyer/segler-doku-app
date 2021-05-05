@@ -244,6 +244,7 @@ class MediaViewModel : ObservableObject {
                 qualityPicture = NSNumber(value: Double(mediaQualityModel.Qp_iPod)!)
                 qualityVideo = NSNumber(value: Double(mediaQualityModel.Qv_iPod)!)
             } else
+            
             if UIDevice.current.name.contains("iPad") {
                 qualityPicture = NSNumber(value: Double(mediaQualityModel.Qp_iPad)!)
                 qualityVideo = NSNumber(value: Double(mediaQualityModel.Qv_iPad)!)

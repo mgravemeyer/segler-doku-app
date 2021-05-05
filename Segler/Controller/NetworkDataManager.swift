@@ -92,7 +92,7 @@ class NetworkDataManager {
             orderVM.orderPositionIsOk = false
         }
         
-        if (remarksVM.selectedComment == "") {
+        if (remarksVM.selectedComment == "" && mediaVM.savedPDF.name == "") {
             error += "Keinen Kommentar ausgewählt"
             remarksVM.commentIsOk = false
         } else {
@@ -105,6 +105,8 @@ class NetworkDataManager {
         } else {
             mediaVM.imagesIsOk = true
         }
+        
+        print(error)
         
         if (error == "") {
             ProgressHUD.showError(error)
