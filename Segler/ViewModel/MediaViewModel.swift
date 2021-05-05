@@ -234,26 +234,19 @@ class MediaViewModel : ObservableObject {
     func loadQuality() {
         let decoder = JSONDecoder()
         do {
-            print("config: \(String(decoding: NetworkDataManager.shared.config!, as: UTF8.self))")
             let mediaQualityModel = try decoder.decode(MediaQualityModel.self, from: NetworkDataManager.shared.config!)
-            print("decoder: \(mediaQualityModel)")
+            
             if UIDevice.current.name.contains("iPhone") {
                 qualityPicture = NSNumber(value: Double(mediaQualityModel.Qp_iPhone)!)
-                print("QP iPhone: \(qualityPicture)")
                 qualityVideo = NSNumber(value: Double(mediaQualityModel.Qv_iPhone)!)
-                print("QV iPhone: \(qualityVideo)")
             } else
             if UIDevice.current.name.contains("iPod touch") {
-                qualityPicture = NSNumber(value: Int(mediaQualityModel.Qp_iPod)!)
-                print("QP iPod: \(qualityPicture)")
-                qualityVideo = NSNumber(value: Int(mediaQualityModel.Qv_iPod)!)
-                print("QV iPod: \(qualityVideo)")
+                qualityPicture = NSNumber(value: Double(mediaQualityModel.Qp_iPod)!)
+                qualityVideo = NSNumber(value: Double(mediaQualityModel.Qv_iPod)!)
             } else
             if UIDevice.current.name.contains("iPad") {
-                print("QP iPod: \(qualityPicture)")
-                qualityPicture = NSNumber(value: Int(mediaQualityModel.Qp_iPad)!)
-                print("QV iPod: \(qualityVideo)")
-                qualityVideo = NSNumber(value: Int(mediaQualityModel.Qv_iPad)!)
+                qualityPicture = NSNumber(value: Double(mediaQualityModel.Qp_iPad)!)
+                qualityVideo = NSNumber(value: Double(mediaQualityModel.Qv_iPad)!)
             }
         } catch {
             print(error.localizedDescription)
