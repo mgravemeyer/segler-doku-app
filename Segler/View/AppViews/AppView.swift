@@ -15,6 +15,8 @@ struct AppView: View {
     
     @State var showBarcodeScannerView = false
     
+    @State var interactionDisabled = false
+    
     var body: some View {
             ZStack {
                 NavigationView {
@@ -38,7 +40,7 @@ struct AppView: View {
                                 .environment(\.defaultMinListRowHeight, 8)
                             VStack {
                                 Spacer()
-                                SaveButtonView()
+                                SaveButtonView(interactionDisabled: $interactionDisabled)
                                     .zIndex(2)
                             }
                             if mediaVM.showVideo {
@@ -100,6 +102,8 @@ struct AppView: View {
                     ).navigationBarTitle(userVM.username, displayMode: .inline)
                 }
             }
+                
+            .allowsHitTesting(!interactionDisabled)
             
             .sheet(isPresented: self.$mediaVM.showImagePickerNew) {
                 ImageSelectionModal()

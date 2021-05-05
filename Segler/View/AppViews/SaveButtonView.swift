@@ -12,18 +12,23 @@ struct SaveButtonView: View {
     @State var showReport = false
     @State var isInProgress = false
     @State var keyboardIsShown = false
+    
+    @Binding var interactionDisabled: Bool
 
     var body: some View {
         HStack {
             Button(action: {
                 typealias ThrowableCallback = () throws -> Bool
                 UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                interactionDisabled = true
                 NetworkDataManager.shared.sendToFTP(mediaVM: mediaVM, userVM: userVM, orderVM: orderVM, remarksVM: remarksVM, true) { (error) -> Void in
                     if error != nil {
                         ProgressHUD.showError("Daten ungültig")
+                        interactionDisabled = false
                         return
                     } else {
                         ProgressHUD.showSuccess("Hochgeladen")
+                        interactionDisabled = false
                         self.showReport = true
                         return
                     }
