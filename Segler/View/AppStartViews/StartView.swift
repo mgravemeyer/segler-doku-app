@@ -6,22 +6,9 @@ struct AppStart: View {
         UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.white]
         UINavigationBar.appearance().barTintColor = UIColor.seglerRed
         UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.white]
-        if(
-            UserDefaults.standard.string(forKey: "ip") != nil &&
-            UserDefaults.standard.string(forKey: "serverUsername") != nil &&
-            UserDefaults.standard.string(forKey: "serverPassword") != nil
-        ){
-            self.appIsReady = NetworkDataManager.shared.connect(
-                host: UserDefaults.standard.string(forKey: "ip")!,
-                username: UserDefaults.standard.string(forKey: "serverUsername")!,
-                password: UserDefaults.standard.string(forKey: "serverPassword")!,
-                isInit: true)
-        } else {
-            self.appIsReady = false
-        }
     }
     
-    @State var appIsReady: Bool
+    @State var appIsReady: Bool = false
     
     //CREATING ALL DATA MODULES FOR THE VIEWS
     @StateObject var userVM = UserViewModel()
@@ -46,6 +33,21 @@ struct AppStart: View {
                 SetupView(appIsReady: $appIsReady)
             }
         }
+        .onAppear(perform: {
+            if(
+                UserDefaults.standard.string(forKey: "ip") != nil &&
+                UserDefaults.standard.string(forKey: "serverUsername") != nil &&
+                UserDefaults.standard.string(forKey: "serverPassword") != nil
+            ){
+                self.appIsReady = NetworkDataManager.shared.connect(
+                    host: UserDefaults.standard.string(forKey: "ip")!,
+                    username: UserDefaults.standard.string(forKey: "serverUsername")!,
+                    password: UserDefaults.standard.string(forKey: "serverPassword")!,
+                    isInit: true)
+            } else {
+                self.appIsReady = false
+            }
+        })
         .accentColor(Color.seglerRed)
         .environmentObject(userVM)
         .environmentObject(settingsVM)
