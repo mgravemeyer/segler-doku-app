@@ -93,7 +93,7 @@ class NetworkDataManager {
         }
         
         if (remarksVM.selectedComment == "" && mediaVM.savedPDF.name == "") {
-            error += "Keinen Kommentar ausgewählt"
+            error += "Keinen Kommentar ausgewählt \n"
             remarksVM.commentIsOk = false
         } else {
             remarksVM.commentIsOk = true
@@ -101,7 +101,7 @@ class NetworkDataManager {
         
         if !(mediaVM.returnActiveMediaCount() > 0) {
             mediaVM.imagesIsOk = false
-            error += "Kein Bild oder Video ausgewählt"
+            error += "Kein Bild oder Video ausgewählt \n"
         } else {
             mediaVM.imagesIsOk = true
         }
