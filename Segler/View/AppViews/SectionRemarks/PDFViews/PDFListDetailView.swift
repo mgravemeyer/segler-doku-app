@@ -20,7 +20,7 @@ struct PDFListDetailView: View {
                     remarksVM.selectedComment = ""
                     print(mediaVM.savedPDF)
                     saveState = true
-                    show = false
+                    self.show = false
                 })).zIndex(0)
             VStack {
                 Spacer()

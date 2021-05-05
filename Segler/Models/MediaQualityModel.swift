@@ -29,7 +29,7 @@ struct MediaQualityModel: Decodable, Identifiable {
         let container = try decoder.container(keyedBy: Keys.self)
         let response = try container.nestedContainer(keyedBy: Keys.self, forKey: .response)
         let responseNested = try response.nestedContainer(keyedBy: Keys.self, forKey: .responseNested)
-
+            
         Qp_iPhone = try responseNested.decodeIfPresent(String.self, forKey: .Qp_iPhone) ?? "error"
         Qv_iPhone = try responseNested.decodeIfPresent(String.self, forKey: .Qv_iPhone) ?? "error"
         Qp_iPod = try responseNested.decodeIfPresent(String.self, forKey: .Qp_iPod) ?? "error"
@@ -39,4 +39,3 @@ struct MediaQualityModel: Decodable, Identifiable {
         
     }
 }
-

@@ -24,6 +24,7 @@ struct PDFListView: View {
             }.navigationTitle("Protokolle").onAppear{
                 if self.show != true {
                     self.presentationMode.wrappedValue.dismiss()
+                    print("firing event")
                 }
             }
 //            NavigationLink("saved pdf", destination: PDFListDetailView(settingsVM: self.settingsVM, selectedPDF: settingsVM.savedPDF))
