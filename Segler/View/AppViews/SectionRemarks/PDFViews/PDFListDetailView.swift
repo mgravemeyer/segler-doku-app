@@ -57,12 +57,38 @@ struct PDFEditDetailView: View {
     
     var body: some View {
         let pdf = PDFDetailUIView(selectedPDF: mediaVM.savedPDF, saveState: $saveState, mediaVM: _mediaVM)
-        pdf
+        return ZStack {
+            pdf
             .environmentObject(mediaVM)
             .navigationBarTitle("\(mediaVM.savedPDF.name)", displayMode: .inline)
             .navigationBarItems(trailing: Button("Speichern", action: {
                 pdf.savePDF()
                 saveState = true
             }))
+            VStack {
+                Spacer()
+                HStack {
+                    
+                    Button {
+                        pdf.back()
+                    } label: {
+                        ZStack {
+                            Image(systemName: "arrowshape.turn.up.left").zIndex(1)
+                            RoundedRectangle(cornerRadius: 20).frame(width: 80, height: 40).foregroundColor(Color.seglerRed).zIndex(0)
+                        }
+                    }.zIndex(100)
+                    
+                    Button {
+                        pdf.forward()
+                    } label: {
+                        ZStack {
+                            Image(systemName: "arrowshape.turn.up.right").zIndex(1)
+                            RoundedRectangle(cornerRadius: 20).frame(width: 80, height: 40).foregroundColor(Color.seglerRed).zIndex(0)
+                        }
+                    }.zIndex(100)
+                    
+                }.padding(.bottom, 10)
+            }
+        }
     }
 }

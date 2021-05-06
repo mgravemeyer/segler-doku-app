@@ -128,12 +128,14 @@ class NetworkDataManager {
     private func prepImagesData(mediaVM: MediaViewModel) -> [Data] {
         var data = [Data]()
         for image in mediaVM.images {
+            print("i: \(image)")
             if image.selected {
                 let uIImage = UIImage(data: image.fetchImage())
                 data.append((uIImage?.jpegData(compressionQuality: CGFloat(truncating: mediaVM.qualityPicture)))!)
             }
         }
         for image in mediaVM.imagesCamera {
+            print("iC: \(image)")
             data.append(image.image.jpegData(compressionQuality: CGFloat(truncating: mediaVM.qualityPicture))!)
         }
         return data
