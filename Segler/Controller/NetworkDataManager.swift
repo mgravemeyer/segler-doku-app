@@ -170,23 +170,28 @@ class NetworkDataManager {
         return data
     }
     
+    var counter = 0
+    
     private func sendPhotos(filename: String, data: [Data], json: Data) {
         for (index, photo) in data.enumerated() {
-            self.session!.writeContents(json, toFileAtPath: "\(filename)\(index).json")
-            self.session!.writeContents(photo, toFileAtPath: "\(filename)\(index).jpg")
+            self.session!.writeContents(json, toFileAtPath: "\(filename)_\(counter).json")
+            self.session!.writeContents(photo, toFileAtPath: "\(filename)_\(counter).jpg")
+            counter += 1
         }
     }
     
     private func sendVideos(filename: String, data: [Data], json: Data) {
         for (index, video) in data.enumerated() {
-            self.session!.writeContents(json, toFileAtPath: "\(filename)\(index).json")
-            self.session!.writeContents(video, toFileAtPath: "\(filename)\(index).mp4")
+            self.session!.writeContents(json, toFileAtPath: "\(filename)_\(counter).json")
+            self.session!.writeContents(video, toFileAtPath: "\(filename)_\(counter).mp4")
+            counter += 1
         }
     }
     
     private func sendPDF(filename: String, pdfData: Data, jsonData: Data) {
-        self.session!.writeContents(jsonData, toFileAtPath: "\(filename)_0.json")
-        self.session!.writeContents(pdfData, toFileAtPath: "\(filename)_0.pdf")
+        self.session!.writeContents(jsonData, toFileAtPath: "\(filename)_\(counter).json")
+        self.session!.writeContents(pdfData, toFileAtPath: "\(filename)_\(counter).pdf")
+        counter += 1
         guard
             let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
         else {
@@ -199,10 +204,11 @@ class NetworkDataManager {
         } catch {
             print(error.localizedDescription)
         }
+        counter = 0
     }
     
     private func generateDataName(orderVM: OrderViewModel) -> String {
-        return ("\(orderVM.orderNr)_\(orderVM.orderPosition)_\(getDate())_\(getTime())_")
+        return ("\(orderVM.orderNr)_\(orderVM.orderPosition)_\(getDate())_\(getTime())")
     }
     
     private func getDate() -> String {
