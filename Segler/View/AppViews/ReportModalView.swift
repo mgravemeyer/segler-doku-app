@@ -17,9 +17,6 @@ struct ReportModalView: View {
                 if remarksVM.selectedComment != "" && mediaVM.savedPDF.name == "" {
                     Text("Kommentar: \(remarksVM.selectedComment)").frame(height: 34)
                 }
-                if remarksVM.additionalComment != "" {
-                    Text("Freitext: \(remarksVM.additionalComment)").frame(height: 34)
-                }
                 if mediaVM.savedPDF.name != "" {
                     Text("Protokoll: \(mediaVM.savedPDF.name)")
                 }
@@ -48,6 +45,9 @@ struct ReportModalView: View {
                             }
                         }
                     }
+                }
+                if remarksVM.additionalComment != "" {
+                    Text("Freitext: \(remarksVM.additionalComment)").frame(height: 34)
                 }
                 Button(action: {
                     deleteMedia()
