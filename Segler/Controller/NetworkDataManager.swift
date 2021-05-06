@@ -37,11 +37,19 @@ class NetworkDataManager {
     func sendToFTP(mediaVM: MediaViewModel, userVM: UserViewModel, orderVM: OrderViewModel, remarksVM: RemarksViewModel, _ shouldThrow: Bool, completion: @escaping(String?) -> ()) {
             if !checkIfDataIsCorrect(mediaVM: mediaVM, orderVM: orderVM, remarksVM: remarksVM) {
                 let filename = generateDataName(orderVM: orderVM)
-                let json = generateJSON(userVM: userVM, remarksVM: remarksVM)
+                var json = Data()
+                if mediaVM.savedPDF.name != "" {
+                    json = generatePDFJSON(userVM: userVM, remarksVM: remarksVM, mediaVM: mediaVM)!
+                } else {
+                    json = generateJSON(userVM: userVM, remarksVM: remarksVM)!
+                }
                 ProgressHUD.show()
                 DispatchQueue.global(qos: .userInitiated).async {
-                    self.sendPhotos(filename: filename, data: self.prepImagesData(mediaVM: mediaVM), json: json!)
-                    self.sendVideos(filename: filename, data: self.prepVideosData(mediaVM: mediaVM), json: json!)
+                    self.sendPhotos(filename: filename, data: self.prepImagesData(mediaVM: mediaVM), json: json)
+                    self.sendVideos(filename: filename, data: self.prepVideosData(mediaVM: mediaVM), json: json)
+                    if mediaVM.savedPDF.name != "" {
+                        self.sendPDF(filename: filename, pdfData: mediaVM.savedPDF.data, jsonData: json)
+                    }
                     completion(nil)
                 }
             } else {
@@ -177,8 +185,8 @@ class NetworkDataManager {
     }
     
     private func sendPDF(filename: String, pdfData: Data, jsonData: Data) {
-        self.session!.writeContents(jsonData, toFileAtPath: "\(filename).json")
-        self.session!.writeContents(pdfData, toFileAtPath: "\(filename).pdf")
+        self.session!.writeContents(jsonData, toFileAtPath: "\(filename)_0.json")
+        self.session!.writeContents(pdfData, toFileAtPath: "\(filename)_0.pdf")
         guard
             let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
         else {
@@ -234,9 +242,30 @@ class NetworkDataManager {
         }
     }
     
+    private func generatePDFJSON(userVM: UserViewModel, remarksVM: RemarksViewModel, mediaVM: MediaViewModel) -> Data? {
+        
+        let keyValuePairs = [
+            ("Bereich", "Protokoll"),
+            ("Meldungstyp", "\(mediaVM.savedPDF.name)"),
+            ("Freitext", "\(remarksVM.additionalComment)"),
+            ("User", "\(userVM.username)"),
+            ("AppVersion", Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String),
+            ("Geraet", UIDevice.current.name)
+        ]
+        
+        let dict = Dictionary(keyValuePairs)
+
+        do {
+            let jsonData = try JSONSerialization.data(withJSONObject: dict, options: JSONSerialization.WritingOptions.prettyPrinted) as NSData
+            return jsonData as Data
+        } catch _ {
+            return nil
+        }
+    }
+    
     func compressVideo(urlToCompress: URL, outputURL: URL, mediaVM: MediaViewModel, completion:@escaping (URL)->Void) {
         
-        var bitrate = mediaVM.qualityVideo
+        let bitrate = mediaVM.qualityVideo
         
         var assetWriter:AVAssetWriter?
         var assetReader:AVAssetReader?
