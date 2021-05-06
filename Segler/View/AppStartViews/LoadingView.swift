@@ -9,7 +9,7 @@ struct LoadingView: View {
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 300)
-                .offset(y: -140)
+                .offset(x: 10, y: -140)
         }.onAppear {
             ProgressHUD.colorSpinner(UIColor.seglerRed)
             ProgressHUD.show("Verbinde...")
