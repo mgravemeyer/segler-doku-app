@@ -16,6 +16,7 @@
 		E301A5A423CDF44A006A72D5 /* OrderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E301A5A323CDF44A006A72D5 /* OrderViewModel.swift */; };
 		E301A5A623CDF474006A72D5 /* MediaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E301A5A523CDF474006A72D5 /* MediaViewModel.swift */; };
 		E31A5C1523D4602900ED647C /* BarcodeScannerSegler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31A5C1423D4602900ED647C /* BarcodeScannerSegler.swift */; };
+		E33910472643E8400043290D /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33910462643E8400043290D /* LoadingView.swift */; };
 		E35319742517EAC0005768DD /* URLModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35319732517EAC0005768DD /* URLModel.swift */; };
 		E357E1B524B23940009871F1 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E357E1B424B23940009871F1 /* ErrorView.swift */; };
 		E368AFBE23CCC427009DD849 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E368AFBD23CCC427009DD849 /* Comment.swift */; };
@@ -79,6 +80,7 @@
 		E31A5C1423D4602900ED647C /* BarcodeScannerSegler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeScannerSegler.swift; sourceTree = "<group>"; };
 		E32E147A23F347DC00C9BA1D /* BarcodeScanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BarcodeScanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E32E148123F3481700C9BA1D /* BarcodeScanner.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = BarcodeScanner.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		E33910462643E8400043290D /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		E33E8FDD254A27E2003953E8 /* libBarcodeScanner.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libBarcodeScanner.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E33E8FDF254A27F9003953E8 /* libNMSSH.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libNMSSH.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E35319732517EAC0005768DD /* URLModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLModel.swift; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 				2E32BD092570030900EDD668 /* StartView.swift */,
 				E3B808DA23D063D9007A7595 /* SetupView.swift */,
 				E3EA711A23D132F900340463 /* LoginView.swift */,
+				E33910462643E8400043290D /* LoadingView.swift */,
 			);
 			path = AppStartViews;
 			sourceTree = "<group>";
@@ -508,6 +511,7 @@
 				E3A3BC7823A26C53002BDE18 /* FTPUploadController.swift in Sources */,
 				E38D8A97263AAA8000502077 /* SectionFreeTextField.swift in Sources */,
 				E368AFBE23CCC427009DD849 /* Comment.swift in Sources */,
+				E33910472643E8400043290D /* LoadingView.swift in Sources */,
 				E38D8AAD263AB3DA00502077 /* SectionImageVideoView.swift in Sources */,
 				E301A5A623CDF474006A72D5 /* MediaViewModel.swift in Sources */,
 				E301A5A423CDF44A006A72D5 /* OrderViewModel.swift in Sources */,
