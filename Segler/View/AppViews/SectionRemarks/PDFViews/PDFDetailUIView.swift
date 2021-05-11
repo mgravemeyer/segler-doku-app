@@ -44,9 +44,20 @@ struct PDFDetailUIView: UIViewRepresentable {
 
     func makeUIView(context: Context) -> PDFView {
         
+        pdfView.tintColor = UIColor.black
+        
         pdfView.document = PDFDocument(data: selectedPDF.data)
         
-        pdfView.displayMode = .singlePage
+        for i in 0..<pdfView.document!.pageCount {
+            if let page = pdfView.document!.page(at: i) {
+                for i in 0..<page.annotations.count {
+                    page.annotations[i].color = UIColor.blue
+                    page.annotations[i].backgroundColor = UIColor(red:0.79, green:0.89, blue:1.00, alpha:1.0)
+                }
+            }
+        }
+        
+        pdfView.displayMode = .singlePageContinuous
         
         UITextField.appearance().tintColor = .black
 //
@@ -73,6 +84,14 @@ struct PDFDetailUIView: UIViewRepresentable {
     }
 
     func savePDF() {
+        for i in 0..<pdfView.document!.pageCount {
+            if let page = pdfView.document!.page(at: i) {
+                for i in 0..<page.annotations.count {
+                    page.annotations[i].color = UIColor.blue
+                    page.annotations[i].backgroundColor = UIColor.clear
+                }
+            }
+        }
         guard
             let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first,
             let data = pdfView.document?.dataRepresentation()
