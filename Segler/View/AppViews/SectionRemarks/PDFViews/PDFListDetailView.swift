@@ -26,23 +26,23 @@ struct PDFListDetailView: View {
                 Spacer()
                 HStack {
                     
-                    Button {
-                        pdf.back()
-                    } label: {
-                        ZStack {
-                            Image(systemName: "arrowshape.turn.up.left").zIndex(1)
-                            RoundedRectangle(cornerRadius: 20).frame(width: 80, height: 40).foregroundColor(Color.seglerRed).zIndex(0)
-                        }
-                    }.zIndex(100)
-                    
-                    Button {
-                        pdf.forward()
-                    } label: {
-                        ZStack {
-                            Image(systemName: "arrowshape.turn.up.right").zIndex(1)
-                            RoundedRectangle(cornerRadius: 20).frame(width: 80, height: 40).foregroundColor(Color.seglerRed).zIndex(0)
-                        }
-                    }.zIndex(100)
+//                    Button {
+//                        pdf.back()
+//                    } label: {
+//                        ZStack {
+//                            Image(systemName: "arrowshape.turn.up.left").zIndex(1)
+//                            RoundedRectangle(cornerRadius: 20).frame(width: 80, height: 40).foregroundColor(Color.seglerRed).zIndex(0)
+//                        }
+//                    }.zIndex(100)
+//
+//                    Button {
+//                        pdf.forward()
+//                    } label: {
+//                        ZStack {
+//                            Image(systemName: "arrowshape.turn.up.right").zIndex(1)
+//                            RoundedRectangle(cornerRadius: 20).frame(width: 80, height: 40).foregroundColor(Color.seglerRed).zIndex(0)
+//                        }
+//                    }.zIndex(100)
                     
                 }.padding(.bottom, 10)
             }
@@ -69,23 +69,23 @@ struct PDFEditDetailView: View {
                 Spacer()
                 HStack {
                     
-                    Button {
-                        pdf.back()
-                    } label: {
-                        ZStack {
-                            Image(systemName: "arrowshape.turn.up.left").zIndex(1)
-                            RoundedRectangle(cornerRadius: 20).frame(width: 80, height: 40).foregroundColor(Color.seglerRed).zIndex(0)
-                        }
-                    }.zIndex(100)
-                    
-                    Button {
-                        pdf.forward()
-                    } label: {
-                        ZStack {
-                            Image(systemName: "arrowshape.turn.up.right").zIndex(1)
-                            RoundedRectangle(cornerRadius: 20).frame(width: 80, height: 40).foregroundColor(Color.seglerRed).zIndex(0)
-                        }
-                    }.zIndex(100)
+//                    Button {
+//                        pdf.back()
+//                    } label: {
+//                        ZStack {
+//                            Image(systemName: "arrowshape.turn.up.left").zIndex(1)
+//                            RoundedRectangle(cornerRadius: 20).frame(width: 80, height: 40).foregroundColor(Color.seglerRed).zIndex(0)
+//                        }
+//                    }.zIndex(100)
+//                    
+//                    Button {
+//                        pdf.forward()
+//                    } label: {
+//                        ZStack {
+//                            Image(systemName: "arrowshape.turn.up.right").zIndex(1)
+//                            RoundedRectangle(cornerRadius: 20).frame(width: 80, height: 40).foregroundColor(Color.seglerRed).zIndex(0)
+//                        }
+//                    }.zIndex(100)
                     
                 }.padding(.bottom, 10)
             }
