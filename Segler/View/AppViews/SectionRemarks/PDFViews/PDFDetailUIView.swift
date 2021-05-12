@@ -52,6 +52,7 @@ struct PDFDetailUIView: UIViewRepresentable {
             if let page = pdfView.document!.page(at: i) {
                 for i in 0..<page.annotations.count {
                     page.annotations[i].color = UIColor.black
+                    page.annotations[i].fontColor = UIColor.black
                     page.annotations[i].backgroundColor = UIColor(red:0.79, green:0.89, blue:1.00, alpha:1.0)
                 }
             }
