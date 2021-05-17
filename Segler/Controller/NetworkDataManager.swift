@@ -15,26 +15,28 @@ class NetworkDataManager {
     var session: NMSFTP?
     
     func connect(host: String, username: String, password: String, isInit: Bool) -> Bool {
-        if (session == nil) {
-            let connection = NMSSHSession.init(host: host, andUsername: username)
-            connection.connect()
-            if connection.isConnected {
-                connection.authenticate(byPassword: password)
-                if connection.isAuthorized {
-                    self.session = NMSFTP(session: connection)
-                    self.session!.connect()
-                    if isInit {
-                        config = self.session!.contents(atPath: "config/config.json")
-                        protokolle = self.session!.contentsOfDirectory(atPath: "protokolle")!
-                    }
-                    return true
-                } else { return false }
-            } else { return false }
+        if (session != nil) {
+            if session!.isConnected {
+                session!.disconnect()
+            }
         }
-        return false
+        let connection = NMSSHSession.init(host: host, andUsername: username)
+        connection.connect()
+        if connection.isConnected {
+            connection.authenticate(byPassword: password)
+            if connection.isAuthorized {
+                self.session = NMSFTP(session: connection)
+                self.session!.connect()
+                if isInit {
+                    config = self.session!.contents(atPath: "config/config.json")
+                    protokolle = self.session!.contentsOfDirectory(atPath: "protokolle")!
+                }
+                return true
+            } else { return false }
+        } else { return false }
     }
     
-    func sendToFTP(mediaVM: MediaViewModel, userVM: UserViewModel, orderVM: OrderViewModel, remarksVM: RemarksViewModel, _ shouldThrow: Bool, completion: @escaping(String?) -> ()) {
+    func sendToFTP(settingsVM: SettingsViewModel, mediaVM: MediaViewModel, userVM: UserViewModel, orderVM: OrderViewModel, remarksVM: RemarksViewModel, _ shouldThrow: Bool, completion: @escaping(String?) -> ()) {
             if !checkIfDataIsCorrect(mediaVM: mediaVM, orderVM: orderVM, remarksVM: remarksVM) {
                 let filename = generateDataName(orderVM: orderVM)
                 var json = Data()
@@ -45,15 +47,19 @@ class NetworkDataManager {
                 }
                 ProgressHUD.show()
                 DispatchQueue.global(qos: .userInitiated).async {
-                    self.sendPhotos(filename: filename, data: self.prepImagesData(mediaVM: mediaVM), json: json)
-                    self.sendVideos(filename: filename, data: self.prepVideosData(mediaVM: mediaVM), json: json)
-                    if mediaVM.savedPDF.name != "" {
-                        self.sendPDF(filename: filename, pdfData: mediaVM.savedPDF.data, jsonData: json)
+                    if self.connect(host: settingsVM.ip, username: settingsVM.serverUsername, password: settingsVM.serverPassword, isInit: false) {
+                        self.sendPhotos(filename: filename, data: self.prepImagesData(mediaVM: mediaVM), json: json)
+                        self.sendVideos(filename: filename, data: self.prepVideosData(mediaVM: mediaVM), json: json)
+                        if mediaVM.savedPDF.name != "" {
+                            self.sendPDF(filename: filename, pdfData: mediaVM.savedPDF.data, jsonData: json)
+                        }
+                        completion(nil)
+                    } else {
+                        completion("conError")
                     }
-                    completion(nil)
                 }
             } else {
-                completion("error")
+                completion("dataError")
             }
 //        sendPDF(filename: filename, pdfData: Data(), jsonData: json!)
     }
