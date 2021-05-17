@@ -181,18 +181,22 @@ class NetworkDataManager {
     var counter = 0
     
     private func sendPhotos(filename: String, data: [Data], json: Data) {
-        for (index, photo) in data.enumerated() {
-            self.session!.writeContents(json, toFileAtPath: "\(filename)_\(counter).json")
-            self.session!.writeContents(photo, toFileAtPath: "\(filename)_\(counter).jpg")
-            counter += 1
+        if data.count != 0 {
+            for (index, photo) in data.enumerated() {
+                self.session!.writeContents(json, toFileAtPath: "\(filename)_\(counter).json")
+                self.session!.writeContents(photo, toFileAtPath: "\(filename)_\(counter).jpg")
+                counter += 1
+            }
         }
     }
     
     private func sendVideos(filename: String, data: [Data], json: Data) {
-        for (index, video) in data.enumerated() {
-            self.session!.writeContents(json, toFileAtPath: "\(filename)_\(counter).json")
-            self.session!.writeContents(video, toFileAtPath: "\(filename)_\(counter).mp4")
-            counter += 1
+        if data.count != 0 {
+            for (index, video) in data.enumerated() {
+                self.session!.writeContents(json, toFileAtPath: "\(filename)_\(counter).json")
+                self.session!.writeContents(video, toFileAtPath: "\(filename)_\(counter).mp4")
+                counter += 1
+            }
         }
     }
     
