@@ -21,19 +21,23 @@ struct SaveButtonView: View {
                 typealias ThrowableCallback = () throws -> Bool
                 UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                 interactionDisabled = true
-                NetworkDataManager.shared.connect(host: settingsVM.ip, username: settingsVM.serverUsername, password: settingsVM.serverPassword, isInit: false)
-                NetworkDataManager.shared.sendToFTP(mediaVM: mediaVM, userVM: userVM, orderVM: orderVM, remarksVM: remarksVM, true) { (error) -> Void in
-                    if error != nil {
-                        ProgressHUD.showError("Daten ungültig")
-                        interactionDisabled = false
-                        return
-                    } else {
-                        ProgressHUD.showSuccess("Hochgeladen")
-                        interactionDisabled = false
-                        self.showReport = true
-                        return
+                if NetworkDataManager.shared.connect(host: settingsVM.ip, username: settingsVM.serverUsername, password: settingsVM.serverPassword, isInit: false) {
+                    NetworkDataManager.shared.sendToFTP(mediaVM: mediaVM, userVM: userVM, orderVM: orderVM, remarksVM: remarksVM, true) { (error) -> Void in
+                        if error != nil {
+                            ProgressHUD.showError("Daten ungültig")
+                            interactionDisabled = false
+                            return
+                        } else {
+                            ProgressHUD.showSuccess("Hochgeladen")
+                            interactionDisabled = false
+                            self.showReport = true
+                            return
+                        }
                     }
+                } else {
+                    ProgressHUD.showError("Konnte keine Verbindung zum Server herstellen")
                 }
+
             }) {
                 Text("Abschicken  ")
                     .font(.headline)
