@@ -18,7 +18,7 @@ struct PDFListView: View {
                 Image(systemName: "archivebox.fill")
                 Text("Archiv - - - - - - - - - - - - - -")
             }.foregroundColor(Color.gray)
-            ForEach(mediaVM.archive, id: \.self) {
+            ForEach(mediaVM.archive.reversed(), id: \.self) {
                 NavigationLink($0.name, destination: PDFListDetailView(selectedPDF: $0, show: self.$show))
                     .frame(height: 34).foregroundColor(Color.gray)
             }.navigationTitle("Protokolle").onAppear{
