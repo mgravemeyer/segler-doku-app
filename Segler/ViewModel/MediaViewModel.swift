@@ -34,13 +34,18 @@ class MediaViewModel : ObservableObject {
                 var pdfName = String()
                 var found = false
                 
-                for c in file.absoluteString.reversed() {
+                for c in file.lastPathComponent.reversed() {
                     if c == "+" {
+                        print("FOUND: \(pdfName)")
                         found = true
                         break
                     } else {
                         pdfName.append(c)
                     }
+                }
+                
+                if !found {
+                    pdfName = ""
                 }
                 
                 var fileString = Substring()
@@ -51,34 +56,40 @@ class MediaViewModel : ObservableObject {
                     fileString = file.lastPathComponent.dropLast(5 + (pdfName.count))
                 }
                 
-                print(String(fileString))
+//                var start = Substring.Index(encodedOffset: 0)
+//                var end = Substring.Index(encodedOffset: 0)
                 
-                let start = fileString.index(fileString.startIndex, offsetBy: 9)
-                let end = fileString.index(fileString.endIndex, offsetBy: 0)
-                let range = start..<end
-                let dateAndTimeAsString = fileString[range]
+                var finalString = Substring()
+                
+                finalString = fileString.dropFirst(9)
+
+//                let range = start..<end
+                let dateAndTimeAsString = finalString
                 let dateFormatter = DateFormatter()
                 dateFormatter.timeZone = .current
                 dateFormatter.dateFormat = "yyyyMMdd_HHmmss"
                 let dateAndTime = dateFormatter.date(from: String(dateAndTimeAsString))
+                
+//                if dateAndTime != nil {
                 if dateAndTime != nil {
                     if found {
+
                     archive.append(PDF(name: String(fileString), data: try Data(contentsOf: file), time: dateAndTime, isArchive: true, pdfName: String(pdfName.reversed())))
                     } else {
-                        archive.append(PDF(name: String(fileString), data: try Data(contentsOf: file), time: dateAndTime, isArchive: true))
+                        archive.append(PDF(name: String(fileString), data: try Data(contentsOf: file), time: dateAndTime, isArchive: true, pdfName: "Nicht erkannt"))
                     }
                 }
+//                }
+                pdfName = ""
             }
             
-                archive = archive.sorted(by: { $0.time!.compare($1.time!) == .orderedDescending })
+            archive = archive.sorted(by: { $0.time!.compare($1.time!) == .orderedDescending })
             
             if fileURLs.count > 20 {
                 for i in 0...(fileURLs.count - 21) {
                     try FileManager.default.removeItem(at: fileURLs[i])
                 }
             }
-
-            print("Gespeicherte Protkolle: \(fileURLs)")
         } catch {
             print("erroror")
             print(error.localizedDescription)

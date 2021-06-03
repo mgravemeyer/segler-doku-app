@@ -51,7 +51,7 @@ class NetworkDataManager {
                         self.sendPhotos(filename: filename, data: self.prepImagesData(mediaVM: mediaVM), json: json)
                         self.sendVideos(filename: filename, data: self.prepVideosData(mediaVM: mediaVM), json: json)
                         if mediaVM.savedPDF.name != "" {
-                            self.sendPDF(mediaVM: mediaVM ,filename: filename, pdfData: mediaVM.savedPDF.data, jsonData: json)
+                            self.sendPDF(isArchive: mediaVM.savedPDF.isArchive , archiveName: mediaVM.savedPDF.pdfName ,mediaVM: mediaVM ,filename: filename, pdfData: mediaVM.savedPDF.data, jsonData: json)
                         }
                         completion(nil)
                     } else {
@@ -200,7 +200,7 @@ class NetworkDataManager {
         }
     }
     
-    private func sendPDF(mediaVM: MediaViewModel, filename: String, pdfData: Data, jsonData: Data) {
+    private func sendPDF(isArchive: Bool, archiveName: String? ,mediaVM: MediaViewModel, filename: String, pdfData: Data, jsonData: Data) {
         self.session!.writeContents(jsonData, toFileAtPath: "\(filename)_\(counter).json")
         self.session!.writeContents(pdfData, toFileAtPath: "\(filename)_\(counter).pdf")
         counter += 1
@@ -210,12 +210,25 @@ class NetworkDataManager {
                 print("error while saving or finding files")
                 return
             }
-        let fileURL = url.appendingPathComponent("\(filename).pdf+\(mediaVM.savedPDF.name)")
-        print(fileURL)
-        mediaVM.archive.insert(PDF(name: filename, data: pdfData, time: Date(), isArchive: true), at: 0)
+        
+        var fileURL = URL(string: "")
+        
+        //is archive
+        if isArchive {
+            if archiveName != nil {
+                fileURL = url.appendingPathComponent("\(filename).pdf+\(archiveName!)")
+            } else {
+                fileURL = url.appendingPathComponent("\(filename).pdf")
+            }
+            mediaVM.archive.insert(PDF(name: filename, data: pdfData, time: Date(), isArchive: true), at: 0)
+        } else {
+            fileURL = url.appendingPathComponent("\(filename).pdf+\(mediaVM.savedPDF.name)")
+            print("saved pdf name: \(mediaVM.savedPDF.pdfName)")
+            mediaVM.archive.insert(PDF(name: filename, data: pdfData, time: Date(), isArchive: true), at: 0)
+        }
         
         do {
-            try pdfData.write(to: fileURL)
+            try pdfData.write(to: fileURL!)
         } catch {
             print(error.localizedDescription)
         }

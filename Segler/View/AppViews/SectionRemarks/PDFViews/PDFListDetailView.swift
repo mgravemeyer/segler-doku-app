@@ -16,7 +16,17 @@ struct PDFListDetailView: View {
                 .navigationBarTitle("\(checkForName(name: selectedPDF.name))", displayMode: .inline)
                 .navigationBarItems(trailing: Button("Speichern", action: {
                     pdf.savePDF()
-                    mediaVM.savedPDF.name = "\(selectedPDF.name)"
+                    if selectedPDF.isArchive {
+                        mediaVM.savedPDF.name = selectedPDF.pdfName!
+                        mediaVM.savedPDF.isArchive = true
+                        mediaVM.savedPDF.time = selectedPDF.time!
+                        mediaVM.savedPDF.pdfName = selectedPDF.pdfName!
+                    } else {
+                        mediaVM.savedPDF.name = selectedPDF.name
+                        mediaVM.savedPDF.isArchive = false
+                        mediaVM.savedPDF.time = nil
+                        mediaVM.savedPDF.pdfName = nil
+                    }
                     remarksVM.selectedComment = ""
                     print(mediaVM.savedPDF)
                     saveState = true
