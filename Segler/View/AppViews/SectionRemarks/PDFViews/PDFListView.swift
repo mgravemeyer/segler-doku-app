@@ -27,9 +27,12 @@ struct PDFListView: View {
                                 if pdf.pdfName != nil {
                                     Text("Protokoll: \(pdf.pdfName!)")
                                 }
+                                if pdf.time != nil {
+                                    Text("Datum: \(loadDate(date: pdf.time!))")
+                                }
                             }
                         })
-                    .frame(height: 34).foregroundColor(Color.gray)
+                    .frame(height: 45).foregroundColor(Color.gray)
             }.navigationTitle("Protokolle").onAppear{
                 if self.show != true {
                     self.presentationMode.wrappedValue.dismiss()
@@ -37,6 +40,12 @@ struct PDFListView: View {
             }
         }
     }
+}
+
+func loadDate(date: Date) -> String {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "dd MMM yyyy - hh:mm"
+    return dateFormatter.string(from: date)
 }
 
 func checkForName(name: String) -> String {
