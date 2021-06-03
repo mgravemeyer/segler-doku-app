@@ -14,7 +14,7 @@ struct ListCommentsDetailView: View {
             ForEach(0..<self.remarksVM.comments[self.selection].comments.count, id: \.self) { x in
                 Button(action: {
                     self.remarksVM.selectedComment = self.remarksVM.comments[self.selection].comments[x]
-                    self.mediaVM.savedPDF = PDF(name: "", data: Data())
+                    self.mediaVM.savedPDF = PDF(name: "", data: Data(), isArchive: false)
                     self.show = false
                     self.presentationMode.wrappedValue.dismiss()
                 }) {

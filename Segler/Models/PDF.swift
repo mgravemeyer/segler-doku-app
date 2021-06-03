@@ -5,4 +5,6 @@ struct PDF: Hashable {
     var name: String
     var data: Data
     var time: Date?
+    var isArchive: Bool
+    var pdfName: String?
 }

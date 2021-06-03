@@ -22,7 +22,7 @@ struct SectionRemarksView: View {
         } else {
             HStack {
                     NavigationLink(destination: ListCommentsView(show: true)) {
-                    Text(mediaVM.savedPDF.name)
+                        Text(String(checkForName(name: mediaVM.savedPDF.name)))
                 }
                 NavigationLink(destination: PDFEditDetailView(saveState: false), isActive: $editViewVisible) { EmptyView() }.frame(width: 0).hidden().labelsHidden().buttonStyle((BorderlessButtonStyle())).zIndex(-100000).disabled(true)
                 Button(action: {

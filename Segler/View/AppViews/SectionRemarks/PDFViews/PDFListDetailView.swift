@@ -13,7 +13,7 @@ struct PDFListDetailView: View {
         return ZStack {
             pdf
                 .environmentObject(mediaVM)
-                .navigationBarTitle("\(selectedPDF.name)", displayMode: .inline)
+                .navigationBarTitle("\(checkForName(name: selectedPDF.name))", displayMode: .inline)
                 .navigationBarItems(trailing: Button("Speichern", action: {
                     pdf.savePDF()
                     mediaVM.savedPDF.name = "\(selectedPDF.name)"
@@ -60,7 +60,7 @@ struct PDFEditDetailView: View {
         return ZStack {
             pdf
             .environmentObject(mediaVM)
-            .navigationBarTitle("\(mediaVM.savedPDF.name)", displayMode: .inline)
+                .navigationBarTitle("\(checkForName(name: mediaVM.savedPDF.name))", displayMode: .inline)
             .navigationBarItems(trailing: Button("Speichern", action: {
                 pdf.savePDF()
                 saveState = true

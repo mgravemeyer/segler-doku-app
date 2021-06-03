@@ -66,7 +66,7 @@ class NetworkDataManager {
     
     func loadPDF(name: String, filename: String) -> PDF {
         let content = session!.contents(atPath: "protokolle/\(filename).pdf")
-        return PDF(name: name, data: content!)
+        return PDF(name: name, data: content!, isArchive: false)
     }
     
     func checkIfDataIsCorrect(mediaVM: MediaViewModel, orderVM: OrderViewModel, remarksVM: RemarksViewModel) -> Bool {
@@ -210,8 +210,9 @@ class NetworkDataManager {
                 print("error while saving or finding files")
                 return
             }
-        let fileURL = url.appendingPathComponent("\(filename).pdf")
-        mediaVM.archive.insert(PDF(name: filename, data: pdfData, time: Date()), at: 0)
+        let fileURL = url.appendingPathComponent("\(filename).pdf+\(mediaVM.savedPDF.name)")
+        print(fileURL)
+        mediaVM.archive.insert(PDF(name: filename, data: pdfData, time: Date(), isArchive: true), at: 0)
         
         do {
             try pdfData.write(to: fileURL)

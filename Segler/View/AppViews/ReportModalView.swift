@@ -73,7 +73,7 @@ struct ReportModalView: View {
         self.remarksVM.commentIsOk = true
         self.mediaVM.imagesIsOk = true
         self.showReport = false
-        self.mediaVM.savedPDF = PDF(name: "", data: Data())
+        self.mediaVM.savedPDF = PDF(name: "", data: Data(), isArchive: false)
     }
 
 }

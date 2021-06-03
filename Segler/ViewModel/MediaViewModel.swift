@@ -29,7 +29,29 @@ class MediaViewModel : ObservableObject {
             
             for file in fileURLs {
                 
-                let fileString = file.lastPathComponent.dropLast(4)
+                print(file)
+                
+                var pdfName = String()
+                var found = false
+                
+                for c in file.absoluteString.reversed() {
+                    if c == "+" {
+                        found = true
+                        break
+                    } else {
+                        pdfName.append(c)
+                    }
+                }
+                
+                var fileString = Substring()
+                
+                if !found {
+                    fileString = file.lastPathComponent.dropLast(4)
+                } else {
+                    fileString = file.lastPathComponent.dropLast(5 + (pdfName.count))
+                }
+                
+                print(String(fileString))
                 
                 let start = fileString.index(fileString.startIndex, offsetBy: 9)
                 let end = fileString.index(fileString.endIndex, offsetBy: 0)
@@ -39,10 +61,16 @@ class MediaViewModel : ObservableObject {
                 dateFormatter.timeZone = .current
                 dateFormatter.dateFormat = "yyyyMMdd_HHmmss"
                 let dateAndTime = dateFormatter.date(from: String(dateAndTimeAsString))
-                archive.append(PDF(name: String(fileString), data: try Data(contentsOf: file), time: dateAndTime))
+                if dateAndTime != nil {
+                    if found {
+                    archive.append(PDF(name: String(fileString), data: try Data(contentsOf: file), time: dateAndTime, isArchive: true, pdfName: String(pdfName.reversed())))
+                    } else {
+                        archive.append(PDF(name: String(fileString), data: try Data(contentsOf: file), time: dateAndTime, isArchive: true))
+                    }
+                }
             }
             
-            archive = archive.sorted(by: { $0.time!.compare($1.time!) == .orderedDescending })
+                archive = archive.sorted(by: { $0.time!.compare($1.time!) == .orderedDescending })
             
             if fileURLs.count > 20 {
                 for i in 0...(fileURLs.count - 21) {
@@ -65,7 +93,7 @@ class MediaViewModel : ObservableObject {
     func loadServerPDFs() {
         for pdf in decoderPDFs(jsonData: NetworkDataManager.shared.config!)! {
             let pdf = NetworkDataManager.shared.loadPDF(name: pdf.name, filename: pdf.datei)
-            pdfs.append(PDF(name: pdf.name, data: pdf.data))
+            pdfs.append(PDF(name: pdf.name, data: pdf.data, isArchive: false))
         }
     }
     
@@ -132,9 +160,9 @@ class MediaViewModel : ObservableObject {
     
     @Published var pdfsToSearchOnServer = [ResponsePDF]()
     @Published var archive = [PDF]()
-    @Published var savedPDF = PDF(name: "", data: Data())
+    @Published var savedPDF = PDF(name: "", data: Data(), isArchive: false)
     @Published var pdfs = [PDF]()
-    @Published var selectedPDF = PDF(name: "", data: Data())
+    @Published var selectedPDF = PDF(name: "", data: Data(), isArchive: false)
     
     @Published var qualityPicture = NSNumber()
     @Published var qualityVideo = NSNumber()
