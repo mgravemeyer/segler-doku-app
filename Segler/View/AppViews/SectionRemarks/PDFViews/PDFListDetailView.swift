@@ -13,11 +13,11 @@ struct PDFListDetailView: View {
         return ZStack {
             pdf
                 .environmentObject(mediaVM)
-                .navigationBarTitle("\(checkForName(name: selectedPDF.name))", displayMode: .inline)
+                .navigationBarTitle("\(checkForName(name: selectedPDF.name)) \(selectedPDF.isArchive ? " - \(selectedPDF.pdfName ?? "")" : "")", displayMode: .inline)
                 .navigationBarItems(trailing: Button("Speichern", action: {
                     pdf.savePDF()
                     if selectedPDF.isArchive {
-                        mediaVM.savedPDF.name = selectedPDF.pdfName!
+                        mediaVM.savedPDF.name = selectedPDF.name
                         mediaVM.savedPDF.isArchive = true
                         mediaVM.savedPDF.time = selectedPDF.time!
                         mediaVM.savedPDF.pdfName = selectedPDF.pdfName!
@@ -70,7 +70,7 @@ struct PDFEditDetailView: View {
         return ZStack {
             pdf
             .environmentObject(mediaVM)
-                .navigationBarTitle("\(checkForName(name: mediaVM.savedPDF.name))", displayMode: .inline)
+                .navigationBarTitle("\(checkForName(name: mediaVM.savedPDF.name)) \(mediaVM.savedPDF.isArchive ? " - \(mediaVM.savedPDF.pdfName ?? "")" : "")", displayMode: .inline)
             .navigationBarItems(trailing: Button("Speichern", action: {
                 pdf.savePDF()
                 saveState = true
