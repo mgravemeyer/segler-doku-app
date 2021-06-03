@@ -51,7 +51,7 @@ class NetworkDataManager {
                         self.sendPhotos(filename: filename, data: self.prepImagesData(mediaVM: mediaVM), json: json)
                         self.sendVideos(filename: filename, data: self.prepVideosData(mediaVM: mediaVM), json: json)
                         if mediaVM.savedPDF.name != "" {
-                            self.sendPDF(filename: filename, pdfData: mediaVM.savedPDF.data, jsonData: json)
+                            self.sendPDF(mediaVM: mediaVM ,filename: filename, pdfData: mediaVM.savedPDF.data, jsonData: json)
                         }
                         completion(nil)
                     } else {
@@ -200,7 +200,7 @@ class NetworkDataManager {
         }
     }
     
-    private func sendPDF(filename: String, pdfData: Data, jsonData: Data) {
+    private func sendPDF(mediaVM: MediaViewModel, filename: String, pdfData: Data, jsonData: Data) {
         self.session!.writeContents(jsonData, toFileAtPath: "\(filename)_\(counter).json")
         self.session!.writeContents(pdfData, toFileAtPath: "\(filename)_\(counter).pdf")
         counter += 1
@@ -211,6 +211,8 @@ class NetworkDataManager {
                 return
             }
         let fileURL = url.appendingPathComponent("\(filename).pdf")
+        mediaVM.archive.insert(PDF(name: filename, data: pdfData, time: Date()), at: 0)
+        
         do {
             try pdfData.write(to: fileURL)
         } catch {

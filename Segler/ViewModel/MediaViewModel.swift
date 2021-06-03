@@ -25,10 +25,31 @@ class MediaViewModel : ObservableObject {
                 return
             }
         do {
-            let fileURLs = try FileManager.default.contentsOfDirectory(at: url, includingPropertiesForKeys: nil)
-            for url in fileURLs {
-                try archive.append(PDF(name: "\((url.lastPathComponent).dropLast(4))", data: Data(contentsOf: url)))
+            var fileURLs = try FileManager.default.contentsOfDirectory(at: url, includingPropertiesForKeys: nil)
+            
+            for file in fileURLs {
+                
+                let fileString = file.lastPathComponent.dropLast(4)
+                
+                let start = fileString.index(fileString.startIndex, offsetBy: 9)
+                let end = fileString.index(fileString.endIndex, offsetBy: 0)
+                let range = start..<end
+                let dateAndTimeAsString = fileString[range]
+                let dateFormatter = DateFormatter()
+                dateFormatter.timeZone = .current
+                dateFormatter.dateFormat = "yyyyMMdd_HHmmss"
+                let dateAndTime = dateFormatter.date(from: String(dateAndTimeAsString))
+                archive.append(PDF(name: String(fileString), data: try Data(contentsOf: file), time: dateAndTime))
             }
+            
+            archive = archive.sorted(by: { $0.time!.compare($1.time!) == .orderedDescending })
+            
+            if fileURLs.count > 20 {
+                for i in 0...(fileURLs.count - 21) {
+                    try FileManager.default.removeItem(at: fileURLs[i])
+                }
+            }
+
             print("Gespeicherte Protkolle: \(fileURLs)")
         } catch {
             print("erroror")
