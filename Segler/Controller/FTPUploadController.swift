@@ -402,13 +402,21 @@ struct FTPUploadController {
                     //setting up json file
                     if self.settingsVM.useFixedUser {
                         if mediaVM.savedPDF.name != "" {
-                            jsonObject = self.createJSON(bereich: "Protokoll", meldungstyp: String(mediaVM.savedPDF.name), freitext: remarksVM.additionalComment, user: self.settingsVM.userUsername)!
+                            if mediaVM.savedPDF.isArchive {
+                                jsonObject = self.createJSON(bereich: "Protokoll", meldungstyp: String(mediaVM.savedPDF.pdfName!), freitext: remarksVM.additionalComment, user: self.settingsVM.userUsername)!
+                            } else {
+                                jsonObject = self.createJSON(bereich: "Protokoll", meldungstyp: String(mediaVM.savedPDF.name), freitext: remarksVM.additionalComment, user: self.settingsVM.userUsername)!
+                            }
                         } else {
                             jsonObject = self.createJSON(bereich: "\(remarksVM.bereich)", meldungstyp: "\(remarksVM.selectedComment)", freitext: remarksVM.additionalComment, user: self.settingsVM.userUsername)!
                         }
                     } else {
                         if mediaVM.savedPDF.name != "" {
-                            jsonObject = self.createJSON(bereich: "Protokoll", meldungstyp: String(mediaVM.savedPDF.name), freitext: remarksVM.additionalComment, user: self.userVM.username)!
+                            if mediaVM.savedPDF.isArchive {
+                                jsonObject = self.createJSON(bereich: "Protokoll", meldungstyp: String(mediaVM.savedPDF.pdfName!), freitext: remarksVM.additionalComment, user: self.userVM.username)!
+                            } else {
+                                jsonObject = self.createJSON(bereich: "Protokoll", meldungstyp: String(mediaVM.savedPDF.name), freitext: remarksVM.additionalComment, user: self.userVM.username)!
+                            }
                         } else {
                             jsonObject = self.createJSON(bereich: "\(remarksVM.bereich)", meldungstyp: "\(remarksVM.selectedComment)", freitext: remarksVM.additionalComment, user: self.userVM.username)!
                         }

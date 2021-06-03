@@ -220,11 +220,11 @@ class NetworkDataManager {
             } else {
                 fileURL = url.appendingPathComponent("\(filename).pdf")
             }
-            mediaVM.archive.insert(PDF(name: filename, data: pdfData, time: Date(), isArchive: true), at: 0)
+            mediaVM.archive.insert(PDF(name: filename, data: pdfData, time: Date(), isArchive: true, pdfName: mediaVM.savedPDF.pdfName), at: 0)
         } else {
             fileURL = url.appendingPathComponent("\(filename).pdf+\(mediaVM.savedPDF.name)")
             print("saved pdf name: \(mediaVM.savedPDF.pdfName)")
-            mediaVM.archive.insert(PDF(name: filename, data: pdfData, time: Date(), isArchive: true), at: 0)
+            mediaVM.archive.insert(PDF(name: filename, data: pdfData, time: Date(), isArchive: true, pdfName: mediaVM.savedPDF.name), at: 0)
         }
         
         do {
@@ -278,14 +278,34 @@ class NetworkDataManager {
     
     private func generatePDFJSON(userVM: UserViewModel, remarksVM: RemarksViewModel, mediaVM: MediaViewModel) -> Data? {
         
-        let keyValuePairs = [
-            ("Bereich", "Protokoll"),
-            ("Meldungstyp", "\(mediaVM.savedPDF.name)"),
-            ("Freitext", "\(remarksVM.additionalComment)"),
-            ("User", "\(userVM.username)"),
-            ("AppVersion", Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String),
-            ("Geraet", UIDevice.current.name)
+        var keyValuePairs = [
+            ("Bereich", ""),
+            ("Meldungstyp", ""),
+            ("Freitext", ""),
+            ("User", ""),
+            ("AppVersion", ""),
+            ("Geraet", "")
         ]
+        
+        if mediaVM.savedPDF.isArchive {
+            keyValuePairs = [
+                ("Bereich", "Protokoll"),
+                ("Meldungstyp", "\(mediaVM.savedPDF.pdfName!)"),
+                ("Freitext", "\(remarksVM.additionalComment)"),
+                ("User", "\(userVM.username)"),
+                ("AppVersion", Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String),
+                ("Geraet", UIDevice.current.name)
+            ]
+        } else {
+            keyValuePairs = [
+                ("Bereich", "Protokoll"),
+                ("Meldungstyp", "\(mediaVM.savedPDF.name)"),
+                ("Freitext", "\(remarksVM.additionalComment)"),
+                ("User", "\(userVM.username)"),
+                ("AppVersion", Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String),
+                ("Geraet", UIDevice.current.name)
+            ]
+        }
         
         let dict = Dictionary(keyValuePairs)
 
