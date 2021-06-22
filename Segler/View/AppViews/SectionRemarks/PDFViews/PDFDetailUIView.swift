@@ -58,7 +58,7 @@ struct PDFDetailUIView: UIViewRepresentable {
             }
         }
         
-        pdfView.displayMode = .singlePageContinuous
+        pdfView.displayMode = .singlePage
         
         UITextField.appearance().tintColor = .black
 //
@@ -74,6 +74,11 @@ struct PDFDetailUIView: UIViewRepresentable {
         if saveState {
             context.environment.presentationMode.wrappedValue.dismiss()
         }
+    }
+    
+    func getPagesCount() -> Int {
+        pdfView.document = PDFDocument(data: selectedPDF.data)
+        return pdfView.document!.pageCount
     }
     
     func forward() {
