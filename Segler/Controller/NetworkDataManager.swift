@@ -13,6 +13,8 @@ class NetworkDataManager {
     
     var tmpTransferedVideos = [Int]()
     
+    var pdfNumber = -1
+    
     static let shared = NetworkDataManager()
     
     var config: Data?
@@ -71,9 +73,10 @@ class NetworkDataManager {
                         conError = "conError"
                     }
                     if mediaVM.savedPDF.name != "" {
-                        self.sendPDF(isArchive: mediaVM.savedPDF.isArchive , archiveName: mediaVM.savedPDF.pdfName ,mediaVM: mediaVM, pdfData: mediaVM.savedPDF.data, jsonData: json)
+                        if (!self.sendPDF(isArchive: mediaVM.savedPDF.isArchive , archiveName: mediaVM.savedPDF.pdfName ,mediaVM: mediaVM, pdfData: mediaVM.savedPDF.data, jsonData: json)) {
+                            conError = "conError"
+                        }
                     }
-                    
                     ProgressHUD.show()
                     
                     print("tmpImages\(tmpTransferedImages) tmpVideos\(tmpTransferedVideos) \(counter)")
@@ -105,12 +108,19 @@ class NetworkDataManager {
                         }
                     }
                     
+                    if (pdfNumber > -1) {
+                        if !self.session!.moveItem(atPath: "tmp_upload/\(filenameIfNotTransmit)_\(pdfNumber).pdf", toPath: "\(filenameIfNotTransmit)_\(pdfNumber).pdf") {
+                            conError = "conError"
+                        }
+                    }
+                    
                     for count in (0...counter - 1) {
                         if !self.session!.moveItem(atPath: "tmp_upload/\(filenameIfNotTransmit)_\(count).json", toPath: "\(filenameIfNotTransmit)_\(count).json") {
                             conError = "conError"
                         }
                     }
                     
+                    self.pdfNumber = -1
                     self.counter = 0
                     self.tmpTransferedVideos.removeAll()
                     self.tmpTransferedImages.removeAll()
@@ -288,15 +298,22 @@ class NetworkDataManager {
         return true
     }
     
-    private func sendPDF(isArchive: Bool, archiveName: String? ,mediaVM: MediaViewModel, pdfData: Data, jsonData: Data) {
-        self.session!.writeContents(jsonData, toFileAtPath: "\(filenameIfNotTransmit)_\(counter).json")
-        self.session!.writeContents(pdfData, toFileAtPath: "\(filenameIfNotTransmit)_\(counter).pdf")
+    private func sendPDF(isArchive: Bool, archiveName: String? ,mediaVM: MediaViewModel, pdfData: Data, jsonData: Data) -> Bool {
+        ProgressHUD.show("Protokoll wird hochgeladen")
+        if (!self.session!.writeContents(jsonData, toFileAtPath: "tmp_upload/\(filenameIfNotTransmit)_\(counter).json")) {
+            return false
+        }
+        if (!self.session!.writeContents(pdfData, toFileAtPath: "tmp_upload/\(filenameIfNotTransmit)_\(counter).pdf")) {
+            return false
+        } else {
+            pdfNumber = counter
+        }
         counter += 1
         guard
             let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
         else {
                 print("error while saving or finding files")
-                return
+                return false
             }
         
         var fileURL = URL(string: "")
@@ -320,7 +337,7 @@ class NetworkDataManager {
         } catch {
             print(error.localizedDescription)
         }
-        counter = 0
+        return true
     }
     
     private func generateDataName(orderVM: OrderViewModel) -> String {
