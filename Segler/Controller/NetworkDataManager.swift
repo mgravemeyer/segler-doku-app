@@ -62,13 +62,9 @@ class NetworkDataManager {
                 var conError: String?
                 
                 if self.connect(host: settingsVM.ip, username: settingsVM.serverUsername, password: settingsVM.serverPassword, isInit: false) {
-                    
-                    print("hier con")
-                    
                     if !self.sendPhotos(data: self.prepImagesData(mediaVM: mediaVM), json: json) {
                         conError = "conError"
                     }
-                    print("go to next step")
                     if !self.sendVideos(data: self.prepVideosData(mediaVM: mediaVM), json: json) {
                         conError = "conError"
                     }
@@ -78,8 +74,6 @@ class NetworkDataManager {
                         }
                     }
                     ProgressHUD.show()
-                    
-                    print("tmpImages\(tmpTransferedImages) tmpVideos\(tmpTransferedVideos) \(counter)")
                     
                     if self.tmpTransferedImages.count > 0 {
                         for count in self.tmpTransferedImages {
@@ -95,14 +89,10 @@ class NetworkDataManager {
                     
                     if self.tmpTransferedVideos.count > 0 {
                         for count in self.tmpTransferedVideos {
-                            print("MOVE VIDEO")
                             if self.session!.fileExists(atPath: "\(filenameIfNotTransmit)_\(count).mp4") {
                                 self.session!.removeFile(atPath: "\(filenameIfNotTransmit)_\(count).mp4")
                             }
                             if !self.session!.moveItem(atPath: "tmp_upload/\(filenameIfNotTransmit)_\(count).mp4", toPath: "\(filenameIfNotTransmit)_\(count).mp4") {
-                                print("tmp_upload/\(filenameIfNotTransmit)_\(count).mp4")
-                                print("\(filenameIfNotTransmit)_\(count).mp4")
-                                print("ERROR")
                                 conError = "conError"
                             }
                         }
@@ -113,31 +103,36 @@ class NetworkDataManager {
                             conError = "conError"
                         }
                     }
-                    
-                    for count in (0...counter - 1) {
-                        if !self.session!.moveItem(atPath: "tmp_upload/\(filenameIfNotTransmit)_\(count).json", toPath: "\(filenameIfNotTransmit)_\(count).json") {
-                            conError = "conError"
+                    if counter > 0 {
+                        for count in (0...counter - 1) {
+                            if !self.session!.moveItem(atPath: "tmp_upload/\(filenameIfNotTransmit)_\(count).json", toPath: "\(filenameIfNotTransmit)_\(count).json") {
+                                conError = "conError"
+                            }
                         }
+                    } else {
+                        conError = "conError"
                     }
                     
                     self.pdfNumber = -1
                     self.counter = 0
                     self.tmpTransferedVideos.removeAll()
                     self.tmpTransferedImages.removeAll()
-                    if conError == nil {
-                        self.filenameIfNotTransmit = ""
-                    }
+                    self.filenameIfNotTransmit = ""
                     completion(conError)
                     
                 } else {
+                    self.pdfNumber = -1
                     self.counter = 0
                     self.tmpTransferedVideos.removeAll()
                     self.tmpTransferedImages.removeAll()
+                    filenameIfNotTransmit = ""
                     conError = "conError"
                     completion(conError)
                 }
             }
         } else {
+            filenameIfNotTransmit = ""
+            self.pdfNumber = -1
             counter = 0
             self.tmpTransferedVideos.removeAll()
             self.tmpTransferedImages.removeAll()
@@ -232,9 +227,6 @@ class NetworkDataManager {
         var data = [Data]()
         let group = DispatchGroup()
         let documentsPath = NSTemporaryDirectory()
-        
-        print("prepd video")
-
         for video in mediaVM.videos {
             if video.selected {
                 group.enter()
@@ -263,8 +255,6 @@ class NetworkDataManager {
     var counter = 0
     
     private func sendPhotos(data: [Data], json: Data) -> Bool {
-        print("ich sende fotos")
-        print(data.count)
         if data.count > 0 {
             for (index, photo) in data.enumerated() {
                 ProgressHUD.show("Foto \(index+1) von \(data.count)")

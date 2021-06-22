@@ -188,6 +188,8 @@ class MediaViewModel : ObservableObject {
     @Published var qualityPicture = NSNumber()
     @Published var qualityVideo = NSNumber()
     
+    @Published var lastTransmitNotSuccessfull = false
+    
     func toggleElement(elementId: UUID) {
         let index = images.firstIndex(where: { $0.id == elementId })
         images[index!].selected.toggle()
