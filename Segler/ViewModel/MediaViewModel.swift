@@ -153,6 +153,16 @@ class MediaViewModel : ObservableObject {
         return imagesCamera.count + videosCamera.count + images.count + videos.count
     }
     
+    func getNumberOfMediaWithPDF() -> Int {
+        
+        var pdfSelected = 0
+        
+        if selectedPDF.name != "" {
+            pdfSelected = 1
+        }
+        return imagesCamera.count + videosCamera.count + images.count + videos.count + pdfSelected
+    }
+    
     @Published var selectedPhotoAmount = 0
     @Published var selectedVideoAmount = 0
     

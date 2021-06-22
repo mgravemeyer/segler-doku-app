@@ -7,6 +7,12 @@ import SwiftUI
 //to:do handles currently network stuff and also perparing data to be send. could be later splitted up to data and a seperate network manager.
 class NetworkDataManager {
     
+    var filenameIfNotTransmit = String()
+    
+    var tmpTransferedImages = [Int]()
+    
+    var tmpTransferedVideos = [Int]()
+    
     static let shared = NetworkDataManager()
     
     var config: Data?
@@ -37,31 +43,94 @@ class NetworkDataManager {
     }
     
     func sendToFTP(settingsVM: SettingsViewModel, mediaVM: MediaViewModel, userVM: UserViewModel, orderVM: OrderViewModel, remarksVM: RemarksViewModel, _ shouldThrow: Bool, completion: @escaping(String?) -> ()) {
-            if !checkIfDataIsCorrect(mediaVM: mediaVM, orderVM: orderVM, remarksVM: remarksVM) {
-                let filename = generateDataName(orderVM: orderVM)
-                var json = Data()
-                if mediaVM.savedPDF.name != "" {
-                    json = generatePDFJSON(userVM: userVM, remarksVM: remarksVM, mediaVM: mediaVM)!
-                } else {
-                    json = generateJSON(userVM: userVM, remarksVM: remarksVM)!
-                }
-                ProgressHUD.show()
-                DispatchQueue.global(qos: .userInitiated).async {
-                    if self.connect(host: settingsVM.ip, username: settingsVM.serverUsername, password: settingsVM.serverPassword, isInit: false) {
-                        self.sendPhotos(filename: filename, data: self.prepImagesData(mediaVM: mediaVM), json: json)
-                        self.sendVideos(filename: filename, data: self.prepVideosData(mediaVM: mediaVM), json: json)
-                        if mediaVM.savedPDF.name != "" {
-                            self.sendPDF(isArchive: mediaVM.savedPDF.isArchive , archiveName: mediaVM.savedPDF.pdfName ,mediaVM: mediaVM ,filename: filename, pdfData: mediaVM.savedPDF.data, jsonData: json)
-                        }
-                        completion(nil)
-                    } else {
-                        completion("conError")
-                    }
-                }
-            } else {
-                completion("dataError")
+
+        if !checkIfDataIsCorrect(mediaVM: mediaVM, orderVM: orderVM, remarksVM: remarksVM) {
+            if filenameIfNotTransmit == "" {
+                filenameIfNotTransmit = generateDataName(orderVM: orderVM)
             }
-//        sendPDF(filename: filename, pdfData: Data(), jsonData: json!)
+            var json = Data()
+            if mediaVM.savedPDF.name != "" {
+                json = generatePDFJSON(userVM: userVM, remarksVM: remarksVM, mediaVM: mediaVM)!
+            } else {
+                json = generateJSON(userVM: userVM, remarksVM: remarksVM)!
+            }
+            ProgressHUD.show()
+            DispatchQueue.global(qos: .userInitiated).async { [self] in
+                
+                var conError: String?
+                
+                if self.connect(host: settingsVM.ip, username: settingsVM.serverUsername, password: settingsVM.serverPassword, isInit: false) {
+                    
+                    print("hier con")
+                    
+                    if !self.sendPhotos(data: self.prepImagesData(mediaVM: mediaVM), json: json) {
+                        conError = "conError"
+                    }
+                    print("go to next step")
+                    if !self.sendVideos(data: self.prepVideosData(mediaVM: mediaVM), json: json) {
+                        conError = "conError"
+                    }
+                    if mediaVM.savedPDF.name != "" {
+                        self.sendPDF(isArchive: mediaVM.savedPDF.isArchive , archiveName: mediaVM.savedPDF.pdfName ,mediaVM: mediaVM, pdfData: mediaVM.savedPDF.data, jsonData: json)
+                    }
+                    
+                    print("tmpImages\(tmpTransferedImages) tmpVideos\(tmpTransferedVideos) \(counter)")
+                    
+                    if self.tmpTransferedImages.count > 0 {
+                        for count in self.tmpTransferedImages {
+                            if self.session!.fileExists(atPath: "\(filenameIfNotTransmit)_\(count).jpg") {
+                                self.session!.removeFile(atPath: "\(filenameIfNotTransmit)_\(count).jpg")
+                            }
+                            if !self.session!.moveItem(atPath: "tmp_upload/\(filenameIfNotTransmit)_\(count).jpg", toPath: "\(filenameIfNotTransmit)_\(count).jpg") {
+                                conError = "conError"
+                            }
+                            
+                        }
+                    }
+                    
+                    if self.tmpTransferedVideos.count > 0 {
+                        for count in self.tmpTransferedVideos {
+                            print("MOVE VIDEO")
+                            if self.session!.fileExists(atPath: "\(filenameIfNotTransmit)_\(count).mp4") {
+                                self.session!.removeFile(atPath: "\(filenameIfNotTransmit)_\(count).mp4")
+                            }
+                            if !self.session!.moveItem(atPath: "tmp_upload/\(filenameIfNotTransmit)_\(count).mp4", toPath: "\(filenameIfNotTransmit)_\(count).mp4") {
+                                print("tmp_upload/\(filenameIfNotTransmit)_\(count).mp4")
+                                print("\(filenameIfNotTransmit)_\(count).mp4")
+                                print("ERROR")
+                                conError = "conError"
+                            }
+                        }
+                    }
+                    
+                    for count in (0...counter - 1) {
+                        if !self.session!.moveItem(atPath: "tmp_upload/\(filenameIfNotTransmit)_\(count).json", toPath: "\(filenameIfNotTransmit)_\(count).json") {
+                            conError = "conError"
+                        }
+                    }
+                    
+                    self.counter = 0
+                    self.tmpTransferedVideos.removeAll()
+                    self.tmpTransferedImages.removeAll()
+                    if conError == nil {
+                        self.filenameIfNotTransmit = ""
+                    }
+                    completion(conError)
+                    
+                } else {
+                    self.counter = 0
+                    self.tmpTransferedVideos.removeAll()
+                    self.tmpTransferedImages.removeAll()
+                    conError = "conError"
+                    completion(conError)
+                }
+            }
+        } else {
+            counter = 0
+            self.tmpTransferedVideos.removeAll()
+            self.tmpTransferedImages.removeAll()
+            completion("dataError")
+        }
     }
     
     func loadPDF(name: String, filename: String) -> PDF {
@@ -152,19 +221,20 @@ class NetworkDataManager {
         let group = DispatchGroup()
         let documentsPath = NSTemporaryDirectory()
         
+        print("prepd video")
 
         for video in mediaVM.videos {
             if video.selected {
                 group.enter()
                 let outputURL = URL(fileURLWithPath: "\(documentsPath)\(UUID())\(video.id).mp4")
                 compressVideo(urlToCompress: video.assetURL, outputURL: outputURL, mediaVM: mediaVM)  { URL in
-                    group.wait()
                     let videoData = try! NSData(contentsOf: outputURL, options: .mappedIfSafe) as Data
                     data.append(videoData)
                     group.leave()
                 }
             }
         }
+        group.wait()
         for video in mediaVM.videosCamera {
             group.enter()
             let outputURL = URL(fileURLWithPath: "\(documentsPath)\(UUID())\(video.id).mp4")
@@ -180,29 +250,45 @@ class NetworkDataManager {
     
     var counter = 0
     
-    private func sendPhotos(filename: String, data: [Data], json: Data) {
-        if data.count != 0 {
+    private func sendPhotos(data: [Data], json: Data) -> Bool {
+        print("ich sende fotos")
+        print(data.count)
+        if data.count > 0 {
             for (index, photo) in data.enumerated() {
-                self.session!.writeContents(json, toFileAtPath: "\(filename)_\(counter).json")
-                self.session!.writeContents(photo, toFileAtPath: "\(filename)_\(counter).jpg")
+                ProgressHUD.show("Foto \(index+1) von \(data.count)")
+                if (!self.session!.writeContents(json, toFileAtPath: "tmp_upload/\(filenameIfNotTransmit)_\(counter).json")) {
+                    return false
+                }
+                if (!self.session!.writeContents(photo, toFileAtPath: "tmp_upload/\(filenameIfNotTransmit)_\(counter).jpg")) {
+                    return false
+                }
+                tmpTransferedImages.append(counter)
                 counter += 1
             }
         }
+        return true
     }
-    
-    private func sendVideos(filename: String, data: [Data], json: Data) {
-        if data.count != 0 {
+     
+    private func sendVideos(data: [Data], json: Data) -> Bool {
+        if data.count > 0 {
             for (index, video) in data.enumerated() {
-                self.session!.writeContents(json, toFileAtPath: "\(filename)_\(counter).json")
-                self.session!.writeContents(video, toFileAtPath: "\(filename)_\(counter).mp4")
+                ProgressHUD.show("Video \(index+1) von \(data.count)")
+                if (!self.session!.writeContents(json, toFileAtPath: "tmp_upload/\(filenameIfNotTransmit)_\(counter).json")) {
+                    return false
+                }
+                if (!self.session!.writeContents(video, toFileAtPath: "tmp_upload/\(filenameIfNotTransmit)_\(counter).mp4")) {
+                    return false
+                }
+                tmpTransferedVideos.append(counter)
                 counter += 1
             }
         }
+        return true
     }
     
-    private func sendPDF(isArchive: Bool, archiveName: String? ,mediaVM: MediaViewModel, filename: String, pdfData: Data, jsonData: Data) {
-        self.session!.writeContents(jsonData, toFileAtPath: "\(filename)_\(counter).json")
-        self.session!.writeContents(pdfData, toFileAtPath: "\(filename)_\(counter).pdf")
+    private func sendPDF(isArchive: Bool, archiveName: String? ,mediaVM: MediaViewModel, pdfData: Data, jsonData: Data) {
+        self.session!.writeContents(jsonData, toFileAtPath: "\(filenameIfNotTransmit)_\(counter).json")
+        self.session!.writeContents(pdfData, toFileAtPath: "\(filenameIfNotTransmit)_\(counter).pdf")
         counter += 1
         guard
             let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
@@ -216,15 +302,15 @@ class NetworkDataManager {
         //is archive
         if isArchive {
             if archiveName != nil {
-                fileURL = url.appendingPathComponent("\(filename).pdf+\(archiveName!)")
+                fileURL = url.appendingPathComponent("\(filenameIfNotTransmit).pdf+\(archiveName!)")
             } else {
-                fileURL = url.appendingPathComponent("\(filename).pdf")
+                fileURL = url.appendingPathComponent("\(filenameIfNotTransmit).pdf")
             }
-            mediaVM.archive.insert(PDF(name: filename, data: pdfData, time: Date(), isArchive: true, pdfName: mediaVM.savedPDF.pdfName), at: 0)
+            mediaVM.archive.insert(PDF(name: filenameIfNotTransmit, data: pdfData, time: Date(), isArchive: true, pdfName: mediaVM.savedPDF.pdfName), at: 0)
         } else {
-            fileURL = url.appendingPathComponent("\(filename).pdf+\(mediaVM.savedPDF.name)")
+            fileURL = url.appendingPathComponent("\(filenameIfNotTransmit).pdf+\(mediaVM.savedPDF.name)")
             print("saved pdf name: \(mediaVM.savedPDF.pdfName)")
-            mediaVM.archive.insert(PDF(name: filename, data: pdfData, time: Date(), isArchive: true, pdfName: mediaVM.savedPDF.name), at: 0)
+            mediaVM.archive.insert(PDF(name: filenameIfNotTransmit, data: pdfData, time: Date(), isArchive: true, pdfName: mediaVM.savedPDF.name), at: 0)
         }
         
         do {

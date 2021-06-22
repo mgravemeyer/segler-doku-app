@@ -78,6 +78,9 @@ struct PDFEditDetailView: View {
             VStack {
                 Spacer()
                 HStack {
+                    Button("Zoom") {
+                        
+                    }
                     
 //                    Button {
 //                        pdf.back()
