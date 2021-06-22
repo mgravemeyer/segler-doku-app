@@ -74,6 +74,8 @@ class NetworkDataManager {
                         self.sendPDF(isArchive: mediaVM.savedPDF.isArchive , archiveName: mediaVM.savedPDF.pdfName ,mediaVM: mediaVM, pdfData: mediaVM.savedPDF.data, jsonData: json)
                     }
                     
+                    ProgressHUD.show()
+                    
                     print("tmpImages\(tmpTransferedImages) tmpVideos\(tmpTransferedVideos) \(counter)")
                     
                     if self.tmpTransferedImages.count > 0 {
