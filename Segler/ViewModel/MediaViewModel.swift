@@ -157,10 +157,14 @@ class MediaViewModel : ObservableObject {
         
         var pdfSelected = 0
         
-        if selectedPDF.name != "" {
+        if savedPDF.name != "" {
             pdfSelected = 1
         }
-        return imagesCamera.count + videosCamera.count + images.count + videos.count + pdfSelected
+        
+        print("pdf \(savedPDF.name) img \(returnImageCount()) video \(returnVideoCount()) pdf \(pdfSelected)")
+        
+        
+        return returnImageCount() + returnVideoCount() + pdfSelected
     }
     
     @Published var selectedPhotoAmount = 0
