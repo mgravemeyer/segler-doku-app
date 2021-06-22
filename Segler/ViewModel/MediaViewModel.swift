@@ -190,6 +190,8 @@ class MediaViewModel : ObservableObject {
     
     @Published var lastTransmitNotSuccessfull = false
     
+    @Published var transmitCount = 0
+    
     func toggleElement(elementId: UUID) {
         let index = images.firstIndex(where: { $0.id == elementId })
         images[index!].selected.toggle()

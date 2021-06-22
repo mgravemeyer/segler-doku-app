@@ -45,7 +45,7 @@ class NetworkDataManager {
     }
     
     func sendToFTP(settingsVM: SettingsViewModel, mediaVM: MediaViewModel, userVM: UserViewModel, orderVM: OrderViewModel, remarksVM: RemarksViewModel, _ shouldThrow: Bool, completion: @escaping(String?) -> ()) {
-
+        
         if !checkIfDataIsCorrect(mediaVM: mediaVM, orderVM: orderVM, remarksVM: remarksVM) {
             if filenameIfNotTransmit == "" {
                 filenameIfNotTransmit = generateDataName(orderVM: orderVM)
@@ -54,7 +54,7 @@ class NetworkDataManager {
             if mediaVM.savedPDF.name != "" {
                 json = generatePDFJSON(userVM: userVM, remarksVM: remarksVM, mediaVM: mediaVM)!
             } else {
-                json = generateJSON(userVM: userVM, remarksVM: remarksVM)!
+                json = generateJSON(userVM: userVM, remarksVM: remarksVM, mediaVM: mediaVM)!
             }
             ProgressHUD.show()
             DispatchQueue.global(qos: .userInitiated).async { [self] in
@@ -350,7 +350,7 @@ class NetworkDataManager {
         return dateFormatter.string(from: currentDate)
     }
     
-    private func generateJSON(userVM: UserViewModel, remarksVM: RemarksViewModel) -> Data? {
+    private func generateJSON(userVM: UserViewModel, remarksVM: RemarksViewModel, mediaVM: MediaViewModel) -> Data? {
         
         let keyValuePairs = [
             ("Bereich", "\(remarksVM.bereich)"),
@@ -358,7 +358,8 @@ class NetworkDataManager {
             ("Freitext", "\(remarksVM.additionalComment)"),
             ("User", "\(userVM.username)"),
             ("AppVersion", Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String),
-            ("Geraet", UIDevice.current.name)
+            ("Geraet", UIDevice.current.name),
+            ("AnzahlMedien",  "\(mediaVM.getNumberOfMediaWithPDF())")
         ]
         
         let dict = Dictionary(keyValuePairs)
@@ -379,7 +380,8 @@ class NetworkDataManager {
             ("Freitext", ""),
             ("User", ""),
             ("AppVersion", ""),
-            ("Geraet", "")
+            ("Geraet", ""),
+            ("AnzahlMedien",  "")
         ]
         
         if mediaVM.savedPDF.isArchive {
@@ -389,7 +391,8 @@ class NetworkDataManager {
                 ("Freitext", "\(remarksVM.additionalComment)"),
                 ("User", "\(userVM.username)"),
                 ("AppVersion", Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String),
-                ("Geraet", UIDevice.current.name)
+                ("Geraet", UIDevice.current.name),
+                ("AnzahlMedien",  "\(mediaVM.getNumberOfMediaWithPDF())")
             ]
         } else {
             keyValuePairs = [
@@ -398,7 +401,8 @@ class NetworkDataManager {
                 ("Freitext", "\(remarksVM.additionalComment)"),
                 ("User", "\(userVM.username)"),
                 ("AppVersion", Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String),
-                ("Geraet", UIDevice.current.name)
+                ("Geraet", UIDevice.current.name),
+                ("AnzahlMedien",  "\(mediaVM.getNumberOfMediaWithPDF())")
             ]
         }
         
