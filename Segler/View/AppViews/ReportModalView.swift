@@ -23,26 +23,8 @@ struct ReportModalView: View {
                 if !mediaVM.images.isEmpty || !mediaVM.imagesCamera.isEmpty || !mediaVM.videos.isEmpty || !mediaVM.videosCamera.isEmpty {
                     HStack {
                         ForEach((0...mediaVM.highestOrderNumber).reversed(), id:\.self) { i in
-                            ForEach(mediaVM.images, id:\.self) { image in
-                                if image.selected && image.order == i {
-                                    Image(uiImage: image.thumbnail).renderingMode(.original).resizable().frame(width: 80, height: 80)
-                                }
-                            }
-                            ForEach(mediaVM.imagesCamera, id:\.self) { image in
-                                if image.order == i {
-                                    Image(uiImage: image.image).renderingMode(.original).resizable().frame(width: 80, height: 80)
-                                }
-                            }
-                            ForEach(mediaVM.videos, id:\.self) { video in
-                                if video.selected && video.order == i {
-                                    Image(uiImage: video.thumbnail).renderingMode(.original).resizable().frame(width: 80, height: 80)
-                                }
-                            }
-                            ForEach(mediaVM.videosCamera, id:\.self) { video in
-                                if video.order == i {
-                                    Image(uiImage: video.thumbnail).renderingMode(.original).resizable().frame(width: 80, height: 80)
-                                }
-                            }
+                            ReportModalImageRendererView(i: i)
+                            ReportModalVideoRendererView(i: i)
                         }
                     }
                 }
@@ -76,4 +58,40 @@ struct ReportModalView: View {
         self.mediaVM.savedPDF = PDF(name: "", data: Data(), isArchive: false)
     }
 
+}
+
+struct ReportModalImageRendererView: View {
+    @EnvironmentObject var mediaVM : MediaViewModel
+    var i: Int;
+    
+    var body: some View {
+        ForEach(mediaVM.images, id:\.self) { image in
+            if image.selected && image.order == i {
+                Image(uiImage: image.thumbnail).renderingMode(.original).resizable().frame(width: 80, height: 80)
+            }
+        }
+        ForEach(mediaVM.imagesCamera, id:\.self) { image in
+            if image.order == i {
+                Image(uiImage: image.image).renderingMode(.original).resizable().frame(width: 80, height: 80)
+            }
+        }
+    }
+}
+
+struct ReportModalVideoRendererView: View {
+    @EnvironmentObject var mediaVM : MediaViewModel
+    var i: Int;
+    
+    var body: some View {
+        ForEach(mediaVM.videos, id:\.self) { video in
+            if video.selected && video.order == i {
+                Image(uiImage: video.thumbnail).renderingMode(.original).resizable().frame(width: 80, height: 80)
+            }
+        }
+        ForEach(mediaVM.videosCamera, id:\.self) { video in
+            if video.order == i {
+                Image(uiImage: video.thumbnail).renderingMode(.original).resizable().frame(width: 80, height: 80)
+            }
+        }
+    }
 }
