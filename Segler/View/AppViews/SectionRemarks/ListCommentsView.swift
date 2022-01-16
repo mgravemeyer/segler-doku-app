@@ -22,7 +22,7 @@ struct ListCommentsView: View {
                         Text("Protokoll")
                     }.frame(height: 34)
                 }.frame(height: 34)
-            }.navigationBarTitle("Kategorien", displayMode: .inline).onAppear{
+            }.navigationBarTitle("Kategorien", displayMode: .inline).listStyle(PlainListStyle()).onAppear{
                 if self.show != true {
                     self.presentationMode.wrappedValue.dismiss()
                 }

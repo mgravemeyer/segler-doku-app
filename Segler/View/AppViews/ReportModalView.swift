@@ -36,7 +36,7 @@ struct ReportModalView: View {
                 }) {
                     Text("Schließen").frame(height: 34).foregroundColor(Color.blue)
                 }
-            }.padding(.top, 40).onDisappear {
+            }.listStyle(PlainListStyle()).padding(.top, 40).onDisappear {
                 deleteMedia()
             }
     }

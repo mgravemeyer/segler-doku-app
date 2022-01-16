@@ -24,6 +24,6 @@ struct ListCommentsDetailView: View {
             }.onAppear {
                 self.remarksVM.bereich = self.remarksVM.comments[self.selection].title
             }
-        }.navigationBarTitle("Kommentare", displayMode: .inline)
+        }.navigationBarTitle("Kommentare", displayMode: .inline).listStyle(PlainListStyle())
     }
 }

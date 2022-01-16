@@ -36,6 +36,7 @@ struct AppView: View {
 //                                    }
 //                                }
                             }
+                            .listStyle(PlainListStyle())
                                 .zIndex(0)
                                 .environment(\.defaultMinListRowHeight, 8)
                             VStack {

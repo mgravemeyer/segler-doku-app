@@ -4,9 +4,12 @@ import ProgressHUD
 struct AppStart: View {
     
     init() {
-        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.white]
-        UINavigationBar.appearance().barTintColor = UIColor.seglerRed
-        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.white]
+        let appearance = UINavigationBarAppearance()
+            appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = UIColor.seglerRed
+        appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+        UINavigationBar.appearance().standardAppearance = appearance
+        UINavigationBar.appearance().scrollEdgeAppearance = appearance
     }
     
     @State var appIsReady: Bool = false

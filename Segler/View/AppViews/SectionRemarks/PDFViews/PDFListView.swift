@@ -38,7 +38,7 @@ struct PDFListView: View {
                     self.presentationMode.wrappedValue.dismiss()
                 }
             }
-        }
+        }.listStyle(PlainListStyle())
     }
 }
 
