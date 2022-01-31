@@ -43,9 +43,6 @@ The company already worked with JSON and FTP connections so the IT-Department an
 SwiftUI was not bug-free when I started using it. Therefore, there were a lot of refactorings involved because when SwiftUI was released, there was nearly every week update that changed a lot. That's why here and there in the app there could be some old code, but I refactored as much as I could do till today so far.
 
 ### Program Sequence 🟢
-<p align="center">
-    <img src="https://i.ibb.co/3BXScjq/SE.png" max-height="500">
-</p>
 
 ##### 1. Getting Server Connection and Download config.json
 The Application needs to get configured the first time the user starts the app. Therefore the User has to fill out one time the server connection credentials. Then the App will search for a file named: config.json. When it finds the file it will download it. There also files mentioned in the config.json that the app tries then to download. (example: pdfs)
