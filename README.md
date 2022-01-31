@@ -64,7 +64,7 @@ When the user clicks on "Abschicken" the compression and transfer will be loaded
 
 ####Barcode that a user can scan to automatically fill out some form fields:
 <p align="center">
-    <img src="https://i.ibb.co/HqNGfN9/Screenshot-2021-05-03-at-23-02-31.png" max-height="500">
+    <img src="https://user-images.githubusercontent.com/40543879/151792066-b44cc4e0-d0ef-49f3-a5df-0d3006601061.png" max-height="500">
 </p>
 
 ##### 4. Beyond the app / what the server receives
