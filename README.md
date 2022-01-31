@@ -86,12 +86,6 @@ The sent JSON is structured in the following way:
 }
 ```
 
-And this is how it looks like in the end on the server:
-
-<p align="center">
-    <img src="https://i.ibb.co/pXr2g9V/Screenshot-2021-05-02-at-17-03-22.png" max-height="500">
-</p>
-
 ## What's next?
 * Storing the downloaded PDFs in the FileManager system, with that, I don't need to redownload every pdf.
 * Storing Server Credentials not in UserDefaults, instead of in CoreData. (UserDefaults is not encrypted so it is currently a security risk)!
